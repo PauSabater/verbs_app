@@ -1,0 +1,36 @@
+.Button {
+    --height-btn: 50px;
+
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    height: var(--height-btn);
+    border-radius: 10px;
+    font-weight: 500;
+    width: fit-content;
+    padding: 0 var(--pd-xl);
+
+    svg {
+        width: 20px;
+        transform: translateX(-15px);
+        transition: transform var(--tr-base);
+    }
+}
+
+.primary {
+    color: var(--c-white);
+    font-size: var(--fs-global);
+    background-color: var(--c-primary-dark);
+    border: none;
+    transition: background var(--tr-base);
+
+    &:hover {
+        background: var(--c-primary-darker);
+
+        svg {
+            transform: translateX(-15px) scale(1.2);
+        }
+    }
+}

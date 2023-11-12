@@ -1,0 +1,15 @@
+{
+    "verbsPage": {
+        "collapsibles": [
+            {
+                "level": "A1",
+                "title": "A1 TENSES",
+                "tenses": ["Präsens", "Präteritum", "Perfekt"]
+            },{
+                "level": "A2",
+                "title": "A2 TENSES",
+                "tenses": ["Plusquam.", "Futur I", "Futur II"]
+            }
+        ]
+    }
+}

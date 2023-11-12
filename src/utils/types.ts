@@ -1,0 +1,1 @@
+export type persons = 'ich' | 'du' | 'er' | "wir" | 'ihr' | 'sie'

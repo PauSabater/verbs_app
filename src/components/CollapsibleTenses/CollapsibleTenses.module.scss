@@ -1,0 +1,38 @@
+.container {
+    --pd-collapsible: var(--pd-xl);
+    --height-opener: 80px;
+
+    display: grid;
+    // grid-template-columns: auto 300px;
+    margin-bottom: 100px;
+}
+
+.collapsibleContent {
+    display: grid;
+    grid-row-start: 2;
+    padding: 0 var(--pd-collapsible) var(--pd-collapsible) var(--pd-collapsible);
+    grid-template-columns: repeat(3, 33.3%);
+    background-color: var(--c-primary-lighter);
+
+    button {
+        margin-top: var(--mg-lg);
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+}
+
+.clickableOpener {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: var(--pd-collapsible);
+    height: var(--height-opener);
+    background-color: var(--c-primary-lighter);
+}
+
+.containerExamples {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
