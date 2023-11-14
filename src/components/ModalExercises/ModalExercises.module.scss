@@ -1,0 +1,64 @@
+.containerModal {
+    pointer-events: none;
+    cursor: pointer;
+    position: fixed;
+    z-index: 800;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+
+    &.open {
+        pointer-events: all;
+        opacity: 1;
+    }
+
+    &.closed {
+        pointer-events: none;
+        opacity: 0;
+    }
+}
+
+.containerModal.open .background {
+    opacity: 1;
+    backdrop-filter: blur(10px);
+}
+
+.background {
+    // display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(0);
+    transition: opacity var(--tr-base);
+}
+
+.wrapRelative {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    cursor: default;
+    box-sizing: border-box;
+    position: absolute;
+    height: 80vh;
+    width: 700px;
+    top: 50%;
+    left: 50%;
+    border-radius: 15px;
+    padding: var(--pd-2xl) var(--pd-2xl);
+    background: white;
+    transform: translate(-50%, -50%);
+}
+
+div.btnClose {
+    position: absolute;
+    right: var(--pd-lg);
+}

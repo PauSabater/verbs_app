@@ -1,0 +1,22 @@
+.container {
+
+
+}
+
+.statement {
+    font-size: var(--fs-lg);
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 150px 300px;
+    margin-bottom: var(--mg-sm);
+}
+
+.person {
+    margin: 0;
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    color: var(--c-black-light);
+    align-self: center;
+}

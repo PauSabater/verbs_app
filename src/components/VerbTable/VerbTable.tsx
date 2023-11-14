@@ -16,16 +16,32 @@ interface IVerbTable {
 
 export default function VerbTable({data}: {data: IVerbTable | undefined}) {
 
+    const dispatchModalOpen = (tenses: string)=> {
+        console.log("DISPATCH MODEEEE")
+        //First, we initialize our event
+        const event = new CustomEvent('openModalExercise', {
+            detail: {
+                tenses: tenses
+            },
+            bubbles: false
+        })
+
+        // Next, we dispatch the event.
+        document.dispatchEvent(event);
+    }
+
     return data === undefined ? null : (
         <div className={styles.container}>
             <table>
                 <thead>
                     <tr>
                         <th colSpan={3} className={styles.tenseTitle}>
-                            <HoverWithInfo text={`practise ${data.tense} tense`}>
-                                {data.tense}
-                                <SVGExercise></SVGExercise>
-                            </HoverWithInfo>
+                            <div onClick={()=> dispatchModalOpen(data.tense)}>
+                                <HoverWithInfo text={`practise ${data.tense} tense`}>
+                                    {data.tense}
+                                    <SVGExercise></SVGExercise>
+                                </HoverWithInfo>
+                            </div>
                             <HoverWithInfo text={`lesson for ${data.tense} tense`}>
                                 <SVGDoc></SVGDoc>
                             </HoverWithInfo>

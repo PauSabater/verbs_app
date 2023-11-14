@@ -1,0 +1,9 @@
+.input {
+    --height-input: 50px;
+
+    border-radius: 10px;
+    height: var(--height-input);
+    border: 1px solid grey;
+    padding: 0 var(--pd-lg);
+    margin: 0;
+}

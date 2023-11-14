@@ -58,7 +58,8 @@
     // Colors
     --c-primary-transparency: hsla(54, 67%, 38%, 0.2);
 
-    --c-primary-lighter: hsl(262, 89%, 96%);
+    --c-primary-lighter-hover: hsl(262, 89%, 92%);
+    --c-primary-lighter: hsl(262, 89%, 97%);
     --c-primary-light: hsl(262, 89%, 75%);
     --c-primary: hsl(262, 89%, 50%);
     // --c-primary: hsl(60, 63%, 62%);
@@ -78,7 +79,11 @@
     --c-tertiary-darker: hsl(289, 29%, 10%);
 
 
+    --c-grey-lighter: hsl(0, 0%, 80%);
+    --c-grey-light: hsl(0, 0%, 65%);
     --c-grey: hsl(0, 0%, 50%);
+    --c-grey-dark: hsl(0, 0%, 35%);
+    --c-grey-darker: hsl(0, 0%, 20%);
 
 
     --c-black: hsl(0, 0%, 6%);
@@ -125,7 +130,7 @@
     --fs-3xl: 2.4rem;
     --fs-2xl: 2rem;
     --fs-xl: 1.7rem;
-    --fs-lg: 1.45rem;
+    --fs-lg: 1.3rem;
     --fs-global: 1.15rem;
     --fs-sm: 1.1rem;
     --fs-xs: 0.95rem;
