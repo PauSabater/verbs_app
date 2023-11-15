@@ -73,7 +73,7 @@ export default function Page() {
                 </CollapsibleTenses>
                 <ModalExercises text={""} open={exerciseTenses !== "" ? true : false} ref={refModal}>
                     <ExerciseConjugation
-                        text={`Fill the corresponding conjugations for the tense <span>${exerciseTenses}</span> of the verb ---`}
+                        text={`Fill the corresponding conjugations for the tense <span>${exerciseTenses}</span> of the verb <span>${pageVerbData.verb}</span>`}
                         conjugation={pageVerbData.data.indicative.find((tense)=> tense.tense === exerciseTenses)?.conjugations}
                     ></ExerciseConjugation>
                 </ModalExercises>

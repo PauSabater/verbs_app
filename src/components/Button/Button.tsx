@@ -1,11 +1,28 @@
 import { SVGExercise } from '@/assets/svg/svgExports'
 import styles from './Button.module.scss'
 
-export function Button({text, color = "primary"}: {text: string, color?: string}) {
+interface IButton {
+    text: string,
+    width?: "fullWidth" | "fitContent",
+    icon?: "exercise" | "redo",
+    color?: "primary" | "primaryDark" | "secondary" | "inactive" | "error"
+}
+
+export function Button(props: IButton) {
+
+    const getIcon = (icon: string)=> {
+        if (props.icon === "exercise") return (<SVGExercise></SVGExercise>)
+    }
+
     return (
-        <button className={`${styles.Button} ${styles[color]}`}>
-            <SVGExercise></SVGExercise>
-            {text}
+        <button className={`
+            ${styles.Button}
+            ${styles[props.color || "primaryDark"]}
+            ${styles[props.width || "fitContent"]}
+
+        `}>
+            {props.icon ? getIcon(props.icon) : null}
+            {props.text}
         </button>
     )
 }

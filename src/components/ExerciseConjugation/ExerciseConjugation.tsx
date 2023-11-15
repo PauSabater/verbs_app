@@ -2,7 +2,10 @@
 
 import { useState } from 'react'
 import styles from './ExerciseConjugation.module.scss'
-import { ExerciseTextInput } from '../ExerciseTextInput/ExerciseTextInput';
+import { ExerciseTextInput } from '../ExerciseTextInput/ExerciseTextInput'
+import { sanitize } from 'isomorphic-dompurify'
+import { Button } from '../Button/Button'
+
 
 interface IConjugation {
     person: string; conjugation: string; conjugationHTML: string;
@@ -19,7 +22,7 @@ export function ExerciseConjugation({text, conjugation}: {text: string, conjugat
 
     return (
         <div className={styles.container}>
-            <p className={styles.statement}>{text}</p>
+            <p className={styles.statement} dangerouslySetInnerHTML={{__html: sanitize(text)}}></p>
             {
                 conjugation !== undefined ? conjugation.map((conj, i)=> {
                     return (
@@ -35,6 +38,8 @@ export function ExerciseConjugation({text, conjugation}: {text: string, conjugat
                 })
                 : null
             }
+
+            <Button text='CHECK' width='fullWidth' color="inactive"></Button>
 
         </div>
     )

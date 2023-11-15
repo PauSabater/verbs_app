@@ -1,18 +1,35 @@
 'use client'
 
-import { useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
 import styles from './ExerciseTextInput.module.scss'
 
-interface IConjugation {
-    person: string; conjugation: string; conjugationHTML: string;
+interface IExerciseInput {
+    answer: string,
+    answerHTML: string,
+    checkResult: boolean
 }
 
-export function ExerciseTextInput({answer, answerHTML, checkResult}: {answer: string, answerHTML: string, checkResult: boolean}) {
+export function ExerciseTextInput(props: IExerciseInput) {
 
     // const [setIsOpen, isOpen] = useState(open)
 
+    const refInput = useRef(null)
+
+    const [isFilled, setIsFilled] = useState(false)
+    const [isValidated, setIsValidated] = useState(false)
+
+    const handleChangeEvent = (e: ChangeEvent<HTMLInputElement>)=> {
+        if ((e.target as HTMLInputElement).value !== "" && isFilled === false) setIsFilled(true)
+        else setIsFilled(false)
+    }
+
 
     return (
-        <input type="text" className={styles.input}></input>
+        <input
+            ref={refInput}
+            type="text"
+            className={styles.input}
+            onChange={(e)=> handleChangeEvent(e)}
+        ></input>
     )
 }

@@ -26,7 +26,9 @@ export const ModalExercises = forwardRef((props: {
         openModal
     }))
 
-    useEffect(() => {setIsOpen(open)}, [open])
+    useEffect(() => {
+        console.log(window.innerHeight)
+        setIsOpen(open)}, [open])
 
     const openModal = ()=> {setIsOpen(true)}
 

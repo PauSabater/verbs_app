@@ -26,6 +26,10 @@
     @media (min-width: 769px) { @content; }
 }
 
+@mixin desktop-vertical-sm {
+    @media (max-height: 900px) { @content; }
+}
+
 @mixin desktop-sm {
     @media (min-width: 1024px) { @content; }
 }

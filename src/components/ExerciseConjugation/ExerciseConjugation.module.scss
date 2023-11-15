@@ -1,22 +1,61 @@
+@use '../../styles/mixins.scss';
+
+
 .container {
+    display: inline-flex;
+    flex-direction: column;
 
-
+    button {
+        position: absolute;
+        justify-self: flex-end;
+        width: calc(100% - 180px);
+        bottom: 60px;
+    }
 }
 
 .statement {
     font-size: var(--fs-lg);
+    padding-right: var(--pd-md);
+    margin: var(--mg-xl) 0;
+
+    span {
+        color: var(--c-primary);
+        font-weight: 600;
+    }
 }
 
 .row {
     display: grid;
-    grid-template-columns: 150px 300px;
-    margin-bottom: var(--mg-sm);
+    grid-template-columns: 130px auto;
+    margin-bottom: var(--mg-md);
 }
 
 .person {
     margin: 0;
     font-size: var(--fs-lg);
-    font-weight: 600;
-    color: var(--c-black-light);
+    font-weight: 500;
+    color: var(--c-black-lighter);
     align-self: center;
+}
+
+@include mixins.desktop-vertical-sm {
+
+    .statement {
+        font-size: var(--fs-global);
+        margin: var(--mg-lg) 0 var(--mg-xl);
+    }
+
+    .person {
+        font-size: var(--fs-global);
+    }
+
+    .row {
+        margin-bottom: var(--mg-sm);
+        grid-template-columns: 115px auto;
+    }
+
+    .container button {
+        bottom: 40px;
+    }
+
 }

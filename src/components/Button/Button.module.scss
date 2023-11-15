@@ -7,30 +7,49 @@
     flex-direction: row;
     align-content: center;
     height: var(--height-btn);
-    border-radius: 10px;
-    font-weight: 500;
     width: fit-content;
     padding: 0 var(--pd-xl);
+    border-radius: 10px;
+    font-size: var(--fs-global);
+    font-weight: 500;
+    color: var(--c-white);
+    border: none;
+    transition: background var(--tr-base);
 
     svg {
         width: 20px;
         transform: translateX(-15px);
         transition: transform var(--tr-base);
+
+        &:hover {
+            transform: translateX(-15px) scale(1.2);
+        }
+    }
+}
+
+.primaryDark {
+    background-color: var(--c-primary-dark);
+
+    &:hover {
+        background: var(--c-primary-darker);
     }
 }
 
 .primary {
-    color: var(--c-white);
-    font-size: var(--fs-global);
-    background-color: var(--c-primary-dark);
-    border: none;
-    transition: background var(--tr-base);
+    background-color: var(--c-primary);
 
     &:hover {
-        background: var(--c-primary-darker);
-
-        svg {
-            transform: translateX(-15px) scale(1.2);
-        }
+        background: var(--c-primary-dark);
     }
+}
+
+.fullWidth {
+    width: -moz-available;
+    text-align: center;
+    justify-content: center;
+}
+
+.inactive {
+    pointer-events: none;
+    background-color: var(--c-grey-light);
 }

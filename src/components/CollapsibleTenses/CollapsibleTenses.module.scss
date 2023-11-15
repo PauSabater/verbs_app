@@ -11,7 +11,7 @@
     display: grid;
     grid-row-start: 2;
     padding: 0 var(--pd-collapsible) var(--pd-collapsible) var(--pd-collapsible);
-    grid-template-columns: repeat(3, 33.3%);
+    grid-template-columns: repeat(4, 25%);
     background-color: var(--c-primary-lighter);
 
     button {
