@@ -1,0 +1,10 @@
+.selector {
+    cursor: pointer;
+    height: 50px;
+    width: min-content;
+    border-radius: 10px;
+    padding: 0 var(--pd-xl) 0 var(--pd-md);
+    font-size: inherit;
+    background-color: var(--c-primary-lighter);
+    appearance: none;
+}

@@ -56,15 +56,28 @@
 
 
     // Colors
+    --bg-valid: var(--c-secondary-lighter);
+    // --bg-valid-dark: hsl(var(--c-primary-h), var(--c-primary-s), 85%);
+
+    --c-success: var(--c-primary);
+
+    --c-error-lighter: var(--c-secondary-lighter);
+    --c-error-light: var(--c-secondary-light);
+    --c-error: var(--c-secondary);
+    --c-error-dark: var(--c-secondary-dark);
+
     --c-primary-transparency: hsla(54, 67%, 38%, 0.2);
 
-    --c-primary-lighter-hover: hsl(262, 89%, 92%);
-    --c-primary-lighter: hsl(262, 89%, 97%);
-    --c-primary-light: hsl(262, 89%, 75%);
-    --c-primary: hsl(262, 89%, 50%);
+    // #610ef1
+    --c-primary-h: 262;
+    --c-primary-s: 89%;
+    --c-primary-lighter-hover: hsl(var(--c-primary-h), var(--c-primary-s), 92%);
+    --c-primary-lighter: hsl(var(--c-primary-h), var(--c-primary-s), 97%);
+    --c-primary-light: hsl(var(--c-primary-h), var(--c-primary-s), 75%);
+    --c-primary: hsl(var(--c-primary-h), var(--c-primary-s), 50%);
     // --c-primary: hsl(60, 63%, 62%);
-    --c-primary-dark: hsl(262, 89%, 30%);
-    --c-primary-darker: hsl(262, 89%, 15%);
+    --c-primary-dark: hsl(var(--c-primary-h), var(--c-primary-s), 30%);
+    --c-primary-darker: hsl(var(--c-primary-h), var(--c-primary-s), 15%);
 
     --c-secondary-lighter: hsl(335, 98%, 96%);
     --c-secondary-light: hsl(335, 98%, 75%);
@@ -72,11 +85,14 @@
     --c-secondary-dark: hsl(335, 98%, 30%);
     --c-secondary-darker: hsl(335, 98%, 15%);
 
-    --c-tertiary-lighter: hsl(289, 29%, 90%);
-    --c-tertiary-light: hsl(289, 29%, 70%);
-    --c-tertiary: hsl(289, 29%, 50%);
-    --c-tertiary-dark: hsl(289, 29%, 30%);
-    --c-tertiary-darker: hsl(289, 29%, 10%);
+    // 79°, 93%, 50%
+    --c-tertiary-h: 79;
+    --c-tertiary-s: 93%;
+    --c-tertiary-lighter: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 90%);
+    --c-tertiary-light: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 70%);
+    --c-tertiary: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 35%);
+    --c-tertiary-dark: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 30%);
+    --c-tertiary-darker: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 10%);
 
 
     --c-grey-lighter: hsl(0, 0%, 80%);

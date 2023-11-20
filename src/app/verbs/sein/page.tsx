@@ -11,6 +11,7 @@ import texts from '../../../dummyData/texts.json'
 import { ModalExercises } from "@/components/ModalExercises/ModalExercises"
 import { useLayoutEffect, useRef, useState } from "react"
 import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation"
+import { Selector } from "@/components/Selector/Selector"
 
 export default function Page() {
 
@@ -28,15 +29,10 @@ export default function Page() {
             return
         }
 
-        console.log("add eveeent");
-        console.log(refPageContent.current as HTMLElement);
-
         document.addEventListener(
             "openModalExercise",
             (e) => {
                 e.stopPropagation()
-                console.log("HEYYY CUSTOM EVENT")
-                console.log((e as any).detail);
                 setExerciseTenses((e as any).detail.tenses)
                 if (refModal.current === null) return
                 // @ts-ignore
@@ -73,7 +69,9 @@ export default function Page() {
                 </CollapsibleTenses>
                 <ModalExercises text={""} open={exerciseTenses !== "" ? true : false} ref={refModal}>
                     <ExerciseConjugation
-                        text={`Fill the corresponding conjugations for the tense <span>${exerciseTenses}</span> of the verb <span>${pageVerbData.verb}</span>`}
+                        tense={exerciseTenses}
+                        textBeforeTense={`✏️  &#160Fill the <span>${exerciseTenses}</span> of <span>${pageVerbData.verb}</span>.`}
+                        textAfterTense={`✏️  &#160Fill the <span>${exerciseTenses}</span> of <span>${pageVerbData.verb}</span>.`}
                         conjugation={pageVerbData.data.indicative.find((tense)=> tense.tense === exerciseTenses)?.conjugations}
                     ></ExerciseConjugation>
                 </ModalExercises>

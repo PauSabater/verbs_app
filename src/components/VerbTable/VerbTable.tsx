@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './VerbTable.module.scss'
 import { Fragment } from 'react'
 import { sanitize } from 'isomorphic-dompurify'
-import { SVGDoc, SVGExercise } from '@/assets/svg/svgExports'
+import { SVGAudio, SVGDoc, SVGExercise } from '@/assets/svg/svgExports'
 import HoverWithInfo from '../HoverWithInfo/HoverWithInfo'
 
 interface IVerbTable {
@@ -30,6 +30,64 @@ export default function VerbTable({data}: {data: IVerbTable | undefined}) {
         document.dispatchEvent(event);
     }
 
+    const getTextForConjugationAudio = ()=> {
+        console.log(data?.conjugations)
+
+        let text
+
+        if (!data?.conjugations) return ""
+
+        for(const conj of data.conjugations) {
+            console.log(conj.person)
+            text = `${text || ""}${conj.person} ${conj.conjugation}, `
+        }
+
+        return text
+    }
+
+    const playAudio = (text: string)=> {
+        const synthesis = window.speechSynthesis
+
+        const langRegex = /^de(-[a-z]{2})?$/i
+
+        // const voices = synthesis
+        //     .getVoices()
+        //     .filter((voice) => langRegex.test(voice.lang))
+
+
+
+        // var voice = synthesis.getVoices().filter(function (voice) {
+        //     return voice.lang === 'de-DE';
+        // })[0]
+
+        console.log(text)
+
+        var voicees = synthesis.getVoices().filter(function (voice) {
+            return voice.lang === 'de-DE';
+        })
+
+        let voices = synthesis.getVoices().filter(function (voice) {
+            return voice.name === 'Google Deutsch'
+        })
+
+
+        const voice = voices.length > 0 ? voices[0] : synthesis.getVoices().filter(function (voice) {
+            return voice.lang === 'de-DE';
+        })[0]
+
+        // Create an utterance object
+        var utterance = new SpeechSynthesisUtterance(text);
+
+        // Set utterance properties
+        utterance.voice = voice;
+        utterance.pitch = 1;
+        utterance.rate = 0.9;
+        utterance.volume = 1;
+
+        // Speak the utterance
+        synthesis.speak(utterance);
+    }
+
     return data === undefined ? null : (
         <div className={styles.container}>
             <table>
@@ -45,6 +103,11 @@ export default function VerbTable({data}: {data: IVerbTable | undefined}) {
                             <HoverWithInfo text={`lesson for ${data.tense} tense`}>
                                 <SVGDoc></SVGDoc>
                             </HoverWithInfo>
+                            <div onClick={()=> playAudio(getTextForConjugationAudio() as string)}>
+                                <HoverWithInfo text={`lesson for ${data.tense} tense`}>
+                                    <SVGAudio></SVGAudio>
+                                </HoverWithInfo>
+                            </div>
                         </th>
                     </tr>
                 </thead>

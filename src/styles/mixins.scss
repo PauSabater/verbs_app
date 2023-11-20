@@ -26,8 +26,12 @@
     @media (min-width: 769px) { @content; }
 }
 
-@mixin desktop-vertical-sm {
+@mixin vertical-900 {
     @media (max-height: 900px) { @content; }
+}
+
+@mixin vertical-750 {
+    @media (max-height: 750px) { @content; }
 }
 
 @mixin desktop-sm {

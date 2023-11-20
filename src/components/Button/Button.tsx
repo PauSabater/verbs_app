@@ -5,8 +5,10 @@ interface IButton {
     text: string,
     width?: "fullWidth" | "fitContent",
     icon?: "exercise" | "redo",
-    color?: "primary" | "primaryDark" | "secondary" | "inactive" | "error"
+    color?: TColor
 }
+
+export type TColor = "primary" | "primaryDark" | "secondary" | "inactive" | "error" | "success"
 
 export function Button(props: IButton) {
 

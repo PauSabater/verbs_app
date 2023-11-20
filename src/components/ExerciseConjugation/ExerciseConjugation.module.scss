@@ -1,24 +1,35 @@
 @use '../../styles/mixins.scss';
 
+.exerciseConjugation {
+    --height-feedback: 200px;
+
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+}
+
 
 .container {
+    position: relative;
     display: inline-flex;
     flex-direction: column;
-
-    button {
-        position: absolute;
-        justify-self: flex-end;
-        width: calc(100% - 180px);
-        bottom: 60px;
-    }
+    height: inherit;
+    overflow-y: auto;
+    padding: var(--pd-modal-vertical) var(--pd-modal-horitz);
 }
+
+// .rowsContainer {
+//     position: flex;
+// }
 
 .statement {
     font-size: var(--fs-lg);
+    font-weight: 600;
+    color: var(--c-grey-darker);
     padding-right: var(--pd-md);
-    margin: var(--mg-xl) 0;
+    margin: var(--mg-xl) 0 var(--mg-2xl);
 
-    span {
+    span:not([data-text]), select {
         color: var(--c-primary);
         font-weight: 600;
     }
@@ -38,11 +49,16 @@
     align-self: center;
 }
 
-@include mixins.desktop-vertical-sm {
+
+@include mixins.vertical-900 {
+
+    .exerciseConjugation {
+        --height-feedback: 200px;
+    }
 
     .statement {
         font-size: var(--fs-global);
-        margin: var(--mg-lg) 0 var(--mg-xl);
+        margin: var(--mg-xl) 0 var(--mg-xl);
     }
 
     .person {
@@ -55,7 +71,65 @@
     }
 
     .container button {
-        bottom: 40px;
+        bottom: 80px;
+    }
+}
+
+@include mixins.vertical-750 {
+
+    .statement {
+        font-size: var(--fs-sm);
+        margin: var(--mg-xs) 0 var(--mg-md);
     }
 
+    .person {
+        font-size: var(--fs-global);
+    }
+
+    .row {
+        margin-bottom: var(--mg-xs);
+        grid-template-columns: 115px auto;
+    }
+
+    .container button {
+        bottom: 60px;
+    }
+
+    .container input {
+        height: 45px;
+        margin-bottom: 10px;
+    }
+}
+
+@include mixins.mobile {
+
+    .container {
+        --pd-modal-horitz: 15px;
+        --pd-modal-vertical: var(--pd-modal-horitz);
+    }
+
+    .statement {
+        font-size: var(--fs-global);
+        margin: var(--mg-xl) 0 var(--mg-lg);
+    }
+
+    .row {
+        grid-template-columns: 60px auto;
+    }
+
+    .person, .statement, .row input {
+        font-size: var(--fs-global);
+    }
+
+    .container button {
+        bottom: 60px;
+    }
+}
+
+@include mixins.vertical-750 {
+
+    .statement {
+        font-size: var(--fs-sm);
+        margin: calc(var(--mg-lg) + 5px) 0 var(--mg-lg);
+    }
 }

@@ -1,9 +1,13 @@
+@use '../../styles/mixins.scss';
+
 .container {
+    --size-btn: 50px
+
     cursor: pointer;
     position: relative;
-    width: 50px;
-    height: 50px;
-    border-radius: 25px;
+    width: var(--size-btn);
+    height: var(--size-btn);
+    border-radius: var(--size-btn);
     background: var(--c-primary-lighter);
     transition: background var(--tr-base);
 
@@ -22,5 +26,11 @@
         left: 50%;
         transform: translate(-50%, -50%) scale(0.85);
         transition: transform var(--tr-base);
+    }
+}
+
+@include mixins.mobile {
+    .container {
+        --size-btn: 40px
     }
 }

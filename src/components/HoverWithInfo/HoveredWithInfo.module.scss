@@ -5,10 +5,17 @@
     flex-direction: row;
     align-items: center;
 
+    svg {
+        opacity: 0.8;
+        transition: transform var(--tr-base), opacity var(--tr-base);
+    }
+
+
     &:hover {
         color: var(--c-primary-dark);
 
         svg {
+            opacity: 1;
             transform: scale(1.25);
         }
     }

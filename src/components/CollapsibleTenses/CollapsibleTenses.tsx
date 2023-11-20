@@ -30,7 +30,7 @@ export function CollapsibleTenses({texts, children}: {texts: ICollapsibleTexts, 
                 {children}
                 <Button text={`Practise ${texts.title}`} color={"primary"}></Button>
             </div>
-            {/* <div className={styles.containerExamples}></div> */}
+            <div className={styles.containerExamples}></div>
         </div>
     )
 }

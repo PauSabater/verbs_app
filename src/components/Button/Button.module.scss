@@ -43,6 +43,22 @@
     }
 }
 
+.success {
+    background-color: var(--c-success);
+
+    &:hover {
+        background: var(--c-success-dark);
+    }
+}
+
+.error {
+    background-color: var(--c-error);
+
+    &:hover {
+        background: var(--c-error-dark);
+    }
+}
+
 .fullWidth {
     width: -moz-available;
     text-align: center;

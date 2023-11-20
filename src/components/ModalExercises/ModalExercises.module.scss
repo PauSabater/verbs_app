@@ -47,15 +47,19 @@
 }
 
 .container {
+    --pd-modal-vertical: 40px;
+    --pd-modal-horitz: 90px;
+
+    container-type: size;
     cursor: default;
     box-sizing: border-box;
     position: absolute;
     height: 80vh;
-    width: 700px;
+    width: 90vw;
+    max-width: 700px;
     top: 50%;
     left: 50%;
     border-radius: 15px;
-    padding: 40px 90px;
     background: white;
     transform: translate(-50%, -50%);
 }
@@ -67,9 +71,29 @@ div.btnClose {
 }
 
 
-@include mixins.desktop-vertical-sm {
+@include mixins.vertical-900 {
     .container {
         height: 83vh;
-        width: 650px;
+        max-width: 650px;
+    }
+}
+
+@include mixins.mobile {
+    .container {
+        --pd-modal-horitz: 15px;
+        --pd-modal-vertical: var(--pd-modal-horitz);
+
+        height: 90vh;
+    }
+
+    div.btnClose {
+        top: var(--pd-md);
+        right: var(--pd-md);
+    }
+}
+
+@include mixins.vertical-750 {
+    .container {
+        height: 95vh;
     }
 }

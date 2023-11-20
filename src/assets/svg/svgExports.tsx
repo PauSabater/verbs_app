@@ -1,3 +1,4 @@
+import { isError, isSuccess } from "@/utils/constants";
 import { ReactNode } from "react";
 
 export function SVGExercise({color}: {color?: string}) { return (
@@ -18,6 +19,40 @@ export function SVGDoc({color}: {color?: string}) { return (
 
 export function SVGCross({color}: {color?: string}) { return (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 13L12.5 1.5M12.5 13L1 1.5" stroke={color || "currentColor"} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M1 13L12.5 1.5M12.5 13L1 1.5" stroke={color || "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 )}
+
+export function SVGAudio({color}: {color?: string}) { return (
+    <svg viewBox="0 0 182 358" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 108C30.9087 129.191 38.319 153.986 38.319 179.333C38.319 204.681 30.9087 229.476 17 250.667M64.3333 60.6667C89.6721 95.043 103.342 136.628 103.342 179.333C103.342 222.039 89.6721 263.624 64.3333 298M107.667 17.3333C144.566 63.2646 164.679 120.416 164.679 179.333C164.679 238.25 144.566 295.402 107.667 341.333"
+        stroke={color || "currentColor"} strokeWidth="33.3333" strokeLinecap="round"/>
+    </svg>
+)}
+
+export function SVGCorrect({color}: {color?: string}) { return(
+    <svg viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M26.5 53C41.1355 53 53 41.1356 53 26.5C53 11.8644 41.1355 0 26.5 0C11.8645 0 0 11.8644 0 26.5C0 41.1356 11.8645 53 26.5 53ZM41.9749 20.4749C43.3417 19.108 43.3417 16.892 41.9749 15.5251C40.608 14.1583 38.392 14.1583 37.0251 15.5251L22 30.5502L16.4749 25.0251C15.108 23.6583 12.892 23.6583 11.5251 25.0251C10.1583 26.392 10.1583 28.608 11.5251 29.9749L19.5251 37.9749L22 40.4498L24.4749 37.9749L41.9749 20.4749Z"
+        fill={color || "currentColor"}/>
+    </svg>
+)}
+
+export function SVGIncorrect({color}: {color?: string}) { return(
+    <svg viewBox="0 0 53 53" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M53 26.5C53 41.1356 41.1355 53 26.5 53C11.8645 53 0 41.1356 0 26.5C0 11.8644 11.8645 0 26.5 0C41.1355 0 53 11.8644 53 26.5ZM39.5375 15.0894C40.8689 16.4908 40.812 18.7062 39.4106 20.0375L31.9481 27.1269L39.0375 34.5894C40.3689 35.9908 40.312 38.2062 38.9106 39.5375C37.5092 40.8688 35.2938 40.8121 33.9625 39.4106L26.8732 31.9481L19.4106 39.0375C18.0092 40.3688 15.7938 40.3121 14.4625 38.9106C13.1311 37.5092 13.188 35.2938 14.5894 33.9625L22.0519 26.8731L14.9625 19.4106C13.6311 18.0092 13.688 15.7939 15.0894 14.4625C16.4908 13.1312 18.7062 13.1879 20.0375 14.5894L27.1268 22.0519L34.5894 14.9625C35.9908 13.6312 38.2062 13.6879 39.5375 15.0894Z"
+        fill={color || "currentColor"}/>
+    </svg>
+)}
+
+export const getFeedbackSvg = (state: string)=> {
+    if(isSuccess(state)) return (<SVGCorrect></SVGCorrect>)
+    if(isError(state)) return (<SVGIncorrect></SVGIncorrect>)
+    return null
+}
+
+
+
+
+
+
+

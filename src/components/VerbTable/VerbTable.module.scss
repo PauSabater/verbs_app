@@ -1,5 +1,6 @@
 .container {
     color: var(--c-font-global-light);
+    padding-bottom: var(--pd-md);
 
     td {
         font-size: var(--fs-sm);
@@ -44,10 +45,14 @@
     text-align: left;
     white-space: nowrap;
 
+    div:first-child svg {
+        padding-left: 15px;
+    }
+
     svg {
         height: 20px;
         width: 20px;
-        padding-left: 15px;
+        padding-left: var(--pd-sm);
         right: -30px;
         transition: transform var(--tr-base);
     }
