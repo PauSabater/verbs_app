@@ -50,6 +50,11 @@ export const getFeedbackSvg = (state: string)=> {
     return null
 }
 
+export const SVGArrow = ({color = "currentColor", strokeWidth = 6}: {color?: string, strokeWidth?: number})=> <svg viewBox="0 0 52 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 5.5L26 26.5L47 5.5" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round"/>
+</svg>
+
+
 
 
 

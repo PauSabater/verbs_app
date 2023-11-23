@@ -1,10 +1,115 @@
+.container {
+    display: inline;
+    position: relative;
+}
+
 .selector {
+    --height-selector: 50px;
     cursor: pointer;
-    height: 50px;
+    position: relative;
+    height: var(--height-selector);
     width: min-content;
     border-radius: 10px;
     padding: 0 var(--pd-xl) 0 var(--pd-md);
     font-size: inherit;
-    background-color: var(--c-primary-lighter);
+    color: inherit;
+    // background-color: var(--c-primary-lighter);
+    // background: rgb(34,193,195);
+    // background: linear-gradient(0deg, transparent 0%, var(--c-primary-lighter) 120%);
+    background-color: transparent;
+    border: 2px solid var(--c-primary-lighter-hover);
     appearance: none;
+    transition: background-color var(--tr-base);
+
+    &:hover {
+        background-color: var(--c-primary-lighter);
+    }
+
+    option {
+        background-color: red;
+    }
+
+    svg {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        width: 15px;
+        transform: translateY(-50%);
+        transition: transform var(--tr-base);
+    }
+
+    &[aria-expanded="true"] svg {
+        pointer-events: all;
+        transform:  translateY(-50%) scaleY(-1);
+    }
+
+
 }
+
+.primary, .primary svg {
+    color: var(--c-primary);
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.dropdown {
+    pointer-events: none;
+    position: absolute;
+    list-style: none;
+    min-width: 150px;
+    width: max-content;
+    opacity: 0;
+    top: var(--height-selector);
+    left: 0;
+    margin: 0;
+    padding: var(--mg-lg) var(--mg-xl);
+    background-color: white;
+    border: 2px solid var(--c-primary-lighter-hover);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition: opacity var(--tr-base);
+    box-shadow: -1px 1px 8px -3px var(--c-primary-light);
+    z-index: 100;
+
+    &.expanded {
+        pointer-events: all;
+        opacity: 1;
+
+        .label {
+            transform: translateY(0);
+            transition: transform var(--tr-base);
+        }
+    }
+}
+
+.label {
+    cursor: pointer;
+    display: block;
+    // background: red;
+    width: fill-available;
+    width: -moz-available;
+    font-weight: 400;
+    transform: translateY(px);
+    transition: transform var(--tr-base);
+    transition-delay: var(--tr-base);
+}
+
+.input[type="radio"] {
+    position: absolute;
+    left: 0;
+    opacity: 0;
+}
+
+.input:focus ~ .label {
+    background-color: var(--c-grey-light);
+}
+
+.input ~ .label:hover {
+    background-color: var(--c-grey-lighter);
+}
+
+// .weight500 {
+//     font-weight: 500;
+// }

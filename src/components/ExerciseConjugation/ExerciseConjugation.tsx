@@ -17,7 +17,7 @@ interface IConjugation {
 }
 
 interface IExerciseConjugation {
-    tense: string,
+    tenseExercise: string,
     textBeforeTense: string,
     textAfterTense: string,
     conjugation: IConjugation[] | undefined
@@ -105,7 +105,7 @@ export function ExerciseConjugation(props: IExerciseConjugation) {
             <div className={styles.container}>
                 <p className={styles.statement}>
                     <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.textBeforeTense)}}></span>
-                    <Selector title={props.tense} options={['hey', 'hey']}></Selector>
+                    <Selector title={props.tenseExercise} options={[{str: 'hey'}]}></Selector>
                     <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.textAfterTense)}}></span>
                 </p>
                 <div className={styles.rowsContainer}>

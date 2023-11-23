@@ -8,3 +8,15 @@ export const isSuccess = (state: string)=> {return state === strSuccess}
 export const isError = (state: string)=> {return state === strError}
 export const isInactive = (state: string)=> {return state === strInactive}
 export const isFilled = (state: string)=> {return state === strFilled}
+
+// export const Tenses =  [
+//     {
+//         str: "Präsens"
+//     },{
+//         str: "Präsens"
+//     }
+// ]
+
+// export const Tenses = {
+//     indicative: []
+// }

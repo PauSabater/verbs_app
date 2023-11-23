@@ -19,7 +19,7 @@ export default function Page() {
 
     const pageVerbData = Sein
 
-    const [exerciseTenses, setExerciseTenses] = useState("")
+    const [exerciseTense, setExerciseTense] = useState("")
 
     const refModal = useRef(null)
 
@@ -33,7 +33,7 @@ export default function Page() {
             "openModalExercise",
             (e) => {
                 e.stopPropagation()
-                setExerciseTenses((e as any).detail.tenses)
+                setExerciseTense((e as any).detail.tenses)
                 if (refModal.current === null) return
                 // @ts-ignore
                 refModal.current.openModal()
@@ -46,7 +46,7 @@ export default function Page() {
 
     return (
         <div className={styles.pageContent} ref={refPageContent}>
-            <h1>{`hello tense: ${exerciseTenses}`}</h1>
+            <h1>{`hello tense: ${exerciseTense}`}</h1>
             <div>
                 <CollapsibleTenses texts={{title: texts.verbsPage.collapsibles[0].title}}>
                     {
@@ -67,15 +67,15 @@ export default function Page() {
                         })
                     }
                 </CollapsibleTenses>
-                <ModalExercises text={""} open={exerciseTenses !== "" ? true : false} ref={refModal}>
+                <ModalExercises text={""} open={exerciseTense !== "" ? true : false} ref={refModal}>
                     <ExerciseConjugation
-                        tense={exerciseTenses}
-                        textBeforeTense={`✏️  &#160Fill the <span>${exerciseTenses}</span> of <span>${pageVerbData.verb}</span>.`}
-                        textAfterTense={`✏️  &#160Fill the <span>${exerciseTenses}</span> of <span>${pageVerbData.verb}</span>.`}
-                        conjugation={pageVerbData.data.indicative.find((tense)=> tense.tense === exerciseTenses)?.conjugations}
+                        tenseExercise={exerciseTense}
+                        textBeforeTense={`✏️  &#160Fill the <span>${exerciseTense}</span> of <span>${pageVerbData.verb}</span>.`}
+                        textAfterTense={`✏️  &#160Fill the <span>${exerciseTense}</span> of <span>${pageVerbData.verb}</span>.`}
+                        conjugation={pageVerbData.data.indicative.find((tense)=> tense.tense === exerciseTense)?.conjugations}
                     ></ExerciseConjugation>
                 </ModalExercises>
-            </div>
+            </div>z
         </div>
     )
 }

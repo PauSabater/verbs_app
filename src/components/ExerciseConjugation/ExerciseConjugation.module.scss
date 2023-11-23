@@ -16,6 +16,7 @@
     height: inherit;
     overflow-y: auto;
     padding: var(--pd-modal-vertical) var(--pd-modal-horitz);
+    z-index: 99;
 }
 
 // .rowsContainer {
@@ -29,9 +30,18 @@
     padding-right: var(--pd-md);
     margin: var(--mg-xl) 0 var(--mg-2xl);
 
-    span:not([data-text]), select {
-        color: var(--c-primary);
-        font-weight: 600;
+    // span:not([data-text]), select {
+    //     color: var(--c-primary);
+    //     font-weight: 600;
+    // }
+
+    select {
+        margin: var(--mg-sm);
+    }
+
+    div {
+        display: inline;
+        margin: 0 var(--mg-sm);
     }
 }
 
