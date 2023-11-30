@@ -37,16 +37,11 @@ export const ModalExercises = forwardRef((props: {
         setIsOpen(true)
     }
 
-    const closeModal = ()=> {
+    const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>)=> {
+        e.stopPropagation()
         enableScroll()
         setIsOpen(false)
     }
-
-    const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>)=> {
-        e.stopPropagation()
-        setIsOpen(false)
-    }
-
 
     return (
         <div className={`${styles.containerModal} ${styles[isOpen ? "open" : "closed"]}`}>

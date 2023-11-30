@@ -109,6 +109,7 @@
     // Border color
     --c-br-light: hsl(136, 0%, 80%);
 
+    --c-font-white: hsl(136, 0%, 96%);
     --c-font-global: var(--c-black);
     --c-font-global-light: hsl(0, 0%, 13%);
     --c-font-global-lighter: hsl(0, 0%, 30%);
@@ -126,6 +127,7 @@
     --bg-white-translucent-dark-mode: hsl(0, 0%, 100%, 1);
 
     // Transitions
+    --tr-faster: 0.1s;
     --tr-fast: 0.2s;
     --tr-base: 0.3s;
     --tr-slow: 0.5s;

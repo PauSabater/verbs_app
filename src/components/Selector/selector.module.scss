@@ -1,4 +1,5 @@
 .container {
+    --pd-left-selector: calc(var(--pd-lg) + 5px);
     display: inline;
     position: relative;
 }
@@ -9,10 +10,12 @@
     position: relative;
     height: var(--height-selector);
     width: min-content;
-    border-radius: 10px;
-    padding: 0 var(--pd-xl) 0 var(--pd-md);
+    min-width: 200px;
+    border-radius: var(--br-base);
+    padding: 0 var(--pd-2xl) 0 var(--pd-left-selector);
     font-size: inherit;
-    color: inherit;
+    white-space: nowrap;
+    color: currentColor;
     // background-color: var(--c-primary-lighter);
     // background: rgb(34,193,195);
     // background: linear-gradient(0deg, transparent 0%, var(--c-primary-lighter) 120%);
@@ -32,7 +35,7 @@
     svg {
         position: absolute;
         top: 50%;
-        right: 10px;
+        right: 20px;
         width: 15px;
         transform: translateY(-50%);
         transition: transform var(--tr-base);
@@ -46,6 +49,11 @@
 
 }
 
+.selectedValue {
+    display: flex;
+    align-self: end;
+}
+
 .primary, .primary svg {
     color: var(--c-primary);
 }
@@ -57,30 +65,57 @@
 .dropdown {
     pointer-events: none;
     position: absolute;
+    overflow-y: auto;
     list-style: none;
-    min-width: 150px;
+    max-height: 70vh;
+    min-width: 250px;
     width: max-content;
     opacity: 0;
     top: var(--height-selector);
     left: 0;
     margin: 0;
-    padding: var(--mg-lg) var(--mg-xl);
+    padding: var(--mg-lg) 0;
     background-color: white;
     border: 2px solid var(--c-primary-lighter-hover);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    transition: opacity var(--tr-base);
+    // border-top-right-radius: var(--br-base);
+    border-bottom-left-radius: var(--br-base);
+    border-bottom-right-radius: var(--br-base);
     box-shadow: -1px 1px 8px -3px var(--c-primary-light);
     z-index: 100;
+    transition: opacity var(--tr-faster);
 
     &.expanded {
         pointer-events: all;
         opacity: 1;
+        transition: opacity var(--tr-base);
 
         .label {
             transform: translateY(0);
-            transition: transform var(--tr-base);
+            // transition: transform var(--tr-base);
         }
+    }
+}
+
+.btnExpanded {
+    border-radius: var(--br-base) var(--br-base) 0 0;
+}
+
+.labelTitle {
+    position: relative;
+    display: block;
+    padding: 0 calc(var(--pd-left-selector) / 1);
+    margin: var(--mg-xs) 0 var(--mg-xs);
+    font-weight: 500;
+    color: var(--c-grey-dark);
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--c-grey-lighter);
     }
 }
 
@@ -90,16 +125,22 @@
     // background: red;
     width: fill-available;
     width: -moz-available;
+    padding: 3px var(--pd-left-selector);
     font-weight: 400;
-    transform: translateY(px);
-    transition: transform var(--tr-base);
-    transition-delay: var(--tr-base);
+    transform: translateY(5px);
+    transition: transform var(--tr-base), background-color var(--tr-base);
+    // transition-delay: var(--tr-base);
 }
 
 .input[type="radio"] {
     position: absolute;
     left: 0;
     opacity: 0;
+}
+
+.input:checked ~ .label {
+    background-color: var(--c-primary-lighter-hover);
+    font-weight: 600;
 }
 
 .input:focus ~ .label {
@@ -109,6 +150,8 @@
 .input ~ .label:hover {
     background-color: var(--c-grey-lighter);
 }
+
+
 
 // .weight500 {
 //     font-weight: 500;

@@ -8,7 +8,7 @@ interface IButton {
     color?: TColor
 }
 
-export type TColor = "primary" | "primaryDark" | "secondary" | "inactive" | "error" | "success"
+export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryDark" | "secondary" | "secondaryReverse" | "inactive" | "error" | "success"
 
 export function Button(props: IButton) {
 

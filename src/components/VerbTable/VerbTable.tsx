@@ -5,7 +5,7 @@ import { sanitize } from 'isomorphic-dompurify'
 import { SVGAudio, SVGDoc, SVGExercise } from '@/assets/svg/svgExports'
 import HoverWithInfo from '../HoverWithInfo/HoverWithInfo'
 
-interface IVerbTable {
+interface IVerbData {
         tense: string,
         conjugations: {
                 person: string,
@@ -14,14 +14,15 @@ interface IVerbTable {
         }[]
 }
 
-export default function VerbTable({data}: {data: IVerbTable | undefined}) {
+export default function VerbTable({verbData, mode}: {verbData: IVerbData | undefined, mode: string}) {
 
-    const dispatchModalOpen = (tenses: string)=> {
+    const dispatchModalOpen = (tense: string)=> {
         console.log("DISPATCH MODEEEE")
         //First, we initialize our event
         const event = new CustomEvent('openModalExercise', {
             detail: {
-                tenses: tenses
+                tense: tense,
+                mode: mode
             },
             bubbles: false
         })
@@ -31,13 +32,13 @@ export default function VerbTable({data}: {data: IVerbTable | undefined}) {
     }
 
     const getTextForConjugationAudio = ()=> {
-        console.log(data?.conjugations)
+        console.log(verbData?.conjugations)
 
         let text
 
-        if (!data?.conjugations) return ""
+        if (!verbData?.conjugations) return ""
 
-        for(const conj of data.conjugations) {
+        for(const conj of verbData.conjugations) {
             console.log(conj.person)
             text = `${text || ""}${conj.person} ${conj.conjugation}, `
         }
@@ -88,23 +89,23 @@ export default function VerbTable({data}: {data: IVerbTable | undefined}) {
         synthesis.speak(utterance);
     }
 
-    return data === undefined ? null : (
+    return verbData === undefined ? null : (
         <div className={styles.container}>
             <table>
                 <thead>
                     <tr>
                         <th colSpan={3} className={styles.tenseTitle}>
-                            <div onClick={()=> dispatchModalOpen(data.tense)}>
-                                <HoverWithInfo text={`practise ${data.tense} tense`}>
-                                    {data.tense}
+                            <div onClick={()=> dispatchModalOpen(verbData.tense)}>
+                                <HoverWithInfo text={`practise ${verbData.tense} tense`}>
+                                    {verbData.tense}
                                     <SVGExercise></SVGExercise>
                                 </HoverWithInfo>
                             </div>
-                            <HoverWithInfo text={`lesson for ${data.tense} tense`}>
+                            <HoverWithInfo text={`lesson for ${verbData.tense} tense`}>
                                 <SVGDoc></SVGDoc>
                             </HoverWithInfo>
                             <div onClick={()=> playAudio(getTextForConjugationAudio() as string)}>
-                                <HoverWithInfo text={`lesson for ${data.tense} tense`}>
+                                <HoverWithInfo text={`lesson for ${verbData.tense} tense`}>
                                     <SVGAudio></SVGAudio>
                                 </HoverWithInfo>
                             </div>
@@ -113,7 +114,7 @@ export default function VerbTable({data}: {data: IVerbTable | undefined}) {
                 </thead>
                 <tbody>
                     {
-                        data.conjugations.map((row, i) => {
+                        verbData.conjugations.map((row, i) => {
                             return (
                                 <tr key={`row-${row.person}`}>
                                     <td>{row.person}</td>

@@ -35,11 +35,44 @@
     }
 }
 
+.primaryDarkReverse {
+    color: var(--c-primary-dark);
+    border: 2px solid var(--c-primary-dark);
+    background-color: transparent;
+
+    &:hover {
+        background: var(--c-primary-dark);
+        color: var(--c-font-white);
+    }
+}
+
 .primary {
     background-color: var(--c-primary);
 
     &:hover {
         background: var(--c-primary-dark);
+    }
+}
+
+.primaryReverse {
+    color: var(--c-primary);
+    border: 2px solid var(--c-primary);
+    background-color: transparent;
+
+    &:hover {
+        background: var(--c-primary);
+        color: var(--c-font-white);
+    }
+}
+
+.secondaryReverse {
+    color: var(--c-secondary);
+    border: 2px solid var(--c-secondary);
+    background-color: transparent;
+
+    &:hover {
+        background: var(--c-secondary);
+        color: var(--c-font-white);
     }
 }
 

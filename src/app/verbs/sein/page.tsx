@@ -21,6 +21,8 @@ export default function Page() {
 
     const [exerciseTense, setExerciseTense] = useState("")
 
+    const [exerciseMode, setExerciseMode] = useState("")
+
     const refModal = useRef(null)
 
     useLayoutEffect(() => {
@@ -33,7 +35,9 @@ export default function Page() {
             "openModalExercise",
             (e) => {
                 e.stopPropagation()
-                setExerciseTense((e as any).detail.tenses)
+                setExerciseTense((e as any).detail.tense)
+                setExerciseMode((e as any).detail.mode)
+
                 if (refModal.current === null) return
                 // @ts-ignore
                 refModal.current.openModal()
@@ -52,7 +56,7 @@ export default function Page() {
                     {
                         texts.verbsPage.collapsibles[0].tenses.map((tableTense, i) => {
                             return (
-                                <VerbTable key={tableTense} data={pageVerbData.data.indicative.find((tense)=> tense.tense === tableTense)}></VerbTable>
+                                <VerbTable key={tableTense} mode={"indicative"} verbData={pageVerbData.data.indicative.find((tense)=> tense.tense === tableTense)}></VerbTable>
                             )
                         })
                     }
@@ -62,39 +66,23 @@ export default function Page() {
                     {
                         texts.verbsPage.collapsibles[1].tenses.map((tableTense, i) => {
                             return (
-                                <VerbTable key={tableTense} data={pageVerbData.data.indicative.find((tense)=> tense.tense === tableTense)}></VerbTable>
+                                <VerbTable key={tableTense} mode={"conjunctive"} verbData={pageVerbData.data.conjunctive.find((tense)=> tense.tense === tableTense)}></VerbTable>
                             )
                         })
                     }
                 </CollapsibleTenses>
                 <ModalExercises text={""} open={exerciseTense !== "" ? true : false} ref={refModal}>
                     <ExerciseConjugation
+                        verb={pageVerbData.verb}
+                        tensesDropdown={texts.verbsPage.collapsibles}
+                        texts={texts.verbsPage.exerciseText}
                         tenseExercise={exerciseTense}
-                        textBeforeTense={`✏️  &#160Fill the <span>${exerciseTense}</span> of <span>${pageVerbData.verb}</span>.`}
-                        textAfterTense={`✏️  &#160Fill the <span>${exerciseTense}</span> of <span>${pageVerbData.verb}</span>.`}
+                        modeExercise={exerciseMode}
                         conjugation={pageVerbData.data.indicative.find((tense)=> tense.tense === exerciseTense)?.conjugations}
+                        allTenses={pageVerbData.data}
                     ></ExerciseConjugation>
                 </ModalExercises>
-            </div>z
+            </div>
         </div>
     )
 }
-
-
-// return (
-//     <div className={styles.pageContent}>
-//         <h1>Hello, Next.js!</h1>
-//         <div>
-//             { texts.verbsPage.collapsibles.map((collapsible, i) => {
-//                 return (
-//                     collapsible.tenses.map((tableTense, i) => {
-//                         return (
-//                             <VerbTable key={tableTense} data={Sein.data.indicative.find((tense)=> tense.tense === tableTense)}></VerbTable>
-//                         )
-//                     })
-//                 )
-//             })
-//         }
-//         </div>
-//     </div>
-// )

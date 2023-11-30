@@ -2,14 +2,23 @@
     "verbsPage": {
         "collapsibles": [
             {
-                "level": "A1",
-                "title": "INDICATIVE",
+                "title": "Indicative",
                 "tenses": ["Präsens", "Präteritum", "Perfekt", "Plusquam.", "Futur I", "Futur II"]
             },{
-                "level": "A2",
-                "title": "A2 TENSES",
-                "tenses": ["Plusquam.", "Futur I", "Futur II"]
+                "title": "Conjunctive",
+                "tenses": ["Konjunktiv I", "Konjunktiv II", "Konj. Perfekt", "Konj. Plusquam.", "Konj. Futur I", "Konj. Futur II"]
             }
-        ]
+        ],
+        "exerciseText": {
+            "statement": "✏️  &#160Complete the conjugations for",
+            "textTense": "Tense :",
+            "textVerb": "Verb :",
+            "alertTenseChange": {
+                "text": "By changing the tense, your progress will be lost. Proceed anyway ?",
+                "textConfirm": "Yes",
+                "textNegate": "No",
+                "textCheckbox": "Don't show this message again"
+            }
+        }
     }
 }

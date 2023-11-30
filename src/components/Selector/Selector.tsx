@@ -1,33 +1,78 @@
 import { sanitize } from "isomorphic-dompurify"
 import styles from './selector.module.scss'
 import { SVGArrow } from "@/assets/svg/svgExports"
-import { useState } from "react"
+import { ChangeEvent, Fragment, ReactNode, useEffect, useState } from "react"
 
-interface ISelector {
-    title: string,
-    options: {isTitle?: boolean, str: string}[],
-    color?: string,
-    weight?: string
+
+export interface ISelectorDropdownOptions {
+    title?: string,
+    options: string[]
 }
 
+interface ISelector {
+    selectedOption: string,
+    options: ISelectorDropdownOptions[],
+    color?: string,
+    weight?: string,
+    // handleSelectInputChangeEvent: Function,
+    callbackOnChange: Function
+}
 
 export function Selector(props: ISelector) {
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
     // const []
+    const [selectedOption, setSelectedOption] = useState<string>(props.selectedOption)
 
+    useEffect(()=> {
+        setSelectedOption(props.selectedOption)
+    }, [props.selectedOption])
 
     const handleButtonClick = ()=> {
-        console.log("CLIIIICK now it is "+isExpanded)
         setIsExpanded(!isExpanded)
+    }
 
+    const handleInputChangeEvent = (e: ChangeEvent<HTMLInputElement>)=> {
+        // setSelectedOption(e.target.name)
+        // props.handleSelectInputChangeEvent(e)
+        setTimeout(()=> setIsExpanded(false), 75)
+        props.callbackOnChange(e.target.name)
+    }
+
+
+    const getOptionsTemplate = (options: string[]): ReactNode => {
+        return (
+            options.map((option, index)=> {
+                return (
+                    <li key={`li-${index}`}>
+                        <input
+                            key={`input-${index}`}
+                            type="radio"
+                            id={`${index}-${option}`}
+                            name={option}
+                            className={`${styles.input}`}
+                            checked={option === props.selectedOption}
+                            data-checked={option === props.selectedOption}
+                            onChange={(e)=> handleInputChangeEvent(e)}
+                        />
+                        <label
+                            key={`label-${index}`}
+                            htmlFor={`${index}-${option}`}
+                            className={styles.label}
+                        >{option}
+                        </label>
+                    </li>
+                )
+
+            })
+        )
     }
 
 
     return (
         <div className={styles.container}>
             <button
-                className={`${styles.selector} ${props.color ? styles[props.color] : ''} ${props.weight ? styles[props.weight] : ''}`}
+                className={`${styles.selector} ${isExpanded ? styles.btnExpanded : ''} ${props.color ? styles[props.color] : ''} ${props.weight ? styles[props.weight] : ''}`}
                 role="combobox"
                 aria-labelledby="select button"
                 aria-haspopup="listbox"
@@ -35,19 +80,21 @@ export function Selector(props: ISelector) {
                 aria-controls="select-dropdown"
                 onClick={()=> handleButtonClick()}
             >
-                <span className="selected-value">{props.title}</span>
+                <span className={styles.selectedValue}>{selectedOption || props.selectedOption}</span>
                 <SVGArrow></SVGArrow>
                 {/* <span className="arrow"></span> */}
             </button>
             <ul className={`select-dropdown ${styles.dropdown} ${isExpanded ? styles.expanded : ''}`}>
-                <li>
-                <input type="radio" id="github" name="social-account" className={styles.input} />
-                <label htmlFor="github" className={styles.label}>GitHub</label>
-                </li>
-                <li>
-                <input type="radio" id="instagram" name="instagram"  className={styles.input} />
-                <label htmlFor="instagram" className={styles.label}>Instagram</label>
-                </li>
+                {
+                    props.options.map((optionGroup, index)=> {
+                        return (
+                            <Fragment key={`fr-${index}`}>
+                                <label key={`title-${index}`} className={styles.labelTitle}>{optionGroup.title}</label>
+                                {getOptionsTemplate(optionGroup.options)}
+                            </Fragment>
+                        )
+                    })
+                }
             </ul>
         </div>
     )

@@ -3,6 +3,7 @@
 .exerciseConjugation {
     --height-feedback: 200px;
 
+    position: relative;
     display: flex;
     flex-direction: column;
     height: inherit;
@@ -28,12 +29,18 @@
     font-weight: 600;
     color: var(--c-grey-darker);
     padding-right: var(--pd-md);
-    margin: var(--mg-xl) 0 var(--mg-2xl);
+    margin: var(--mg-xs) 0 var(--mg-2xl);
 
-    // span:not([data-text]), select {
-    //     color: var(--c-primary);
-    //     font-weight: 600;
-    // }
+    p:first-child {
+        font-size: var(--fs-global);
+        font-weight: 400;
+        margin-bottom: var(--mg-sm);
+    }
+
+    span:not([data-text]), select {
+        color: var(--c-primary);
+        font-weight: 600;
+    }
 
     select {
         margin: var(--mg-sm);
@@ -41,7 +48,11 @@
 
     div {
         display: inline;
-        margin: 0 var(--mg-sm);
+        margin: 0 var(--mg-lg) 0 0;
+    }
+
+    .verb {
+        margin-left: var(--mg-sm);
     }
 }
 

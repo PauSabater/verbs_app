@@ -12,30 +12,49 @@ interface IExerciseInput {
     answer: string,
     answerHTML: string,
     checkResult: boolean,
-    increaseFilledInputs: Function,
-    decreaseFilledInputs: Function
+    actionOnFilled: Function,
+    actionOnEmptied: Function,
+    actionOnCorrected: Function
+}
+
+type TExerciseInputState = "empty" | "filling" | "success" | "error"
+
+export const statesInputExercise = {
+    empty: "empty" as TExerciseInputState,
+    filling: "filling" as TExerciseInputState,
+    success: "success" as TExerciseInputState,
+    error: "error" as TExerciseInputState
 }
 
 export const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
 
+    const isFillingState = (state: string)=> {return inputState === statesInputExercise.filling}
+    const isSuccessState = (state: string)=> {return inputState === statesInputExercise.success}
+    const isErrorState = (state: string)=> {return inputState === statesInputExercise.error}
+
+
     const refInput = useRef(null)
-    const [isFilled, setIsFilled] = useState(false)
-    const [isValidated, setIsValidated] = useState(false)
-    const [shouldCountChange, setShouldCountChange] = useState(true)
+    const [inputState, setInputState] = useState<TExerciseInputState>(statesInputExercise.empty as TExerciseInputState)
 
-    const [isInputValid, setIsInputValid] = useState<boolean | null>(null)
-
+    // Forward function to ref:
+    useImperativeHandle(ref, () => ({
+        validateInput,
+        restartInput
+    }))
 
     const handleChangeEvent = (e: ChangeEvent<HTMLInputElement>)=> {
         const inputValue = (e.target as HTMLInputElement).value
 
-        if (inputValue !== "" && isFilled === false) {
-            props.increaseFilledInputs()
-            setIsFilled(true)
+        if (inputValue !== "" && isFillingState(inputState) === false) {
+            if (inputState === statesInputExercise.error) {
+                props.actionOnCorrected
+            }
+            props.actionOnFilled()
+            setInputState(statesInputExercise.filling)
 
         } else if (inputValue === "") {
-            props.decreaseFilledInputs()
-            setIsFilled(false)
+            props.actionOnEmptied()
+            setInputState(statesInputExercise.empty)
         }
     }
 
@@ -45,18 +64,23 @@ export const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
         const inputValue = (refInput.current as HTMLInputElement).value
         const isInputValid = formatStringForValidation(inputValue) === props.answer
 
-        setIsInputValid(isInputValid)
+        setInputState(isInputValid ? statesInputExercise.success : statesInputExercise.error)
+
         return isInputValid
     }
 
-    // Forward function to ref:
-    useImperativeHandle(ref, () => ({
-        validateInput
-    }))
+    const restartInput = ()=> {
 
-    const getInputState = (isValid: boolean | null)=> {
-        return isValid === null ? strInactive : isValid === true ? strSuccess : strError
+        if (refInput.current === null) return false
+
+        const inputValue = (refInput.current as HTMLInputElement).value
+        if (inputValue !== '') {
+            (refInput.current as HTMLInputElement).value = ''
+            setInputState("empty")
+        }
     }
+
+
 
 
     return (
@@ -65,15 +89,13 @@ export const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
                 ref={refInput}
                 type="text"
                 className={styles.input}
-                data-statsse={`INPUT-${isInputValid}`}
-                data-state={getInputState(isInputValid)}
+                data-state={inputState}
                 onChange={(e)=> handleChangeEvent(e)}
             ></input>
-            {getFeedbackSvg(getInputState(isInputValid))}
-            {isInputValid === false ?
-            <p className={styles.answerCorrection} dangerouslySetInnerHTML={{__html: sanitize(props.answer)}}></p>
-            : null
-
+            {getFeedbackSvg(inputState)}
+            {isErrorState(inputState)
+                ? <p className={styles.answerCorrection} dangerouslySetInnerHTML={{__html: sanitize(props.answer)}}></p>
+                : null
             }
 
 

@@ -8,3 +8,7 @@ export function disableScroll() {
 export function enableScroll() {
     (document.body.parentElement as HTMLElement).style.overflowY = 'visible';
 }
+
+export function setLocalstorageItem(key: string, item: string) {
+    localStorage.setItem(key, item)
+}

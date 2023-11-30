@@ -1,39 +1,48 @@
 'use client'
 
-import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { ChangeEvent, Fragment, ReactNode, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import styles from './exerciseConjugation.module.scss'
 import stylesFeedback from './feedback.module.scss'
-import { ExerciseTextInput } from '../ExerciseTextInput/ExerciseTextInput'
+import { ExerciseTextInput, statesInputExercise } from '../ExerciseTextInput/ExerciseTextInput'
 import { sanitize } from 'isomorphic-dompurify'
 import { Button, TColor } from '../Button/Button'
 import React from 'react'
-import { strSuccess, strError, strInactive, isSuccess, isError, isFilled } from '@/utils/constants'
-import { SVGCorrect, SVGIncorrect, getFeedbackSvg } from '@/assets/svg/svgExports'
-import { Selector } from '../Selector/Selector'
+import { isSuccess, isError } from '@/utils/constants'
+import { getFeedbackSvg } from '@/assets/svg/svgExports'
+import { ISelectorDropdownOptions, Selector } from '../Selector/Selector'
+import Alert from '../Alert/Alert'
+import { IConjugation, IExerciseConjugation, TExerciseModes, TExerciseState, getButtonColor, statesExerciseConjugation } from './ExerciseConjugation.exports'
+import { setLocalstorageItem } from '@/utils/utils'
 
 
-interface IConjugation {
-    person: string; conjugation: string; conjugationHTML: string;
-}
+/**
+ * Component that renders a conjugaion exercise.
+ *
+ * @param   {IExerciseConjugation} props component props.
+ * @returns {ReactNode}
+ */
+export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
-interface IExerciseConjugation {
-    tenseExercise: string,
-    textBeforeTense: string,
-    textAfterTense: string,
-    conjugation: IConjugation[] | undefined
-}
-
-type TExerciseState = "filling" | "filled" | "success" | "error"
-
-export function ExerciseConjugation(props: IExerciseConjugation) {
+    // Conjugations to practise for the current exercise
+    const [exerciseConjugations, setExerciseConjugations] = useState<IConjugation[]>([])
 
     // Count for the number of inputs filled
     const [numFilledInputs, SetNumFilledInputs] = useState(0)
 
+    // Count for the number of inputs errored
+    const [numErroredInputs, SetNumErroredInputs] = useState(0)
+
     // Whether all the inputs of the form are filled
     const [isFormFilled, setIsFormFilled] = useState(false)
 
-    const [exerciseState, setExerciseState] = useState<TExerciseState>("filling")
+    // State for the Tenses change alert
+    const [isTenseAlertOpen, setIsTenseAlertOpen] = useState(false)
+
+    const [selectedTense, setSelectedTense] = useState<string>('')
+
+    const [tenseToConfirm, setTenseToConfirm] = useState<string>('')
+
+    const [exerciseState, setExerciseState] = useState<TExerciseState>(statesExerciseConjugation.filling)
 
     const refsInputs = [useRef(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]
 
@@ -42,49 +51,102 @@ export function ExerciseConjugation(props: IExerciseConjugation) {
     }
 
     useEffect(() => {
-        console.log("conjugation is")
-        console.log(props.conjugation)
+        // setSelectedTense(props.tenseExercise)
+        // setIsFormFilled(false)
+    },[])
 
+    useEffect(() => {
         const numInputs = props.conjugation?.length
 
-        console.log("IN USE EFFECT")
-        console.log("NUM INPUTS "+numInputs)
-        console.log("NUM filled "+numFilledInputs)
+        console.log("HEYYY")
+        console.log(props.allTenses)
 
         if (numInputs === (numFilledInputs)) {
-
-            setExerciseState("filled")}
-        else if(exerciseState === "filled") {
-            setExerciseState("filling")
+            setExerciseState(statesExerciseConjugation.filled)}
+        else if(exerciseState === statesExerciseConjugation.filled) {
+            setExerciseState(statesExerciseConjugation.filling)
         }
     },[numFilledInputs])
 
-    useEffect(() => {setIsFormFilled(false)},[])
+    useEffect(() => {
+        setSelectedTense(props.tenseExercise)
+        setIsFormFilled(false)
+    },[props.tenseExercise])
 
+
+    const getConjugationsFromTenseAndMode = (mode: TExerciseModes, tableTense: string)=> {
+        props.allTenses[mode].find((tense)=> tense.tense === tableTense)
+    }
+
+    /**
+     * Validades all inputs according to the correct answer and updates the exercise state depending on the outcome
+     */
     const validateInputs = ()=> {
         let numValidatedInputs = 0
+        let numErroredInputs = 0
         const numInputs = props.conjugation?.length
 
         refsInputs.forEach((refInput)=> {
             if (refInput.current === null) return
             // @ts-ignore
-            if (refInput.current.validateInput()) numValidatedInputs++
+            if (refInput.current.validateInput()) {
+                numValidatedInputs++
+            } else {
+                numErroredInputs++
+            }
         })
 
-        numValidatedInputs === numInputs
-            ? setExerciseState(strSuccess)
-            : setExerciseState(strError)
+        SetNumErroredInputs(numErroredInputs)
+        setExerciseState(numValidatedInputs === numInputs ? statesExerciseConjugation.success : statesExerciseConjugation.error)
     }
 
-    // const isCorrect = (stateExercise: string)=> {
-    //     return stateExercise === strValid ? true : false
-    // }
+    /**
+     * Actions when user changes the tense from the selector
+     */
+    const handleSelectorChange = (selectedItem: string)=> {
 
-    const increaseFilledInputs = ()=> {
+        if (exerciseState !== statesExerciseConjugation.success || numFilledInputs > 0) {
+            setTenseToConfirm(selectedItem)
+            setIsTenseAlertOpen(true)
+        } else {
+            restartAllInputs()
+        }
+    }
+
+    /**
+     * Restarts all inputs from the exercise to an empty string.
+     */
+    const restartAllInputs = ()=> {
+        refsInputs.forEach((refInput)=> {
+            const elInput: HTMLInputElement = refInput.current as unknown as HTMLInputElement
+            if (refInput.current === null) return
+            // @ts-ignore
+            refInput.current.restartInput()
+            setExerciseState(statesExerciseConjugation.filling)
+        })
+    }
+
+    /**
+     * Increases the count by one unit for the filled inputs
+     */
+    const actionOnFilledInput = ()=> {
         SetNumFilledInputs(numFilledInputs + 1)
     }
 
-    const decreaseFilledInputs = ()=> {
+    /**
+     * Increases the count by one unit for the filled inputs
+     */
+    const actionOnCorrectedInput = ()=> {
+        console.log("HEYYY CORRECTING INPUT")
+        setExerciseState(statesExerciseConjugation.correcting)
+        // SetNumFilledInputs(numFilledInputs + 1)
+    }
+
+
+    /**
+     * Decreases the count by one unit for the filled inputs
+     */
+    const actionOnEmptiedInput = ()=> {
         SetNumFilledInputs(numFilledInputs - 1)
     }
 
@@ -100,14 +162,74 @@ export function ExerciseConjugation(props: IExerciseConjugation) {
         return ""
     }
 
+    const getOptionsDropdown = (tenses: any)=> {
+        let optionsDropdown: ISelectorDropdownOptions[] = []
+
+        for (const tenseGroup of tenses) {
+            optionsDropdown.push({
+                title: tenseGroup.title,
+                options: tenseGroup.tenses
+            })
+        }
+
+        return optionsDropdown
+
+    }
+
+    /**
+     * Function to update the state of the alert for tenses change state when user clicks the negate button.
+     */
+    const actionsOnAlertNegate = (isCheckboxChecked: boolean): void => {
+        if (isCheckboxChecked === true) {
+            setLocalstorageItem('showAlertTenseChange', 'false')
+        }
+
+        setIsTenseAlertOpen(false)
+    }
+
+    /**
+     * Function to update the state of the alert for tenses change state when user clicks the confirm button.
+     */
+    const actionsOnAlertConfirm = (): void => {
+        setSelectedTense(tenseToConfirm)
+        setIsTenseAlertOpen(false)
+        restartAllInputs()
+    }
+
+    const ExerciseFeedback = (): React.JSX.Element => {
+        return (
+            <div className={stylesFeedback.container} data-state={exerciseState}>
+                <div className={stylesFeedback.message}>
+                    {getFeedbackSvg(exerciseState)}
+                    <p>{getFeedbackText(exerciseState)}</p>
+                </div>
+
+                <div onClick={()=> validateInputs()}>
+                    <Button
+                        text={getBtnText(exerciseState)}
+                        width='fullWidth'
+                        color={getButtonColor(exerciseState)}
+                    ></Button>
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className={styles.exerciseConjugation} data-state={exerciseState}>
             <div className={styles.container}>
-                <p className={styles.statement}>
-                    <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.textBeforeTense)}}></span>
-                    <Selector title={props.tenseExercise} options={[{str: 'hey'}]}></Selector>
-                    <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.textAfterTense)}}></span>
-                </p>
+                <div className={styles.statement}>
+                    <p dangerouslySetInnerHTML={{__html: sanitize(props.texts.statement)}}></p>
+                    {/* <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.texts.textTense)}}></span> */}
+                    <Selector
+                        color={"primary"}
+                        selectedOption={selectedTense}
+                        options={getOptionsDropdown(props.tensesDropdown)}
+                        callbackOnChange={handleSelectorChange}
+                    />
+                    <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.texts.textVerb)}}></span>
+                    <span className={styles.verb} dangerouslySetInnerHTML={{__html: sanitize(props.verb)}}></span>
+                </div>
                 <div className={styles.rowsContainer}>
                     {
                         props.conjugation !== undefined ? props.conjugation.map((conj, i)=> {
@@ -119,9 +241,10 @@ export function ExerciseConjugation(props: IExerciseConjugation) {
                                         answer={conj.conjugation}
                                         answerHTML={conj.conjugationHTML}
                                         checkResult={false}
-                                        increaseFilledInputs={increaseFilledInputs}
-                                        decreaseFilledInputs={decreaseFilledInputs}
-                                    ></ExerciseTextInput>
+                                        actionOnFilled={actionOnFilledInput}
+                                        actionOnEmptied={actionOnEmptiedInput}
+                                        actionOnCorrected={actionOnCorrectedInput}
+                                    />
                                 </div>
                             )
                         })
@@ -130,20 +253,14 @@ export function ExerciseConjugation(props: IExerciseConjugation) {
                 </div>
             </div>
 
-            <div className={stylesFeedback.container} data-state={exerciseState}>
-                <div className={stylesFeedback.message}>
-                    {getFeedbackSvg(exerciseState)}
-                    <p>{getFeedbackText(exerciseState)}</p>
-                </div>
+            <ExerciseFeedback />
+            <Alert
+                isOpen={isTenseAlertOpen}
+                texts={props.texts.alertTenseChange}
+                actionsOnAlertConfirm={actionsOnAlertConfirm}
+                actionsOnAlertNegate={actionsOnAlertNegate}
+            />
 
-                <div onClick={()=> validateInputs()}>
-                    <Button
-                        text={getBtnText(exerciseState)}
-                        width='fullWidth'
-                        color={isFilled(exerciseState) ? "primary" : exerciseState as TColor || strInactive}
-                    ></Button>
-                </div>
-            </div>
         </div>
     )
 }
