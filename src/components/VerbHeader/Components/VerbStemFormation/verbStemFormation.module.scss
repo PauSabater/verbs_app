@@ -1,0 +1,20 @@
+.formation {
+    --stem-formation-fw: 600;
+
+    font-weight: 600;
+    font-size: var(--fs-lg);
+    margin: 0 0 var(--mg-md);
+    margin-bottom: 20px;
+
+    u {
+        text-decoration: none;
+        color: var(--c-primary);
+        font-weight: var(--stem-formation-fw);
+    }
+
+    i {
+        color: var(--c-secondary);
+        font-style: normal;
+        font-weight: var(--stem-formation-fw);
+    }
+}

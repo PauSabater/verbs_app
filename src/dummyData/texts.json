@@ -1,5 +1,6 @@
 {
     "verbsPage": {
+        "btnPractice": "Practise & conjugation",
         "collapsibles": [
             {
                 "title": "Indicative",
@@ -18,6 +19,19 @@
                 "textConfirm": "Yes",
                 "textNegate": "No",
                 "textCheckbox": "Don't show this message again"
+            },
+            "successMessages": [
+                "Well done!",
+                "Amazing!",
+                "Perfect!",
+                "Flawless!",
+                "You got it!"
+            ],
+            "button": {
+                "repeat": "REPEAT EXERCISE",
+                "check": "CHECK",
+                "checkAgain": "CHECK AGAIN"
+
             }
         }
     }

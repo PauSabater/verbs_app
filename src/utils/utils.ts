@@ -12,3 +12,7 @@ export function enableScroll() {
 export function setLocalstorageItem(key: string, item: string) {
     localStorage.setItem(key, item)
 }
+
+export function getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
+}

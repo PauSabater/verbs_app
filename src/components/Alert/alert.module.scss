@@ -5,6 +5,7 @@
 .open {
     pointer-events: all;
     opacity: 1;
+    transition: opacity 0s 0.15s;
 
     .container {
         transform: translate(-50%, 0);
@@ -40,7 +41,7 @@
     z-index: 101;
     transform: translate(-50%, 15px);
     border-radius: var(--br-base);
-    transition: transform var(--tr-base);
+    transition: transform var(--tr-base) 0.15s;
 }
 
 .message {
@@ -51,5 +52,4 @@
 .buttonsContainer {
     display: flex;
     column-gap: var(--mg-sm);
-
 }

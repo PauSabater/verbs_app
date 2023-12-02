@@ -1,7 +1,7 @@
 'use client'
 
 // import { VerbLayout} from '../layout'
-import { VerbDescription } from "@/components/VerbDescription/VerbDescription"
+import { VerbDescription } from "@/components/VerbHeader/Components/VerbDescription/VerbDescription"
 import VerbTable from "@/components/VerbTable/VerbTable"
 import { CollapsibleTenses } from "@/components/CollapsibleTenses/CollapsibleTenses"
 import Sein from "../../../dummyData/sein.json"
@@ -9,9 +9,10 @@ import styles from './verb.module.scss'
 // import '../../../styles/variables.scss'
 import texts from '../../../dummyData/texts.json'
 import { ModalExercises } from "@/components/ModalExercises/ModalExercises"
-import { useLayoutEffect, useRef, useState } from "react"
+import { Fragment, useLayoutEffect, useRef, useState } from "react"
 import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation"
 import { Selector } from "@/components/Selector/Selector"
+import VerbHeader from "@/components/VerbHeader/VerbHeader"
 
 export default function Page() {
 
@@ -45,12 +46,24 @@ export default function Page() {
         )
     }, [])
 
-
+    const verbHeaderProps = ()=> {
+        return {
+            button: texts.verbsPage.btnPractice,
+            verb: pageVerbData.verb,
+            level: pageVerbData.data.level,
+            verbHTML: pageVerbData.data.verbHTML,
+            stemFormationHTML: pageVerbData.data.stemFormationHTML,
+            isIrregular: pageVerbData.data.isIrregular,
+            isSeparable: pageVerbData.data.isSeparable,
+            description: pageVerbData.description
+        }
+    }
 
 
     return (
         <div className={styles.pageContent} ref={refPageContent}>
-            <h1>{`hello tense: ${exerciseTense}`}</h1>
+            <VerbHeader {...verbHeaderProps()}></VerbHeader>
+            <h1>{`Conjugations`}</h1>
             <div>
                 <CollapsibleTenses texts={{title: texts.verbsPage.collapsibles[0].title}}>
                     {
@@ -72,15 +85,17 @@ export default function Page() {
                     }
                 </CollapsibleTenses>
                 <ModalExercises text={""} open={exerciseTense !== "" ? true : false} ref={refModal}>
-                    <ExerciseConjugation
-                        verb={pageVerbData.verb}
-                        tensesDropdown={texts.verbsPage.collapsibles}
-                        texts={texts.verbsPage.exerciseText}
-                        tenseExercise={exerciseTense}
-                        modeExercise={exerciseMode}
-                        conjugation={pageVerbData.data.indicative.find((tense)=> tense.tense === exerciseTense)?.conjugations}
-                        allTenses={pageVerbData.data}
-                    ></ExerciseConjugation>
+                    {exerciseTense && exerciseMode ?
+                        <ExerciseConjugation
+                            verb={pageVerbData.verb}
+                            tensesDropdown={texts.verbsPage.collapsibles}
+                            texts={texts.verbsPage.exerciseText}
+                            tenseExercise={exerciseTense}
+                            modeExercise={exerciseMode}
+                            allTenses={pageVerbData.data}
+                        ></ExerciseConjugation>
+                        : <Fragment />
+                    }
                 </ModalExercises>
             </div>
         </div>

@@ -7,7 +7,19 @@
     display: flex;
     flex-direction: column;
     height: inherit;
+    animation: reveal var(--tr-base);
 }
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opaceity: 1;
+        transform: translateY(0);
+    }
+  }
 
 
 .container {
@@ -16,13 +28,23 @@
     flex-direction: column;
     height: inherit;
     overflow-y: auto;
-    padding: var(--pd-modal-vertical) var(--pd-modal-horitz);
+    padding: var(--pd-modal-vertical) var(--pd-modal-horitz) 0 var(--pd-modal-horitz);
+    transform: translateY(20px);
     z-index: 99;
 }
 
-// .rowsContainer {
-//     position: flex;
-// }
+.rowsContainer {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: opacity var(--tr-slow), transform var(--tr-base);
+
+    &[data-animate="true"] {
+        position: flex;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: none;
+    }
+}
 
 .statement {
     font-size: var(--fs-lg);
@@ -34,7 +56,7 @@
     p:first-child {
         font-size: var(--fs-global);
         font-weight: 400;
-        margin-bottom: var(--mg-sm);
+        margin: 0 0 var(--mg-sm);
     }
 
     span:not([data-text]), select {
@@ -79,7 +101,7 @@
 
     .statement {
         font-size: var(--fs-global);
-        margin: var(--mg-xl) 0 var(--mg-xl);
+        margin: 0 0 35px;
     }
 
     .person {
@@ -89,10 +111,6 @@
     .row {
         margin-bottom: var(--mg-sm);
         grid-template-columns: 115px auto;
-    }
-
-    .container button {
-        bottom: 80px;
     }
 }
 

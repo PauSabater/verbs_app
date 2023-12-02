@@ -18,6 +18,12 @@ export interface IExerciseConjugationTexts {
         text: string,
         textConfirm: string,
         textNegate: string
+    },
+    successMessages: string[],
+    button: {
+        repeat: string,
+        check: string,
+        checkAgain: string
     }
 }
 
@@ -39,11 +45,11 @@ export interface IExerciseConjugation {
     tenseExercise: string,
     modeExercise: string,
     texts: IExerciseConjugationTexts,
-    conjugation: IConjugation[] | undefined,
     allTenses: IVerbAllTenses
 }
 
 export const statesExerciseConjugation = {
+    empty: "empty" as TExerciseState,
     filling: "filling" as TExerciseState,
     filled: "filled" as TExerciseState,
     success: "success" as TExerciseState,
@@ -51,13 +57,15 @@ export const statesExerciseConjugation = {
     correcting: "correcting" as TExerciseState,
 }
 
-export type TExerciseState = "filling" | "filled" | "success" | "error" | "correcting"
+export type TExerciseState = "empty" | "filling" | "filled" | "success" | "error" | "correcting"
 
 export type TExerciseModes = "indicative" | "conjunctive" | "conditionalOrConjunctiveII" | "imperative"
 
 
 export const getButtonColor = (state: string)=> {
     switch(state) {
+        case statesExerciseConjugation.empty:
+            return "inactive"
         case statesExerciseConjugation.filling:
             return "inactive"
         case statesExerciseConjugation.filled:
@@ -69,4 +77,11 @@ export const getButtonColor = (state: string)=> {
         case statesExerciseConjugation.correcting:
             return "error"
     }
+}
+
+export const getConjugationsFromTenseAndMode = (tenses: IVerbAllTenses, mode: TExerciseModes, tableTense: string)=> {
+    const modeToFind = mode as TExerciseModes as string
+
+    if(!mode && !tableTense) return
+    return tenses[mode].find((tense)=> tense.tense === tableTense)?.conjugations
 }

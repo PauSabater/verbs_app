@@ -13,11 +13,8 @@
 
     &:hover {
         background: var(--c-primary-lighter-hover);
-
-        svg {
-            transform: translate(-50%, -50%) scale(1);
-        }
     }
+
     svg {
         position: absolute;
         height: 15px;

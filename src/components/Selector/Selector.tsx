@@ -36,11 +36,11 @@ export function Selector(props: ISelector) {
         // setSelectedOption(e.target.name)
         // props.handleSelectInputChangeEvent(e)
         setTimeout(()=> setIsExpanded(false), 75)
-        props.callbackOnChange(e.target.name)
+        props.callbackOnChange(e.target.name, e.target.getAttribute("data-group"))
     }
 
 
-    const getOptionsTemplate = (options: string[]): ReactNode => {
+    const getOptionsTemplate = (options: string[], group: string): ReactNode => {
         return (
             options.map((option, index)=> {
                 return (
@@ -50,6 +50,7 @@ export function Selector(props: ISelector) {
                             type="radio"
                             id={`${index}-${option}`}
                             name={option}
+                            data-group={group}
                             className={`${styles.input}`}
                             checked={option === props.selectedOption}
                             data-checked={option === props.selectedOption}
@@ -90,7 +91,7 @@ export function Selector(props: ISelector) {
                         return (
                             <Fragment key={`fr-${index}`}>
                                 <label key={`title-${index}`} className={styles.labelTitle}>{optionGroup.title}</label>
-                                {getOptionsTemplate(optionGroup.options)}
+                                {getOptionsTemplate(optionGroup.options, optionGroup.title || '')}
                             </Fragment>
                         )
                     })

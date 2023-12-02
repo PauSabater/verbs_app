@@ -33,21 +33,23 @@ export const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
     const isErrorState = (state: string)=> {return inputState === statesInputExercise.error}
 
 
-    const refInput = useRef(null)
+    const refInput = useRef<HTMLInputElement>(null)
     const [inputState, setInputState] = useState<TExerciseInputState>(statesInputExercise.empty as TExerciseInputState)
 
     // Forward function to ref:
     useImperativeHandle(ref, () => ({
         validateInput,
-        restartInput
+        restartInput,
+        focusInput
     }))
 
     const handleChangeEvent = (e: ChangeEvent<HTMLInputElement>)=> {
         const inputValue = (e.target as HTMLInputElement).value
 
         if (inputValue !== "" && isFillingState(inputState) === false) {
+            // Case an errored input starts being corrected
             if (inputState === statesInputExercise.error) {
-                props.actionOnCorrected
+                props.actionOnCorrected()
             }
             props.actionOnFilled()
             setInputState(statesInputExercise.filling)
@@ -61,7 +63,7 @@ export const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
     const validateInput = (): boolean => {
         if (refInput.current === null) return false
 
-        const inputValue = (refInput.current as HTMLInputElement).value
+        const inputValue = refInput.current.value
         const isInputValid = formatStringForValidation(inputValue) === props.answer
 
         setInputState(isInputValid ? statesInputExercise.success : statesInputExercise.error)
@@ -73,14 +75,17 @@ export const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
 
         if (refInput.current === null) return false
 
-        const inputValue = (refInput.current as HTMLInputElement).value
+        const inputValue = refInput.current.value
         if (inputValue !== '') {
-            (refInput.current as HTMLInputElement).value = ''
+            refInput.current.value = ''
             setInputState("empty")
         }
     }
 
-
+    const focusInput = ()=> {
+        if (refInput.current === null) return
+        refInput.current.focus()
+    }
 
 
     return (

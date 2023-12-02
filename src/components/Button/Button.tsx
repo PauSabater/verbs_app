@@ -5,7 +5,8 @@ interface IButton {
     text: string,
     width?: "fullWidth" | "fitContent",
     icon?: "exercise" | "redo",
-    color?: TColor
+    color?: TColor,
+    size?: "lg"
 }
 
 export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryDark" | "secondary" | "secondaryReverse" | "inactive" | "error" | "success"
@@ -21,6 +22,7 @@ export function Button(props: IButton) {
             ${styles.Button}
             ${styles[props.color || "primaryDark"]}
             ${styles[props.width || "fitContent"]}
+            ${styles[props.size || ""]}
 
         `}>
             {props.icon ? getIcon(props.icon) : null}

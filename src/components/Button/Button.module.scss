@@ -102,3 +102,8 @@
     pointer-events: none;
     background-color: var(--c-grey-light);
 }
+
+.lg {
+    --height-btn: 60px;
+    font-size: var(--fs-lg);
+}
