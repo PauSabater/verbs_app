@@ -7,13 +7,14 @@ import { SVGExercise } from '@/assets/svg/svgExports'
 
 export default function InputCheckbox(props: {
         label: string,
-        actionsOnInputChange: Function
+        callbackOnChange: Function,
+        isOnlyLabel?: boolean
     }) {
 
     return  (
-        <label className={styles.container}>
-            <input type="checkbox" onChange={(e) => props.actionsOnInputChange(e)}/>
-            <span className={styles.checkmark}></span>
+        <label className={`${styles.container} ${props.isOnlyLabel ? styles.onlyLabel : ''}`}>
+            <input type="checkbox" onChange={(e) => props.callbackOnChange(e)}/>
+            {!props.isOnlyLabel ? <span className={styles.checkmark}></span> : <></>}
             <span className={styles.label}>{props.label}</span>
         </label>
     )

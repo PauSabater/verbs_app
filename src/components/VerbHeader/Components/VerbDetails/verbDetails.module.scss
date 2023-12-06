@@ -9,6 +9,10 @@
         color: var(--c-font-global-lighter);
         margin: 0;
     }
+
+    div:first-child {
+        margin-right: var(--mg-sm);
+    }
 }
 
 .level {

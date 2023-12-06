@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import styles from './alert.module.scss'
 import { Button } from '../Button/Button'
-import InputCheckbox from '../InputCheckbox/InputCheckbox'
+import InputCheckbox from '../UI/InputCheckbox/InputCheckbox'
 
 interface IAlertProps {
     texts: {

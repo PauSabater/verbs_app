@@ -1,0 +1,11 @@
+.ExerciseCheckboxList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.titleGroup {
+    font-size: var(--fs-global);
+    font-weight: 600;
+    margin-bottom: var(--mg-md);
+}

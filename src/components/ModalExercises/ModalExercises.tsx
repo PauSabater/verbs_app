@@ -12,12 +12,12 @@ export const ModalExercises = forwardRef((props: {
         text: string,
         children: ReactNode,
         open: boolean
+        callbackClose?: Function
     }, ref)=> {
 
     const text = props.text
     const children = props.children
     const open = props.open
-
 
     // export function ModalExercises({text, open = false, children}: {text: string, open?: boolean, children: ReactNode}) {
 
@@ -41,6 +41,9 @@ export const ModalExercises = forwardRef((props: {
         e.stopPropagation()
         enableScroll()
         setIsOpen(false)
+
+        if (props.callbackClose) props.callbackClose()
+
     }
 
     return (

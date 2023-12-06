@@ -9,7 +9,13 @@ interface ICollapsibleTexts {
     title: string
 }
 
-export function CollapsibleTenses({texts, children}: {texts: ICollapsibleTexts, children: ReactNode}) {
+interface ICollapsibleTenses {
+    texts: ICollapsibleTexts,
+    children: ReactNode,
+    action: Function
+}
+
+export function CollapsibleTenses(props: ICollapsibleTenses) {
 
     const [setIsCollapsed, isCollapsed] = useState(false)
 
@@ -21,14 +27,24 @@ export function CollapsibleTenses({texts, children}: {texts: ICollapsibleTexts, 
 
     }
 
+    const buttonAction = ()=> {
+        console.log("HELLOOOO")
+        props.action()
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.clickableOpener} ref={refCollapsibleTrigger} onClick={()=>{handleCollapsibleClick()}}>
-                <h2>{texts.title}</h2>
+                <h2>{props.texts.title}</h2>
             </div>
             <div className={styles.collapsibleContent} ref={refCollapsibleContent}>
-                {children}
-                <Button text={`Practise ${texts.title}`} color={"primary"}></Button>
+                {props.children}
+                <Button
+                    action={buttonAction}
+                    text={`Practise ${props.texts.title}`}
+                    color={"primary"}
+                    icon={"exercise"}
+                ></Button>
             </div>
             <div className={styles.containerExamples}></div>
         </div>

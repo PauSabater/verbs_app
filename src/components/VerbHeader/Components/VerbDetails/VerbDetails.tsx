@@ -16,7 +16,6 @@ export default function VerbDetails(props: IVerbHeader) {
     return (
         <div className={styles.container}>
             <InfoInCircle text={props.level} />
-            <p className={styles.separator}>|</p>
             <p>#{props.number}</p>
             {
                 props.isIrregular

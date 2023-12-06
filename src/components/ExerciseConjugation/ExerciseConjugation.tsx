@@ -3,7 +3,7 @@
 import { ChangeEvent, Fragment, ReactNode, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import styles from './exerciseConjugation.module.scss'
 import stylesFeedback from './feedback.module.scss'
-import { ExerciseTextInput, statesInputExercise } from '../ExerciseTextInput/ExerciseTextInput'
+import { ExerciseTextInput, statesInputExercise } from './Components/ExerciseTextInput/ExerciseTextInput'
 import { sanitize } from 'isomorphic-dompurify'
 import { Button, TColor } from '../Button/Button'
 import React from 'react'
@@ -12,7 +12,9 @@ import { getFeedbackSvg } from '@/assets/svg/svgExports'
 import { ISelectorDropdownOptions, Selector } from '../Selector/Selector'
 import Alert from '../Alert/Alert'
 import { IConjugation, IExerciseConjugation, TExerciseModes, TExerciseState, getButtonColor, getConjugationsFromTenseAndMode, statesExerciseConjugation } from './ExerciseConjugation.exports'
-import { getRandomInt, setLocalstorageItem } from '@/utils/utils'
+import { getOptionsDropdown, getRandomInt, setLocalstorageItem } from '@/utils/utils'
+import { ExerciseCheckboxList } from '../ExerciseCheckboxList/ExerciseCheckboxList'
+// import { ExerciseChoice } from '../ExerciseCheckboxList/ExerciseCheckboxList'
 
 
 /**
@@ -29,6 +31,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     // Conjugations to practise for the current exercise
     const [exerciseConjugations, setExerciseConjugations] = useState<IConjugation[] | undefined>([])
 
+    // Conjugations to practise for the current exercise
+    const [isSelectMode, setIsSelectMode] = useState<boolean>(false)
+
     // Count for the number of inputs filled
     const [numFilledInputs, SetNumFilledInputs] = useState(0)
 
@@ -37,9 +42,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
     // Count for the number of inputs errored
     const [numCorrectedInputs, setNumCorrectedInputs] = useState(0)
-
-    // Whether all the inputs of the form are filled
-    const [isFormFilled, setIsFormFilled] = useState(false)
 
     // State for the Tenses change alert
     const [isTenseAlertOpen, setIsTenseAlertOpen] = useState(false)
@@ -74,6 +76,11 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      * Updates conjugation data when a change on the select component is confirmed, and triggers inputs animation
      */
     useEffect(() => {
+
+        console.log("HEY! IN exercise")
+
+
+
         // Restart count
         SetNumFilledInputs(0)
         SetNumErroredInputs(0)
@@ -234,20 +241,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         return ""
     }
 
-    const getOptionsDropdown = (tenses: any)=> {
-        let optionsDropdown: ISelectorDropdownOptions[] = []
-
-        for (const tenseGroup of tenses) {
-            optionsDropdown.push({
-                title: tenseGroup.title,
-                options: tenseGroup.tenses
-            })
-        }
-
-        return optionsDropdown
-
-    }
-
     /**
      * Function to update the state of the alert for tenses change state when user clicks the negate button.
      */
@@ -276,13 +269,12 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                     <p>{getFeedbackText(exerciseState)}</p>
                 </div>
 
-                <div onClick={()=> validateInputs()}>
                     <Button
+                        callback={validateInputs}
                         text={getBtnText(exerciseState)}
                         width='fullWidth'
                         color={getButtonColor(exerciseState)}
                     ></Button>
-                </div>
             </div>
         )
     }
@@ -295,67 +287,53 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         )
     }
 
-    // const ExerciseInputRows = ({exerciseConjugations}: {exerciseConjugations : IConjugation[] | undefined}): React.JSX.Element => {
-    //     return (
-    //         <div className={styles.rowsContainer}>
-    //             {
-    //                 exerciseConjugations !== undefined ? exerciseConjugations.map((conj, i)=> {
-    //                     return (
-    //                         <div key={i} className={styles.row}>
-    //                             <p className={styles.person}>{conj.person}</p>
-    //                             <ExerciseTextInput
-    //                                 ref={refsInputs[i]}
-    //                                 answer={conj.conjugation}
-    //                                 answerHTML={conj.conjugationHTML}
-    //                                 checkResult={false}
-    //                                 actionOnFilled={actionOnFilledInput}
-    //                                 actionOnEmptied={actionOnEmptiedInput}
-    //                                 actionOnCorrected={actionOnCorrectedInput}
-    //                             />
-    //                         </div>
-    //                     )
-    //                 })
-    //                 : null
-    //             }
-    //         </div>
-    //     )
-    // }
+    const ExerciseStatement = ()=> {
+        return (
+            <div className={styles.statement}>
+                <p dangerouslySetInnerHTML={{__html: sanitize(props.texts.statement)}}></p>
+                <Selector
+                    color={"primary"}
+                    selectedOption={selectedTenseAndMode.tense}
+                    options={getOptionsDropdown(props.tensesDropdown)}
+                    callbackOnChange={handleSelectorChange}
+                />
+                <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.texts.textVerb)}}></span>
+                <span className={styles.verb} dangerouslySetInnerHTML={{__html: sanitize(props.verb)}}></span>
+            </div>
+        )
+    }
+
 
     return (
         <div className={styles.exerciseConjugation} data-exercise data-state={exerciseState}>
             <div className={styles.container}>
-                <div className={styles.statement}>
-                    <p dangerouslySetInnerHTML={{__html: sanitize(props.texts.statement)}}></p>
-                    {/* <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.texts.textTense)}}></span> */}
-                    <Selector
-                        color={"primary"}
-                        selectedOption={selectedTenseAndMode.tense}
-                        options={getOptionsDropdown(props.tensesDropdown)}
-                        callbackOnChange={handleSelectorChange}
-                    />
-                    <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.texts.textVerb)}}></span>
-                    <span className={styles.verb} dangerouslySetInnerHTML={{__html: sanitize(props.verb)}}></span>
-                </div>
-                {/* <ExerciseInputRows /> */}
+                <ExerciseStatement />
+
                 <div className={styles.rowsContainer} data-animate={triggerInputsAnimation}>
                     {
-                        exerciseConjugations !== undefined ? exerciseConjugations.map((conj, i)=> {
-                            return (
-                                <div key={i} className={styles.row}>
-                                    <p className={styles.person}>{conj.person}</p>
-                                    <ExerciseTextInput
-                                        ref={refsInputs[i]}
-                                        answer={conj.conjugation}
-                                        answerHTML={conj.conjugationHTML}
-                                        checkResult={false}
-                                        actionOnFilled={actionOnFilledInput}
-                                        actionOnEmptied={actionOnEmptiedInput}
-                                        actionOnCorrected={actionOnCorrectedInput}
-                                    />
-                                </div>
-                            )
+                        isSelectMode === false && exerciseConjugations !== undefined
+                            ? exerciseConjugations.map((conj, i)=> {
+                                return (
+                                    <div key={i} className={styles.row}>
+                                        <p className={styles.person}>{conj.person}</p>
+                                        <ExerciseTextInput
+                                            ref={refsInputs[i]}
+                                            answer={conj.conjugation}
+                                            answerHTML={conj.conjugationHTML}
+                                            checkResult={false}
+                                            actionOnFilled={actionOnFilledInput}
+                                            actionOnEmptied={actionOnEmptiedInput}
+                                            actionOnCorrected={actionOnCorrectedInput}
+                                        />
+                                    </div>
+                                )
                         })
-                        : null
+                        : isSelectMode === true
+                            ? <></>
+                            : <></>
+                        // : isSelectMode
+                        //     ? <ExerciseCheckboxList></ExerciseChoice>
+                        //     : <></>
                     }
                 </div>
             </div>
@@ -367,7 +345,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 actionsOnAlertConfirm={actionsOnAlertConfirm}
                 actionsOnAlertNegate={actionsOnAlertNegate}
             />
-
         </div>
     )
 }

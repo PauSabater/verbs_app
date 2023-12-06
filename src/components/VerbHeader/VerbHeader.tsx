@@ -4,6 +4,8 @@ import VerbStemFormation from './Components/VerbStemFormation/VerbStemFormation'
 import VerbDetails from './Components/VerbDetails/VerbDetails'
 import { Button } from '../Button/Button'
 import { sanitize } from 'isomorphic-dompurify'
+import { getOptionsDropdown } from '@/utils/utils'
+import { ISelectorDropdownOptions } from '../Selector/Selector'
 
 
 interface IVerbHeader {
@@ -14,7 +16,9 @@ interface IVerbHeader {
     isIrregular: boolean,
     isSeparable: boolean,
     button: string,
-    description: string
+    description: string,
+    callbackOnBtnClick: Function,
+    listBtnTenses: ISelectorDropdownOptions[]
 }
 
 export default function VerbHeader(props: IVerbHeader) {
@@ -24,7 +28,11 @@ export default function VerbHeader(props: IVerbHeader) {
         level: props.level,
         isIrregular: props.isIrregular,
         isSeparable: props.isSeparable,
-        isAuxiliary: true
+        isAuxiliary: true,
+    }
+
+    const handleBtnClick = ()=> {
+        props.callbackOnBtnClick(props.listBtnTenses)
     }
 
     return (
@@ -35,7 +43,12 @@ export default function VerbHeader(props: IVerbHeader) {
             {/* </div> */}
             <VerbStemFormation stemFormationHTML={props.stemFormationHTML} />
             <p className={styles.description} dangerouslySetInnerHTML={{__html: sanitize(props.description)}}></p>
-            <Button text={props.button.replace("&", props.verb)} size={"lg"} icon={"exercise"}></Button>
+            <Button
+                text={props.button.replace("&", props.verb)}
+                size={"lg"}
+                icon={"exercise"}
+                callback={handleBtnClick}
+            ></Button>
         </div>
     )
 }
