@@ -47,10 +47,10 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     const [isTenseAlertOpen, setIsTenseAlertOpen] = useState(false)
 
     // Current tense to use on exercise
-    const [selectedTenseAndMode, setSelectedTenseAndMode] = useState<{tense: string, mode: string}>({tense: '', mode: ''})
+    const [selectedTenseAndMode, setSelectedTenseAndMode] = useState<{tense: string, mode?: string}>({tense: '', mode: ''})
 
     // Previous tense used on exercise
-    const [previousTenseAndMode, setPreviousTenseAndMode] = useState<{tense: string, mode: string}>({tense: '', mode: ''})
+    const [previousTenseAndMode, setPreviousTenseAndMode] = useState<{tense: string, mode?: string}>({tense: '', mode: ''})
 
     // Tense to confirm through alert
     const [tenseAndModeToConfirm, setTenseAndModeToConfirm] = useState<{tense: string, mode: string}>({tense: '', mode: ''})
@@ -68,7 +68,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     useEffect(() => {
         setSelectedTenseAndMode({
             tense: props.tenseExercise,
-            mode: props.modeExercise
+            // mode: props.modeExercise
         })
     },[props.tenseExercise])
 
@@ -77,10 +77,10 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      * Sets exercise on multiple exercises mode
      */
     useEffect(() => {
-        if (props.selectedTenses && props.selectedTenses.length > 0)
+        if (props.selectedTenses && props.selectedTenses.length > 1)
             setSelectedTenseAndMode({
                 tense: props.selectedTenses[0],
-                mode: "indicative"
+                // mode: "indicative"
             })
     },[props.selectedTenses])
 
@@ -98,7 +98,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         comparePreviousAndCurrentState()
 
         setExerciseConjugations(
-            getConjugationsFromTenseAndMode(props.allTenses, selectedTenseAndMode.mode.toLowerCase() as TExerciseModes, selectedTenseAndMode.tense)
+            getConjugationsFromTenseAndMode(props.allTenses, selectedTenseAndMode.tense)
         )
 
         setTriggerInputsAnimation(true)
@@ -174,7 +174,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         // Save previous state in order to compare
         setPreviousTenseAndMode({
             tense: props.tenseExercise,
-            mode: props.modeExercise
+            // mode: props.modeExercise
         })
     }
 
@@ -277,7 +277,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                     <p>{getFeedbackText(exerciseState)}</p>
                 </div>
 
-                <div className={stylesFeedback.containerBtn}>
+                <div className={stylesFeedback.containerBtns}>
                     <Button
                         callback={validateInputs}
                         text={getBtnText(exerciseState)}
@@ -286,7 +286,15 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                         // icon={}
                     ></Button>
                     {
-
+                        props.selectedTenses && props.selectedTenses.length > 1 && isSuccess(exerciseState)
+                            ?   <Button
+                                    callback={validateInputs}
+                                    text={getBtnText(exerciseState)}
+                                    width='fullWidth'
+                                    color={getButtonColor(exerciseState)}
+                                    // icon={}
+                                ></Button>
+                            :   <></>
                     }
                 </div>
             </div>

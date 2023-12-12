@@ -61,6 +61,11 @@
     }
 }
 
+.containerBtns {
+    display: flex;
+    // flex-direction: ;
+}
+
 
 @include mixins.vertical-750 {
 

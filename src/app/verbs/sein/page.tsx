@@ -1,50 +1,34 @@
 'use client'
 
-// import { VerbLayout} from '../layout'
-import { VerbDescription } from "@/components/VerbHeader/Components/VerbDescription/VerbDescription"
 import VerbTable from "@/components/VerbTable/VerbTable"
 import { CollapsibleTenses } from "@/components/CollapsibleTenses/CollapsibleTenses"
 import Sein from "../../../dummyData/sein.json"
 import styles from './verb.module.scss'
-// import '../../../styles/variables.scss'
 import texts from '../../../dummyData/texts.json'
 import { ModalExercises } from "@/components/ModalExercises/ModalExercises"
-import { Fragment, useEffect, useLayoutEffect, useRef, useState } from "react"
+import { Fragment, Reducer, useEffect, useLayoutEffect, useRef, useState } from "react"
 import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation"
 import { ISelectorDropdownOptions, Selector } from "@/components/Selector/Selector"
 import VerbHeader from "@/components/VerbHeader/VerbHeader"
 import { getOptionsDropdown } from "@/utils/utils"
 import { ExerciseCheckboxList } from "@/components/ExerciseCheckboxList/ExerciseCheckboxList"
-
-
-
-
+import { useReducer } from 'react'
+import { IPageState, TPageAction, actions, reducer } from "./pageReducer"
 
 
 export default function Page() {
 
-    const refPageContent = useRef(null)
-
-    const pageVerbData = Sein
-
-    const [modalOpen, setModalOpen] = useState({
+    const [state, dispatch] = useReducer<Reducer<IPageState, TPageAction>>(reducer, {
+        isExerciseConjugationOpen: false,
         isCheckboxListOpen: false,
-        isExerciseConjugationOpen: false
+        exerciseTense: '',
+        exerciseTensesCheckboxList: null,
+        selectedTensesFromCheckboxList: []
     })
 
-    const [isCheckboxListOpen, setIsCheckboxListOpen] = useState(false)
-
-    const [isExerciseConjugationOpen, setIsExerciseConjugationOpen] = useState(false)
-
-    const [exerciseTense, setExerciseTense] = useState("")
-
-    const [exerciseMode, setExerciseMode] = useState("")
-
-    const [exerciseTensesCheckboxList, setExerciseTensesCheckboxList] = useState<ISelectorDropdownOptions[] | null>(null)
-
-    const [selectedTensesFromCheckboxList, setSelectedTensesFromCheckboxList] = useState<string[]>([])
-
     const refModal = useRef(null)
+    const refPageContent = useRef(null)
+    const pageVerbData = Sein
 
     useLayoutEffect(() => {
 
@@ -57,8 +41,8 @@ export default function Page() {
             (e) => {
                 e.stopPropagation()
                 setExerciseTense((e as any).detail.tense)
-                setExerciseMode((e as any).detail.mode)
-                setIsExerciseConjugationOpen(true)
+                // setExerciseMode((e as any).detail.mode)
+                openConjugationExercise()
 
                 if (refModal.current === null) return
                 // @ts-ignore
@@ -70,29 +54,42 @@ export default function Page() {
     // Action when tenses list selection has been confirmed
     useEffect(()=> {
         console.log("HEYY MODIFICATION!!")
-        console.log(selectedTensesFromCheckboxList)
-        setIsCheckboxListOpen(false)
+        console.log(state.selectedTensesFromCheckboxList)
 
-        if (selectedTensesFromCheckboxList.length > 0) {
+        if (state.selectedTensesFromCheckboxList.length > 0) {
             console.log("OPEN EXERCISE!!")
-            setIsExerciseConjugationOpen(true)
+            openTensesCheckboxList()
         }
 
-    }, [selectedTensesFromCheckboxList])
-
-    // const openModalExercise = ()=> {
-
-    // }
+    }, [state.selectedTensesFromCheckboxList])
 
 
+    const openConjugationExercise = ()=> dispatch({ type: actions.OPEN_CONJUGATION_EXERCISE })
 
-    // const openModalExercise = (tense?: string, modal?: string, tensesArray?: string[])=> {
+    const closeConjugationExercise = ()=> dispatch({ type: actions.CLOSE_CONJUGATION_EXERCISE })
 
-    // }
+    const openTensesCheckboxList = ()=> dispatch({ type: actions.OPEN_TENSES_CHECKBOXLIST })
+
+    const closeTensesCheckboxList = ()=> dispatch({ type: actions.CLOSE_TENSES_CHECKBOXLIST })
+
+    const setExerciseTense = (tense: string)=> dispatch({
+        type: actions.SET_EXERCISE_TENSE,
+        payload: tense
+    })
+
+    const setExerciseTensesCheckboxList = (options: ISelectorDropdownOptions[] | null)=> dispatch({
+        type: actions.SET_TENSES_CHECKBOXLIST,
+        payload: options as ISelectorDropdownOptions[]
+    })
+
+    const setSelectedTensesFromCheckboxList = (tenses: string[]) => dispatch({
+        type: actions.SET_SELECTED_TENSES_FROM_CHECKBOXLIST,
+        payload: tenses
+    })
 
     const triggerExerciseCheckboxListModal = (itemsList: ISelectorDropdownOptions[])=> {
         setExerciseTensesCheckboxList(itemsList)
-        setIsCheckboxListOpen(true)
+        openTensesCheckboxList()
     }
 
     const btnCollapsiblesAction = ()=> {
@@ -117,9 +114,9 @@ export default function Page() {
 
     const callbackCloseModal = ()=> {
         console.log("MODAL TO NULL!!")
-        setExerciseTensesCheckboxList(null)
-        setIsCheckboxListOpen(false)
-        setIsExerciseConjugationOpen(false)
+        // setExerciseTensesCheckboxList(null)
+        closeTensesCheckboxList()
+        closeConjugationExercise()
     }
 
     const callbackOnExerciseCheckboxListConfirm = (selectedTensesList: string[])=> {
@@ -127,30 +124,30 @@ export default function Page() {
         console.log(selectedTensesList)
         setSelectedTensesFromCheckboxList(selectedTensesList)
 
-        setIsCheckboxListOpen(false)
-        setIsExerciseConjugationOpen(true)
+        closeTensesCheckboxList()
+        openConjugationExercise()
     }
 
     const ExerciseContent = (): React.JSX.Element => {
-        return ( (exerciseTense && exerciseMode) || selectedTensesFromCheckboxList.length > 0
+        return ( (state.exerciseTense) || state.selectedTensesFromCheckboxList.length > 0
             ?   <ExerciseConjugation
                     verb={pageVerbData.verb}
                     tensesDropdown={texts.verbsPage.collapsibles}
                     texts={texts.verbsPage.exerciseText}
-                    tenseExercise={exerciseTense}
-                    modeExercise={exerciseMode}
+                    tenseExercise={state.exerciseTense}
+                    // modeExercise={exerciseMode}
                     allTenses={pageVerbData.data}
-                    selectedTenses={selectedTensesFromCheckboxList}
+                    selectedTenses={state.selectedTensesFromCheckboxList}
                 ></ExerciseConjugation>
             :   <Fragment />
         )
     }
 
     const ExerciseListCheckboxes = (): React.JSX.Element =>
-        exerciseTensesCheckboxList
+        state.exerciseTensesCheckboxList
             ?   <ExerciseCheckboxList
                     statement={texts.verbsPage.exerciseConjugation.statement}
-                    items={exerciseTensesCheckboxList}
+                    items={state.exerciseTensesCheckboxList}
                     callbackOnConfirm={callbackOnExerciseCheckboxListConfirm}
                 ></ExerciseCheckboxList>
             :   <></>
@@ -190,13 +187,13 @@ export default function Page() {
                 </CollapsibleTenses>
                 <ModalExercises
                     text={""}
-                    open={(isExerciseConjugationOpen === true || isCheckboxListOpen === true) ? true : false}
+                    open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
                     ref={refModal}
                     callbackClose={callbackCloseModal}
                 >
-                    {isExerciseConjugationOpen === true
+                    {state.isExerciseConjugationOpen === true
                         ? <ExerciseContent />
-                        : isCheckboxListOpen ? <ExerciseListCheckboxes/> : ''
+                        : state.isCheckboxListOpen ? <ExerciseListCheckboxes/> : ''
                     }
                 </ModalExercises>
             </div>

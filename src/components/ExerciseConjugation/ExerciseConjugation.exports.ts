@@ -45,7 +45,7 @@ export interface IExerciseConjugation {
     verb: string,
     tensesDropdown: any,
     tenseExercise: string,
-    modeExercise: string,
+    modeExercise?: string,
     texts: IExerciseConjugationTexts,
     allTenses: IVerbAllTenses,
     selectedTenses?: string[]
@@ -82,9 +82,30 @@ export const getButtonColor = (state: string)=> {
     }
 }
 
-export const getConjugationsFromTenseAndMode = (tenses: IVerbAllTenses, mode: TExerciseModes, tableTense: string)=> {
-    const modeToFind = mode as TExerciseModes as string
+export const getConjugationsFromTenseAndMode = (tenses: IVerbAllTenses, tableTense: string): IConjugation[] | undefined => {
 
-    if(!mode && !tableTense) return
-    return tenses[mode].find((tense)=> tense.tense === tableTense)?.conjugations
+    Object.values(tenses).forEach(mode => {
+        Object.values(mode).forEach(tense => {
+            const verbTense: IVerbTense = tense as IVerbTense
+
+            if (verbTense.tense == tableTense) {
+                console.log("WE HAAAAAAAAAAAVE, RETURN")
+                console.log(verbTense.conjugations)
+                return verbTense.conjugations
+            }
+        })
+    })
+
+    return
+
+    // return tenses['indicative'].find((tense)=> tense.tense === tableTense)?.conjugations
+
+    // for (const mode in Object.entries(tenses)) {
+    //     mode.find((tense)=> tense.tense === tableTense)
+
+
+    // }
+
+    // if(!mode && !tableTense) return
+    // return tenses[mode].find((tense)=> tense.tense === tableTense)?.conjugations
 }
