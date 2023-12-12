@@ -13,7 +13,11 @@ export default function InputCheckbox(props: {
 
     return  (
         <label className={`${styles.container} ${props.isOnlyLabel ? styles.onlyLabel : ''}`}>
-            <input type="checkbox" onChange={(e) => props.callbackOnChange(e)}/>
+            <input
+                type="checkbox"
+                data-value={props.label}
+                onChange={(e) => props.callbackOnChange(e)}
+            />
             {!props.isOnlyLabel ? <span className={styles.checkmark}></span> : <></>}
             <span className={styles.label}>{props.label}</span>
         </label>

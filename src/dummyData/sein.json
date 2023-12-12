@@ -531,5 +531,8 @@
 			}
 		]
 	},
-	"description": "<b>\"Sein\"</b> is a vital German verb, translating to <b>\"to be\"</b> in English. It's irregular, with forms like <b>\"ich bin\"</b> (I am) and <b>\"sie sind\"</b> (they are). Used as a linking verb, \"sein\" connects subjects and predicates. It signifies possession, as in <b>\"Das ist mein Buch\"</b> (This is my book), and plays a crucial role in constructing the passive voice, exemplified in <b>\"Das Buch wird gelesen\"</b> (The book is being read). Understanding <b>\"sein\"</b> is fundamental for German language learners."
+	"description": "<b>\"Sein\"</b> is a vital German verb, translating to <b>\"to be\"</b> in English. It's irregular, with forms like <b>\"ich bin\"</b> <i>(I am)</i> and <b>\"sie sind\"</b> <i>(they are)</i>. Used as a linking verb, \"sein\" connects subjects and predicates. It signifies possession, as in <b>\"Das ist mein Buch\"</b> <i>(This is my book)</i>, and plays a crucial role in constructing the passive voice, exemplified in <b>\"Das Buch wird gelesen\"</b> <i>(The book is being read)</i>. Understanding <b>\"sein\"</b> is fundamental for German language learners.",
+	"translations": {
+		"en": "be, stay, be (of) opinion, exist, been, be an opponent (of), be contrary (to), oppose"
+	}
 }

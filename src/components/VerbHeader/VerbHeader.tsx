@@ -17,6 +17,7 @@ interface IVerbHeader {
     isSeparable: boolean,
     button: string,
     description: string,
+    translation: string,
     callbackOnBtnClick: Function,
     listBtnTenses: ISelectorDropdownOptions[]
 }
@@ -37,11 +38,12 @@ export default function VerbHeader(props: IVerbHeader) {
 
     return (
         <div className={styles.container}>
-            {/* <div className={styles.containerTitle}> */}
+            <div className={styles.containerTitle}>
                 <VerbTitle verbHTML={props.verbHTML} />
                 <VerbDetails {...propsVerbDetails}/>
-            {/* </div> */}
+            </div>
             <VerbStemFormation stemFormationHTML={props.stemFormationHTML} />
+            <p className={styles.translation}>{props.translation}</p>
             <p className={styles.description} dangerouslySetInnerHTML={{__html: sanitize(props.description)}}></p>
             <Button
                 text={props.button.replace("&", props.verb)}

@@ -19,7 +19,7 @@
         opaceity: 1;
         transform: translateY(0);
     }
-  }
+}
 
 
 .container {
@@ -62,6 +62,11 @@
     span:not([data-text]), select {
         color: var(--c-primary);
         font-weight: 600;
+        margin: 0 var(--mg-md);
+    }
+
+    span[data-text] {
+        // margin-right: 20px;
     }
 
     select {

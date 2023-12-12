@@ -72,14 +72,23 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         })
     },[props.tenseExercise])
 
+
+    /**
+     * Sets exercise on multiple exercises mode
+     */
+    useEffect(() => {
+        if (props.selectedTenses && props.selectedTenses.length > 0)
+            setSelectedTenseAndMode({
+                tense: props.selectedTenses[0],
+                mode: "indicative"
+            })
+    },[props.selectedTenses])
+
+
     /**
      * Updates conjugation data when a change on the select component is confirmed, and triggers inputs animation
      */
     useEffect(() => {
-
-        console.log("HEY! IN exercise")
-
-
 
         // Restart count
         SetNumFilledInputs(0)
@@ -123,7 +132,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             setExerciseState(statesExerciseConjugation.filled)
         }
     },[numCorrectedInputs])
-
 
     /**
      * Validades all inputs according to the correct answer and updates the exercise state depending on the outcome
@@ -269,12 +277,18 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                     <p>{getFeedbackText(exerciseState)}</p>
                 </div>
 
+                <div className={stylesFeedback.containerBtn}>
                     <Button
                         callback={validateInputs}
                         text={getBtnText(exerciseState)}
                         width='fullWidth'
                         color={getButtonColor(exerciseState)}
+                        // icon={}
                     ></Button>
+                    {
+
+                    }
+                </div>
             </div>
         )
     }
@@ -291,12 +305,15 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         return (
             <div className={styles.statement}>
                 <p dangerouslySetInnerHTML={{__html: sanitize(props.texts.statement)}}></p>
-                <Selector
-                    color={"primary"}
-                    selectedOption={selectedTenseAndMode.tense}
-                    options={getOptionsDropdown(props.tensesDropdown)}
-                    callbackOnChange={handleSelectorChange}
-                />
+                {(props.selectedTenses && props.selectedTenses.length > 1)
+                    ? <Fragment><span data-text>{props.texts.textTense}</span><span>{props.selectedTenses[0]}</span></Fragment>
+                    : <Selector
+                        color={"primary"}
+                        selectedOption={selectedTenseAndMode.tense}
+                        options={getOptionsDropdown(props.tensesDropdown)}
+                        callbackOnChange={handleSelectorChange}
+                    />
+                }
                 <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.texts.textVerb)}}></span>
                 <span className={styles.verb} dangerouslySetInnerHTML={{__html: sanitize(props.verb)}}></span>
             </div>

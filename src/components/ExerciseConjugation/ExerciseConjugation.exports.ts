@@ -1,3 +1,5 @@
+import { isError, isSuccess } from "@/utils/constants"
+
 export interface IConjugation {
     person: string,
     conjugation: string,
@@ -45,7 +47,8 @@ export interface IExerciseConjugation {
     tenseExercise: string,
     modeExercise: string,
     texts: IExerciseConjugationTexts,
-    allTenses: IVerbAllTenses
+    allTenses: IVerbAllTenses,
+    selectedTenses?: string[]
 }
 
 export const statesExerciseConjugation = {

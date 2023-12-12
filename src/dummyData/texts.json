@@ -33,6 +33,9 @@
                 "checkAgain": "CHECK AGAIN"
 
             }
+        },
+        "exerciseConjugation": {
+            "statement": "Select one or more tenses to practise"
         }
     }
 }

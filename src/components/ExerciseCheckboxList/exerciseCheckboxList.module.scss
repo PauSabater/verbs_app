@@ -1,7 +1,36 @@
-.ExerciseCheckboxList {
+
+.container {
+    --height-feedback: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    height: 100%;
+}
+
+
+.containerList {
+    transform: translateY(20px);
+    animation: reveal var(--tr-base);
+    height: fill-available;
+}
+
+
+.exerciseCheckboxList {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(20px);
+    }
 }
 
 .titleGroup {
