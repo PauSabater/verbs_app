@@ -53,24 +53,28 @@ export default function Page() {
 
     // Action when tenses list selection has been confirmed
     useEffect(()=> {
-        console.log("HEYY MODIFICATION!!")
-        console.log(state.selectedTensesFromCheckboxList)
-
         if (state.selectedTensesFromCheckboxList.length > 0) {
             console.log("OPEN EXERCISE!!")
             openTensesCheckboxList()
         }
-
     }, [state.selectedTensesFromCheckboxList])
 
 
-    const openConjugationExercise = ()=> dispatch({ type: actions.OPEN_CONJUGATION_EXERCISE })
+    const openConjugationExercise = ()=> dispatch({
+        type: actions.OPEN_CONJUGATION_EXERCISE
+    })
 
-    const closeConjugationExercise = ()=> dispatch({ type: actions.CLOSE_CONJUGATION_EXERCISE })
+    const closeConjugationExercise = ()=> dispatch({
+        type: actions.CLOSE_CONJUGATION_EXERCISE
+    })
 
-    const openTensesCheckboxList = ()=> dispatch({ type: actions.OPEN_TENSES_CHECKBOXLIST })
+    const openTensesCheckboxList = ()=> dispatch({
+        type: actions.OPEN_TENSES_CHECKBOXLIST
+    })
 
-    const closeTensesCheckboxList = ()=> dispatch({ type: actions.CLOSE_TENSES_CHECKBOXLIST })
+    const closeTensesCheckboxList = ()=> dispatch({
+        type: actions.CLOSE_TENSES_CHECKBOXLIST
+    })
 
     const setExerciseTense = (tense: string)=> dispatch({
         type: actions.SET_EXERCISE_TENSE,

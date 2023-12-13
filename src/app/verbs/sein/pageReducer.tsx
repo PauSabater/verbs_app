@@ -34,12 +34,6 @@ export const actions: {[key in TPageActions]: TPageActions} = {
     SET_SELECTED_TENSES_FROM_CHECKBOXLIST: 'SET_SELECTED_TENSES_FROM_CHECKBOXLIST'
 }
 
-// export const initialState: IPageState = {
-//     isExerciseConjugationOpen: false,
-//     isCheckboxListOpen: false,
-//     exerciseTense: ''
-// }
-
 export function reducer(state: IPageState, action: TPageAction): IPageState {
     console.log(action.type)
 

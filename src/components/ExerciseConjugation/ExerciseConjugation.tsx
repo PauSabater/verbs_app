@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, Fragment, ReactNode, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { ChangeEvent, Fragment, ReactNode, Reducer, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react'
 import styles from './exerciseConjugation.module.scss'
 import stylesFeedback from './feedback.module.scss'
 import { ExerciseTextInput, statesInputExercise } from './Components/ExerciseTextInput/ExerciseTextInput'
@@ -11,9 +11,10 @@ import { isSuccess, isError } from '@/utils/constants'
 import { getFeedbackSvg } from '@/assets/svg/svgExports'
 import { ISelectorDropdownOptions, Selector } from '../Selector/Selector'
 import Alert from '../Alert/Alert'
-import { IConjugation, IExerciseConjugation, TExerciseModes, TExerciseState, getButtonColor, getConjugationsFromTenseAndMode, statesExerciseConjugation } from './ExerciseConjugation.exports'
+import { IConjugation, IExerciseConjugation, TExerciseModes, TExerciseState, getButtonColor, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
 import { getOptionsDropdown, getRandomInt, setLocalstorageItem } from '@/utils/utils'
 import { ExerciseCheckboxList } from '../ExerciseCheckboxList/ExerciseCheckboxList'
+import { IExerciseConjugationState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
 // import { ExerciseChoice } from '../ExerciseCheckboxList/ExerciseCheckboxList'
 
 
@@ -25,51 +26,87 @@ import { ExerciseCheckboxList } from '../ExerciseCheckboxList/ExerciseCheckboxLi
  */
 export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
+    const [state, dispatch] = useReducer<Reducer<IExerciseConjugationState, TExerciseConjugationAction>>(reducer, {
+        exerciseState: statesExerciseConjugation.filling,
+        exerciseConjugations: undefined,
+        numFilledInputs: 0,
+        numErroredInputs: 0,
+        numCorrectedInputs: 0,
+        isTenseAlertOpen: false,
+        selectedTense: '',
+        previousTense: '',
+        tenseToConfirm: '',
+        triggerInputsAnimation: false
+    })
+
     // The state of the exercise
-    const [exerciseState, setExerciseState] = useState<TExerciseState>(statesExerciseConjugation.filling)
+    const setExerciseState = (state: TExerciseState)=> dispatch({
+        type: actions.SET_EXERCISE_STATE,
+        payload: state
+    })
 
-    // Conjugations to practise for the current exercise
-    const [exerciseConjugations, setExerciseConjugations] = useState<IConjugation[] | undefined>([])
-
-    // Conjugations to practise for the current exercise
-    const [isSelectMode, setIsSelectMode] = useState<boolean>(false)
+    // The conjugations for the selected tense
+    const setExerciseConjugations = (conjugations: IConjugation[] | undefined)=> dispatch({
+        type: actions.SET_CONJUGATIONS,
+        payload: conjugations
+    })
 
     // Count for the number of inputs filled
-    const [numFilledInputs, SetNumFilledInputs] = useState(0)
+    const setNumFilledInputs = (num: number)=> dispatch({
+        type: actions.SET_NUM_FILLED_INPUTS,
+        payload: num
+    })
 
     // Count for the number of inputs errored
-    const [numErroredInputs, SetNumErroredInputs] = useState(0)
+    const setNumErroredInputs = (num: number)=> dispatch({
+        type: actions.SET_NUM_ERRORED_INPUTS,
+        payload: num
+    })
 
-    // Count for the number of inputs errored
-    const [numCorrectedInputs, setNumCorrectedInputs] = useState(0)
+    // Count for the number of inputs corrected
+    const setNumCorrectedInputs = (num: number)=> dispatch({
+        type: actions.SET_NUM_CORRECTED_INPUTS,
+        payload: num
+    })
 
     // State for the Tenses change alert
-    const [isTenseAlertOpen, setIsTenseAlertOpen] = useState(false)
+    const setIsTenseAlertOpen = (isOpen: boolean)=> dispatch({
+        type: actions.SET_IS_TENSE_ALERT_OPEN,
+        payload: isOpen
+    })
 
     // Current tense to use on exercise
-    const [selectedTenseAndMode, setSelectedTenseAndMode] = useState<{tense: string, mode?: string}>({tense: '', mode: ''})
+    const setSelectedTense = (tense: string)=> dispatch({
+        type: actions.SET_SELECTED_TENSE,
+        payload: tense
+    })
 
     // Previous tense used on exercise
-    const [previousTenseAndMode, setPreviousTenseAndMode] = useState<{tense: string, mode?: string}>({tense: '', mode: ''})
+    const setPreviousTense = (tense: string)=> dispatch({
+        type: actions.SET_PREVIOUS_TENSE,
+        payload: tense
+    })
 
     // Tense to confirm through alert
-    const [tenseAndModeToConfirm, setTenseAndModeToConfirm] = useState<{tense: string, mode: string}>({tense: '', mode: ''})
+    const setTenseToConfirm = (tense: string)=> dispatch({
+        type: actions.SET_TENSE_TO_CONFIRM,
+        payload: tense
+    })
+
+    // Tense to confirm through alert
+    const setTriggerInputsAnimation = (shouldAnimate: boolean)=> dispatch({
+        type: actions.SET_TRIGGER_INPUTS_ANIMATION,
+        payload: shouldAnimate
+    })
 
     // Array with the exercise inputs
     const refsInputs = [useRef<any>(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]
-
-    // State to trigger animation on inputs
-    const [triggerInputsAnimation, setTriggerInputsAnimation] = useState(false)
-
 
     /**
      * Gets needed data and
      */
     useEffect(() => {
-        setSelectedTenseAndMode({
-            tense: props.tenseExercise,
-            // mode: props.modeExercise
-        })
+        setSelectedTense(props.tenseExercise)
     },[props.tenseExercise])
 
 
@@ -78,10 +115,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      */
     useEffect(() => {
         if (props.selectedTenses && props.selectedTenses.length > 1)
-            setSelectedTenseAndMode({
-                tense: props.selectedTenses[0],
-                // mode: "indicative"
-            })
+            setSelectedTense(props.selectedTenses[0])
     },[props.selectedTenses])
 
 
@@ -90,48 +124,54 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      */
     useEffect(() => {
 
+        if (!state.selectedTense) return
+
         // Restart count
-        SetNumFilledInputs(0)
-        SetNumErroredInputs(0)
+        setNumFilledInputs(0)
+        setNumErroredInputs(0)
         setNumCorrectedInputs(0)
 
         comparePreviousAndCurrentState()
 
+        console.log("IN EFFFEEECT")
+        console.log('tense'+state.selectedTense)
+        console.log(getConjugationFromTense(props.allTenses, state.selectedTense))
+
         setExerciseConjugations(
-            getConjugationsFromTenseAndMode(props.allTenses, selectedTenseAndMode.tense)
+            getConjugationFromTense(props.allTenses, state.selectedTense)
         )
 
         setTriggerInputsAnimation(true)
         setTimeout(()=> setTriggerInputsAnimation(false), 100)
         setTimeout(()=> focusFirstInput(), 300)
 
-    },[selectedTenseAndMode.tense, selectedTenseAndMode.mode])
+    },[state.selectedTense])
 
     /**
      * Changes component state depending on number of elements filled
      */
     useEffect(() => {
-        const numInputs = exerciseConjugations?.length
+        const numInputs = state.exerciseConjugations?.length
 
-        if(numFilledInputs === 0) {
+        if(state.numFilledInputs === 0) {
             setExerciseState(statesExerciseConjugation.empty)
         }
-        else if (numInputs === (numFilledInputs)) {
+        else if (numInputs === (state.numFilledInputs)) {
             setExerciseState(statesExerciseConjugation.filled)
         }
-        else if(exerciseState === statesExerciseConjugation.filled) {
+        else if(state.exerciseState === statesExerciseConjugation.filled) {
             setExerciseState(statesExerciseConjugation.filling)
         }
-    },[numFilledInputs])
+    },[state.numFilledInputs])
 
     /**
      * Changes component state depending on number of elements filled
      */
     useEffect(() => {
-        if(numFilledInputs > 0 && numCorrectedInputs > 0 && numErroredInputs > 0 && numCorrectedInputs === numErroredInputs) {
+        if(state.numFilledInputs > 0 && state.numCorrectedInputs > 0 && state.numErroredInputs > 0 && state.numCorrectedInputs === state.numErroredInputs) {
             setExerciseState(statesExerciseConjugation.filled)
         }
-    },[numCorrectedInputs])
+    },[state.numCorrectedInputs])
 
     /**
      * Validades all inputs according to the correct answer and updates the exercise state depending on the outcome
@@ -139,7 +179,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     const validateInputs = ()=> {
         let numValidatedInputs = 0
         let numErroredInputs = 0
-        const numInputs = exerciseConjugations?.length
+        const numInputs = state.exerciseConjugations?.length
 
         refsInputs.forEach((refInput)=> {
             if (refInput.current === null) return
@@ -157,7 +197,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             setExerciseState(statesExerciseConjugation.error)
         }
 
-        SetNumErroredInputs(numErroredInputs)
+        setNumErroredInputs(numErroredInputs)
         // setExerciseState(numValidatedInputs === numInputs ? statesExerciseConjugation.success : statesExerciseConjugation.error)
         // Restart corrected inputs count
         setNumCorrectedInputs(0)
@@ -168,14 +208,11 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      */
     const comparePreviousAndCurrentState = ()=> {
         // If a different tense than the previous one is opened, restart all inputs values
-        if (props.tenseExercise !== previousTenseAndMode.tense && previousTenseAndMode.tense !== '') {
+        if (props.tenseExercise !== state.previousTense && state.previousTense !== '') {
             restartAllInputs()
         }
         // Save previous state in order to compare
-        setPreviousTenseAndMode({
-            tense: props.tenseExercise,
-            // mode: props.modeExercise
-        })
+        setPreviousTense(props.tenseExercise)
     }
 
     /**
@@ -183,11 +220,11 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      */
     const handleSelectorChange = (selectedItem: string, itemGroup: string)=> {
 
-        if (exerciseState !== statesExerciseConjugation.success && numFilledInputs > 0) {
-            setTenseAndModeToConfirm({tense: selectedItem, mode: itemGroup})
+        if (state.exerciseState !== statesExerciseConjugation.success && state.numFilledInputs > 0) {
+            setTenseToConfirm(selectedItem)
             setIsTenseAlertOpen(true)
         } else {
-            setSelectedTenseAndMode({tense: selectedItem, mode: itemGroup})
+            setSelectedTense(selectedItem)
             restartAllInputs()
         }
     }
@@ -217,21 +254,21 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      * Increases the count by one unit for the filled inputs
      */
     const actionOnFilledInput = ()=> {
-        SetNumFilledInputs(numFilledInputs + 1)
+        setNumFilledInputs(state.numFilledInputs + 1)
     }
 
     /**
      * Increases the count by one unit for the filled inputs
      */
     const actionOnCorrectedInput = ()=> {
-        setNumCorrectedInputs(numCorrectedInputs + 1)
+        setNumCorrectedInputs(state.numCorrectedInputs + 1)
     }
 
     /**
      * Decreases the count by one unit for the filled inputs
      */
     const actionOnEmptiedInput = ()=> {
-        SetNumFilledInputs(numFilledInputs - 1)
+        setNumFilledInputs(state.numFilledInputs - 1)
 
     }
 
@@ -264,34 +301,34 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      * Function to update the state of the alert for tenses change state when user clicks the confirm button.
      */
     const actionsOnAlertConfirm = (): void => {
-        setSelectedTenseAndMode({tense: tenseAndModeToConfirm.tense, mode: tenseAndModeToConfirm.mode})
+        setSelectedTense(state.tenseToConfirm)
         setIsTenseAlertOpen(false)
         restartAllInputs()
     }
 
     const ExerciseFeedback = (): React.JSX.Element => {
         return (
-            <div className={stylesFeedback.container} data-state={exerciseState}>
+            <div className={stylesFeedback.container} data-state={state.exerciseState}>
                 <div className={stylesFeedback.message}>
-                    {getFeedbackSvg(exerciseState)}
-                    <p>{getFeedbackText(exerciseState)}</p>
+                    {getFeedbackSvg(state.exerciseState)}
+                    <p>{getFeedbackText(state.exerciseState)}</p>
                 </div>
 
                 <div className={stylesFeedback.containerBtns}>
                     <Button
                         callback={validateInputs}
-                        text={getBtnText(exerciseState)}
+                        text={getBtnText(state.exerciseState)}
                         width='fullWidth'
-                        color={getButtonColor(exerciseState)}
+                        color={getButtonColor(state.exerciseState)}
                         // icon={}
                     ></Button>
                     {
-                        props.selectedTenses && props.selectedTenses.length > 1 && isSuccess(exerciseState)
+                        props.selectedTenses && props.selectedTenses.length > 1 && isSuccess(state.exerciseState)
                             ?   <Button
                                     callback={validateInputs}
-                                    text={getBtnText(exerciseState)}
+                                    text={getBtnText(state.exerciseState)}
                                     width='fullWidth'
-                                    color={getButtonColor(exerciseState)}
+                                    color={getButtonColor(state.exerciseState)}
                                     // icon={}
                                 ></Button>
                             :   <></>
@@ -303,7 +340,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
     const HelpContent = (): React.JSX.Element => {
         return (
-            <div className={stylesFeedback.container} data-state={exerciseState}>
+            <div className={stylesFeedback.container} data-state={state.exerciseState}>
 
             </div>
         )
@@ -317,7 +354,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                     ? <Fragment><span data-text>{props.texts.textTense}</span><span>{props.selectedTenses[0]}</span></Fragment>
                     : <Selector
                         color={"primary"}
-                        selectedOption={selectedTenseAndMode.tense}
+                        selectedOption={state.selectedTense}
                         options={getOptionsDropdown(props.tensesDropdown)}
                         callbackOnChange={handleSelectorChange}
                     />
@@ -330,14 +367,14 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
 
     return (
-        <div className={styles.exerciseConjugation} data-exercise data-state={exerciseState}>
+        <div className={styles.exerciseConjugation} data-exercise data-state={state.exerciseState}>
             <div className={styles.container}>
                 <ExerciseStatement />
 
-                <div className={styles.rowsContainer} data-animate={triggerInputsAnimation}>
+                <div className={styles.rowsContainer} data-animate={state.triggerInputsAnimation}>
                     {
-                        isSelectMode === false && exerciseConjugations !== undefined
-                            ? exerciseConjugations.map((conj, i)=> {
+                        state.exerciseConjugations !== undefined
+                            ? state.exerciseConjugations.map((conj, i)=> {
                                 return (
                                     <div key={i} className={styles.row}>
                                         <p className={styles.person}>{conj.person}</p>
@@ -353,19 +390,14 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                                     </div>
                                 )
                         })
-                        : isSelectMode === true
-                            ? <></>
-                            : <></>
-                        // : isSelectMode
-                        //     ? <ExerciseCheckboxList></ExerciseChoice>
-                        //     : <></>
+                        : <></>
                     }
                 </div>
             </div>
 
             <ExerciseFeedback />
             <Alert
-                isOpen={isTenseAlertOpen}
+                isOpen={state.isTenseAlertOpen}
                 texts={props.texts.alertTenseChange}
                 actionsOnAlertConfirm={actionsOnAlertConfirm}
                 actionsOnAlertNegate={actionsOnAlertNegate}

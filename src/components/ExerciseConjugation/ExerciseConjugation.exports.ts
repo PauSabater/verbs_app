@@ -1,5 +1,3 @@
-import { isError, isSuccess } from "@/utils/constants"
-
 export interface IConjugation {
     person: string,
     conjugation: string,
@@ -82,30 +80,13 @@ export const getButtonColor = (state: string)=> {
     }
 }
 
-export const getConjugationsFromTenseAndMode = (tenses: IVerbAllTenses, tableTense: string): IConjugation[] | undefined => {
+export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: string): IConjugation[] | undefined => {
 
-    Object.values(tenses).forEach(mode => {
-        Object.values(mode).forEach(tense => {
-            const verbTense: IVerbTense = tense as IVerbTense
-
-            if (verbTense.tense == tableTense) {
-                console.log("WE HAAAAAAAAAAAVE, RETURN")
-                console.log(verbTense.conjugations)
-                return verbTense.conjugations
-            }
-        })
-    })
+    for (const mode of Object.values(tenses)) {
+        for (const tense of Object.values(mode)) {
+            if ((tense as IVerbTense).tense === tableTense) return (tense as IVerbTense).conjugations
+        }
+    }
 
     return
-
-    // return tenses['indicative'].find((tense)=> tense.tense === tableTense)?.conjugations
-
-    // for (const mode in Object.entries(tenses)) {
-    //     mode.find((tense)=> tense.tense === tableTense)
-
-
-    // }
-
-    // if(!mode && !tableTense) return
-    // return tenses[mode].find((tense)=> tense.tense === tableTense)?.conjugations
 }
