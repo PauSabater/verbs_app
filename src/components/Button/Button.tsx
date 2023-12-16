@@ -1,25 +1,26 @@
-import { SVGExercise } from '@/assets/svg/svgExports'
+import { SVGArrow, SVGExercise, SVGNext, SVGRepeat } from '@/assets/svg/svgExports'
 import styles from './Button.module.scss'
 
 interface IButton {
     text: string,
     width?: "fullWidth" | "fitContent",
-    icon?: "exercise" | "redo",
+    icon?: "exercise" | "repeat" | "next",
     color?: TColor,
     size?: "lg",
     callback?: Function
 }
 
-export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryDark" | "secondary" | "secondaryReverse" | "inactive" | "error" | "success"
+export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success"
 
 export function Button(props: IButton) {
 
     const getIcon = (icon: string)=> {
         if (props.icon === "exercise") return (<SVGExercise></SVGExercise>)
+        if (props.icon === "repeat") return (<SVGRepeat></SVGRepeat>)
+        if (props.icon === "next") return (<SVGArrow></SVGArrow>)
     }
 
     const handleBtnClick = ()=> {
-        console.log("in button for click")
         if (!props.callback) return
         props.callback()
     }

@@ -1,10 +1,8 @@
 'use client'
 
-import { Fragment, MouseEventHandler, ReactNode, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import styles from './exerciseCheckboxList.module.scss'
 import stylesExercise from '../ExerciseConjugation/exerciseConjugation.module.scss'
-import { useRef } from 'react'
-import { Button } from '../Button/Button'
 import { ISelectorDropdownOptions } from '../Selector/Selector'
 import InputCheckbox from '../UI/InputCheckbox/InputCheckbox'
 import { ExerciseFeedback } from '../ExerciseConjugation/Components/Feedback/ExerciseFeedback'
@@ -25,18 +23,56 @@ export function ExerciseCheckboxList(props: IExerciseCheckboxList): JSX.Element 
     const [selectedArray, setSelectedArray] = useState<string[]>([])
 
 
+    // useEffect(()=> {
+    //     if (selectedArray.length > 0) setExerciseCheckboxListState("filled")
+    //     else setExerciseCheckboxListState("empty")
+    // }, [selectedArray])
+
+
     const updateSelectedItems = (event: Event)=> {
         const elInput = event.target as HTMLInputElement
+        // const valueInput = elInput.getAttribute("data-value")
+        // if (!valueInput) return
+
+        // const newSelectedArray: string[] = selectedArray
+
+        // if (elInput.checked) {
+        //     newSelectedArray.push(valueInput)
+        //     setSelectedArray([
+        //         ...selectedArray,
+        //         valueInput
+        //     ])
+        // }
+        // // else {
+        // //     newSelectedArray.splice(selectedArray.indexOf(valueInput), 1)
+        // // }
+        // // setSelectedArray(newSelectedArray)
         const value = elInput.getAttribute("data-value")
         if (!value) return
 
-        if (elInput.checked) selectedArray.push(value)
+        if (elInput.checked) {
+            selectedArray.push(value)
+        }
         else selectedArray.splice(selectedArray.indexOf(value), 1)
 
         if (selectedArray.length > 0) setExerciseCheckboxListState("filled")
         else setExerciseCheckboxListState("empty")
 
         console.log(selectedArray)
+    }
+
+    const updateSelectedItemsFromLocalstorage = (value: string, isChecked: boolean)=> {
+        // console.log("IN UPDATE FROM LOCALSTORAGE "+value+" and "+isChecked)
+        // if (!value) return
+
+        // if (isChecked) {
+        //     console.log("LETS PUSH THE VALUE!!")
+        //     selectedArray.push(value)
+        // }
+        // else selectedArray.splice(selectedArray.indexOf(value), 1)
+
+        // if (selectedArray.length > 0) setExerciseCheckboxListState("filled")
+        // else setExerciseCheckboxListState("empty")
     }
 
     const confirmChoices = ()=> {
@@ -51,7 +87,10 @@ export function ExerciseCheckboxList(props: IExerciseCheckboxList): JSX.Element 
                     <InputCheckbox
                         label={item}
                         callbackOnChange={updateSelectedItems}
+                        // callbackOnChecked={updateSelectedItemsFromLocalstorage}
                         isOnlyLabel={true}
+                        // localstorageValue={item}
+                        // localstorageKey={'selectedTenses'}
                     />
                 )
             })

@@ -25,6 +25,10 @@
             transform: translateX(-15px) scale(1.2);
         }
     }
+
+    svg[data-svg-arrow] {
+        transform: rotate(-90deg);
+    }
 }
 
 .primaryDark {
@@ -54,14 +58,34 @@
     }
 }
 
+.primaryReverseNoInverse {
+    color: var(--c-primary);
+    border: 2px solid var(--c-primary);
+    background-color: transparent;
+
+    &:hover {
+        color: var(--c-primary-dark);
+        border-color: var(--c-primary-dark);
+    }
+}
+
+.tertiary {
+    background-color: var(--c-tertiary);
+
+    &:hover {
+        background: var(--c-tertiary-dark);
+    }
+}
+
 .primaryReverse {
     color: var(--c-primary);
     border: 2px solid var(--c-primary);
     background-color: transparent;
 
     &:hover {
-        background: var(--c-primary);
-        color: var(--c-font-white);
+        background: var(--c-primary-lighter-hover);
+        // color: var(--c-primary-dark);
+        // border-color: var(--c-primary-dark);
     }
 }
 
@@ -72,6 +96,17 @@
 
     &:hover {
         background: var(--c-secondary);
+        color: var(--c-font-white);
+    }
+}
+
+.tertiaryReverse {
+    color: var(--c-tertiary);
+    border: 2px solid var(--c-tertiary);
+    background-color: transparent;
+
+    &:hover {
+        background: var(--c-tertiary);
         color: var(--c-font-white);
     }
 }

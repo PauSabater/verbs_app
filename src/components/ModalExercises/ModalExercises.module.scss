@@ -63,6 +63,14 @@
     background: var(--bg-white);
     transform: translate(-50%, -50%);
     overflow: hidden;
+
+    &.widerVersion {
+        max-width: 850px;
+    }
+
+    &.paddingBase {
+        padding: 60px 100px 80px 80px;
+    }
 }
 
 .container div[data-exercise] {

@@ -1,0 +1,91 @@
+{
+    "sections": [
+        {
+            "type": "h1",
+            "content": "&#128218; &nbsp;The Präsens tense"
+        },
+        {
+            "type": "paragraph",
+            "content": "<p>The <b><i>Präsens</i></b> tense in German direclty corresponds to the present tense in English, as it is used to describe actions that are happening right now or habitual actions. </br>However, since in German the future tense is rarely used and the present continuous does not exist, it can also be used to describe future actions or actions happenning now with continuation on the future. The <i>Präsens</i> should be the first tense to learn when starting to learn German.</p>"
+        },
+        {
+            "type": "callout",
+            "content": "<p>German is difficult on some aspects, but the most often used tenses are easier to learn! With the <i>Präsens</i>, you are getting 4 tenses in one: <strong>present</strong>, <strong>present continuous</strong>, <strong>present perfect</strong> and in some cases <strong>future</strong>! &nbsp;&nbsp; &#127881</p>"
+        },
+        {
+            "type": "h2",
+            "content": "Usage"
+        },
+        {
+            "type": "paragraph",
+            "content": "<p>We use the <i>Präsens</i> tense to express:</p>"
+        },
+        {
+            "type": "list",
+            "content": "heyy",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>Present Actions:</b> Describing actions happening in the present.",
+                        "example": {
+                            "intro": "Example:",
+                            "text": "Ich <a href='replace-url/verbs/lesen' target='_blank'>lese</a> ein Buch.",
+                            "translation": "(I am reading a book.)"
+                        }
+                    },
+                    {
+                        "text": "<b>Habitual Actions:</b> Expressing routine or habitual actions.",
+                        "example": {
+                            "intro": "Example:",
+                            "text": "Ich <a href='replace-url/verbs/trinken' target='_blank'>trinke</a> jeden Morgen Kaffee.",
+                            "translation": "(I drink coffee every morning.)"
+                        }
+                    },
+                    {
+                        "text": "<b>General Truths:</b> Stating facts or general truths.",
+                        "example": {
+                            "intro": "Example:",
+                            "text": "Die Erde <a href='replace-url/verbs/sind' target='_blank'>ist</a>rund.",
+                            "translation": "(The Earth ist round.)"
+                        }
+                    },
+                    {
+                        "text": "<b>Actions already started and still happening:</b> In english we would use the present perfect tense: 'He has been playing...'.",
+                        "example": {
+                            "intro": "Example:",
+                            "text": "Er <a href='replace-url/verbs/arbeiten' target='_blank'>arbeitet</a> seit 3 monate ins Kino.",
+                            "translation": "(He has been working in the cinema for 3 months.)"
+                        }
+                    }
+                ]
+            }
+        },{
+            "type": "h2",
+            "content": "Conjugation"
+        },{
+            "type": "paragraph",
+            "content": "<p>We must differentiate between regular, which will follow a pattern, and irregular verbs, which must be memorised.</p>"
+        },{
+            "type": "h3",
+            "content": "Regular verbs"
+        },{
+            "type": "paragraph",
+            "content": "<p>For regular verbs ending in <b data-verb-prefix>-en</b> (e.g., <a href='replace-url/verbs/splielen' target='_blank'>spiel<b data-verb-prefix>en</b></a> - <i>to play</i>), the infinitive ending <b data-verb-prefix>-en</b> is replaced by the following endings:</p>"
+        },{
+            "type": "table",
+            "table": {
+                "headings":  ["person", "ending", "example"],
+                "rows": [
+                    ["ich", "-e", "spiel<b>-e</b>"],
+                    ["du", "-st", "spiel<b>-st</b>"],
+                    ["es", "-t", "spiel<b>-t</b>"],
+                    ["wir", "-en", "spiel<b>-en</b>"],
+                    ["ihr", "-t", "spiel<b>-t</b>"],
+                    ["Sie", "-en", "spiel<b>-en</b>"]
+                ]
+            }
+        }
+    ]
+}
+
+

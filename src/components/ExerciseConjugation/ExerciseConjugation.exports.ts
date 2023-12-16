@@ -22,8 +22,11 @@ export interface IExerciseConjugationTexts {
     successMessages: string[],
     button: {
         repeat: string,
+        repeatShort: string,
         check: string,
-        checkAgain: string
+        checkAgain: string,
+        next: string,
+        startAgain: string
     }
 }
 
@@ -63,7 +66,7 @@ export type TExerciseState = "empty" | "filling" | "filled" | "success" | "error
 export type TExerciseModes = "indicative" | "conjunctive" | "conditionalOrConjunctiveII" | "imperative"
 
 
-export const getButtonColor = (state: string)=> {
+export const getButtonColor = (state: string, isLastExercise: boolean, isSecondBtn: boolean)=> {
     switch(state) {
         case statesExerciseConjugation.empty:
             return "inactive"
@@ -72,7 +75,8 @@ export const getButtonColor = (state: string)=> {
         case statesExerciseConjugation.filled:
             return "primary"
         case statesExerciseConjugation.success:
-            return "success"
+            if (isLastExercise && isSecondBtn === false) return "primaryReverse"
+            else return "success"
         case statesExerciseConjugation.error:
             return "inactive"
         case statesExerciseConjugation.correcting:

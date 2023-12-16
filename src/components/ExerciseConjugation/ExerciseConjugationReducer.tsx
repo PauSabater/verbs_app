@@ -11,7 +11,8 @@ export interface IExerciseConjugationState {
     selectedTense: string,
     previousTense: string,
     tenseToConfirm: string,
-    triggerInputsAnimation: boolean
+    triggerInputsAnimation: boolean,
+    currentExerciseNumber: number
 }
 
 export type TExerciseConjugationActions =
@@ -25,6 +26,7 @@ export type TExerciseConjugationActions =
     | 'SET_PREVIOUS_TENSE'
     | 'SET_TENSE_TO_CONFIRM'
     | 'SET_TRIGGER_INPUTS_ANIMATION'
+    | 'SET_CURRENT_EXERCISE_NUMBER'
 
 export type TExerciseConjugationAction = {
     type: TExerciseConjugationActions,
@@ -41,11 +43,12 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_SELECTED_TENSE: 'SET_SELECTED_TENSE',
     SET_PREVIOUS_TENSE: 'SET_PREVIOUS_TENSE',
     SET_TENSE_TO_CONFIRM: 'SET_TENSE_TO_CONFIRM',
-    SET_TRIGGER_INPUTS_ANIMATION: 'SET_TRIGGER_INPUTS_ANIMATION'
+    SET_TRIGGER_INPUTS_ANIMATION: 'SET_TRIGGER_INPUTS_ANIMATION',
+    SET_CURRENT_EXERCISE_NUMBER: 'SET_CURRENT_EXERCISE_NUMBER'
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {
-    console.log(action.type)
+    // console.log(action.type)
 
     switch (action.type) {
         case actions.SET_EXERCISE_STATE:
@@ -105,6 +108,12 @@ export function reducer(state: IExerciseConjugationState, action: TExerciseConju
             return {
                 ...state,
                 triggerInputsAnimation: action.payload as boolean
+            }
+
+        case actions.SET_CURRENT_EXERCISE_NUMBER:
+            return {
+                ...state,
+                currentExerciseNumber: action.payload as number
             }
 
         default: return state

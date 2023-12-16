@@ -1,21 +1,19 @@
 'use client'
 
-import { ChangeEvent, Fragment, ReactNode, Reducer, useEffect, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react'
-import styles from './exerciseConjugation.module.scss'
-import stylesFeedback from './feedback.module.scss'
-import { ExerciseTextInput, statesInputExercise } from './Components/ExerciseTextInput/ExerciseTextInput'
-import { sanitize } from 'isomorphic-dompurify'
-import { Button, TColor } from '../Button/Button'
 import React from 'react'
+import { Fragment, ReactNode, Reducer, useEffect, useReducer, useRef } from 'react'
+import { sanitize } from 'isomorphic-dompurify'
+import styles from './exerciseConjugation.module.scss'
+import stylesFeedback from './Components/Feedback/feedBack.module.scss'
+import { ExerciseTextInput } from './Components/ExerciseTextInput/ExerciseTextInput'
+import { Button } from '../Button/Button'
+import { Selector } from '../Selector/Selector'
+import Alert from '../Alert/Alert'
 import { isSuccess, isError } from '@/utils/constants'
 import { getFeedbackSvg } from '@/assets/svg/svgExports'
-import { ISelectorDropdownOptions, Selector } from '../Selector/Selector'
-import Alert from '../Alert/Alert'
-import { IConjugation, IExerciseConjugation, TExerciseModes, TExerciseState, getButtonColor, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
+import { IConjugation, IExerciseConjugation, TExerciseState, getButtonColor, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
 import { getOptionsDropdown, getRandomInt, setLocalstorageItem } from '@/utils/utils'
-import { ExerciseCheckboxList } from '../ExerciseCheckboxList/ExerciseCheckboxList'
 import { IExerciseConjugationState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
-// import { ExerciseChoice } from '../ExerciseCheckboxList/ExerciseCheckboxList'
 
 
 /**
@@ -36,7 +34,8 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         selectedTense: '',
         previousTense: '',
         tenseToConfirm: '',
-        triggerInputsAnimation: false
+        triggerInputsAnimation: false,
+        currentExerciseNumber: 0
     })
 
     // The state of the exercise
@@ -99,6 +98,12 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         payload: shouldAnimate
     })
 
+    // Tense to confirm through alert
+    const setCurrentExerciseNumber = (num: number)=> dispatch({
+        type: actions.SET_CURRENT_EXERCISE_NUMBER,
+        payload: num
+    })
+
     // Array with the exercise inputs
     const refsInputs = [useRef<any>(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]
 
@@ -124,28 +129,21 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      */
     useEffect(() => {
 
+        console.log("HEYYYY UPDATE FROM SELECTED TENSE")
+
         if (!state.selectedTense) return
 
-        // Restart count
-        setNumFilledInputs(0)
-        setNumErroredInputs(0)
-        setNumCorrectedInputs(0)
-
         comparePreviousAndCurrentState()
-
-        console.log("IN EFFFEEECT")
-        console.log('tense'+state.selectedTense)
-        console.log(getConjugationFromTense(props.allTenses, state.selectedTense))
 
         setExerciseConjugations(
             getConjugationFromTense(props.allTenses, state.selectedTense)
         )
 
-        setTriggerInputsAnimation(true)
-        setTimeout(()=> setTriggerInputsAnimation(false), 100)
-        setTimeout(()=> focusFirstInput(), 300)
+        animateReveal()
 
     },[state.selectedTense])
+
+
 
     /**
      * Changes component state depending on number of elements filled
@@ -203,6 +201,12 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         setNumCorrectedInputs(0)
     }
 
+    const animateReveal = ()=> {
+        setTriggerInputsAnimation(true)
+        setTimeout(()=> setTriggerInputsAnimation(false), 100)
+        setTimeout(()=> focusFirstInput(), 300)
+    }
+
     /**
      * Compares previous tense value state in case a restart is needed
      */
@@ -233,6 +237,11 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      * Restarts all inputs from the exercise to an empty string.
      */
     const restartAllInputs = ()=> {
+        // Restart count
+        setNumFilledInputs(0)
+        setNumErroredInputs(0)
+        setNumCorrectedInputs(0)
+
         refsInputs.forEach((refInput)=> {
             const elInput: HTMLInputElement = refInput.current as unknown as HTMLInputElement
             if (refInput.current === null) return
@@ -272,10 +281,28 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
     }
 
-    const getBtnText = (state: string)=> {
-        if(isSuccess(state)) return props.texts.button.repeat
-        if(isError(state)) return "CHECK AGAIN"
-        return "CHECK"
+    const getBtnText = (state: string, isFirstBtn: boolean, isLastOfSerial?: boolean)=> {
+        if (isFirstBtn) {
+            if(isSuccess(state)) return props.texts.button.repeatShort
+            if(isError(state)) return props.texts.button.checkAgain
+            return props.texts.button.check
+        } else {
+            if(isSuccess(state) && !isLastOfSerial) return props.texts.button.next
+            if(isSuccess(state) && isLastOfSerial) return props.texts.button.startAgain
+            if(isError(state)) return props.texts.button.checkAgain
+            return props.texts.button.check
+        }
+    }
+
+    const getBtnIcon = (state: string, isFirstBtn: boolean, isLastOfSerial?: boolean)=> {
+        if (isFirstBtn) {
+            if(isSuccess(state)) return "repeat"
+        } else {
+            if(isSuccess(state) && !isLastOfSerial) return "next"
+            // if(isSuccess(state) && isLastOfSerial) return props.texts.button.startAgain
+            // if(isError(state)) return props.texts.button.checkAgain
+            // return props.texts.button.check
+        }
     }
 
     const getFeedbackText = (state: string)=> {
@@ -306,6 +333,24 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         restartAllInputs()
     }
 
+    const loadNextExercise = ()=> {
+        console.log("HEYY LOAD NEXT EXERCISE!!")
+        if (!props.selectedTenses) return
+        setSelectedTense(props.selectedTenses[state.currentExerciseNumber + 1])
+        setCurrentExerciseNumber(state.currentExerciseNumber + 1)
+        restartAllInputs()
+    }
+
+    const handleMainBtnClick = ()=> {
+        if (state.exerciseState === "filled") {
+            validateInputs()
+        } else if (state.exerciseState === "success") {
+            restartAllInputs()
+            animateReveal()
+        }
+    }
+
+
     const ExerciseFeedback = (): React.JSX.Element => {
         return (
             <div className={stylesFeedback.container} data-state={state.exerciseState}>
@@ -314,22 +359,22 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                     <p>{getFeedbackText(state.exerciseState)}</p>
                 </div>
 
-                <div className={stylesFeedback.containerBtns}>
+                <div className={(props.selectedTenses && props.selectedTenses.length > 1 && isSuccess(state.exerciseState)) ? stylesFeedback.containerBtns : ''}>
                     <Button
-                        callback={validateInputs}
-                        text={getBtnText(state.exerciseState)}
+                        callback={handleMainBtnClick}
+                        text={getBtnText(state.exerciseState, true)}
                         width='fullWidth'
-                        color={getButtonColor(state.exerciseState)}
-                        // icon={}
+                        color={getButtonColor(state.exerciseState, (props.selectedTenses !== undefined && props.selectedTenses.length > 1), false)}
+                        icon={getBtnIcon(state.exerciseState, true)}
                     ></Button>
                     {
                         props.selectedTenses && props.selectedTenses.length > 1 && isSuccess(state.exerciseState)
                             ?   <Button
-                                    callback={validateInputs}
-                                    text={getBtnText(state.exerciseState)}
+                                    callback={loadNextExercise}
+                                    text={getBtnText(state.exerciseState, false, (props.selectedTenses.length - 1) === state.currentExerciseNumber )}
                                     width='fullWidth'
-                                    color={getButtonColor(state.exerciseState)}
-                                    // icon={}
+                                    color={getButtonColor(state.exerciseState, false, true)}
+                                    icon={getBtnIcon(state.exerciseState, false, (props.selectedTenses.length - 1) === state.currentExerciseNumber )}
                                 ></Button>
                             :   <></>
                     }
@@ -351,13 +396,16 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             <div className={styles.statement}>
                 <p dangerouslySetInnerHTML={{__html: sanitize(props.texts.statement)}}></p>
                 {(props.selectedTenses && props.selectedTenses.length > 1)
-                    ? <Fragment><span data-text>{props.texts.textTense}</span><span>{props.selectedTenses[0]}</span></Fragment>
-                    : <Selector
-                        color={"primary"}
-                        selectedOption={state.selectedTense}
-                        options={getOptionsDropdown(props.tensesDropdown)}
-                        callbackOnChange={handleSelectorChange}
-                    />
+                    ?   <Fragment>
+                            <span data-text>{props.texts.textTense}</span>
+                            <span>{state.selectedTense}</span>
+                        </Fragment>
+                    :   <Selector
+                            color={"primary"}
+                            selectedOption={state.selectedTense}
+                            options={getOptionsDropdown(props.tensesDropdown)}
+                            callbackOnChange={handleSelectorChange}
+                        />
                 }
                 <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.texts.textVerb)}}></span>
                 <span className={styles.verb} dangerouslySetInnerHTML={{__html: sanitize(props.verb)}}></span>

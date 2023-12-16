@@ -3,10 +3,10 @@
         "btnPractice": "Practise & conjugation",
         "collapsibles": [
             {
-                "title": "Indicative",
-                "tenses": ["Präsens", "Präteritum", "Perfekt", "Plusquam.", "Futur I", "Futur II"]
+                "title": "A1 - A2 level",
+                "tenses": ["Präsens", "Präteritum", "Perfekt"]
             },{
-                "title": "Conjunctive",
+                "title": "B1 - B2 level",
                 "tenses": ["Konjunktiv I", "Konjunktiv II", "Konj. Perfekt", "Konj. Plusquam.", "Konj. Futur I", "Konj. Futur II"]
             }
         ],
@@ -29,9 +29,11 @@
             ],
             "button": {
                 "repeat": "REPEAT EXERCISE",
+                "repeatShort": "REPEAT",
                 "check": "CHECK",
-                "checkAgain": "CHECK AGAIN"
-
+                "checkAgain": "CHECK AGAIN",
+                "next": "NEXT EXERCISE",
+                "startAgain": "START AGAIN"
             }
         },
         "exerciseConjugation": {

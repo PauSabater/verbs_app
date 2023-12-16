@@ -2,18 +2,19 @@
 
 import VerbTable from "@/components/VerbTable/VerbTable"
 import { CollapsibleTenses } from "@/components/CollapsibleTenses/CollapsibleTenses"
-import Sein from "../../../dummyData/sein.json"
+import Sein from "../../../data/sein.json"
 import styles from './verb.module.scss'
-import texts from '../../../dummyData/texts.json'
+import texts from '../../../data/texts.json'
 import { ModalExercises } from "@/components/ModalExercises/ModalExercises"
 import { Fragment, Reducer, useEffect, useLayoutEffect, useRef, useState } from "react"
 import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation"
 import { ISelectorDropdownOptions, Selector } from "@/components/Selector/Selector"
 import VerbHeader from "@/components/VerbHeader/VerbHeader"
-import { getOptionsDropdown } from "@/utils/utils"
+import { getOptionsDropdown, getUtteraceInstance, setLocalstorageItem } from "@/utils/utils"
 import { ExerciseCheckboxList } from "@/components/ExerciseCheckboxList/ExerciseCheckboxList"
 import { useReducer } from 'react'
 import { IPageState, TPageAction, actions, reducer } from "./pageReducer"
+import Lesson from "@/components/Lesson/Lesson"
 
 
 export default function Page() {
@@ -23,8 +24,12 @@ export default function Page() {
         isCheckboxListOpen: false,
         exerciseTense: '',
         exerciseTensesCheckboxList: null,
-        selectedTensesFromCheckboxList: []
+        selectedTensesFromCheckboxList: [],
+        isModalLessonOpen: false,
+        lesson: ''
     })
+
+    const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null)
 
     const refModal = useRef(null)
     const refPageContent = useRef(null)
@@ -36,25 +41,33 @@ export default function Page() {
             return
         }
 
+        // setUtterance(await getUtteraceInstance())
+
         document.addEventListener(
             "openModalExercise",
             (e) => {
                 e.stopPropagation()
                 setExerciseTense((e as any).detail.tense)
+                // Restart checkboxlist tenses selected
+                setSelectedTensesFromCheckboxList([])
                 // setExerciseMode((e as any).detail.mode)
                 openConjugationExercise()
 
                 if (refModal.current === null) return
                 // @ts-ignore
-                refModal.current.openModal()
+                // refModal.current.openModal()
             }
         )
+
+        getUtteraceInstance()
+            .then((utterance)=> {
+                setUtterance(utterance)
+            })
     }, [])
 
     // Action when tenses list selection has been confirmed
     useEffect(()=> {
         if (state.selectedTensesFromCheckboxList.length > 0) {
-            console.log("OPEN EXERCISE!!")
             openTensesCheckboxList()
         }
     }, [state.selectedTensesFromCheckboxList])
@@ -76,6 +89,15 @@ export default function Page() {
         type: actions.CLOSE_TENSES_CHECKBOXLIST
     })
 
+    const openModalLesson = (lesson: string)=> dispatch({
+        type: actions.OPEN_MODAL_LESSON,
+        payload: lesson
+    })
+
+    const closeModalLesson = ()=> dispatch({
+        type: actions.CLOSE_MODAL_LESSON
+    })
+
     const setExerciseTense = (tense: string)=> dispatch({
         type: actions.SET_EXERCISE_TENSE,
         payload: tense
@@ -86,10 +108,13 @@ export default function Page() {
         payload: options as ISelectorDropdownOptions[]
     })
 
-    const setSelectedTensesFromCheckboxList = (tenses: string[]) => dispatch({
-        type: actions.SET_SELECTED_TENSES_FROM_CHECKBOXLIST,
-        payload: tenses
-    })
+    const setSelectedTensesFromCheckboxList = (tenses: string[]) => {
+        setLocalstorageItem('selectedTenses', tenses)
+        dispatch({
+            type: actions.SET_SELECTED_TENSES_FROM_CHECKBOXLIST,
+            payload: tenses
+        })
+    }
 
     const triggerExerciseCheckboxListModal = (itemsList: ISelectorDropdownOptions[])=> {
         setExerciseTensesCheckboxList(itemsList)
@@ -117,17 +142,12 @@ export default function Page() {
     }
 
     const callbackCloseModal = ()=> {
-        console.log("MODAL TO NULL!!")
-        // setExerciseTensesCheckboxList(null)
         closeTensesCheckboxList()
         closeConjugationExercise()
     }
 
     const callbackOnExerciseCheckboxListConfirm = (selectedTensesList: string[])=> {
-        console.log("heyyy IN PAGE CONFIRM")
-        console.log(selectedTensesList)
         setSelectedTensesFromCheckboxList(selectedTensesList)
-
         closeTensesCheckboxList()
         openConjugationExercise()
     }
@@ -156,6 +176,14 @@ export default function Page() {
                 ></ExerciseCheckboxList>
             :   <></>
 
+    const callbackCloseModalLesson = ()=> {
+
+    }
+
+    const onLessonOpen = ()=> {
+        openModalLesson('prasens')
+    }
+
 
 
     return (
@@ -170,6 +198,8 @@ export default function Page() {
                                 <VerbTable
                                     key={tableTense} mode={"indicative"}
                                     verbData={pageVerbData.data.indicative.find((tense)=> tense.tense === tableTense)}
+                                    callbackLessonOpen={onLessonOpen}
+                                    utterance={utterance}
                                 ></VerbTable>
                             )
                         })
@@ -184,6 +214,7 @@ export default function Page() {
                                     key={tableTense}
                                     mode={"conjunctive"}
                                     verbData={pageVerbData.data.conjunctive.find((tense)=> tense.tense === tableTense)}
+                                    utterance={utterance}
                                 ></VerbTable>
                             )
                         })
@@ -199,6 +230,17 @@ export default function Page() {
                         ? <ExerciseContent />
                         : state.isCheckboxListOpen ? <ExerciseListCheckboxes/> : ''
                     }
+                </ModalExercises>
+
+                <ModalExercises
+                    text={""}
+                    open={state.isModalLessonOpen}
+                    // ref={refModalLesson}
+                    callbackClose={closeModalLesson}
+                    widerVersion={true}
+                    padding={'paddingBase'}
+                >
+                    <Lesson lesson={"prasens"}/>
                 </ModalExercises>
             </div>
         </div>

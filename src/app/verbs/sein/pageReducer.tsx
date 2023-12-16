@@ -5,7 +5,9 @@ export interface IPageState {
     isCheckboxListOpen: boolean,
     exerciseTense: string,
     exerciseTensesCheckboxList: ISelectorDropdownOptions[] | null,
-    selectedTensesFromCheckboxList: string[]
+    selectedTensesFromCheckboxList: string[],
+    isModalLessonOpen: boolean,
+    lesson: string
 }
 
 export type TPageActions =
@@ -16,10 +18,12 @@ export type TPageActions =
     | 'SET_EXERCISE_TENSE'
     | 'SET_TENSES_CHECKBOXLIST'
     | 'SET_SELECTED_TENSES_FROM_CHECKBOXLIST'
+    | 'OPEN_MODAL_LESSON'
+    | 'CLOSE_MODAL_LESSON'
 
 export type TPageAction = {
     type: TPageActions,
-    payload?: string | string[] | ISelectorDropdownOptions[]
+    payload?: string | string[] | ISelectorDropdownOptions[] | boolean
 }
 
 // export type TActionNames =
@@ -31,11 +35,12 @@ export const actions: {[key in TPageActions]: TPageActions} = {
     CLOSE_TENSES_CHECKBOXLIST: 'CLOSE_TENSES_CHECKBOXLIST',
     SET_EXERCISE_TENSE: 'SET_EXERCISE_TENSE',
     SET_TENSES_CHECKBOXLIST: 'SET_TENSES_CHECKBOXLIST',
-    SET_SELECTED_TENSES_FROM_CHECKBOXLIST: 'SET_SELECTED_TENSES_FROM_CHECKBOXLIST'
+    SET_SELECTED_TENSES_FROM_CHECKBOXLIST: 'SET_SELECTED_TENSES_FROM_CHECKBOXLIST',
+    OPEN_MODAL_LESSON: 'OPEN_MODAL_LESSON',
+    CLOSE_MODAL_LESSON: 'CLOSE_MODAL_LESSON'
 }
 
 export function reducer(state: IPageState, action: TPageAction): IPageState {
-    console.log(action.type)
 
     switch (action.type) {
         case actions.OPEN_CONJUGATION_EXERCISE:
@@ -73,6 +78,19 @@ export function reducer(state: IPageState, action: TPageAction): IPageState {
             return {
                 ...state,
                 selectedTensesFromCheckboxList: action.payload as string[] || null
+            }
+
+        case actions.OPEN_MODAL_LESSON:
+            return {
+                ...state,
+                isModalLessonOpen: true,
+                lesson: action.payload as string
+            }
+
+        case actions.CLOSE_MODAL_LESSON:
+            return {
+                ...state,
+                isModalLessonOpen: false
             }
 
         default: return state
