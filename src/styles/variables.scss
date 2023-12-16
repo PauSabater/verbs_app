@@ -1,0 +1,213 @@
+@use './mixins.scss';
+
+:root {
+    --width-page-content: 100%;
+
+    background-color: black;
+
+    @include mixins.desktop {
+        --width-page-content: 900px;
+    }
+
+
+
+
+
+
+
+
+    // padding
+    --pd-xs: 5px;
+    --pd-sm: 10px;
+    --pd-md: 15px;
+    --pd-lg: 20px;
+    --pd-xl: 30px;
+    --pd-xl: 40px;
+    --pd-2xl: 50px;
+
+    --pd-screen: var(--pd-md);
+    --pd-fullwidth: 0 5vw;
+    --pd-fullwidth-lg: 0 8vw;
+
+    --pd-inner-component: var(--pd-lg);
+
+    // @include mixins.desktop {
+    //     --pd-screen: var(--pd-md);
+    // }
+
+    // Margins
+    --mg-xs: 5px;
+    --mg-sm: 10px;
+    --mg-md: 15px;
+    --mg-lg: 20px;
+    --mg-xl: 30px;
+    --mg-xl: 40px;
+    --mg-2xl: 50px;
+
+    --mg-between-components: var(--mg-lg);
+
+    // Sizes
+    --sz-content: 100%;
+    --height-footer: 100px;
+
+    // @include mixins.desktop {
+    //     --sz-content: 500px;
+    // }
+
+
+    // Colors
+    --bg-valid: var(--c-secondary-lighter);
+    // --bg-valid-dark: hsl(var(--c-primary-h), var(--c-primary-s), 85%);
+
+    --c-success: var(--c-primary);
+    --c-success-dark: var(--c-primary-dark);
+
+    --c-error-lighter: var(--c-secondary-lighter);
+    --c-error-light: var(--c-secondary-light);
+    --c-error: var(--c-secondary);
+    --c-error-dark: var(--c-secondary-dark);
+
+    --c-primary-transparency: hsla(54, 67%, 38%, 0.2);
+
+    // #610ef1
+    --c-primary-h: 262;
+    --c-primary-s: 89%;
+    --c-primary-lighter-hover: hsl(var(--c-primary-h), var(--c-primary-s), 92%);
+    --c-primary-lighter: hsl(var(--c-primary-h), var(--c-primary-s), 97%);
+    --c-primary-light: hsl(var(--c-primary-h), var(--c-primary-s), 75%);
+    --c-primary: hsl(var(--c-primary-h), var(--c-primary-s), 50%);
+    // --c-primary: hsl(60, 63%, 62%);
+    --c-primary-dark: hsl(var(--c-primary-h), var(--c-primary-s), 30%);
+    --c-primary-darker: hsl(var(--c-primary-h), var(--c-primary-s), 15%);
+
+    --c-secondary-lighter: hsl(335, 98%, 96%);
+    --c-secondary-light: hsl(335, 98%, 75%);
+    --c-secondary: hsl(335, 98%, 50%);
+    --c-secondary-dark: hsl(335, 98%, 30%);
+    --c-secondary-darker: hsl(335, 98%, 15%);
+
+    // 79°, 93%, 50%
+    --c-tertiary-h: 79;
+    --c-tertiary-s: 93%;
+    --c-tertiary-lighter: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 90%);
+    --c-tertiary-light: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 70%);
+    --c-tertiary: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 35%);
+    --c-tertiary-dark: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 30%);
+    --c-tertiary-darker: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 10%);
+
+
+    --c-grey-lighter: hsl(0, 0%, 90%);
+    --c-grey-light: hsl(0, 0%, 80%);
+    --c-grey: hsl(0, 0%, 50%);
+    --c-grey-dark: hsl(0, 0%, 35%);
+    --c-grey-darker: hsl(0, 0%, 20%);
+
+
+    --c-black: hsl(0, 0%, 6%);
+    --c-black-light: hsl(0, 0%, 12%);
+    --c-blackest: hsl(0, 0%, 3%);
+
+    // Border color
+    --c-br-light: hsl(136, 0%, 80%);
+
+    --c-font-white: hsl(136, 0%, 96%);
+    --c-font-global: var(--c-black);
+    --c-font-global-light: hsl(0, 0%, 13%);
+    --c-font-global-lighter: hsl(0, 0%, 30%);
+
+    --c-font-h: hsl(0, 0%, 15%);
+    --c-font-white: var(--c-white);
+
+    --c-black-no-change: hsl(0, 0%, 6%);
+    --c-white-no-change: hsl(136, 0%, 96%);
+    --c-whitest: white;
+    --c-white: hsl(136, 0%, 96%);
+    --bg-main: var(--c-white);
+    --bg-white: rgb(250, 250, 250);
+    --bg-white-translucent: hsl(0, 0%, 100%, 0.7);
+    --bg-white-translucent-dark-mode: hsl(0, 0%, 100%, 1);
+
+    // Transitions
+    --tr-faster: 0.1s;
+    --tr-fast: 0.2s;
+    --tr-base: 0.3s;
+    --tr-slow: 0.5s;
+    --tr-slower: 0.9s;
+
+    // Font weight
+    --fw-boldest: 900;
+    --fw-bolder: 800;
+    --fw-bold: 600;
+    --fw-medium: 500;
+    --fw-regular: 400;
+    --fw-light: 300;
+    --fw-lighter: 200;
+
+    // Font size
+    --fs-5xl: 3.6rem;
+    --fs-4xl: 3rem;
+    --fs-3xl: 2.4rem;
+    --fs-2xl: 2rem;
+    --fs-xl: 1.7rem;
+    --fs-lg: 1.3rem;
+    --fs-global: 1.15rem;
+    --fs-sm: 1.1rem;
+    --fs-xs: 0.95rem;
+    --fs-2xs: 0.80rem;
+    --fs-3xs: 0.70rem;
+
+    --fs-heading: clamp(45px, 5vw, 90px);
+
+    --fs-text-banner: clamp(25px, 2.2vw, 36px);
+    --fs-text-banner-sm: clamp(22px, 1.8vw, var(--fs-lg));
+
+    // @include mixins.mobile-tablet-vertical {
+    //     --fs-text-banner: 1.4rem;
+    // }
+
+    // @include mixins.mobile-tablet {
+    //     --fs-5xl: 2.8rem;
+    //     --fs-4xl: 2.4rem;
+    //     --fs-3xl: 2rem;
+    //     --fs-2xl: 1.8rem;
+    //     --fs-xl: 1.55rem;
+    //     --fs-lg: 1.4rem;
+    //     --fs-global: 1.15rem;
+    //     --fs-sm: 1rem;
+    //     --fs-xs: 0.85rem;
+    // }
+
+    p {
+        line-height: 1.5;
+    }
+
+    // Border-radius
+    --br-base: 10px;
+    --br-sm: 5px;
+
+
+
+    --c-verb-stem: var(--c-primary);
+    --c-verb-ending: var(--c-secondary);
+
+}
+
+#page-root[data-theme="dark"] {
+
+    --c-primary: hsl(54, 67%, 68%);
+
+    --bg-main: hsl(0, 0%, 7%);
+    --c-white: hsl(0, 0%, 7%);
+    --c-font-global: hsl(136, 0%, 96%);
+    --c-font-global-light: hsl(136, 0%, 86%);
+    --c-font-global-lighter: hsl(136, 0%, 75%);
+    --bg-white: hsl(0, 0%, 12%);
+    --bg-white-translucent: hsla(0, 0%, 13%, 0.75);
+    --bg-white-translucent-dark-mode: hsla(0, 0%, 13%, 0.75);
+    --c-br-light: hsl(136, 0%, 60%);
+}
+
+#page-root {
+    background-color: var(--bg-white);
+    transition: background-color var(--tr-fast);
+}

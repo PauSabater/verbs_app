@@ -1,0 +1,106 @@
+.container {
+    position: relative;
+
+    svg {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        top: 15px;
+        left: -26px;
+    }
+
+    .answerCorrection {
+        position: absolute;
+        top: -20px;
+        left: 30px;
+        line-height: 15px;
+        background: hsla(0, 0%, 100%, 0.8);
+        font-size: var(--fs-2xs);
+        font-weight: 600;
+        color: var(--c-success);
+        padding: 2px 5px;
+        border-radius: 10px;
+        border: 1px solid lightgrey;
+    }
+
+}
+
+.input {
+    --height-input: 50px;
+    --c-outline: transparent;
+    --c-border: var(--c-grey-light);
+    // --c-input:
+
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: var(--height-input);
+    border: 2px solid var(--c-border);
+    font-size: var(--fs-lg);
+    width: 100%;
+    padding: 0 var(--pd-xl);
+    margin: 0;
+    outline: 0.5px solid var(--c-outline);
+    box-shadow: 0px 0px 3px 0px var(--c-outline);
+    transition: outline var(--tr-base), box-shadow var(--tr-base);
+
+    // &:hover, &:focus {
+    //     --c-outline: var(--c-border);
+
+    //     outline: 1px solid var(--c-outline);
+    //     box-shadow: 0px 0px 1px 0px var(--c-outline);
+    // }
+
+    &:hover {
+        --c-outline: var(--c-grey-light);
+
+        &:focus {
+            box-shadow: 0px 0px 8px 0px var(--c-grey);
+        }
+
+        & + svg {
+
+        }
+    }
+
+
+
+    &[data-state="error"] {
+        --c-border: var(--c-error);
+
+        color: var(--c-error);
+        text-decoration: line-through;
+
+        &:hover {
+            outline: 0.5px solid var(--c-error);
+        }
+
+        & + svg {
+            color: var(--c-error);
+        }
+    }
+
+    &[data-state="success"] {
+        --c-border: var(--c-success);
+
+        pointer-events: none;
+        color: var(--c-success);
+
+        &:hover {
+            outline: 0.5px solid var(--c-success);
+        }
+
+        & + svg {
+            color: var(--c-success);
+        }
+    }
+
+    &[data-state="error"],
+    &[data-state="success"] {
+        --c-outline: transparent;
+
+        &:hover {
+
+        }
+    }
+
+}

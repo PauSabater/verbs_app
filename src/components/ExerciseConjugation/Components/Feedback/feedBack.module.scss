@@ -1,0 +1,86 @@
+@use '../../../../styles/mixins.scss';
+
+.container {
+    --c-border: var(--c-success);
+    --feedback-bg: transparent;
+    --size-icon: 25px;
+
+    box-sizing: border-box;
+    position: relative;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    height: var(--height-feedback);
+    width: calc(100% - 0px);
+    padding: 0 var(--pd-modal-horitz);
+    bottom: 0;
+    left: 0;
+    background-color: var(--feedback-bg);
+    border-radius: 0 0 10px 10px;
+    transition: background-color var(--tr-fast);
+
+    .message {
+        display: flex;
+        align-items: center;
+        font-weight: 600;
+        font-size: var(--fs-global);
+        opacity: 0;
+    }
+
+    svg {
+        height: var(--size-icon);
+        width: var(--size-icon);
+        margin-right: var(--mg-sm);
+    }
+
+    &[data-state="success"] {
+        --feedback-bg: var(--bg-valid);
+
+        .message {
+            color: var(--c-success);
+        }
+    }
+
+    &[data-state="error"] {
+        --feedback-bg: var(--c-error-lighter);
+
+        .message {
+            color: var(--c-error);
+        }
+    }
+
+    &[data-state="error"],
+    &[data-state="success"] {
+        div.message {
+            opacity: 1;
+        }
+    }
+
+    button {
+        width: 100%;
+        bottom: 100px;
+    }
+}
+
+.containerBtns {
+    display: flex;
+    // flex-direction: ;
+}
+
+
+@include mixins.vertical-750 {
+
+    .container {
+        --height-feedback: 120px;
+        --size-icon: 20px;
+
+        grid-template-rows: 40% 60%;
+
+        button {
+            transform: translateY(5px);
+        }
+
+        .message {
+            font-size: var(--fs-xs) !important;
+        }
+    }
+}

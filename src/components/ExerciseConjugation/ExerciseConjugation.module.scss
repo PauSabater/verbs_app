@@ -1,0 +1,175 @@
+@use '../../styles/mixins.scss';
+
+.exerciseConjugation {
+    --height-feedback: 200px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    animation: reveal var(--tr-base);
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opaceity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.container {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    height: inherit;
+    overflow-y: auto;
+    padding: var(--pd-modal-vertical) var(--pd-modal-horitz) 0 var(--pd-modal-horitz);
+    transform: translateY(20px);
+    z-index: 99;
+}
+
+.rowsContainer {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: opacity var(--tr-slow), transform var(--tr-base);
+
+    &[data-animate="true"] {
+        position: flex;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: none;
+    }
+}
+
+.statement {
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    color: var(--c-grey-darker);
+    padding-right: var(--pd-md);
+    margin: var(--mg-xs) 0 var(--mg-2xl);
+
+    p:first-child {
+        font-size: var(--fs-global);
+        font-weight: 400;
+        margin: 0 0 var(--mg-sm);
+    }
+
+    span:not([data-text]), select {
+        color: var(--c-primary);
+        font-weight: 600;
+        margin: 0 var(--mg-md);
+    }
+
+    select {
+        margin: var(--mg-sm);
+    }
+
+    div {
+        display: inline;
+        margin: 0 var(--mg-lg) 0 0;
+    }
+
+    .verb {
+        margin-left: var(--mg-sm);
+    }
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 130px auto;
+    margin-bottom: var(--mg-md);
+}
+
+.person {
+    margin: 0;
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    color: var(--c-black-lighter);
+    align-self: center;
+}
+
+
+@include mixins.vertical-900 {
+
+    .exerciseConjugation {
+        --height-feedback: 200px;
+    }
+
+    .statement {
+        font-size: var(--fs-global);
+        margin: 0 0 35px;
+    }
+
+    .person {
+        font-size: var(--fs-global);
+    }
+
+    .row {
+        margin-bottom: var(--mg-sm);
+        grid-template-columns: 115px auto;
+    }
+}
+
+@include mixins.vertical-750 {
+
+    .statement {
+        font-size: var(--fs-sm);
+        margin: var(--mg-xs) 0 var(--mg-md);
+    }
+
+    .person {
+        font-size: var(--fs-global);
+    }
+
+    .row {
+        margin-bottom: var(--mg-xs);
+        grid-template-columns: 115px auto;
+    }
+
+    .container button {
+        bottom: 60px;
+    }
+
+    .container input {
+        height: 45px;
+        margin-bottom: 10px;
+    }
+}
+
+@include mixins.mobile {
+
+    .container {
+        --pd-modal-horitz: 15px;
+        --pd-modal-vertical: var(--pd-modal-horitz);
+    }
+
+    .statement {
+        font-size: var(--fs-global);
+        margin: var(--mg-xl) 0 var(--mg-lg);
+    }
+
+    .row {
+        grid-template-columns: 60px auto;
+    }
+
+    .person, .statement, .row input {
+        font-size: var(--fs-global);
+    }
+
+    .container button {
+        bottom: 60px;
+    }
+}
+
+@include mixins.vertical-750 {
+
+    .statement {
+        font-size: var(--fs-sm);
+        margin: calc(var(--mg-lg) + 5px) 0 var(--mg-lg);
+    }
+}

@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    p {
+        font-size: var(--fs-global);
+        font-weight: 600;
+        color: var(--c-font-global-lighter);
+        margin: 0;
+    }
+
+    div:first-child {
+        margin-right: var(--mg-sm);
+    }
+}
+
+.level {
+    position: relative;
+    margin-right: 20px;
+    z-index: 1;
+
+    &:before {
+        content: '';
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        top: 50%;
+        left: 50%;
+        border-radius: 100px;
+        background: red;
+        transform: translate(-50%, -50%);
+        z-index: 0;
+    }
+}
+
+p.separator {
+    padding: 0 var(--pd-lg);
+    font-weight: 100;
+}
