@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import styles from './VerbTable.module.scss'
-import { Fragment } from 'react'
+import { Fragment, useLayoutEffect } from 'react'
 import { sanitize } from 'isomorphic-dompurify'
 import { SVGAudio, SVGDoc, SVGExercise } from '@/assets/svg/svgExports'
 import HoverWithInfo from '../HoverWithInfo/HoverWithInfo'
@@ -17,7 +17,7 @@ interface IVerbData {
 
 interface IVerbTable {
     verbData: IVerbData | undefined,
-    mode: string,
+    mode?: string,
     utterance: SpeechSynthesisUtterance | null,
     callbackLessonOpen?: Function
 }
@@ -38,6 +38,10 @@ export default function VerbTable(props: IVerbTable) {
         document.dispatchEvent(event);
     }
 
+    useLayoutEffect(()=> {
+        console.log(props.verbData)
+    })
+
     const getTextForConjugationAudio = ()=> {
 
         let text
@@ -51,57 +55,9 @@ export default function VerbTable(props: IVerbTable) {
         return text
     }
 
-    function setSpeech(): Promise<SpeechSynthesisVoice[]> {
-        return new Promise(
-            function (resolve, reject) {
-                let synth = window.speechSynthesis;
-                let id: any
-
-                id = setInterval(() => {
-                    if (synth.getVoices().length !== 0) {
-                        resolve(synth.getVoices() as SpeechSynthesisVoice[]);
-                        clearInterval(id);
-                    }
-                }, 20);
-            }
-        )
-    }
-
     const playAudio = (text: string)=> {
         if (props.utterance)
         speak(props.utterance, text)
-
-        // const synthesis = window.speechSynthesis
-
-        // let id: any
-
-        // let speechPromise = setSpeech()
-
-        // speechPromise.then((voices: SpeechSynthesisVoice[])=> {
-        //     console.log(navigator.userAgent)
-        //     let germanVoices = voices.filter(function (voice) {
-        //         return voice.name === 'Google Deutsch'
-        //     })
-
-        //     if (germanVoices.length === 0) {
-        //         germanVoices = voices.filter(function (voice) {
-        //             return voice.lang === 'de-DE'
-        //         })
-        //     }
-
-        //     const voice = germanVoices[0]
-
-        //     var utterance: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text);
-
-        //     // Set utterance properties
-        //     utterance.voice = voice;
-        //     utterance.pitch = 1;
-        //     utterance.rate = 0.9;
-        //     utterance.volume = 1;
-
-        //     // Speak the utterance
-        //     synthesis.speak(utterance);
-        // })
     }
 
     return props.verbData === undefined ? null : (

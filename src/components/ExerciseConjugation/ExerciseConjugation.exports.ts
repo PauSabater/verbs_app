@@ -94,3 +94,14 @@ export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: stri
 
     return
 }
+
+export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string): IVerbTense | undefined => {
+
+    for (const mode of Object.values(tenses)) {
+        for (const tense of Object.values(mode)) {
+            if ((tense as IVerbTense).tense === tableTense) return tense as IVerbTense
+        }
+    }
+
+    return
+}

@@ -3,11 +3,14 @@
         "btnPractice": "Practise & conjugation",
         "collapsibles": [
             {
-                "title": "A1 - A2 level",
-                "tenses": ["Präsens", "Präteritum", "Perfekt"]
+                "title": "Levels A1 - A2",
+                "tenses": ["Präsens", "Perfekt", "Imperative"]
             },{
-                "title": "B1 - B2 level",
-                "tenses": ["Konjunktiv I", "Konjunktiv II", "Konj. Perfekt", "Konj. Plusquam.", "Konj. Futur I", "Konj. Futur II"]
+                "title": "Levels B1 - B2",
+                "tenses": ["Präteritum", "Futur I", "Plusquam."]
+            },{
+                "title": "Levels C1 - C2",
+                "tenses": ["Konjunktiv I", "Konjunktiv II"]
             }
         ],
         "exerciseText": {

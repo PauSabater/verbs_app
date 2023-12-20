@@ -44,7 +44,9 @@ export const replaceWithCurrentUrl = (text: string)=> {
 }
 
 export function speak(utterance: SpeechSynthesisUtterance, text: string) {
+    if (!utterance) return
     utterance.text = text
+    window.speechSynthesis.cancel()
     window.speechSynthesis.speak(utterance)
 }
 
@@ -58,21 +60,27 @@ export function getUtteraceInstance(): Promise<SpeechSynthesisUtterance> {
                 const voices = synth.getVoices()
 
                 if (voices.length !== 0) {
-
+                    let voice
                     let germanVoices = voices.filter(function (voice) {
                         return voice.name === 'Google Deutsch'
                     })
 
-                    if (germanVoices.length === 0) {
+                    if (germanVoices.length > 0) {
+                        voice = germanVoices[0]
+                    } else {
                         germanVoices = voices.filter(function (voice) {
-                            return voice.lang === 'de-DE'
+                            return voice.lang === 'de-DE' && voice.name === "Reed (German (Germany))"
                         })
+
+                        voice = germanVoices[0] || voices.filter(function (voice) {
+                            return voice.lang === 'de-DE'
+                        })[0]
                     }
 
                     const utterance = new SpeechSynthesisUtterance()
-                    utterance.voice = voices[0];
+                    utterance.voice = voice;
                     utterance.pitch = 1;
-                    utterance.rate = 0.9;
+                    utterance.rate = voice.name.includes("Google") ? 0.85 : 0.7;
                     utterance.volume = 1;
 
                     resolve(utterance);
@@ -81,6 +89,11 @@ export function getUtteraceInstance(): Promise<SpeechSynthesisUtterance> {
             }, 20);
         }
     )
+}
+
+export function removeTags(text: string) {
+    if (!text) return ''
+    return text.replaceAll('</a>', '').replaceAll('</p>', '').replaceAll('</b>', '').replaceAll('-', '').replaceAll(/<.*>/g, '')
 }
 
 // export async function getUtteraceInstance = (text: string): SpeechSynthesisUtterance => {

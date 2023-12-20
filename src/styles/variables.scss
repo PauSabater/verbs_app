@@ -45,6 +45,7 @@
     --mg-2xl: 50px;
 
     --mg-between-components: var(--mg-lg);
+    --mg-page-top: 150px;
 
     // Sizes
     --sz-content: 100%;
@@ -56,7 +57,7 @@
 
 
     // Colors
-
+    --c-verb-stem: var(--c-primary);
     --c-verb-prefix: var(--c-secondary);
 
     --bg-valid: var(--c-secondary-lighter);

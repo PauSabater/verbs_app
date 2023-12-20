@@ -15,6 +15,7 @@ import { ExerciseCheckboxList } from "@/components/ExerciseCheckboxList/Exercise
 import { useReducer } from 'react'
 import { IPageState, TPageAction, actions, reducer } from "./pageReducer"
 import Lesson from "@/components/Lesson/Lesson"
+import { getTenseFromTenseName } from "@/components/ExerciseConjugation/ExerciseConjugation.exports"
 
 
 export default function Page() {
@@ -37,25 +38,14 @@ export default function Page() {
 
     useLayoutEffect(() => {
 
-        if (refPageContent.current === null) {
-            return
-        }
-
-        // setUtterance(await getUtteraceInstance())
+        if (refPageContent.current === null) return
 
         document.addEventListener(
-            "openModalExercise",
-            (e) => {
+            "openModalExercise", (e) => {
                 e.stopPropagation()
                 setExerciseTense((e as any).detail.tense)
-                // Restart checkboxlist tenses selected
                 setSelectedTensesFromCheckboxList([])
-                // setExerciseMode((e as any).detail.mode)
                 openConjugationExercise()
-
-                if (refModal.current === null) return
-                // @ts-ignore
-                // refModal.current.openModal()
             }
         )
 
@@ -129,14 +119,14 @@ export default function Page() {
         return {
             button: texts.verbsPage.btnPractice,
             verb: pageVerbData.verb,
-            level: pageVerbData.data.level,
-            verbHTML: pageVerbData.data.verbHTML,
-            stemFormationHTML: pageVerbData.data.stemFormationHTML,
-            isIrregular: pageVerbData.data.isIrregular,
-            isSeparable: pageVerbData.data.isSeparable,
-            description: pageVerbData.description,
+            level: pageVerbData.data.properties.level,
+            verbHTML: pageVerbData.data.properties.verbHTML,
+            stemFormationHTML: pageVerbData.data.properties.stemFormationHTML,
+            isIrregular: pageVerbData.data.properties.isIrregular,
+            isSeparable: pageVerbData.data.properties.isSeparable,
+            description: pageVerbData.descriptions.en,
             listBtnTenses: getOptionsDropdown(texts.verbsPage.collapsibles),
-            translation: pageVerbData.translations.en,
+            translation: pageVerbData.data.properties.translations.en,
             callbackOnBtnClick: triggerExerciseCheckboxListModal
         }
     }
@@ -160,7 +150,7 @@ export default function Page() {
                     texts={texts.verbsPage.exerciseText}
                     tenseExercise={state.exerciseTense}
                     // modeExercise={exerciseMode}
-                    allTenses={pageVerbData.data}
+                    allTenses={pageVerbData.data.tenses}
                     selectedTenses={state.selectedTensesFromCheckboxList}
                 ></ExerciseConjugation>
             :   <Fragment />
@@ -191,22 +181,30 @@ export default function Page() {
             <VerbHeader {...verbHeaderProps()}></VerbHeader>
             <h1>{`Conjugations`}</h1>
             <div>
-                <CollapsibleTenses texts={{title: texts.verbsPage.collapsibles[0].title}} action={btnCollapsiblesAction}>
-                    {
-                        texts.verbsPage.collapsibles[0].tenses.map((tableTense, i) => {
-                            return (
-                                <VerbTable
-                                    key={tableTense} mode={"indicative"}
-                                    verbData={pageVerbData.data.indicative.find((tense)=> tense.tense === tableTense)}
-                                    callbackLessonOpen={onLessonOpen}
-                                    utterance={utterance}
-                                ></VerbTable>
-                            )
-                        })
-                    }
-                </CollapsibleTenses>
+                { [1, 2, 3].map((e, i) => {
+                    return (
+                        <CollapsibleTenses texts={{title: texts.verbsPage.collapsibles[i].title}} action={btnCollapsiblesAction}>
+                            {
+                                texts.verbsPage.collapsibles[i].tenses.map((tableTense, i) => {
+                                    return (
+                                        <VerbTable
+                                            key={tableTense}
+                                            // mode={"indicative"}
+                                            verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense)}
+                                            callbackLessonOpen={onLessonOpen}
+                                            utterance={utterance}
+                                        ></VerbTable>
+                                    )
+                                })
+                            }
+                        </CollapsibleTenses>
+                    )
+                })
 
-                <CollapsibleTenses texts={{title: texts.verbsPage.collapsibles[1].title}} action={btnCollapsiblesAction}>
+                }
+
+
+                {/* <CollapsibleTenses texts={{title: texts.verbsPage.collapsibles[1].title}} action={btnCollapsiblesAction}>
                     {
                         texts.verbsPage.collapsibles[1].tenses.map((tableTense, i) => {
                             return (
@@ -219,7 +217,7 @@ export default function Page() {
                             )
                         })
                     }
-                </CollapsibleTenses>
+                </CollapsibleTenses> */}
                 <ModalExercises
                     text={""}
                     open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
@@ -240,7 +238,10 @@ export default function Page() {
                     widerVersion={true}
                     padding={'paddingBase'}
                 >
-                    <Lesson lesson={"prasens"}/>
+                    <Lesson
+                        lesson={"prasens"}
+                        utterance={utterance}
+                    />
                 </ModalExercises>
             </div>
         </div>

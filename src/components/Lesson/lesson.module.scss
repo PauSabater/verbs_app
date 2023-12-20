@@ -48,6 +48,10 @@
         font-size: var(--fs-lg);
     }
 
+    b[data-verb-stem] {
+        color: var(--c-verb-stem);
+    }
+
     b[data-verb-prefix] {
         color: var(--c-verb-prefix);
     }
@@ -116,6 +120,20 @@
     }
 }
 
+.tableContainer {
+    position: relative;
+    color: var(--c-font-global);
+    width: fit-content;
+
+    svg[data-svg-audio] {
+        position: absolute;
+        top: 12px;
+        right: 60px;
+        height: 20px;
+        z-index: 10;
+    }
+}
+
 .table {
     --table-pd-side: var(--pd-xl);
 
@@ -132,6 +150,24 @@
 
     .value {
         b {
+            color: var(--c-font-global);
+        }
+
+        u {
+            text-decoration: none;
+            color: var(--c-verb-stem);
+        }
+
+        b[data-verb-stem] {
+            color: var(--c-verb-stem);
+        }
+
+        b[data-verb-prefix] {
+            color: var(--c-verb-prefix);
+        }
+
+        i {
+            font-style: normal;
             color: var(--c-verb-prefix);
         }
 
@@ -180,6 +216,10 @@
             border-bottom: 1px solid var(--c-grey-light);
             border-bottom-style: dotted;
         }
+    }
+
+    .rowBackground {
+        background-color: var(--c-primary-lighter);
     }
 
     // // // .table,

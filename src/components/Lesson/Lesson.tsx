@@ -6,7 +6,8 @@ import styles from './lesson.module.scss'
 import { sanitize } from 'isomorphic-dompurify'
 import Callout from '../UI/Callout/Callout'
 import { SVGAudio } from '@/assets/svg/svgExports'
-import { replaceWithCurrentUrl } from '@/utils/utils'
+import { removeTags, replaceWithCurrentUrl } from '@/utils/utils'
+import { AudioIcon } from '../AudioIcon/AudioIcon'
 
 interface ILessonSection {
     type: string,
@@ -37,11 +38,16 @@ interface ILessonSections {
     sections: ILessonSection[]
 }
 
+interface ILessonString {
+    lesson: string,
+    utterance: SpeechSynthesisUtterance | null,
+}
+
 // const DynamicData = dynamic(() => import('../components/CodeSampleModal'), {
 //     ssr: false,
 //   });
 
-export default function Lesson(props: {lesson: string}): React.JSX.Element {
+export default function Lesson(props: ILessonString): React.JSX.Element {
 
     const [data, setData] = useState<ILessonSections | null>(null)
 
@@ -82,40 +88,65 @@ export default function Lesson(props: {lesson: string}): React.JSX.Element {
                 <>{getListTemplate(section.itemsList)}</>
             )
         }
-        if (section.type === 'table') {
+        if (section.type.includes('table')) {
             return (
-                <>{getTableTemplate(section.table)}</>
+                <>{getTableTemplate(section.table, section.type)}</>
             )
         }
+
+        return <></>
     }
 
-    const getTableTemplate = (table: ITable)=> {
+    const getTableAudioText = (table: ITable)=> {
+        let string = ''
+
+        const columnsNum = table.rows.length - 1
+
+        for(const row of table.rows) {
+            string = string + row[0] + removeTags(row[columnsNum]) + ', '
+        }
+
+        return string
+    }
+
+    const getTableTemplate = (table: ITable, type?: string)=> {
         return (
-            <Fragment>
-            <table className={styles.table}>
-                <tr className={styles.headings}>
-                {
-                    table.headings.map((heading)=> {return (
-                        <th className={styles.heading}>{heading}</th>
-                    )})
-                }
-                </tr>
-                {
-                    table.rows.map((row)=> {return (
-                        <tr className={styles.row}>
-                        {
-                           row.map((value)=> {return (
-                            <td className={`${styles.value} ${value.startsWith('-') ? styles.prefix : ''}`} dangerouslySetInnerHTML={{__html: sanitize(value || '')}}></td>
+            <div className={styles.tableContainer}>
+                <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={getTableAudioText(table)}/>
+                <table className={styles.table}>
+                    {table.headings ?
+                    <thead>
+                    <tr className={styles.headings}>
+                    {
+                        table.headings.map((heading, i)=> {return (
+                            <th key={`head=${i}`} className={styles.heading}>{heading}</th>
                         )})
+                    }
+                    </tr>
+                </thead>
+                : ''
+
+                    }
+
+                    <tbody>
+                        {
+                            table.rows.map((row, i)=> {return (
+                                <tr key={`row-${i}`} className={`${styles.row} ${type?.includes((i + 1).toString()) ? styles.rowBackground : ''}`}>
+                                {
+                                    row.map((value, i)=> {return (
+                                        <td key={`row-value-${i}`}
+                                            className={`${styles.value} ${value.startsWith('-') ? styles.prefix : ''}`}
+                                            dangerouslySetInnerHTML={{__html: sanitize(value || '')}}
+                                        ></td>
+                                    )})
+                                }
+                                </tr>
+                            )})
                         }
-                        </tr>
-                    )})
-                }
-            </table>
-</Fragment>
-
-            )
-
+                    </tbody>
+                </table>
+            </div>
+        )
     }
 
     const getExampleWithAudio = (example: {
@@ -130,7 +161,10 @@ export default function Lesson(props: {lesson: string}): React.JSX.Element {
                         <span dangerouslySetInnerHTML={{__html: sanitize(replaceWithCurrentUrl(example.text) || '')}}>
                         </span>
                     </p>
-                    <SVGAudio></SVGAudio>
+                    <AudioIcon
+                        utterance={props.utterance as SpeechSynthesisUtterance}
+                        text={removeTags(example.text)}
+                    ></AudioIcon>
                 </div>
                 <i>{example.translation}</i>
             </div>
@@ -140,16 +174,14 @@ export default function Lesson(props: {lesson: string}): React.JSX.Element {
     const getListTemplate = (section: IItemsList)=> {
         return (
             <ul className={styles.list}>{
-                section.items.map(item => (
-                    <>
-                        <li className={styles.item}>
-                            <p dangerouslySetInnerHTML={{__html: sanitize(item.text || '')}}></p>
-                            {item.example
-                                ? getExampleWithAudio(item.example)
-                                : <></>
-                            }
-                        </li>
-                    </>
+                section.items.map((item, i) => (
+                    <li className={styles.item} key={`item=${i}`}>
+                        <p key={`p=${i}`} dangerouslySetInnerHTML={{__html: sanitize(item.text || '')}}></p>
+                        {item.example
+                            ? getExampleWithAudio(item.example)
+                            : <></>
+                        }
+                    </li>
                 ))
             }</ul>
         )
@@ -158,8 +190,8 @@ export default function Lesson(props: {lesson: string}): React.JSX.Element {
     return (
         data ?
             <div className={styles.container}>{
-                data.sections.map((section: ILessonSection)=> {
-                    return getTemplateSection(section)
+                data.sections.map((section: ILessonSection, i)=> {
+                    return <Fragment key={i}>{getTemplateSection(section)}</Fragment>
                 })
             }</div>
 
