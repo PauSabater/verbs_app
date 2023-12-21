@@ -10,10 +10,12 @@ import { Button } from '../Button/Button'
 import { Selector } from '../Selector/Selector'
 import Alert from '../Alert/Alert'
 import { isSuccess, isError } from '@/utils/constants'
-import { getFeedbackSvg } from '@/assets/svg/svgExports'
+import { SVGCross, SVGHelp, getFeedbackSvg } from '@/assets/svg/svgExports'
 import { IConjugation, IExerciseConjugation, TExerciseState, getButtonColor, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
 import { getOptionsDropdown, getRandomInt, setLocalstorageItem } from '@/utils/utils'
 import { IExerciseConjugationState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
+import { ExerciseHelp } from './Components/ExerciseHelp/ExerciseHelp'
+import { ExerciseHelpTrigger } from './Components/ExerciseHelpTrigger/ExerciseHelpTrigger'
 
 
 /**
@@ -35,7 +37,8 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         previousTense: '',
         tenseToConfirm: '',
         triggerInputsAnimation: false,
-        currentExerciseNumber: 0
+        currentExerciseNumber: 0,
+        isHelpOpen: false
     })
 
     // The state of the exercise
@@ -103,6 +106,15 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         type: actions.SET_CURRENT_EXERCISE_NUMBER,
         payload: num
     })
+
+    // Tense to confirm through alert
+    const setIsHelpOpen = (isOpen: boolean)=> {
+        console.log("LETS SET OPEN "+isOpen)
+        dispatch({
+        type: actions.SET_IS_HELP_OPEN,
+        payload: isOpen
+    })
+}
 
     // Array with the exercise inputs
     const refsInputs = [useRef<any>(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]
@@ -408,13 +420,19 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                         />
                 }
                 <span data-text dangerouslySetInnerHTML={{__html: sanitize(props.texts.textVerb)}}></span>
-                <span className={styles.verb} dangerouslySetInnerHTML={{__html: sanitize(props.verb)}}></span>
+                <span
+                    className={styles.verb}
+                    dangerouslySetInnerHTML={{__html: sanitize(props.verb)}}
+                ></span>
             </div>
         )
     }
 
 
+
+
     return (
+        <Fragment>
         <div className={styles.exerciseConjugation} data-exercise data-state={state.exerciseState}>
             <div className={styles.container}>
                 <ExerciseStatement />
@@ -443,6 +461,14 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 </div>
             </div>
 
+            <ExerciseHelpTrigger
+                exerciseState={state.exerciseState}
+                isOpen={state.isHelpOpen}
+                openTxt={props.texts.help.openTxt}
+                closeTxt={props.texts.help.closeTxt}
+                action={()=> setIsHelpOpen(!state.isHelpOpen)}
+            />
+
             <ExerciseFeedback />
             <Alert
                 isOpen={state.isTenseAlertOpen}
@@ -451,5 +477,16 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 actionsOnAlertNegate={actionsOnAlertNegate}
             />
         </div>
+        <ExerciseHelp
+            text={props.texts.help.text}
+            textBtn={props.texts.help.textBtn}
+            title={props.texts.help.title}
+            callout={props.texts.help.callout}
+            tense={state.selectedTense}
+            isOpen={state.isHelpOpen}
+            conjugation={state.exerciseConjugations}
+            actionClose={()=> setIsHelpOpen(false)}
+        />
+        </Fragment>
     )
 }

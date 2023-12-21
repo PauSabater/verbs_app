@@ -12,6 +12,10 @@
 
 
 
+    --width-page-additional-content: 300px;
+    --width-page-content: 900px;
+    --width-page-content-wider: calc(var(--width-page-content) + var(--width-page-additional-content));
+
 
 
 
@@ -79,7 +83,7 @@
     --c-primary-lighter-hover: hsl(var(--c-primary-h), var(--c-primary-s), 92%);
     --c-primary-lighter: hsl(var(--c-primary-h), var(--c-primary-s), 97%);
     --c-primary-light: hsl(var(--c-primary-h), var(--c-primary-s), 75%);
-    --c-primary: hsl(var(--c-primary-h), var(--c-primary-s), 50%);
+    --c-primary: hsl(var(--c-primary-h), var(--c-primary-s), 45%);
     // --c-primary: hsl(60, 63%, 62%);
     --c-primary-dark: hsl(var(--c-primary-h), var(--c-primary-s), 30%);
     --c-primary-darker: hsl(var(--c-primary-h), var(--c-primary-s), 15%);
@@ -116,8 +120,8 @@
 
     --c-font-white: hsl(136, 0%, 96%);
     --c-font-global: var(--c-black);
-    --c-font-global-light: hsl(0, 0%, 13%);
-    --c-font-global-lighter: hsl(0, 0%, 30%);
+    --c-font-global-light: hsl(0, 0%, 20%);
+    --c-font-global-lighter: hsl(0, 0%, 35%);
 
     --c-font-h: hsl(0, 0%, 15%);
     --c-font-white: var(--c-white);
@@ -130,6 +134,9 @@
     --bg-white: rgb(250, 250, 250);
     --bg-white-translucent: hsl(0, 0%, 100%, 0.7);
     --bg-white-translucent-dark-mode: hsl(0, 0%, 100%, 1);
+
+    --c-icon: var(--c-grey-dark);
+    --c-border-dotted: hsl(0, 0%, 85%);
 
     // Transitions
     --tr-faster: 0.1s;
@@ -164,6 +171,11 @@
 
     --fs-text-banner: clamp(25px, 2.2vw, 36px);
     --fs-text-banner-sm: clamp(22px, 1.8vw, var(--fs-lg));
+
+    --fw-light: 200;
+    --fw-global: 400;
+    --fw-medium: 600;
+    --fw-bold: 800;
 
     // @include mixins.mobile-tablet-vertical {
     //     --fs-text-banner: 1.4rem;

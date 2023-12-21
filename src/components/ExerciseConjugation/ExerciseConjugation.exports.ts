@@ -19,6 +19,14 @@ export interface IExerciseConjugationTexts {
         textConfirm: string,
         textNegate: string
     },
+    help: {
+        openTxt: string,
+        closeTxt: string,
+        text: string,
+        textBtn: string,
+        callout: string,
+        title: string,
+    },
     successMessages: string[],
     button: {
         repeat: string,

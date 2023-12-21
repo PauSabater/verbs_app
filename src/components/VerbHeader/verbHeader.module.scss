@@ -1,8 +1,14 @@
 .container {
     // width: 250px;
     // height: 100px;
+    width: calc(var(--width-page-content-wider));
+    margin: auto;
     margin-bottom: 90px;
     margin-top: 60px;
+
+    h1 {
+        font-size: var(--fs-2xl);
+    }
 }
 
 .containerTitle {
@@ -13,14 +19,15 @@
     font-weight: 300;
     color: var(--c-font-global-lighter);
     font-size: var(--fs-xs);
-    margin: 0 0 var(--mg-xl);
+    margin: 0 0 var(--mg-lg);
 }
 
 .description {
-    color: var(--c-font-global);
-    font-size: var(--fs-global);
+    color: var(--c-font-global-light);
+    font-size: var(--fs-sm);
     width: 80%;
-    max-width: 850px;
+    max-width: 800px;
+    margin-bottom: var(--mg-xl);
 
     i {
         font-weight: 300;

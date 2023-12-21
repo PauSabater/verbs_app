@@ -1,5 +1,20 @@
+@use '../../../styles/mixins.scss';
+
 .pageContent {
-    width: 1100px;
+    width: var(--width-page-content-wider);
     margin: auto;
     margin-top: var(--mg-page-top);
+
+    h1 {
+        font-size: var(--fs-xl);
+    }
+}
+
+@include mixins.desktop-lg {
+    .pageContent {
+        width: var(--width-page-content-wider);
+        margin: auto;
+        margin-top: var(--mg-page-top);
+        // transform: translateX(-50px);
+    }
 }

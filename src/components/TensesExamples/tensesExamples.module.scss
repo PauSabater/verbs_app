@@ -1,0 +1,38 @@
+.titleContainer {
+    display: flex;
+    align-items: center;
+    height: var(--height-opener);
+}
+
+.title {
+    margin: 0;
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    color: var(--c-font-global-light);
+}
+
+.examplesContainer {
+    margin: 7px 0 var(--mg-lg);
+
+    p {
+        margin: 0;
+    }
+
+    .translation {
+        font-style: italic;
+        font-weight: var(--fw-light);
+        color: var(--c-font-global-light);
+    }
+}
+
+.audioAndSentence {
+    display: flex;
+    align-items: center;
+
+    svg {
+        color: var(--c-grey-dark);
+        height: 20px;
+        width: 20px;
+        margin-left: var(--mg-sm);
+    }
+}

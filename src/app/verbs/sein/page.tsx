@@ -10,7 +10,7 @@ import { Fragment, Reducer, useEffect, useLayoutEffect, useRef, useState } from 
 import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation"
 import { ISelectorDropdownOptions, Selector } from "@/components/Selector/Selector"
 import VerbHeader from "@/components/VerbHeader/VerbHeader"
-import { getOptionsDropdown, getUtteraceInstance, setLocalstorageItem } from "@/utils/utils"
+import { getOptionsDropdown, getUtteraceInstance, setLocalstorageItem, verbsTenseException } from "@/utils/utils"
 import { ExerciseCheckboxList } from "@/components/ExerciseCheckboxList/ExerciseCheckboxList"
 import { useReducer } from 'react'
 import { IPageState, TPageAction, actions, reducer } from "./pageReducer"
@@ -35,6 +35,7 @@ export default function Page() {
     const refModal = useRef(null)
     const refPageContent = useRef(null)
     const pageVerbData = Sein
+    const collapsiblesTense =  verbsTenseException.includes(pageVerbData.verb) ? texts.verbsPage.collapsiblesException : texts.verbsPage.collapsibles
 
     useLayoutEffect(() => {
 
@@ -125,7 +126,7 @@ export default function Page() {
             isIrregular: pageVerbData.data.properties.isIrregular,
             isSeparable: pageVerbData.data.properties.isSeparable,
             description: pageVerbData.descriptions.en,
-            listBtnTenses: getOptionsDropdown(texts.verbsPage.collapsibles),
+            listBtnTenses: getOptionsDropdown(collapsiblesTense),
             translation: pageVerbData.data.properties.translations.en,
             callbackOnBtnClick: triggerExerciseCheckboxListModal
         }
@@ -146,7 +147,7 @@ export default function Page() {
         return ( (state.exerciseTense) || state.selectedTensesFromCheckboxList.length > 0
             ?   <ExerciseConjugation
                     verb={pageVerbData.verb}
-                    tensesDropdown={texts.verbsPage.collapsibles}
+                    tensesDropdown={collapsiblesTense}
                     texts={texts.verbsPage.exerciseText}
                     tenseExercise={state.exerciseTense}
                     // modeExercise={exerciseMode}
@@ -183,9 +184,15 @@ export default function Page() {
             <div>
                 { [1, 2, 3].map((e, i) => {
                     return (
-                        <CollapsibleTenses texts={{title: texts.verbsPage.collapsibles[i].title}} action={btnCollapsiblesAction}>
+                        <CollapsibleTenses
+                            texts={{title: collapsiblesTense[i].title}}
+                            action={btnCollapsiblesAction}
+                            tenses={collapsiblesTense[i].tenses}
+                            examples={pageVerbData.examples}
+                            utterance={utterance}
+                        >
                             {
-                                texts.verbsPage.collapsibles[i].tenses.map((tableTense, i) => {
+                                collapsiblesTense[i].tenses.map((tableTense, i) => {
                                     return (
                                         <VerbTable
                                             key={tableTense}

@@ -2,6 +2,7 @@
 
 .exerciseConjugation {
     --height-feedback: 200px;
+    --exercise-conj-z-index: 99;
 
     position: relative;
     display: flex;
@@ -16,8 +17,32 @@
         transform: translateY(30px);
     }
     to {
-        opaceity: 1;
+        opacity: 1;
         transform: translateY(0);
+    }
+}
+
+.helpTrigger {
+    --help-trigger-pd: var(--pd-md);
+
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: calc(var(--pd-modal-horitz) - var(--help-trigger-pd));
+    padding: 0 var(--pd-md);
+    // background: var(--c-primary-lighter);
+    width: fit-content;
+    border-radius: var(--br-base);
+    transition: background var(--tr-base);
+
+    &:hover {
+        background: var(--c-primary-lighter);
+    }
+
+    svg {
+        height: 20px;
+        margin-right: var(--mg-xs);
     }
 }
 
@@ -30,7 +55,7 @@
     overflow-y: auto;
     padding: var(--pd-modal-vertical) var(--pd-modal-horitz) 0 var(--pd-modal-horitz);
     transform: translateY(20px);
-    z-index: 99;
+    z-index: var(--exercise-conj-z-index);
 }
 
 .rowsContainer {

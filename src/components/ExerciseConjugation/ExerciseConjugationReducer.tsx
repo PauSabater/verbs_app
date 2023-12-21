@@ -12,7 +12,8 @@ export interface IExerciseConjugationState {
     previousTense: string,
     tenseToConfirm: string,
     triggerInputsAnimation: boolean,
-    currentExerciseNumber: number
+    currentExerciseNumber: number,
+    isHelpOpen: boolean
 }
 
 export type TExerciseConjugationActions =
@@ -27,6 +28,7 @@ export type TExerciseConjugationActions =
     | 'SET_TENSE_TO_CONFIRM'
     | 'SET_TRIGGER_INPUTS_ANIMATION'
     | 'SET_CURRENT_EXERCISE_NUMBER'
+    | 'SET_IS_HELP_OPEN'
 
 export type TExerciseConjugationAction = {
     type: TExerciseConjugationActions,
@@ -44,7 +46,8 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_PREVIOUS_TENSE: 'SET_PREVIOUS_TENSE',
     SET_TENSE_TO_CONFIRM: 'SET_TENSE_TO_CONFIRM',
     SET_TRIGGER_INPUTS_ANIMATION: 'SET_TRIGGER_INPUTS_ANIMATION',
-    SET_CURRENT_EXERCISE_NUMBER: 'SET_CURRENT_EXERCISE_NUMBER'
+    SET_CURRENT_EXERCISE_NUMBER: 'SET_CURRENT_EXERCISE_NUMBER',
+    SET_IS_HELP_OPEN: 'SET_IS_HELP_OPEN'
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {
@@ -114,6 +117,12 @@ export function reducer(state: IExerciseConjugationState, action: TExerciseConju
             return {
                 ...state,
                 currentExerciseNumber: action.payload as number
+            }
+
+        case actions.SET_IS_HELP_OPEN:
+            return {
+                ...state,
+                isHelpOpen: action.payload as boolean
             }
 
         default: return state

@@ -62,7 +62,7 @@
     border-radius: 15px;
     background: var(--bg-white);
     transform: translate(-50%, -50%);
-    overflow: hidden;
+    overflow: visible;
 
     &.widerVersion {
         max-width: 850px;

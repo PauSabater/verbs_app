@@ -1,10 +1,13 @@
 .container {
     --pd-collapsible: var(--pd-xl);
     --height-opener: 80px;
+    --mg-bottom-collapsible: 90px;
 
     display: grid;
-    // grid-template-columns: auto 300px;
-    margin-bottom: 100px;
+    grid-template-columns: var(--width-page-content) var(--width-page-additional-content);
+    column-gap: var(--pd-sm);
+    width: fit-content;
+    margin: 0 auto var(--mg-bottom-collapsible) auto;
     border-radius: 10px;
     overflow: hidden;
 }
@@ -12,7 +15,7 @@
 .collapsibleContent {
     display: grid;
     grid-row-start: 2;
-    padding: 0 var(--pd-collapsible) var(--pd-collapsible) var(--pd-collapsible);
+    padding: 0 var(--pd-collapsible) var(--pd-collapsible) calc(var(--pd-collapsible) + 15px);
     grid-template-columns: repeat(3, 33.3%);
     background-color: var(--c-primary-lighter);
 
@@ -27,7 +30,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: var(--pd-collapsible);
+    padding-left: calc(var(--pd-collapsible) + 15px);
     height: var(--height-opener);
     background-color: var(--c-primary-lighter);
 }
@@ -35,6 +38,7 @@
 .containerExamples {
     grid-row-start: 1;
     grid-row-end: 3;
-    border: 1px solid lightgrey;
+    border: 3px dotted var(--c-border-dotted);
     border-radius: 10px;
+    padding: 0 var(--pd-collapsible) var(--pd-collapsible) var(--pd-collapsible);
 }

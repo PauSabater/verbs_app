@@ -91,6 +91,8 @@ export function getUtteraceInstance(): Promise<SpeechSynthesisUtterance> {
     )
 }
 
+export const verbsTenseException = ['sein', 'haben']
+
 export function removeTags(text: string) {
     if (!text) return ''
     return text.replaceAll('</a>', '').replaceAll('</p>', '').replaceAll('</b>', '').replaceAll('-', '').replaceAll(/<.*>/g, '')

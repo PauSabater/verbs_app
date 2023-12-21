@@ -4,11 +4,17 @@ import { Fragment, ReactNode } from 'react'
 import { sanitize } from 'isomorphic-dompurify'
 import { SVGExercise } from '@/assets/svg/svgExports'
 
-export default function HoveredWithInfo({text, children}: {text: string, children: ReactNode}) {
+interface IHoveredWithInfo {
+    text: string,
+    children: ReactNode,
+    bg: string
+}
+
+export function HoverWithInfo(props: IHoveredWithInfo) {
 
     return  (
-        <div className={styles.container} data-info={text}>
-            {children}
+        <div className={`${styles.container} ${props.bg ? styles[props.bg] : ''}`} data-info={props.text}>
+            {props.children}
         </div>
 
     )

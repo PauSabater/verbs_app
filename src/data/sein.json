@@ -599,28 +599,88 @@
 	   "fr":"",
 	   "de":""
 	},
-	"examples":{
+	"examples": {
 	   "indicative":{
-		  "präsens":"ich <b>bin</b> hier",
-		  "präteritum":"ich <b>war</b> dort",
-		  "perfekt":"ich <b>bin</b> gekommen",
-		  "plusquamperfekt":"er <b>war</b> gegangen",
-		  "futur I":"wir <b>werden</b> gehen",
-		  "futur II":"sie <b>werden</b> angekommen sein"
+		  "präsens":{
+			 "de":"Ich <b>bin</b> hier",
+			 "en":"I am here",
+			 "es":"Yo estoy aquí",
+			 "fr":"Je suis ici"
+		  },
+		  "präteritum":{
+			 "de":"Ich <b>war</b> dort",
+			 "en":"I was there",
+			 "es":"Yo estaba allí",
+			 "fr":"J'étais là"
+		  },
+		  "perfekt":{
+			 "de":"ich <b>bin</b> gekommen",
+			 "en":"I have come",
+			 "es":"yo he venido",
+			 "fr":"je suis venu"
+		  },
+		  "plusquamperfekt":{
+			 "de":"er <b>war</b> gegangen",
+			 "en":"he had gone",
+			 "es":"él había ido",
+			 "fr":"il était parti"
+		  },
+		  "futur I":{
+			 "de":"wir <b>werden</b> gehen",
+			 "en":"we will go",
+			 "es":"nosotros iremos",
+			 "fr":"nous allons aller"
+		  },
+		  "futur II":{
+			 "de":"sie <b>werden</b> angekommen sein",
+			 "en":"they will have arrived",
+			 "es":"ellos habrán llegado",
+			 "fr":"ils seront arrivés"
+		  }
 	   },
 	   "infinitive":{
-		  "partizip II":"hat <b>gewesen</b>"
+		  "partizip II":{
+			 "de":"hat <b>gewesen</b>",
+			 "en":"has been",
+			 "es":"ha sido",
+			 "fr":"a été"
+		  }
 	   },
 	   "imperative":{
-		  "präsens":"<b>sei</b> still"
+		  "präsens":{
+			 "de":"<b>sei</b> still",
+			 "en":"be quiet",
+			 "es":"se callado",
+			 "fr":"sois calme"
+		  }
 	   },
 	   "conjunctive":{
-		  "Konjunktiv I":"er <b>sei</b> hier",
-		  "Konjunktiv II":"du <b>wärest</b> da"
+		  "Konjunktiv I":{
+			 "de":"er <b>sei</b> hier",
+			 "en":"he be here",
+			 "es":"él sea aquí",
+			 "fr":"il soit ici"
+		  },
+		  "Konjunktiv II":{
+			 "de":"du <b>wärest</b> da",
+			 "en":"you were there",
+			 "es":"tú estuvieras allí",
+			 "fr":"tu étais là"
+		  }
 	   },
 	   "conditional":{
-		  "Konjunktiv I":"wir <b>wären</b> dort",
-		  "Konjunktiv II":"ihr <b>wäret</b> gekommen"
+		  "Konjunktiv I":{
+			 "de":"wir <b>wären</b> dort",
+			 "en":"we would be there",
+			 "es":"nosotros estaríamos allí",
+			 "fr":"nous serions là"
+		  },
+		  "Konjunktiv II":{
+			 "de":"ihr <b>wäret</b> gekommen",
+			 "en":"you would have come",
+			 "es":"vosotros habríais venido",
+			 "fr":"vous seriez venus"
+		  }
 	   }
 	},
 	"position":0

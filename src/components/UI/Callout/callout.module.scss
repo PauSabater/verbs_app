@@ -16,7 +16,8 @@ div.container {
         color: var(--f-color-global-lighter);
     }
 
-    svg {
+    svg,
+    .emoji {
         position: absolute;
         height: 20px;
         width: 20px;
