@@ -1,0 +1,38 @@
+.container {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    color: var(--icon-bookmark-color, currentColor);
+    background: transparent;
+
+    svg {
+        fill: var(--icon-bookmark-color, currentColor);
+        height: 25px;
+        margin-right: var(--mg-sm);
+    }
+
+    &:hover .bg {
+        opacity: 1;
+
+    }
+
+    .bg {
+        position: absolute;
+        width: calc(100% + 30px);
+        left: -15px;
+        top: 0;
+        height: 100%;
+        border: 2px dotted hsla(0, 0%, 100%, 0.4);
+        border-radius: var(--br-base);
+        opacity: 0;
+        background: hsla(0, 0%, 100%, 0.2);
+        transition: opacity var(--tr-base);
+
+    }
+}
+
+.text {
+    font-size: var(--icon-bookmark-fs, --fs-global);
+}

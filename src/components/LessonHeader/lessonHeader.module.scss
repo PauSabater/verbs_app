@@ -1,0 +1,34 @@
+.container {
+    --info-circle-color: var(--c-font-white);
+    --icon-bookmark-color: var(--c-font-white-dark);
+    --icon-bookmark-fs: var(--fs-xs);
+
+    box-sizing: border-box;
+    background-color: var(--c-primary-dark);
+    padding: 40px 60px;
+    border-radius: 20px;
+    width: calc(100% + 60px);
+    margin-left: -60px;
+
+    p {
+        color: var(--c-font-white-dark);
+    }
+
+    h1 {
+        font-size: var(--fs-3xl);
+        color: var(--c-font-white);
+        max-width: 900px;
+    }
+}
+
+.intro {
+    font-size: var(--fs-lg);
+    max-width: 1000px;
+}
+
+.levelContainer {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+    margin-left: -8px;
+}

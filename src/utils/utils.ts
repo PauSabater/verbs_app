@@ -98,6 +98,14 @@ export function removeTags(text: string) {
     return text.replaceAll('</a>', '').replaceAll('</p>', '').replaceAll('</b>', '').replaceAll('-', '').replaceAll(/<.*>/g, '')
 }
 
+export const getAnchorLinkStr = (str: string | undefined)=> {
+    return str ? `#${str.toLowerCase().replaceAll(' ', ' ')}` : ''
+}
+
+export const getAnchorId = (str: string | undefined)=> {
+    return str ? `${str.toLowerCase().replaceAll(' ', ' ')}` : ''
+}
+
 // export async function getUtteraceInstance = (text: string): SpeechSynthesisUtterance => {
 //     const synthesis = window.speechSynthesis
 

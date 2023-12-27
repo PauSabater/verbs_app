@@ -2,6 +2,7 @@
     overflow: auto;
     height: 100%;
     margin-right: 20px;
+    width: fit-content;
 
     /* Works on Firefox */
     * {
@@ -31,9 +32,14 @@
         color: var(--c-font-global-light);
     }
 
+    &.isPost p {
+        font-size: var(--fs-global);
+    }
+
     h1, h2, h3 {
         font-weight: 800;
         color: var(--c-font-global);
+        scroll-margin-top: 80px;
     }
 
     h1 {

@@ -10,13 +10,10 @@
     }
 
 
-
-
     --width-page-additional-content: 300px;
-    --width-page-content: 900px;
+    // --width-page-content: 900px;
     --width-page-content-wider: calc(var(--width-page-content) + var(--width-page-additional-content));
-
-
+    --width-page-content-text: 750px;
 
 
 
@@ -50,6 +47,7 @@
 
     --mg-between-components: var(--mg-lg);
     --mg-page-top: 150px;
+    --mg-page-top-sm: 120px;
 
     // Sizes
     --sz-content: 100%;
@@ -125,6 +123,7 @@
 
     --c-font-h: hsl(0, 0%, 15%);
     --c-font-white: var(--c-white);
+    --c-font-white-dark: hsl(136, 0%, 90%);
 
     --c-black-no-change: hsl(0, 0%, 6%);
     --c-white-no-change: hsl(136, 0%, 96%);
@@ -162,7 +161,8 @@
     --fs-xl: 1.7rem;
     --fs-lg: 1.3rem;
     --fs-global: 1.15rem;
-    --fs-sm: 1.1rem;
+    --fs-sm: 1.05rem;
+    --fs-1rem: 1rem;
     --fs-xs: 0.95rem;
     --fs-2xs: 0.80rem;
     --fs-3xs: 0.70rem;
@@ -177,21 +177,28 @@
     --fw-medium: 600;
     --fw-bold: 800;
 
-    // @include mixins.mobile-tablet-vertical {
-    //     --fs-text-banner: 1.4rem;
+    // @include mixins.desktop-lg {
+    //     --fs-5xl: 4.1rem;
+    //     --fs-4xl: 3.5rem;
+    //     --fs-3xl: 2.8rem;
+    //     --fs-2xl: 2.4rem;
+    //     --fs-xl: 1.9rem;
+    //     --fs-lg: 1.4rem;
+    //     --fs-global: 1.25rem;
+    //     --fs-sm: 1.05rem;
     // }
 
-    // @include mixins.mobile-tablet {
-    //     --fs-5xl: 2.8rem;
-    //     --fs-4xl: 2.4rem;
-    //     --fs-3xl: 2rem;
-    //     --fs-2xl: 1.8rem;
-    //     --fs-xl: 1.55rem;
-    //     --fs-lg: 1.4rem;
-    //     --fs-global: 1.15rem;
-    //     --fs-sm: 1rem;
-    //     --fs-xs: 0.85rem;
-    // }
+    @include mixins.mobile-tablet {
+        --fs-5xl: 2.8rem;
+        --fs-4xl: 2.4rem;
+        --fs-3xl: 2rem;
+        --fs-2xl: 1.8rem;
+        --fs-xl: 1.55rem;
+        --fs-lg: 1.4rem;
+        --fs-global: 1.15rem;
+        --fs-sm: 1rem;
+        --fs-xs: 0.85rem;
+    }
 
     p {
         line-height: 1.5;
@@ -226,4 +233,5 @@
 #page-root {
     background-color: var(--bg-white);
     transition: background-color var(--tr-fast);
+    scroll-behavior: smooth;
 }

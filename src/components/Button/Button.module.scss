@@ -1,14 +1,15 @@
 .Button {
-    --height-btn: 50px;
+    --btn-height: 50px;
 
     cursor: pointer;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     align-content: center;
-    height: var(--height-btn);
+    height: var(--btn-height);
     width: fit-content;
     padding: 0 var(--pd-xl);
+    margin: var(--btn-mg);
     border-radius: 10px;
     font-size: var(--fs-global);
     font-weight: 500;
@@ -139,6 +140,6 @@
 }
 
 .lg {
-    --height-btn: 60px;
+    --btn-height: 60px;
     font-size: var(--fs-lg);
 }

@@ -18,7 +18,7 @@ import Lesson from "@/components/Lesson/Lesson"
 import { getTenseFromTenseName } from "@/components/ExerciseConjugation/ExerciseConjugation.exports"
 
 
-export default function Page() {
+export default function VerbsPage({ params }: { params: { slug: string } }) {
 
     const [state, dispatch] = useReducer<Reducer<IPageState, TPageAction>>(reducer, {
         isExerciseConjugationOpen: false,
@@ -179,6 +179,7 @@ export default function Page() {
 
     return (
         <div className={styles.pageContent} ref={refPageContent}>
+            <div>My Post: {params.slug}</div>
             <VerbHeader {...verbHeaderProps()}></VerbHeader>
             <h1>{`Conjugations`}</h1>
             <div>
@@ -210,21 +211,6 @@ export default function Page() {
 
                 }
 
-
-                {/* <CollapsibleTenses texts={{title: texts.verbsPage.collapsibles[1].title}} action={btnCollapsiblesAction}>
-                    {
-                        texts.verbsPage.collapsibles[1].tenses.map((tableTense, i) => {
-                            return (
-                                <VerbTable
-                                    key={tableTense}
-                                    mode={"conjunctive"}
-                                    verbData={pageVerbData.data.conjunctive.find((tense)=> tense.tense === tableTense)}
-                                    utterance={utterance}
-                                ></VerbTable>
-                            )
-                        })
-                    }
-                </CollapsibleTenses> */}
                 <ModalExercises
                     text={""}
                     open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
