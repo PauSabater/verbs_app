@@ -76,6 +76,7 @@
             "content": "<p>For regular verbs ending in <b data-verb-prefix>-en<\/b> (e.g., <a href='replace-url\/verbs\/splielen' target=\"_blank\">spiel<b data-verb-prefix>en<\/b><\/a> - <i>to play<\/i>), the infinitive ending <b data-verb-prefix>-en<\/b> is replaced by the following endings:<\/p>"
         },{
             "type": "table",
+            "marginList": true,
             "table": {
                 "headings":  ["person", "ending", "example"],
                 "rows": [
@@ -89,6 +90,7 @@
             }
         },{
             "type": "exercise-btn",
+            "marginList": true,
             "content": "practise präsens for splielen"
         },{
             "type": "h3",
@@ -98,6 +100,7 @@
             "content": "<p>Some irregular verbs require memorization since they will not follow any pattern (e.g., <a href='replace-url\/verbs\/sein' target=\"_blank\">sein<\/a> - <i>to play<\/i>):<\/p>"
         },{
             "type": "table",
+            "marginList": true,
             "table": {
                 "headings":  ["person", "example"],
                 "rows": [
@@ -129,6 +132,7 @@
             }
         },{
             "type": "table-2-3",
+            "marginList": true,
             "table": {
                 "headings":  ["person", "stem-change", "example"],
                 "rows": [
@@ -154,6 +158,7 @@
             }
         },{
             "type": "table-2-3",
+            "marginList": true,
             "table": {
                 "headings":  ["person", "stem-change", "example"],
                 "rows": [

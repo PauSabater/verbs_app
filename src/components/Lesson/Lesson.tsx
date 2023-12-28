@@ -14,7 +14,8 @@ export interface ILessonSection {
     type: string,
     content?: string,
     itemsList?: any,
-    table?: any
+    table?: any,
+    marginList?: boolean
 }
 
 interface ITable {
@@ -44,6 +45,7 @@ interface ILesson {
     utterance: SpeechSynthesisUtterance | null,
     isPost?: boolean
     data?: any
+    onHeadingIntersection?: Function
 }
 
 // const DynamicData = dynamic(() => import('../components/CodeSampleModal'), {
@@ -54,19 +56,22 @@ export default function Lesson(props: ILesson): React.JSX.Element {
 
     const [data, setData] = useState<ILessonSections | null>(props.data || null)
     const refLessonContainer = useRef(null)
+    const [headings, setHeadings] = useState<string[] | null>(null)
+
+    const lessonData = props.isPost ? JSON.parse(props.data) : null
 
     useLayoutEffect(()=> {
 
         if (!props.data) {
             let data
-            import(`../../../public/data/lessons/prasens.json`)
+            import(`../../../public/data/lessons/${props.lesson}.json`)
             .then(result => setData(result))
-
-            console.log("TEEEST")
-            const elsHeader = document.querySelectorAll('[data-is-heading="true"]')
-
-            console.log(elsHeader)
         }
+
+        // console.log("TEEEST")
+        // const elsHeading = document.querySelectorAll('[data-is-heading="true"]')
+
+        // console.log(elsHeading)
 
 
 
@@ -79,13 +84,50 @@ export default function Lesson(props: ILesson): React.JSX.Element {
     },[])
 
     useEffect(()=> {
-        console.log("TEST TEST ")
-        console.log(refLessonContainer.current)
+
         if (refLessonContainer.current !== null) {
-            const elsHeader = (refLessonContainer.current as HTMLElement).querySelector('[data-is-heading="true"]')
+            const elsHeader = (refLessonContainer.current as HTMLElement).querySelectorAll('[data-is-heading="true"]')
             console.log(elsHeader)
+
+            for (const elHeader of Array.from(elsHeader)) {
+                addHeadingIntersectionObserver(elHeader as HTMLElement)
+            }
         }
     }, [refLessonContainer])
+
+
+    const addHeadingIntersectionObserver = (elHeading: HTMLElement)=> {
+
+        if (!props.onHeadingIntersection) return
+
+        const options = {
+            // root: refLessonContainer.current,
+            rootMargin: `0px 0px -60% 0px`,
+            threshold: 1
+      }
+
+        const intersectionObserver = new IntersectionObserver((entries) => {
+            // If intersectionRatio is 0, the target is out of view
+            // and we do not need to do anything.
+            if (entries[0].intersectionRatio <= 0) return;
+
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Add logic for nav item that maps to the visible section.
+                    if (props.onHeadingIntersection) {
+                        props.onHeadingIntersection(entries[0].target.id)
+                    }
+                } else {
+                  // Add logic for nav item that maps to the invisible section.
+                }
+              });
+
+          }, options);
+
+          // start observing
+          intersectionObserver.observe(elHeading);
+
+    }
 
     const getTemplateSection = (section: ILessonSection)=> {
 
@@ -111,14 +153,17 @@ export default function Lesson(props: ILesson): React.JSX.Element {
             return (
                 <h3
                     id={getAnchorId(section.content)}
-                    data-is-header="true"
+                    data-is-heading="true"
                     dangerouslySetInnerHTML={{__html: sanitize(section.content || '')}}
                 ></h3>
             )
         }
         if (section.type === 'paragraph') {
             return (
-                <div dangerouslySetInnerHTML={{__html: sanitize(section.content || '')}}></div>
+                <div
+                    className={section.marginList ? styles.listMargin : ''}
+                    dangerouslySetInnerHTML={{__html: sanitize(section.content || '')}}
+                ></div>
             )
         }
         if (section.type === 'callout') {
@@ -133,15 +178,17 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         }
         if (props.isPost && section.type === 'exercise-btn') {
             return (
-                <Button
-                    icon={'exercise'}
-                    text={section.content || ''}
-                ></Button>
+                <div className={section.marginList ? styles.listMargin : ''}>
+                    <Button
+                        icon={'exercise'}
+                        text={section.content || ''}
+                    ></Button>
+                </div>
             )
         }
         if (section.type.includes('table')) {
             return (
-                <>{getTableTemplate(section.table, section.type)}</>
+                <>{getTableTemplate(section.table, section.marginList ? true : false, section.type)}</>
             )
         }
 
@@ -160,9 +207,10 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         return string
     }
 
-    const getTableTemplate = (table: ITable, type?: string)=> {
+    const getTableTemplate = (table: ITable, hasMargin: boolean, type?: string)=> {
+        console.log("HAS MARGIN OS "+hasMargin)
         return (
-            <div className={styles.tableContainer}>
+            <div className={`${styles.tableContainer} ${hasMargin ? styles.listMargin : ''}`}>
                 <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={getTableAudioText(table)}/>
                 <table className={styles.table}>
                     {table.headings ?
@@ -238,18 +286,25 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         )
     }
 
+    const getLessonTemplate = ()=> {
+        const lessonSections = props.isPost ? lessonData.sections : data
+
+        return (
+            lessonSections
+                ? lessonSections.map((section: ILessonSection, i: Number)=> {
+                    return <Fragment key={i.toString()}>{getTemplateSection(section)}</Fragment>
+                })
+                : <></>
+            )
+    }
+
     return (
-        data ?
+        lessonData ?
             <div
                 ref={refLessonContainer}
                 className={`${styles.container} ${props.isPost ? styles.isPost : ''}`}
             >
-                {
-                    data.sections ? data.sections.map((section: ILessonSection, i)=> {
-                        return <Fragment key={i}>{getTemplateSection(section)}</Fragment>
-                    })
-                    : <></>
-                }
+                {getLessonTemplate()}
             </div>
 
 

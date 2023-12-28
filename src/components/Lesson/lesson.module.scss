@@ -32,6 +32,11 @@
         color: var(--c-font-global-light);
     }
 
+    &.isPost h1:first-child,
+    &.isPost h2:first-child {
+        margin-top: 0;
+    }
+
     &.isPost p {
         font-size: var(--fs-global);
     }
@@ -61,10 +66,31 @@
     b[data-verb-prefix] {
         color: var(--c-verb-prefix);
     }
+
+    &.isPost {
+        h1 {
+            font-size: var(--fs-3xl);
+        }
+
+        h2 {
+            font-size: var(--fs-2xl);
+
+            &:not(:first-child) {
+                margin-top: 45px;
+            }
+        }
+
+        h3 {
+            font-size: var(--fs-xl);
+            margin-top: var(--mg-2xl);
+            margin-bottom: var(--mg-md);
+        }
+    }
 }
 
 .item {
     margin-bottom: var(--mg-lg);
+    margin-top: var(--mg-xl);
 
     p {
         margin: 0;
@@ -74,6 +100,10 @@
 
 .list {
     padding-left: var(--pd-lg);
+}
+
+.listMargin {
+    margin-left: 20px;
 }
 
 .containerExample {

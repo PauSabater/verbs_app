@@ -8,11 +8,16 @@ import { IndexContent } from "@/components/IndexContent/IndexContent";
 import { LessonHeader } from "@/components/LessonHeader/LessonHeader";
 import { sanitize } from "isomorphic-dompurify";
 
-export function LessonPage(data: any) {
+interface ILessonPage {
+    data: any
+}
+
+export function LessonPage(props: ILessonPage) {
 
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null)
+    const [intersectedHeading, setIntersectedHeading] = useState<string>('')
 
-    const [lessonData, setLessonData] = useState<any>(null)
+    // const [lessonData, setLessonData] = useState<any>(data)
 
     useLayoutEffect(()=> {
         getUtteraceInstance()
@@ -20,23 +25,29 @@ export function LessonPage(data: any) {
                 setUtterance(utterance)
             })
 
-        let data
-        import(`../../../../public/data/lessons/prasens.json`)
-            .then(result => setLessonData(result))
+        // let data
+        // import(`../../../../public/data/lessons/prasens.json`)
+        //     .then(result => setLessonData(result))
     }, [])
+
+    const handleHeadingIntersection = (id: string)=> {
+        setIntersectedHeading(id)
+    }
 
     return (
         <div className={styles.container}>
             <LessonHeader></LessonHeader>
             <IndexContent
-                content={lessonData}
+                content={props.data}
+                intersectedIndex={intersectedHeading}
 
             ></IndexContent>
             <Lesson
-                data={data}
+                data={props.data}
                 utterance={utterance}
                 lesson={"präsens"}
                 isPost={true}
+                onHeadingIntersection={handleHeadingIntersection}
             ></Lesson>
         </div>
     )

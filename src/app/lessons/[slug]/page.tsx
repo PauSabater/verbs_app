@@ -6,14 +6,18 @@ import { getLessonData } from "@/lib/lessons"
 
 
 
-export default function Page() {
+export default async function Page({ params }: { params: { slug: string } }) {
 
-    const pageData = getLessonData("präsens")
+    const pageData = await getLessonData(params.slug)
 
     return (
         <Fragment>
-            <p>{JSON.stringify(pageData)}</p>
-            <LessonPage></LessonPage>
+            {/* <p>BEEEEEEEEE</p> */}
+            {/* <p>{JSON.stringify(pageData.props.lessonData)}</p> */}
+            <p>Post: {params.slug}</p>
+            <LessonPage
+                data={JSON.stringify(pageData.props.lessonData)}
+            ></LessonPage>
         </Fragment>
     )
 }

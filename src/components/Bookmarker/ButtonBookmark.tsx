@@ -3,7 +3,8 @@ import styles from './buttonBookmark.module.scss'
 import { Fragment, ReactNode } from 'react'
 
 interface IButtonBookmark {
-    text: string
+    text: string,
+    isReverse?: boolean
 }
 
 export function ButtonBookmark(props: IButtonBookmark) {
@@ -11,8 +12,18 @@ export function ButtonBookmark(props: IButtonBookmark) {
     return  (
         <div className={styles.container}>
             <div className={styles.bg}></div>
+            {
+                props.isReverse && props.text
+                    ? <p className={styles.text}>{props.text}</p>
+                    : <></>
+            }
             <SVGBookmark/>
-            <p className={styles.text}>{props.text}</p>
+            {
+                !props.isReverse && props.text
+                    ? <p className={styles.text}>{props.text}</p>
+                    : <></>
+            }
+
         </div>
 
     )

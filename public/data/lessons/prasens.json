@@ -110,6 +110,9 @@
                 ]
             }
         },{
+            "type": "exercise-btn",
+            "content": "practise präsens for sein"
+        },{
             "type": "paragraph",
             "content": "<p>The 5 most important verbs of this type are the following: <a href='replace-url\/verbs\/sein' target=\"_blank\">sein<\/a>, <a href='replace-url\/verbs\/haben' target=\"_blank\">haben<\/a>, <a href='replace-url\/verbs\/werden' target=\"_blank\">werden<\/a>, <a href='replace-url\/verbs\/könen' target=\"_blank\">könen<\/a>, <a href='replace-url\/verbs\/mögen' target=\"_blank\">mögen<\/a></p>"
         },{
@@ -129,6 +132,7 @@
             }
         },{
             "type": "table-2-3",
+            "marginList": true,
             "table": {
                 "headings":  ["person", "stem-change", "example"],
                 "rows": [
@@ -141,7 +145,12 @@
                 ]
             }
         },{
+            "type": "exercise-btn",
+            "marginList": true,
+            "content": "practise präsens for helfen"
+        },{
             "type": "paragraph",
+            "marginList": true,
             "content": "<p>Other examples are <a href='replace-url\/verbs\/geben' target=\"_blank\">geben<\/a>, <a href='replace-url\/verbs\/sprechen' target=\"_blank\">sprechen<\/a> and <a href='replace-url\/verbs\/nehmen' target=\"_blank\">nehmen<\/a></p>"
         },{
             "type": "list",
@@ -154,6 +163,7 @@
             }
         },{
             "type": "table-2-3",
+            "marginList": true,
             "table": {
                 "headings":  ["person", "stem-change", "example"],
                 "rows": [
@@ -166,7 +176,12 @@
                 ]
             }
         },{
+            "type": "exercise-btn",
+            "marginList": true,
+            "content": "practise präsens for sehen"
+        },{
             "type": "paragraph",
+            "marginList": true,
             "content": "<p>Other examples are <a href='replace-url\/verbs\/lesen' target=\"_blank\">lesen<\/a>, <a href='replace-url\/verbs\/sehen' target=\"_blank\">sehen<\/a> and <a href='replace-url\/verbs\/stehlen' target=\"_blank\">stehlen<\/a></p>"
         },{
             "type": "list",
@@ -179,6 +194,7 @@
             }
         },{
             "type": "table-2-3",
+            "marginList": true,
             "table": {
                 "headings":  ["person", "stem-change", "example"],
                 "rows": [
@@ -191,7 +207,12 @@
                 ]
             }
         },{
+            "type": "exercise-btn",
+            "marginList": true,
+            "content": "practise präsens for fallen"
+        },{
             "type": "paragraph",
+            "marginList": true,
             "content": "<p>Other examples are <a href='replace-url\/verbs\/schlafen' target=\"_blank\">schlafen<\/a>, <a href='replace-url\/verbs\/fahren' target=\"_blank\">fahren<\/a> and <a href='replace-url\/verbs\/raten' target=\"_blank\">raten<\/a></p>"
         },{
             "type": "list",
@@ -204,6 +225,7 @@
             }
         },{
             "type": "table-2-3",
+            "marginList": true,
             "table": {
                 "headings":  ["person", "stem-change", "example"],
                 "rows": [
