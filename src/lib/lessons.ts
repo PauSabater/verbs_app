@@ -17,5 +17,4 @@ export async function getLessonData(lesson: string) {
             lessonData,
         },
     }
-
 }

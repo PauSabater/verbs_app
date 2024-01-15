@@ -86,7 +86,7 @@ export default function VerbTable(props: IVerbTable) {
                         props.verbData.conjugations.map((row, i) => {
                             return (
                                 <tr key={`row-${row.person}`}>
-                                    <td>{row.person}</td>
+                                    {row.person ? <td>{row.person}</td> : <></>}
                                     <td dangerouslySetInnerHTML={{__html: sanitize(row.conjugationHTML)}}></td>
                                 </tr>
                             )

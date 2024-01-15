@@ -12,7 +12,7 @@ import Alert from '../Alert/Alert'
 import { isSuccess, isError } from '@/utils/constants'
 import { SVGCross, SVGHelp, getFeedbackSvg } from '@/assets/svg/svgExports'
 import { IConjugation, IExerciseConjugation, TExerciseState, getButtonColor, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
-import { getOptionsDropdown, getRandomInt, setLocalstorageItem } from '@/utils/utils'
+import { getCorrectAnswers, getOptionsDropdown, getRandomInt, setLocalstorageItem } from '@/utils/utils'
 import { IExerciseConjugationState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
 import { ExerciseHelp } from './Components/ExerciseHelp/ExerciseHelp'
 import { ExerciseHelpTrigger } from './Components/ExerciseHelpTrigger/ExerciseHelpTrigger'
@@ -429,8 +429,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     }
 
 
-
-
     return (
         <Fragment>
         <div className={styles.exerciseConjugation} data-exercise data-state={state.exerciseState}>
@@ -446,7 +444,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                                         <p className={styles.person}>{conj.person}</p>
                                         <ExerciseTextInput
                                             ref={refsInputs[i]}
-                                            answer={conj.conjugation}
+                                            answers={getCorrectAnswers(conj.conjugation)}
                                             answerHTML={conj.conjugationHTML}
                                             checkResult={false}
                                             actionOnFilled={actionOnFilledInput}

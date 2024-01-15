@@ -32,6 +32,19 @@
         color: var(--c-font-global-light);
     }
 
+    a {
+        font-size: var(--fs-example);
+        font-weight: var(--fw-medium);
+        color: var(--c-primary-dark);
+        transition: color var(--tr-base);
+        text-decoration: none;
+
+        &:hover {
+            color: var(--c-primary-darker);
+            text-decoration: underline;
+        }
+    }
+
     &.isPost h1:first-child,
     &.isPost h2:first-child {
         margin-top: 0;
@@ -135,17 +148,6 @@
 
     span {
         margin-left: var(--mg-sm);
-    }
-
-    a {
-        font-size: var(--fs-example);
-        font-weight: 600;
-        color: var(--c-primary-dark);
-        transition: color var(--tr-base);
-
-        &:hover {
-            color: var(--c-primary-darker);
-        }
     }
 }
 

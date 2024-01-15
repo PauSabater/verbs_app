@@ -4,17 +4,12 @@ import { InferGetStaticPropsType } from "next/types"
 import { getLessonData } from "@/lib/lessons"
 
 
-
-
 export default async function Page({ params }: { params: { slug: string } }) {
 
     const pageData = await getLessonData(params.slug)
 
     return (
         <Fragment>
-            {/* <p>BEEEEEEEEE</p> */}
-            {/* <p>{JSON.stringify(pageData.props.lessonData)}</p> */}
-            <p>Post: {params.slug}</p>
             <LessonPage
                 data={JSON.stringify(pageData.props.lessonData)}
             ></LessonPage>

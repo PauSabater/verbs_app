@@ -48,52 +48,39 @@ interface ILesson {
     onHeadingIntersection?: Function
 }
 
-// const DynamicData = dynamic(() => import('../components/CodeSampleModal'), {
-//     ssr: false,
-//   });
-
 export default function Lesson(props: ILesson): React.JSX.Element {
 
     const [data, setData] = useState<ILessonSections | null>(props.data || null)
     const refLessonContainer = useRef(null)
     const [headings, setHeadings] = useState<string[] | null>(null)
-
-    const lessonData = props.isPost ? JSON.parse(props.data) : null
-
-    useLayoutEffect(()=> {
-
-        if (!props.data) {
-            let data
-            import(`../../../public/data/lessons/${props.lesson}.json`)
-            .then(result => setData(result))
-        }
-
-        // console.log("TEEEST")
-        // const elsHeading = document.querySelectorAll('[data-is-heading="true"]')
-
-        // console.log(elsHeading)
-
-
-
-        // console.log(refLessonContainer.current)
-        // if (refLessonContainer.current !== null) {
-        //     const elsHeader = (refLessonContainer.current as HTMLElement).querySelector('[data-is-heading="true"]')
-        //     console.log(elsHeader)
-        // }
-
-    },[])
+    // If a post, data will be substracted from the page component in order to allow SSR
+    const [lessonData, setLessonData] = useState<ILessonSections | null>(props.isPost ? JSON.parse(props.data) : null)
 
     useEffect(()=> {
+        console.log("HEYY IN LESSON!!")
+
+        if (!props.isPost) {
+            import(`../../../public/data/lessons/${props.lesson}.json`, { assert: { type: "json" } })
+            .then(result => {
+                console.log(result)
+                setLessonData(result)
+            })
+        }
+    },[])
+
+    useLayoutEffect(()=> {
+        console.log("IN LAYOUT EFFECT!!")
 
         if (refLessonContainer.current !== null) {
             const elsHeader = (refLessonContainer.current as HTMLElement).querySelectorAll('[data-is-heading="true"]')
             console.log(elsHeader)
 
             for (const elHeader of Array.from(elsHeader)) {
+                console.log("ADD OBSERBER!!!")
                 addHeadingIntersectionObserver(elHeader as HTMLElement)
             }
         }
-    }, [refLessonContainer])
+    })
 
 
     const addHeadingIntersectionObserver = (elHeading: HTMLElement)=> {
@@ -287,7 +274,9 @@ export default function Lesson(props: ILesson): React.JSX.Element {
     }
 
     const getLessonTemplate = ()=> {
-        const lessonSections = props.isPost ? lessonData.sections : data
+
+        if (lessonData === null) return
+        const lessonSections = lessonData.sections
 
         return (
             lessonSections

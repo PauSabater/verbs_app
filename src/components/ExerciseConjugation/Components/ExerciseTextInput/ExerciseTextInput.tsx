@@ -9,7 +9,7 @@ import { sanitize } from 'isomorphic-dompurify'
 
 
 interface IExerciseInput {
-    answer: string,
+    answers: string[],
     answerHTML: string,
     checkResult: boolean,
     actionOnFilled: Function,
@@ -64,7 +64,7 @@ export const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
         if (refInput.current === null) return false
 
         const inputValue = refInput.current.value
-        const isInputValid = formatStringForValidation(inputValue) === props.answer
+        const isInputValid = props.answers.includes(formatStringForValidation(inputValue))
 
         setInputState(isInputValid ? statesInputExercise.success : statesInputExercise.error)
 
@@ -99,8 +99,11 @@ export const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
             ></input>
             {getFeedbackSvg(inputState)}
             {isErrorState(inputState)
-                ? <p className={styles.answerCorrection} dangerouslySetInnerHTML={{__html: sanitize(props.answer)}}></p>
-                : null
+                ?   <p
+                        className={styles.answerCorrection}
+                        dangerouslySetInnerHTML={{__html: sanitize(props.answerHTML.replace('&#42;', ''))}}
+                    ></p>
+                :   null
             }
 
 

@@ -106,6 +106,19 @@ export const getAnchorId = (str: string | undefined)=> {
     return str ? `${str.toLowerCase().replaceAll(' ', '-')}` : ''
 }
 
+export const getCorrectAnswers = (answerHTML: string): string[] => {
+    if (answerHTML.includes('(')) {
+        const answers: string[] = []
+        const answerHTMLclean = answerHTML.replace('&#42;', '')
+        answers.push(answerHTMLclean.replace('(e)', ''))
+        answers.push(answerHTMLclean.replace('(', '').replace(')', ''))
+
+        return answers
+
+    } else return [answerHTML]
+
+}
+
 // export async function getUtteraceInstance = (text: string): SpeechSynthesisUtterance => {
 //     const synthesis = window.speechSynthesis
 
