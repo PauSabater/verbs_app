@@ -62,8 +62,9 @@
 }
 
 .containerBtns {
-    display: flex;
-    // flex-direction: ;
+    display: grid;
+    gap: var(--mg-xs);
+    grid-template-columns: 190px auto;
 }
 
 

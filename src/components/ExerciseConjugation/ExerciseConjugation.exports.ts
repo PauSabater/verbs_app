@@ -19,11 +19,22 @@ export interface IExerciseConjugationTexts {
         textConfirm: string,
         textNegate: string
     },
+    help: {
+        openTxt: string,
+        closeTxt: string,
+        text: string,
+        textBtn: string,
+        callout: string,
+        title: string,
+    },
     successMessages: string[],
     button: {
         repeat: string,
+        repeatShort: string,
         check: string,
-        checkAgain: string
+        checkAgain: string,
+        next: string,
+        startAgain: string
     }
 }
 
@@ -45,8 +56,9 @@ export interface IExerciseConjugation {
     tenseExercise: string,
     modeExercise?: string,
     texts: IExerciseConjugationTexts,
-    allTenses: IVerbAllTenses,
-    selectedTenses?: string[]
+    allTenses?: IVerbAllTenses,
+    selectedTenses?: string[],
+    isSingleTense?: boolean
 }
 
 export const statesExerciseConjugation = {
@@ -63,7 +75,7 @@ export type TExerciseState = "empty" | "filling" | "filled" | "success" | "error
 export type TExerciseModes = "indicative" | "conjunctive" | "conditionalOrConjunctiveII" | "imperative"
 
 
-export const getButtonColor = (state: string)=> {
+export const getButtonColor = (state: string, isLastExercise: boolean, isSecondBtn: boolean)=> {
     switch(state) {
         case statesExerciseConjugation.empty:
             return "inactive"
@@ -72,7 +84,8 @@ export const getButtonColor = (state: string)=> {
         case statesExerciseConjugation.filled:
             return "primary"
         case statesExerciseConjugation.success:
-            return "success"
+            if (isLastExercise && isSecondBtn === false) return "primaryReverse"
+            else return "success"
         case statesExerciseConjugation.error:
             return "inactive"
         case statesExerciseConjugation.correcting:
@@ -81,10 +94,22 @@ export const getButtonColor = (state: string)=> {
 }
 
 export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: string): IConjugation[] | undefined => {
+    const tenseToFind = tableTense === 'präsens' ? 'Präsens' : tableTense
 
     for (const mode of Object.values(tenses)) {
         for (const tense of Object.values(mode)) {
-            if ((tense as IVerbTense).tense === tableTense) return (tense as IVerbTense).conjugations
+            if ((tense as IVerbTense).tense === tenseToFind) return (tense as IVerbTense).conjugations
+        }
+    }
+
+    return
+}
+
+export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string): IVerbTense | undefined => {
+
+    for (const mode of Object.values(tenses)) {
+        for (const tense of Object.values(mode)) {
+            if ((tense as IVerbTense).tense === tableTense) return tense as IVerbTense
         }
     }
 

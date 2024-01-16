@@ -1,0 +1,66 @@
+{
+    "verbsPage": {
+        "btnPractice": "Practise & conjugation",
+        "collapsibles": [
+            {
+                "title": "Levels A1 - A2",
+                "tenses": ["Präsens", "Perfekt", "Imperative", "Partizip II"]
+            },{
+                "title": "Levels B1 - B2",
+                "tenses": ["Präteritum", "Futur I", "Plusquam."]
+            },{
+                "title": "Levels C1 - C2",
+                "tenses": ["Konjunktiv I", "Konjunktiv II"]
+            }
+        ],
+        "collapsiblesException": [
+            {
+                "title": "Levels A1 - A2",
+                "tenses": ["Präsens", "Präteritum", "Imperative"]
+            },{
+                "title": "Levels B1 - B2",
+                "tenses": ["Präteritum", "Futur I", "Plusquam.", "Partizip II"]
+            },{
+                "title": "Levels C1 - C2",
+                "tenses": ["Konjunktiv I", "Konjunktiv II"]
+            }
+        ],
+        "exerciseText": {
+            "statement": "✏️  &#160Complete the conjugations for",
+            "textTense": "Tense :",
+            "textVerb": "Verb :",
+            "alertTenseChange": {
+                "text": "By changing the tense, your progress will be lost. Proceed anyway ?",
+                "textConfirm": "Yes",
+                "textNegate": "No",
+                "textCheckbox": "Don't show this message again"
+            },
+            "successMessages": [
+                "Well done!",
+                "Amazing!",
+                "Perfect!",
+                "Flawless!",
+                "You got it!"
+            ],
+            "help": {
+                "openTxt": "open help",
+                "closeTxt": "close help",
+                "text": "hello text sentence",
+                "textBtn": "close",
+                "title": "conjugations",
+                "callout": "Try to fill the exercise without help"
+            },
+            "button": {
+                "repeat": "REPEAT EXERCISE",
+                "repeatShort": "REPEAT",
+                "check": "CHECK",
+                "checkAgain": "CHECK AGAIN",
+                "next": "NEXT EXERCISE",
+                "startAgain": "START AGAIN"
+            }
+        },
+        "exerciseConjugation": {
+            "statement": "Select one or more tenses to practise"
+        }
+    }
+}

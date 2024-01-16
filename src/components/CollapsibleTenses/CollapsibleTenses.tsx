@@ -4,6 +4,7 @@ import { MouseEventHandler, ReactNode, useState } from 'react'
 import styles from './CollapsibleTenses.module.scss'
 import { useRef } from 'react'
 import { Button } from '../Button/Button'
+import { IExamples, TensesExamples } from '../TensesExamples/TensesExamples'
 
 interface ICollapsibleTexts {
     title: string
@@ -11,8 +12,11 @@ interface ICollapsibleTexts {
 
 interface ICollapsibleTenses {
     texts: ICollapsibleTexts,
+    tenses: string[]
+    examples: IExamples,
     children: ReactNode,
-    action: Function
+    action: Function,
+    utterance: SpeechSynthesisUtterance | null
 }
 
 export function CollapsibleTenses(props: ICollapsibleTenses) {
@@ -40,13 +44,20 @@ export function CollapsibleTenses(props: ICollapsibleTenses) {
             <div className={styles.collapsibleContent} ref={refCollapsibleContent}>
                 {props.children}
                 <Button
-                    action={buttonAction}
+                    callback={buttonAction}
                     text={`Practise ${props.texts.title}`}
                     color={"primary"}
                     icon={"exercise"}
-                ></Button>
+                />
             </div>
-            <div className={styles.containerExamples}></div>
+            <div className={styles.containerExamples}>
+                <TensesExamples
+                    title={"Examples"}
+                    tenses={props.tenses}
+                    examples={props.examples}
+                    utterance={props.utterance}
+                />
+            </div>
         </div>
     )
 }

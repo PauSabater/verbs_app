@@ -1,5 +1,37 @@
 .container {
+    font-size: var(--fs-sm);
+
     i {
+        color: var(--c-font-global-lighter);
+    }
+}
+
+.triggerExpand {
+    display: flex;
+    align-items: center;
+
+    svg {
+        height: 10px;
+        margin-left: var(--mg-md);
+    }
+
+    p {
+        font-size: var(--fs-sm);
+        color: var(--c-font-global-light);
+    }
+}
+
+.description {
+    color: var(--c-font-global-light);
+    font-size: var(--fs-sm);
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: var(--mg-xl);
+    // height: 0;
+    // overflow: hidden;
+
+    i {
+        font-weight: 300;
         color: var(--c-font-global-lighter);
     }
 }

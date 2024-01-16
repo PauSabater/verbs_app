@@ -1,0 +1,34 @@
+{
+    "statement": "✏️  &#160Complete the conjugations for",
+    "textTense": "Tense :",
+    "textVerb": "Verb :",
+    "alertTenseChange": {
+        "text": "By changing the tense, your progress will be lost. Proceed anyway ?",
+        "textConfirm": "Yes",
+        "textNegate": "No",
+        "textCheckbox": "Don't show this message again"
+    },
+    "successMessages": [
+        "Well done!",
+        "Amazing!",
+        "Perfect!",
+        "Flawless!",
+        "You got it!"
+    ],
+    "help": {
+        "openTxt": "open help",
+        "closeTxt": "close help",
+        "text": "hello text sentence",
+        "textBtn": "close",
+        "title": "conjugations",
+        "callout": "Try to fill the exercise without help"
+    },
+    "button": {
+        "repeat": "REPEAT EXERCISE",
+        "repeatShort": "REPEAT",
+        "check": "CHECK",
+        "checkAgain": "CHECK AGAIN",
+        "next": "NEXT EXERCISE",
+        "startAgain": "START AGAIN"
+    }
+}

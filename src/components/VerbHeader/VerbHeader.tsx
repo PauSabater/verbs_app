@@ -6,6 +6,7 @@ import { Button } from '../Button/Button'
 import { sanitize } from 'isomorphic-dompurify'
 import { getOptionsDropdown } from '@/utils/utils'
 import { ISelectorDropdownOptions } from '../Selector/Selector'
+import { VerbDescription } from './Components/VerbDescription/VerbDescription'
 
 
 interface IVerbHeader {
@@ -44,7 +45,8 @@ export default function VerbHeader(props: IVerbHeader) {
             </div>
             <VerbStemFormation stemFormationHTML={props.stemFormationHTML} />
             <p className={styles.translation}>{props.translation}</p>
-            <p className={styles.description} dangerouslySetInnerHTML={{__html: sanitize(props.description)}}></p>
+            <VerbDescription text={props.description}></VerbDescription>
+            {/* <p className={styles.description} dangerouslySetInnerHTML={{__html: sanitize(props.description)}}></p> */}
             <Button
                 text={props.button.replace("&", props.verb)}
                 size={"lg"}

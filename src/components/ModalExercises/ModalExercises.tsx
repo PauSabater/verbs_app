@@ -12,7 +12,9 @@ export const ModalExercises = forwardRef((props: {
         text: string,
         children: ReactNode,
         open: boolean
-        callbackClose?: Function
+        callbackClose?: Function,
+        widerVersion?: boolean,
+        padding?: 'paddingBase'
     }, ref)=> {
 
     const text = props.text
@@ -28,13 +30,19 @@ export const ModalExercises = forwardRef((props: {
     }))
 
     useEffect(() => {
-        console.log(window.innerHeight)
-        setIsOpen(open)},
+        if (open === true) openModal()
+        else closeModal()
+    },
     [open])
 
     const openModal = ()=> {
         disableScroll()
         setIsOpen(true)
+    }
+
+    const closeModal = ()=> {
+        enableScroll()
+        setIsOpen(false)
     }
 
     const handleBackgroundClick = (e: React.MouseEvent<HTMLDivElement>)=> {
@@ -47,18 +55,18 @@ export const ModalExercises = forwardRef((props: {
     }
 
     return (
-        <div className={`${styles.containerModal} ${styles[isOpen ? "open" : "closed"]}`}>
+        <div className={`${styles.containerModal} ${styles[isOpen ? 'open' : 'closed']}`}>
             <div
                 className={styles.background}
                 onClick={(e)=> {handleBackgroundClick(e)}}
             ></div>
             {/* <p>{text}</p> */}
-            <div className={styles.container}>
+            <div className={`${styles.container} ${styles[props.widerVersion ? 'widerVersion' : '']} ${styles[props.padding || '']}`}>
                 <div
                     className={`${stylesBtnClose.container} ${styles.btnClose}`}
                     onClick={(e)=> {handleBackgroundClick(e)}}
                 >
-                    <SVGCross color={"var(--c-grey-dark)"}></SVGCross>
+                    <SVGCross color={'var(--c-grey-dark)'}></SVGCross>
                 </div>
                 {children}
             </div>
