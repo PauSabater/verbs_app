@@ -118,37 +118,3 @@ export const getCorrectAnswers = (answerHTML: string): string[] => {
     } else return [answerHTML]
 
 }
-
-// export async function getUtteraceInstance = (text: string): SpeechSynthesisUtterance => {
-//     const synthesis = window.speechSynthesis
-
-//     let id: any
-
-//     let speechPromise = setSpeech()
-
-//     speechPromise.then((voices: SpeechSynthesisVoice[])=> {
-//         console.log(navigator.userAgent)
-//         let germanVoices = voices.filter(function (voice) {
-//             return voice.name === 'Google Deutsch'
-//         })
-
-//         if (germanVoices.length === 0) {
-//             germanVoices = voices.filter(function (voice) {
-//                 return voice.lang === 'de-DE'
-//             })
-//         }
-
-//         const voice = germanVoices[0]
-
-//         return new SpeechSynthesisUtterance();
-
-//         // // Set utterance properties
-//         // utterance.voice = voice;
-//         // utterance.pitch = 1;
-//         // utterance.rate = 0.9;
-//         // utterance.volume = 1;
-
-//         // // Speak the utterance
-//         // synthesis.speak(utterance);
-//     })
-// }

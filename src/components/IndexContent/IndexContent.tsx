@@ -75,7 +75,6 @@ export function IndexContent(props: IIndexContent) {
 
     const getTitles = (section: ILessonSection)=> {
 
-        // console.log("HEY IN TITLES. CHECK:" +section.type)
         const anchorLink = getAnchorLinkStr(section.content)
 
         if (section.type === 'h1-post' || section.type === 'h1') {

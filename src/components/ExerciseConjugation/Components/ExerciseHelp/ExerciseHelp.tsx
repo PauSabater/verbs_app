@@ -24,7 +24,6 @@ export function ExerciseHelp(props: IExerciseHelp) {
     const [isHelpOpen, setIsHelpOpen] = useState<boolean | null>(null)
 
     useEffect(()=> {
-        console.log("UEEE CHANGE IN HELP "+props.isOpen)
         setIsHelpOpen(props.isOpen)
     }, [props.isOpen])
 

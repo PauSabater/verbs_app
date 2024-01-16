@@ -11,11 +11,12 @@ import { Selector } from '../Selector/Selector'
 import Alert from '../Alert/Alert'
 import { isSuccess, isError } from '@/utils/constants'
 import { SVGCross, SVGHelp, getFeedbackSvg } from '@/assets/svg/svgExports'
-import { IConjugation, IExerciseConjugation, TExerciseState, getButtonColor, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
+import { IConjugation, IExerciseConjugation, IVerbAllTenses, TExerciseState, getButtonColor, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
 import { getCorrectAnswers, getOptionsDropdown, getRandomInt, setLocalstorageItem } from '@/utils/utils'
 import { IExerciseConjugationState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
 import { ExerciseHelp } from './Components/ExerciseHelp/ExerciseHelp'
 import { ExerciseHelpTrigger } from './Components/ExerciseHelpTrigger/ExerciseHelpTrigger'
+import { getAllVerbTenses } from '@/lib/getApiData'
 
 
 /**
@@ -109,7 +110,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
     // Tense to confirm through alert
     const setIsHelpOpen = (isOpen: boolean)=> {
-        console.log("LETS SET OPEN "+isOpen)
         dispatch({
         type: actions.SET_IS_HELP_OPEN,
         payload: isOpen
@@ -135,23 +135,38 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             setSelectedTense(props.selectedTenses[0])
     },[props.selectedTenses])
 
+    useEffect(()=> {
+        const tense = props.tenseExercise
+        if (!props.allTenses) {
+            (async () => {
+                const allTensesResp: any = await getAllVerbTenses(props.verb) as unknown as any
+                const allTensesObj: any = allTensesResp.data.tenses
+                if (props.tenseExercise) {
+                    setExerciseConjugations(
+                        getConjugationFromTense(allTensesObj, tense)
+                    )
+                    animateReveal()
+                }
+              })()
+        }
+    }, [])
+
 
     /**
      * Updates conjugation data when a change on the select component is confirmed, and triggers inputs animation
      */
     useEffect(() => {
-
-        console.log("HEYYYY UPDATE FROM SELECTED TENSE")
-
         if (!state.selectedTense) return
 
         comparePreviousAndCurrentState()
 
-        setExerciseConjugations(
-            getConjugationFromTense(props.allTenses, state.selectedTense)
-        )
+        if (props.allTenses) {
+            setExerciseConjugations(
+                getConjugationFromTense(props.allTenses, state.selectedTense)
+            )
 
-        animateReveal()
+            animateReveal()
+        }
 
     },[state.selectedTense])
 
@@ -346,7 +361,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     }
 
     const loadNextExercise = ()=> {
-        console.log("HEYY LOAD NEXT EXERCISE!!")
         if (!props.selectedTenses) return
         setSelectedTense(props.selectedTenses[state.currentExerciseNumber + 1])
         setCurrentExerciseNumber(state.currentExerciseNumber + 1)
@@ -407,7 +421,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         return (
             <div className={styles.statement}>
                 <p dangerouslySetInnerHTML={{__html: sanitize(props.texts.statement)}}></p>
-                {(props.selectedTenses && props.selectedTenses.length > 1)
+                {(props.selectedTenses && props.selectedTenses.length > 1 || props.isSingleTense === true)
                     ?   <Fragment>
                             <span data-text>{props.texts.textTense}</span>
                             <span>{state.selectedTense}</span>
@@ -430,61 +444,63 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
 
     return (
-        <Fragment>
-        <div className={styles.exerciseConjugation} data-exercise data-state={state.exerciseState}>
-            <div className={styles.container}>
-                <ExerciseStatement />
+            state.exerciseConjugations ?
+                <Fragment>
+                    <div className={styles.exerciseConjugation} data-exercise data-state={state.exerciseState}>
+                        <div className={styles.container}>
+                            <ExerciseStatement />
 
-                <div className={styles.rowsContainer} data-animate={state.triggerInputsAnimation}>
-                    {
-                        state.exerciseConjugations !== undefined
-                            ? state.exerciseConjugations.map((conj, i)=> {
-                                return (
-                                    <div key={i} className={styles.row}>
-                                        <p className={styles.person}>{conj.person}</p>
-                                        <ExerciseTextInput
-                                            ref={refsInputs[i]}
-                                            answers={getCorrectAnswers(conj.conjugation)}
-                                            answerHTML={conj.conjugationHTML}
-                                            checkResult={false}
-                                            actionOnFilled={actionOnFilledInput}
-                                            actionOnEmptied={actionOnEmptiedInput}
-                                            actionOnCorrected={actionOnCorrectedInput}
-                                        />
-                                    </div>
-                                )
-                        })
-                        : <></>
-                    }
-                </div>
-            </div>
+                            <div className={styles.rowsContainer} data-animate={state.triggerInputsAnimation}>
+                                {
+                                    state.exerciseConjugations !== undefined
+                                        ? state.exerciseConjugations.map((conj, i)=> {
+                                            return (
+                                                <div key={i} className={styles.row}>
+                                                    <p className={styles.person}>{conj.person}</p>
+                                                    <ExerciseTextInput
+                                                        ref={refsInputs[i]}
+                                                        answers={getCorrectAnswers(conj.conjugation)}
+                                                        answerHTML={conj.conjugationHTML}
+                                                        checkResult={false}
+                                                        actionOnFilled={actionOnFilledInput}
+                                                        actionOnEmptied={actionOnEmptiedInput}
+                                                        actionOnCorrected={actionOnCorrectedInput}
+                                                    />
+                                                </div>
+                                            )
+                                    })
+                                    : <></>
+                                }
+                            </div>
+                        </div>
 
-            <ExerciseHelpTrigger
-                exerciseState={state.exerciseState}
-                isOpen={state.isHelpOpen}
-                openTxt={props.texts.help.openTxt}
-                closeTxt={props.texts.help.closeTxt}
-                action={()=> setIsHelpOpen(!state.isHelpOpen)}
-            />
+                        <ExerciseHelpTrigger
+                            exerciseState={state.exerciseState}
+                            isOpen={state.isHelpOpen}
+                            openTxt={props.texts.help.openTxt}
+                            closeTxt={props.texts.help.closeTxt}
+                            action={()=> setIsHelpOpen(!state.isHelpOpen)}
+                        />
 
-            <ExerciseFeedback />
-            <Alert
-                isOpen={state.isTenseAlertOpen}
-                texts={props.texts.alertTenseChange}
-                actionsOnAlertConfirm={actionsOnAlertConfirm}
-                actionsOnAlertNegate={actionsOnAlertNegate}
-            />
-        </div>
-        <ExerciseHelp
-            text={props.texts.help.text}
-            textBtn={props.texts.help.textBtn}
-            title={props.texts.help.title}
-            callout={props.texts.help.callout}
-            tense={state.selectedTense}
-            isOpen={state.isHelpOpen}
-            conjugation={state.exerciseConjugations}
-            actionClose={()=> setIsHelpOpen(false)}
-        />
-        </Fragment>
+                        <ExerciseFeedback />
+                        <Alert
+                            isOpen={state.isTenseAlertOpen}
+                            texts={props.texts.alertTenseChange}
+                            actionsOnAlertConfirm={actionsOnAlertConfirm}
+                            actionsOnAlertNegate={actionsOnAlertNegate}
+                        />
+                    </div>
+                    <ExerciseHelp
+                        text={props.texts.help.text}
+                        textBtn={props.texts.help.textBtn}
+                        title={props.texts.help.title}
+                        callout={props.texts.help.callout}
+                        tense={state.selectedTense}
+                        isOpen={state.isHelpOpen}
+                        conjugation={state.exerciseConjugations}
+                        actionClose={()=> setIsHelpOpen(false)}
+                    />
+                </Fragment>
+                : <></>
     )
 }

@@ -35,7 +35,6 @@ export function ExerciseFeedback(props: IExerciseFeedback): JSX.Element {
     }
 
     const getButtonColor = (state: string)=> {
-        console.log("STATE IS "+state)
         if (state === "empty") return "inactive"
         if (state === "filled") return "primary"
     }

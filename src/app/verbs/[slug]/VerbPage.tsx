@@ -2,9 +2,7 @@
 
 import VerbTable from "@/components/VerbTable/VerbTable"
 import { CollapsibleTenses } from "@/components/CollapsibleTenses/CollapsibleTenses"
-import Sein from "../../../data/sein.json"
 import styles from './verb.module.scss'
-import texts from '../../../data/texts.json'
 import { ModalExercises } from "@/components/ModalExercises/ModalExercises"
 import { Fragment, Reducer, useEffect, useLayoutEffect, useRef, useState } from "react"
 import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation"
@@ -17,8 +15,13 @@ import { IPageState, TPageAction, actions, reducer } from "./pageReducer"
 import Lesson from "@/components/Lesson/Lesson"
 import { getTenseFromTenseName } from "@/components/ExerciseConjugation/ExerciseConjugation.exports"
 
+interface IVerbsPage {
+    slug: string,
+    data: any,
+    texts: any
+}
 
-export default function VerbsPage({ params }: { params: { slug: string, data: any } }) {
+export default function VerbsPage(params: IVerbsPage) {
 
     const [state, dispatch] = useReducer<Reducer<IPageState, TPageAction>>(reducer, {
         isExerciseConjugationOpen: false,
@@ -30,14 +33,14 @@ export default function VerbsPage({ params }: { params: { slug: string, data: an
         lesson: ''
     })
 
+    const pageVerbsTexts = JSON.parse(params.texts).props.texts.verbsPage
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null)
-
     const refModal = useRef(null)
     const refPageContent = useRef(null)
     const pageVerbData = JSON.parse(params.data).props.verbData
-    const collapsiblesTense =  verbsTenseException.includes(pageVerbData.verb) ? texts.verbsPage.collapsiblesException : texts.verbsPage.collapsibles
-
-    console.log(pageVerbData)
+    const collapsiblesTense =  verbsTenseException.includes(pageVerbData.verb)
+        ? pageVerbsTexts.collapsiblesException
+        : pageVerbsTexts.collapsibles
 
     useLayoutEffect(() => {
 
@@ -120,7 +123,7 @@ export default function VerbsPage({ params }: { params: { slug: string, data: an
 
     const verbHeaderProps = ()=> {
         return {
-            button: texts.verbsPage.btnPractice,
+            button: pageVerbsTexts.btnPractice,
             verb: pageVerbData.verb,
             level: pageVerbData.data.properties.level,
             verbHTML: pageVerbData.data.properties.verbHTML,
@@ -150,7 +153,7 @@ export default function VerbsPage({ params }: { params: { slug: string, data: an
             ?   <ExerciseConjugation
                     verb={pageVerbData.verb}
                     tensesDropdown={collapsiblesTense}
-                    texts={texts.verbsPage.exerciseText}
+                    texts={pageVerbsTexts.exerciseText}
                     tenseExercise={state.exerciseTense}
                     allTenses={pageVerbData.data.tenses}
                     selectedTenses={state.selectedTensesFromCheckboxList}
@@ -162,7 +165,7 @@ export default function VerbsPage({ params }: { params: { slug: string, data: an
     const ExerciseListCheckboxes = (): React.JSX.Element =>
         state.exerciseTensesCheckboxList
             ?   <ExerciseCheckboxList
-                    statement={texts.verbsPage.exerciseConjugation.statement}
+                    statement={pageVerbsTexts.exerciseConjugation.statement}
                     items={state.exerciseTensesCheckboxList}
                     callbackOnConfirm={callbackOnExerciseCheckboxListConfirm}
                 ></ExerciseCheckboxList>
@@ -173,7 +176,7 @@ export default function VerbsPage({ params }: { params: { slug: string, data: an
     }
 
     const onLessonOpen = ()=> {
-        openModalLesson('prasens')
+        openModalLesson('präsens')
     }
 
 
@@ -194,7 +197,7 @@ export default function VerbsPage({ params }: { params: { slug: string, data: an
                                 utterance={utterance}
                             >
                                 {
-                                    collapsiblesTense[i].tenses.map((tableTense, i) => {
+                                    (collapsiblesTense[i].tenses as string[]).map((tableTense, i) => {
                                         return (
                                             <VerbTable
                                                 key={tableTense}
@@ -233,7 +236,7 @@ export default function VerbsPage({ params }: { params: { slug: string, data: an
                         padding={'paddingBase'}
                     >
                         <Lesson
-                            lesson={"prasens"}
+                            lesson={"präsens"}
                             utterance={utterance}
                         />
                     </ModalExercises>

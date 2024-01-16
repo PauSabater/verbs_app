@@ -1,18 +1,20 @@
 import { Fragment } from "react"
 import VerbsPage from "./VerbPage"
-import { getApiVerbData } from "@/lib/getApiData"
+import { getApiVerbData, getPageVerbsTexts } from "@/lib/getApiData"
 
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
 
     const pageData = await getApiVerbData(params.slug)
-    console.log(pageData)
+    const pageTexts = await getPageVerbsTexts()
 
     return (
         <Fragment>
             <VerbsPage
-                params={{slug: params.slug, data: JSON.stringify(pageData)}}
+                slug={params.slug}
+                data={JSON.stringify(pageData)}
+                texts={JSON.stringify(pageTexts)}
             ></VerbsPage>
         </Fragment>
     )

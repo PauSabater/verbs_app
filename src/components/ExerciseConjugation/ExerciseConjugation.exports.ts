@@ -56,8 +56,9 @@ export interface IExerciseConjugation {
     tenseExercise: string,
     modeExercise?: string,
     texts: IExerciseConjugationTexts,
-    allTenses: IVerbAllTenses,
-    selectedTenses?: string[]
+    allTenses?: IVerbAllTenses,
+    selectedTenses?: string[],
+    isSingleTense?: boolean
 }
 
 export const statesExerciseConjugation = {
@@ -93,10 +94,11 @@ export const getButtonColor = (state: string, isLastExercise: boolean, isSecondB
 }
 
 export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: string): IConjugation[] | undefined => {
+    const tenseToFind = tableTense === 'präsens' ? 'Präsens' : tableTense
 
     for (const mode of Object.values(tenses)) {
         for (const tense of Object.values(mode)) {
-            if ((tense as IVerbTense).tense === tableTense) return (tense as IVerbTense).conjugations
+            if ((tense as IVerbTense).tense === tenseToFind) return (tense as IVerbTense).conjugations
         }
     }
 

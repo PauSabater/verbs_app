@@ -45,7 +45,8 @@ interface ILesson {
     utterance: SpeechSynthesisUtterance | null,
     isPost?: boolean
     data?: any
-    onHeadingIntersection?: Function
+    onHeadingIntersection?: Function,
+    callbackOnExerciseOpen?: Function
 }
 
 export default function Lesson(props: ILesson): React.JSX.Element {
@@ -57,26 +58,21 @@ export default function Lesson(props: ILesson): React.JSX.Element {
     const [lessonData, setLessonData] = useState<ILessonSections | null>(props.isPost ? JSON.parse(props.data) : null)
 
     useEffect(()=> {
-        console.log("HEYY IN LESSON!!")
 
         if (!props.isPost) {
             import(`../../../public/data/lessons/${props.lesson}.json`, { assert: { type: "json" } })
             .then(result => {
-                console.log(result)
                 setLessonData(result)
             })
         }
     },[])
 
     useLayoutEffect(()=> {
-        console.log("IN LAYOUT EFFECT!!")
 
         if (refLessonContainer.current !== null) {
             const elsHeader = (refLessonContainer.current as HTMLElement).querySelectorAll('[data-is-heading="true"]')
-            console.log(elsHeader)
 
             for (const elHeader of Array.from(elsHeader)) {
-                console.log("ADD OBSERBER!!!")
                 addHeadingIntersectionObserver(elHeader as HTMLElement)
             }
         }
@@ -169,6 +165,7 @@ export default function Lesson(props: ILesson): React.JSX.Element {
                     <Button
                         icon={'exercise'}
                         text={section.content || ''}
+                        callback={props.callbackOnExerciseOpen}
                     ></Button>
                 </div>
             )
@@ -195,7 +192,6 @@ export default function Lesson(props: ILesson): React.JSX.Element {
     }
 
     const getTableTemplate = (table: ITable, hasMargin: boolean, type?: string)=> {
-        console.log("HAS MARGIN OS "+hasMargin)
         return (
             <div className={`${styles.tableContainer} ${hasMargin ? styles.listMargin : ''}`}>
                 <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={getTableAudioText(table)}/>

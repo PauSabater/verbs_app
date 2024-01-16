@@ -51,7 +51,6 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {
-    // console.log(action.type)
 
     switch (action.type) {
         case actions.SET_EXERCISE_STATE:

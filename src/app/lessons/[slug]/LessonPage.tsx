@@ -2,36 +2,45 @@
 
 import Lesson, { ILessonSection } from "@/components/Lesson/Lesson";
 import { getUtteraceInstance } from "@/utils/utils";
-import { useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import styles from './lessonPage.module.scss'
 import { IndexContent } from "@/components/IndexContent/IndexContent";
 import { LessonHeader } from "@/components/LessonHeader/LessonHeader";
 import { sanitize } from "isomorphic-dompurify";
+import { ModalExercises } from "@/components/ModalExercises/ModalExercises";
+import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation";
 
 interface ILessonPage {
-    data: any
+    data: any,
+    exercisesTense: string,
+    textsExercise: any
 }
 
 export function LessonPage(props: ILessonPage) {
 
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null)
     const [intersectedHeading, setIntersectedHeading] = useState<string>('')
-
-    // const [lessonData, setLessonData] = useState<any>(data)
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+    const refModal = useRef(null)
+    const textsExercise = JSON.parse(props.textsExercise)
 
     useLayoutEffect(()=> {
         getUtteraceInstance()
             .then((utterance)=> {
                 setUtterance(utterance)
             })
-
-        // let data
-        // import(`../../../../public/data/lessons/prasens.json`)
-        //     .then(result => setLessonData(result))
     }, [])
 
     const handleHeadingIntersection = (id: string)=> {
         setIntersectedHeading(id)
+    }
+
+    const callbackCloseModal = ()=> {
+        setIsModalOpen(false)
+    }
+
+    const callbackOpenModal = ()=> {
+        setIsModalOpen(true)
     }
 
     return (
@@ -48,7 +57,26 @@ export function LessonPage(props: ILessonPage) {
                 lesson={"präsens"}
                 isPost={true}
                 onHeadingIntersection={handleHeadingIntersection}
+                callbackOnExerciseOpen={callbackOpenModal}
             ></Lesson>
+
+            <ModalExercises
+                text={""}
+                open={isModalOpen}
+                ref={refModal}
+                callbackClose={callbackCloseModal}
+            >
+                <ExerciseConjugation
+                    // isDynamic={true}
+                    verb={"sein"}
+                    tensesDropdown={props.exercisesTense}
+                    texts={textsExercise}
+                    tenseExercise={props.exercisesTense}
+                    // allTenses={props.exercisesTense}
+                    selectedTenses={[props.exercisesTense]}
+                    isSingleTense={true}
+                ></ExerciseConjugation>
+            </ModalExercises>
         </div>
     )
 }

@@ -2,16 +2,21 @@ import { Fragment } from "react"
 import { LessonPage } from "./LessonPage"
 import { InferGetStaticPropsType } from "next/types"
 import { getLessonData } from "@/lib/lessons"
+import { getPageVerbsTexts, getTextsVerbExercise } from "@/lib/getApiData"
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
+    const lesson = decodeURI(params.slug)
 
-    const pageData = await getLessonData(params.slug)
+    const pageData = await getLessonData(lesson)
+    const textsVerbExercise = await getTextsVerbExercise()
 
     return (
         <Fragment>
             <LessonPage
                 data={JSON.stringify(pageData.props.lessonData)}
+                exercisesTense={lesson}
+                textsExercise={JSON.stringify(textsVerbExercise)}
             ></LessonPage>
         </Fragment>
     )
@@ -19,7 +24,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
 
 export async function generateStaticParams() {
-    const posts = [{slug: "prasens"}, {slug: "prateritum"}]
+    const posts = [{slug: encodeURI("präsens")}, {slug: encodeURI("präteritum")}]
 
     return posts.map((post) => ({
       slug: post.slug,
@@ -36,7 +41,7 @@ export async function generateStaticParams() {
 //     // const posts = await res.json()
 
 //     let data
-//     await import(`../../../../public/data/lessons/prasens.json`)
+//     await import(`../../../../public/data/lessons/präsens.json`)
 //     .then(result => data = result)
 
 //     // By returning { props: { posts } }, the Blog component
