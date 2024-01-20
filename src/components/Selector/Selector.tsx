@@ -10,22 +10,25 @@ export interface ISelectorDropdownOptions {
 }
 
 interface ISelector {
-    selectedOption: string,
-    options: ISelectorDropdownOptions[],
-    color?: string,
-    weight?: string,
+    isFullwidth?: boolean,
+    selectedOption?: string
+    options: ISelectorDropdownOptions[]
+    color?: string
+    weight?: string
     // handleSelectInputChangeEvent: Function,
-    callbackOnChange: Function
+    callbackOnChange?: Function
 }
 
 export function Selector(props: ISelector) {
 
+    // if (!props.selectedOption) props.selectedOption = 'hey'
+
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
     // const []
-    const [selectedOption, setSelectedOption] = useState<string>(props.selectedOption)
+    const [selectedOption, setSelectedOption] = useState<string>(props.selectedOption || '')
 
     useEffect(()=> {
-        setSelectedOption(props.selectedOption)
+        setSelectedOption(props.selectedOption || 'More lessons')
     }, [props.selectedOption])
 
     const handleButtonClick = ()=> {
@@ -36,7 +39,7 @@ export function Selector(props: ISelector) {
         // setSelectedOption(e.target.name)
         // props.handleSelectInputChangeEvent(e)
         setTimeout(()=> setIsExpanded(false), 75)
-        props.callbackOnChange(e.target.name, e.target.getAttribute("data-group"))
+        if (props.callbackOnChange) props.callbackOnChange(e.target.name, e.target.getAttribute("data-group"))
     }
 
 
@@ -71,31 +74,33 @@ export function Selector(props: ISelector) {
 
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${props.isFullwidth ? styles.fullwidth : ''}`}>
             <button
-                className={`${styles.selector} ${isExpanded ? styles.btnExpanded : ''} ${props.color ? styles[props.color] : ''} ${props.weight ? styles[props.weight] : ''}`}
+                className={`${styles.selector} ${props.isFullwidth ? styles.fullwidth : ''} ${isExpanded ? styles.btnExpanded : ''} ${props.color ? styles[props.color] : ''} ${
+                    props.weight ? styles[props.weight] : ''
+                }`}
                 role="combobox"
                 aria-labelledby="select button"
                 aria-haspopup="listbox"
                 aria-expanded={isExpanded}
                 aria-controls="select-dropdown"
-                onClick={()=> handleButtonClick()}
+                onClick={() => handleButtonClick()}
             >
                 <span className={styles.selectedValue}>{selectedOption || props.selectedOption}</span>
                 <SVGArrow></SVGArrow>
                 {/* <span className="arrow"></span> */}
             </button>
             <ul className={`select-dropdown ${styles.dropdown} ${isExpanded ? styles.expanded : ''}`}>
-                {
-                    props.options.map((optionGroup, index)=> {
-                        return (
-                            <Fragment key={`fr-${index}`}>
-                                <label key={`title-${index}`} className={styles.labelTitle}>{optionGroup.title}</label>
-                                {getOptionsTemplate(optionGroup.options, optionGroup.title || '')}
-                            </Fragment>
-                        )
-                    })
-                }
+                {props.options.map((optionGroup, index) => {
+                    return (
+                        <Fragment key={`fr-${index}`}>
+                            <label key={`title-${index}`} className={styles.labelTitle}>
+                                {optionGroup.title}
+                            </label>
+                            {getOptionsTemplate(optionGroup.options, optionGroup.title || '')}
+                        </Fragment>
+                    )
+                })}
             </ul>
         </div>
     )

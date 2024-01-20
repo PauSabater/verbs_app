@@ -6,6 +6,7 @@ import { getAnchorLinkStr } from '@/utils/utils'
 import { SVGArrow } from '@/assets/svg/svgExports'
 import { ButtonBookmark } from '../Bookmarker/ButtonBookmark'
 import { ButtonShare } from '../ButtonShare/ButtonShare'
+import { Selector } from '../Selector/Selector'
 
 interface IIndexContent {
     content: any,
@@ -131,8 +132,12 @@ export function IndexContent(props: IIndexContent) {
 
     return (
         <div className={styles.container} ref={refContainer}>
+            <Selector
+                isFullwidth={true}
+                options={[{options: ['hello', 'goodbye']}]}
+            ></Selector>
             <div
-                className={styles.titleContainer}
+                className={`${styles.titleContainer} ${!isExpanded ? styles.isRetracted : ''}`}
                 onClick={()=> handleTitleListClick()}
             >
                 <p className={styles.title}>Table of contents</p>
