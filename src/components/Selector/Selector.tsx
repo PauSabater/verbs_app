@@ -1,8 +1,9 @@
 import { sanitize } from "isomorphic-dompurify"
 import styles from './selector.module.scss'
 import { SVGArrow } from "@/assets/svg/svgExports"
-import { ChangeEvent, Fragment, ReactNode, useEffect, useState } from "react"
-
+import { ChangeEvent, Fragment, ReactNode, useContext, useEffect, useState } from "react"
+import { LessonPageContext } from "@/app/lessons/[slug]/LessonPage"
+import { replaceSpacesForURL } from "@/utils/utils"
 
 export interface ISelectorDropdownOptions {
     title?: string,
@@ -10,7 +11,9 @@ export interface ISelectorDropdownOptions {
 }
 
 interface ISelector {
-    isFullwidth?: boolean,
+    isLinksList?:boolean,
+    linkPath?: string,
+    isFullwidth?: boolean
     selectedOption?: string
     options: ISelectorDropdownOptions[]
     color?: string
@@ -20,6 +23,8 @@ interface ISelector {
 }
 
 export function Selector(props: ISelector) {
+
+    const lessonPageContext = useContext(LessonPageContext)
 
     // if (!props.selectedOption) props.selectedOption = 'hey'
 
@@ -48,23 +53,30 @@ export function Selector(props: ISelector) {
             options.map((option, index)=> {
                 return (
                     <li key={`li-${index}`}>
-                        <input
-                            key={`input-${index}`}
-                            type="radio"
-                            id={`${index}-${option}`}
-                            name={option}
-                            data-group={group}
-                            className={`${styles.input}`}
-                            checked={option === props.selectedOption}
-                            data-checked={option === props.selectedOption}
-                            onChange={(e)=> handleInputChangeEvent(e)}
-                        />
-                        <label
-                            key={`label-${index}`}
-                            htmlFor={`${index}-${option}`}
-                            className={styles.label}
-                        >{option}
-                        </label>
+                        {!props.isLinksList ? (
+                            <>
+                                <input
+                                    key={`input-${index}`}
+                                    type="radio"
+                                    id={`${index}-${option}`}
+                                    name={option}
+                                    data-group={group}
+                                    className={`${styles.input}`}
+                                    checked={option === props.selectedOption}
+                                    data-checked={option === props.selectedOption}
+                                    onChange={(e) => handleInputChangeEvent(e)}
+                                />
+                                <label key={`label-${index}`} htmlFor={`${index}-${option}`} className={styles.label}>
+                                    {option}
+                                </label>
+                            </>
+                        ) : (
+                            <a
+                                className={styles.label}
+                                href={`http://${lessonPageContext.url}${lessonPageContext.selectorLinksPath || ''}/${replaceSpacesForURL(option)}`}
+                            >{option}
+                            </a>
+                        )}
                     </li>
                 )
 
@@ -90,7 +102,7 @@ export function Selector(props: ISelector) {
                 <SVGArrow></SVGArrow>
                 {/* <span className="arrow"></span> */}
             </button>
-            <ul className={`select-dropdown ${styles.dropdown} ${isExpanded ? styles.expanded : ''}`}>
+            <ul className={`select-dropdown ${styles.dropdown} ${isExpanded ? styles.expanded : ''} ${props.isFullwidth ? styles.fullwidth : ''}`}>
                 {props.options.map((optionGroup, index) => {
                     return (
                         <Fragment key={`fr-${index}`}>

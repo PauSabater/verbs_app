@@ -49,9 +49,12 @@ export function CollapsibleTenses(props: ICollapsibleTenses) {
                 {props.children}
                 <Button callback={buttonAction} text={`Practise ${props.texts.title}`} color={'primary'} icon={'exercise'} />
             </div>
-            <div className={styles.containerExamples}>
-                <TensesExamples title={'Examples'} tenses={props.tenses} examples={props.examples} utterance={props.utterance} />
-            </div>
+            {props.examples ?
+                <div className={styles.containerExamples}>
+                    <TensesExamples title={'Examples'} tenses={props.tenses} examples={props.examples} utterance={props.utterance} />
+                </div>
+                : ''
+            }
         </div>
     )
 }

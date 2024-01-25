@@ -17,6 +17,7 @@ import { getTenseFromTenseName } from '@/components/ExerciseConjugation/Exercise
 
 interface IVerbsPage {
     slug: string
+    nextSlug: string
     data: any
     texts: any
 }
@@ -187,6 +188,7 @@ export default function VerbsPage(params: IVerbsPage) {
         <div className={styles.pageContent} ref={refPageContent}>
             <div>My Post: {params.slug}</div>
             <VerbHeader {...verbHeaderProps()}></VerbHeader>
+            <h1>HEYY {params.nextSlug}</h1>
             <h1>{`Conjugations`}</h1>
             <div>
                 {[1, 2, 3].map((e, i) => {
@@ -214,11 +216,7 @@ export default function VerbsPage(params: IVerbsPage) {
                     )
                 })}
 
-                <ModalExercises text={''}
-                    open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
-                    ref={refModal}
-                    callbackClose={callbackCloseModal}
-                >
+                <ModalExercises text={''} open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true} ref={refModal} callbackClose={callbackCloseModal}>
                     {state.isExerciseConjugationOpen === true ? <ExerciseContent /> : state.isCheckboxListOpen ? <ExerciseListCheckboxes /> : ''}
                 </ModalExercises>
 

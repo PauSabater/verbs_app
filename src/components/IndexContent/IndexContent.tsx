@@ -133,8 +133,9 @@ export function IndexContent(props: IIndexContent) {
     return (
         <div className={styles.container} ref={refContainer}>
             <Selector
+                isLinksList={true}
                 isFullwidth={true}
-                options={[{options: ['hello', 'goodbye']}]}
+                options={[{options: ['prateritum', 'prateritum test']}]}
             ></Selector>
             <div
                 className={`${styles.titleContainer} ${!isExpanded ? styles.isRetracted : ''}`}

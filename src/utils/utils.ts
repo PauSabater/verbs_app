@@ -4,6 +4,10 @@ export const formatStringForValidation = (str: string)=> {
     return str.toLowerCase().trim().replace(/\s+/g, ' ')
 }
 
+export const replaceSpacesForURL = (str: string)=> {
+    return str.replaceAll(' ', '-')
+}
+
 export function disableScroll() {
     (document.body.parentElement as HTMLElement).style.overflowY = 'hidden';
   }
