@@ -41,8 +41,6 @@ export function Selector(props: ISelector) {
     }
 
     const handleInputChangeEvent = (e: ChangeEvent<HTMLInputElement>)=> {
-        // setSelectedOption(e.target.name)
-        // props.handleSelectInputChangeEvent(e)
         setTimeout(()=> setIsExpanded(false), 75)
         if (props.callbackOnChange) props.callbackOnChange(e.target.name, e.target.getAttribute("data-group"))
     }

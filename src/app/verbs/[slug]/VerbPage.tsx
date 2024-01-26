@@ -44,6 +44,8 @@ export default function VerbsPage(params: IVerbsPage) {
         : pageVerbsTexts.collapsibles
 
     useLayoutEffect(() => {
+        console.log(pageVerbData)
+
         if (refPageContent.current === null) return
 
         document.addEventListener('openModalExercise', (e) => {
@@ -191,7 +193,7 @@ export default function VerbsPage(params: IVerbsPage) {
             <h1>HEYY {params.nextSlug}</h1>
             <h1>{`Conjugations`}</h1>
             <div>
-                {[1, 2, 3].map((e, i) => {
+                {[1, 2].map((e, i) => {
                     return (
                         <CollapsibleTenses
                             texts={{ title: collapsiblesTense[i].title }}

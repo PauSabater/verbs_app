@@ -1,0 +1,25 @@
+.input {
+    --input-height: 40px;
+
+    box-sizing: border-box;
+    height: var(--input-height);
+    width: 100%;
+    font-size: var(--fs-global);
+    color: var(--c-font-global-light);
+    border-radius: 5px;
+    border: 1px solid var(--c-grey);
+    border-color: var(--c-grey);
+    padding: 0 var(--pd-lg);
+
+    &:focus {
+        border-color: var(--c-grey-dark);
+        outline-color: var(--c-grey-dark);
+    }
+}
+
+.feedback {
+    color: var(--c-font-global-light);
+    font-size: var(--fs-2xs);
+    margin: 0;
+}
+
