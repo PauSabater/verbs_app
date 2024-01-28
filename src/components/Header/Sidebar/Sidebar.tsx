@@ -28,11 +28,11 @@ export function Sidebar(props: ISidebar) {
                     <Link href={'/lessons/prasens'}>my exercises</Link>
                 </div>
                 <div className={styles.linkContainer}>
-                    <SVGBookmarkFilled isFilled={true} />
+                    <SVGBookmarkFilled isFilled={false} />
                     <Link href={'/lessons/prasens'}>my lessons</Link>
                 </div>
                 <div className={styles.linkContainer}>
-                    <SVGStarFilled isFilled={true} />
+                    <SVGStarFilled isFilled={false} />
                     <Link href={'/lessons/prasens'}>my verbs</Link>
                 </div>
                 <div className={`${styles.linkContainer} ${styles.linkAbsolute}`}>

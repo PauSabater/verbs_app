@@ -2,9 +2,10 @@ import { isError, isSuccess } from "@/utils/constants";
 import { ReactNode } from "react";
 
 export function SVGExercise({color}: {color?: string}) { return (
-    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.4 19.9L9.99998 18.5L13.55 14.95L5.04998 6.44998L1.49998 9.99998L0.0999756 8.59998L1.49998 7.14998L0.0999756 5.74998L2.19998 3.64998L0.799976 2.19998L2.19998 0.799976L3.64998 2.19998L5.74998 0.0999756L7.14998 1.49998L8.59998 0.0999756L9.99998 1.49998L6.44998 5.04998L14.95 13.55L18.5 9.99998L19.9 11.4L18.5 12.85L19.9 14.25L17.8 16.35L19.2 17.8L17.8 19.2L16.35 17.8L14.25 19.9L12.85 18.5L11.4 19.9Z"
-            fill={color || "currentColor"}
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+        <path
+            d="m539.846-94-45.999-46 142-142L282-635.847l-142 142-46-45.999 56.77-58-45.999-46 84-84-56-57.23 42.153-42.153 57.23 56 84-84 46 45.999 58-56.769L466.153-820l-142 142L678-324.153l142-142 45.999 45.999-56.769 58 45.999 46-84 84 56 57.23-42.153 42.153-57.23-56-84 84-46-45.999-58 56.77Z"
+            fill={color || 'currentColor'}
         />
     </svg>
 )}
@@ -104,7 +105,7 @@ export const SVGBookmarkFilled = ({ color, isFilled }: { color?: string; isFille
                 d="M5 1.5H31C33.2091 1.5 35 3.29086 35 5.5V46.0179C35 46.7897 34.1628 47.2706 33.4961 46.8817L21.0232 39.6058C19.155 38.5161 16.8449 38.5161 14.9768 39.6058L2.50387 46.8817C1.83721 47.2706 1 46.7897 1 46.0179V5.5C1 3.29086 2.79086 1.5 5 1.5Z"
                 fill={isFilled ? color || 'currentColor' : 'transparent'}
                 stroke={color || 'currentColor'}
-                stroke-width="2"
+                stroke-width="3"
             />
         </svg>
     )
@@ -113,7 +114,7 @@ export const SVGBookmarkFilled = ({ color, isFilled }: { color?: string; isFille
 export const SVGTheme = ({ color }: { color?: string }) => {
     return (
         <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="27" cy="27" r="25.5" stroke={color || 'currentColor'} stroke-width="3" />
+            <circle cx="27" cy="27" r="25.5" stroke={color || 'currentColor'} stroke-width="2" />
             <path
                 d="M52.5004 27C52.5004 40.5797 41.8855 51.6802 28.5004 52.4566C28.5002 36.747 28.5002 36.2914 28.5003 35.3653C28.5003 34.7398 28.5004 33.8997 28.5004 28L28.5004 19.0956L28.5004 1.54339C41.8855 2.31981 52.5004 13.4203 52.5004 27Z"
                 fill={color || 'currentColor'}
@@ -128,8 +129,13 @@ export const SVGTheme = ({ color }: { color?: string }) => {
 export const SVGStarFilled = ({ color, isFilled }: { color?: string, isFilled?: boolean }) => {
     return (
         <svg data-svg-starFilled viewBox="0 0 62 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M31 1.61804L37.7089 22.266L37.8212 22.6115H38.1844H59.895L42.3308 35.3726L42.0369 35.5861L42.1492 35.9316L48.8581 56.5795L31.2939 43.8184L31 43.6049L30.7061 43.8184L13.1419 56.5795L19.8508 35.9316L19.9631 35.5861L19.6692 35.3726L2.10503 22.6115H23.8156H24.1788L24.2911 22.266L31 1.61804Z" fill={isFilled ? color || 'currentColor' : 'transparent'} stroke={color || 'currentColor'}
-        /></svg>
+            <path
+                d="M31 1.61804L37.7089 22.266L37.8212 22.6115H38.1844H59.895L42.3308 35.3726L42.0369 35.5861L42.1492 35.9316L48.8581 56.5795L31.2939 43.8184L31 43.6049L30.7061 43.8184L13.1419 56.5795L19.8508 35.9316L19.9631 35.5861L19.6692 35.3726L2.10503 22.6115H23.8156H24.1788L24.2911 22.266L31 1.61804Z"
+                fill={isFilled ? color || 'currentColor' : 'transparent'}
+                stroke={color || 'currentColor'}
+                stroke-width="3"
+            />
+        </svg>
     )
 }
 
@@ -143,9 +149,9 @@ export const SVGAddFilled = ({ color }: { color?: string }) => {
 
 export const SVGAdd = ({ color }: { color?: string }) => {
     return (
-        <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22.5 3L22.5 42" stroke={color || 'currentColor'} stroke-width="6" stroke-linecap="round" />
-            <path d="M42 22.5L3 22.5" stroke={color || 'currentColor'} stroke-width="6" stroke-linecap="round" />
+        <svg viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 3L22.5 42" stroke={color || 'currentColor'} stroke-width="3" stroke-linecap="round" />
+            <path d="M42 22.5L3 22.5" stroke={color || 'currentColor'} stroke-width="3" stroke-linecap="round" />
         </svg>
     )
 }

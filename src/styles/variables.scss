@@ -3,8 +3,6 @@
 :root {
     --width-page-content: 100%;
 
-    background-color: black;
-
     @include mixins.desktop {
         --width-page-content: 900px;
     }

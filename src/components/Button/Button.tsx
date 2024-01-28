@@ -8,6 +8,7 @@ interface IButton {
     color?: TColor,
     size?: "lg",
     callback?: Function
+    type?: "submit" | "reset"
 }
 
 export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success" | "transparent"
@@ -26,13 +27,16 @@ export function Button(props: IButton) {
     }
 
     return (
-        <button className={`
+        <button
+            className={`
             ${styles.Button}
-            ${styles[props.color || "primaryDark"]}
-            ${styles[props.width || "fitContent"]}
-            ${styles[props.size || ""]}
+            ${styles[props.color || 'primaryDark']}
+            ${styles[props.width || 'fitContent']}
+            ${styles[props.size || '']}
         `}
-            onClick={()=> handleBtnClick()}>
+            type={props.type}
+            onClick={() => handleBtnClick()}
+        >
             {props.icon ? getIcon(props.icon) : null}
             {props.text}
         </button>

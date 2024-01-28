@@ -1,0 +1,47 @@
+.input {
+    --input-height: 40px;
+    --input-border-color: var(--c-grey)
+
+    box-sizing: border-box;
+    height: var(--input-height);
+    width: 100%;
+    font-size: var(--fs-global);
+    color: var(--c-font-global-light);
+    border-radius: 5px;
+    border: 1px solid var(--c-grey);
+    border-color: var(--input-border-color);
+    padding: 0 var(--pd-lg);
+
+    &:focus {
+        outline: 1px solid var(--input-border-color);
+
+        &[data-state='success'] {
+            border-color: var(--input-border-color);
+        }
+
+        &[data-state='error'] {
+            border-color: var(--input-border-color);
+        }
+    }
+
+    &[data-state='success'],
+    &[data-state='error'] {
+        outline: 1px solid var(--input-border-color);
+        color: var(--input-border-color);
+    }
+
+    &[data-state='success'] {
+        --input-border-color: var(--c-primary);
+    }
+
+    &[data-state='error'] {
+        --input-border-color: var(--c-error);
+    }
+}
+
+.feedback {
+    color: var(--c-font-global-light);
+    font-size: var(--fs-2xs);
+    margin: 0;
+}
+

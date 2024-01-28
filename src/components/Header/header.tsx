@@ -5,7 +5,7 @@ import { Button } from '../Button/Button'
 import SearchBar from '../SearchBar/SearchBar'
 import styles from './header.module.scss'
 import ModalExercises from '../ModalExercises/ModalExercises'
-import SignUp from '../SignUp/SignUp'
+import SignUp from '../Logging/SignUp/SignUp'
 import Link from 'next/link'
 import { Sidebar } from './Sidebar/Sidebar'
 
@@ -31,9 +31,9 @@ export default function Header() {
                 <div className={styles.background}></div>
                 <div className={styles.burgerContainer} onClick={()=> toggleSideBar()}>
                     <svg viewBox="0 0 44 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M41.5 2H2.5" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
-                        <path d="M42 15H3" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
-                        <path d="M41.5 28H2.5" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+                        <path d="M41.5 2H2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M42 15H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M41.5 28H2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                     </svg>
                 </div>
                 <div className={styles.searchBarContainer}>
