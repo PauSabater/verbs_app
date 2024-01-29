@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import { Fragment, ReactNode, Reducer, useEffect, useReducer, useRef } from 'react'
 import { sanitize } from 'isomorphic-dompurify'
 import styles from './exerciseConjugation.module.scss'
@@ -25,8 +25,8 @@ import { getAllVerbTenses } from '@/lib/getApiData'
  * @returns {ReactNode}
  */
 export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
-    console.log("EXERCISE CONJUG!!")
-    console.log(props)
+    // console.log("EXERCISE CONJUG!!")
+    // console.log(props)
 
     const [state, dispatch] = useReducer<Reducer<IExerciseConjugationState, TExerciseConjugationAction>>(reducer, {
         exerciseState: statesExerciseConjugation.filling,
@@ -127,6 +127,10 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             payload: isOpen
         })
     }
+
+    useLayoutEffect(()=>{
+        console.log("exercise render")
+    },[])
 
     // Array with the exercise inputs
     const refsInputs = [useRef<any>(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]

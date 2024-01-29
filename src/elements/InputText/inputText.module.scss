@@ -1,6 +1,6 @@
 .input {
     --input-height: 40px;
-    --input-border-color: var(--c-grey)
+    --input-border-color: var(--c-grey-light);
 
     box-sizing: border-box;
     height: var(--input-height);
@@ -8,11 +8,18 @@
     font-size: var(--fs-global);
     color: var(--c-font-global-light);
     border-radius: 5px;
-    border: 1px solid var(--c-grey);
-    border-color: var(--input-border-color);
+    border: 1px solid var(--input-border-color);
     padding: 0 var(--pd-lg);
+    outline-color: transparent;
+    transition: border-color var(--tr-base), outline-color var(--tr-base);
+
+    &:hover {
+        --input-border-color: var(--c-grey);
+    }
 
     &:focus {
+        --input-border-color: var(--c-grey);
+
         outline: 1px solid var(--input-border-color);
 
         &[data-state='success'] {
@@ -43,5 +50,9 @@
     color: var(--c-font-global-light);
     font-size: var(--fs-2xs);
     margin: 0;
+}
+
+.label {
+    font-size: var(--fs-sm);
 }
 

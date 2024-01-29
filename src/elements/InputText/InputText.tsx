@@ -6,6 +6,10 @@ import { useRef } from 'react'
 
 interface IInputText {
     /**
+     * Label for the input
+     */
+    label?: string
+    /**
      * The type of validation for the input
      */
     validationType: 'email' | 'password'
@@ -86,6 +90,7 @@ export function InputText(props: IInputText) {
 
     return (
         <>
+            <label className={styles.label}>{props.label}</label>
             <input
                 data-state={inputState}
                 ref={refInput}

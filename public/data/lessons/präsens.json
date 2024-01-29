@@ -1,8 +1,14 @@
 {
-    "datePublished": "Dec 21, 2023",
-    "dateUpdated": "",
-    "sections": [
-        {
+    "props": {
+        "tense": "präsens",
+        "title": "Das Präsens (German Present Tense): usage, conjugation and exercises",
+        "datePublished": "Dec 21, 2023",
+        "dateUpdated": "",
+        "level": "A1",
+        "tags": ["präsens"]
+    },
+    "verbsUsed": ["lesen", "trinken", "sein", "arbeiten", "haben", "werden", "könen", "mögen", "helfen", "geben", "screchen", "nehmen", "sehen", "stehlen", "schafen", "fahren", "raten", "laufen"],
+        "sections": [{
             "type": "h1-lesson",
             "content": "&#128218; &nbsp;The Präsens tense"
         },

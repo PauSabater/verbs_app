@@ -2,17 +2,17 @@
 
 :root {
     --width-page-content: 100%;
-
-    @include mixins.desktop {
-        --width-page-content: 900px;
-    }
-
-
+    --width-page-content-wide-resp: clamp(800px, 80vw, 1400px);
+    --width-page-wide-max: 1600px;
     --width-page-additional-content: 300px;
     // --width-page-content: 900px;
     --width-page-content-wider: calc(var(--width-page-content) + var(--width-page-additional-content));
     --width-page-content-text: 750px;
 
+    @include mixins.desktop {
+        --width-page-content: 900px;
+        --width-page-content-text: 700px;
+    }
 
 
     // padding

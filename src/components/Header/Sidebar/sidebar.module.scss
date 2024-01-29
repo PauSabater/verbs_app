@@ -59,11 +59,11 @@
         width: 20px;
         transition: color var(--tr-base);
 
-        &[data-svg-starFilled] {
+        &[data-svg-star-filled] {
             width: 22px;
         }
 
-        &[data-svg-bookmarkFilled] {
+        &[data-svg-bookmark-filled] {
             width: 13px;
         }
     }

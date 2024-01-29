@@ -8,6 +8,7 @@ import ModalExercises from '../ModalExercises/ModalExercises'
 import SignUp from '../Logging/SignUp/SignUp'
 import Link from 'next/link'
 import { Sidebar } from './Sidebar/Sidebar'
+import Logging from '../Logging/Logging'
 
 export default function Header() {
 
@@ -29,11 +30,11 @@ export default function Header() {
         <Fragment>
             <nav className={styles.header}>
                 <div className={styles.background}></div>
-                <div className={styles.burgerContainer} onClick={()=> toggleSideBar()}>
+                <div className={styles.burgerContainer} onClick={() => toggleSideBar()}>
                     <svg viewBox="0 0 44 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M41.5 2H2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        <path d="M42 15H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                        <path d="M41.5 28H2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                        <path d="M41.5 2H2.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        <path d="M42 15H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        <path d="M41.5 28H2.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     </svg>
                 </div>
                 <div className={styles.searchBarContainer}>
@@ -49,7 +50,7 @@ export default function Header() {
                     <Link href={'/lessons'}>lessons</Link>
                 </div>
             </nav>
-            <Sidebar isOpen={isSidebarOpen}/>
+            <Sidebar isOpen={isSidebarOpen} />
             <ModalExercises
                 text={''}
                 open={isSignUpOpen}
@@ -59,7 +60,7 @@ export default function Header() {
                 isSignUp={true}
                 padding={'paddingBase'}
             >
-                <SignUp></SignUp>
+                <Logging></Logging>
             </ModalExercises>
         </Fragment>
     )

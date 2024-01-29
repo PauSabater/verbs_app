@@ -41,6 +41,7 @@ export function LessonPage(props: ILessonPage) {
     }
 
     const callbackOpenModal = () => {
+        console.log("HEY CLICK!!")
         setIsModalOpen(true)
     }
 

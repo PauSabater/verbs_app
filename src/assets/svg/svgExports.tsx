@@ -13,8 +13,8 @@ export function SVGExercise({color}: {color?: string}) { return (
 export function SVGRepeat({color}: {color?: string}) { return (
     <svg viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.25 7.24999C15.4256 7.24999 17.5523 7.89513 19.3613 9.10383C21.1702 10.3125 22.5801 12.0305 23.4127 14.0405C24.2452 16.0505 24.4631 18.2622 24.0386 20.396C23.6142 22.5298 22.5666 24.4898 21.0282 26.0282C19.4898 27.5665 17.5298 28.6142 15.396 29.0386C13.2622 29.4631 11.0505 29.2452 9.04048 28.4127C7.03049 27.5801 5.31253 26.1702 4.10383 24.3613C2.89514 22.5523 2.25 20.4256 2.25 18.25"
-            stroke={color || "currentColor"} strokeWidth="3.5" stroke-linecap="round"/>
-        <path d="M16 12L12 7.5L16 3" stroke={color || "currentColor"} strokeWidth="3" stroke-linecap="square"/>
+            stroke={color || "currentColor"} strokeWidth="3.5" strokeLinecap="round"/>
+        <path d="M16 12L12 7.5L16 3" stroke={color || "currentColor"} strokeWidth="3" strokeLinecap="square"/>
     </svg>
 )}
 
@@ -100,12 +100,12 @@ export const SVGBookmark = ({color}: {color?: string})=> { return (
 
 export const SVGBookmarkFilled = ({ color, isFilled }: { color?: string; isFilled?: boolean }) => {
     return (
-        <svg data-svg-bookmarkFilled viewBox="0 0 36 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg data-svg-bookmark-filled viewBox="0 0 36 49" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M5 1.5H31C33.2091 1.5 35 3.29086 35 5.5V46.0179C35 46.7897 34.1628 47.2706 33.4961 46.8817L21.0232 39.6058C19.155 38.5161 16.8449 38.5161 14.9768 39.6058L2.50387 46.8817C1.83721 47.2706 1 46.7897 1 46.0179V5.5C1 3.29086 2.79086 1.5 5 1.5Z"
                 fill={isFilled ? color || 'currentColor' : 'transparent'}
                 stroke={color || 'currentColor'}
-                stroke-width="3"
+                strokeWidth="3"
             />
         </svg>
     )
@@ -114,12 +114,12 @@ export const SVGBookmarkFilled = ({ color, isFilled }: { color?: string; isFille
 export const SVGTheme = ({ color }: { color?: string }) => {
     return (
         <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="27" cy="27" r="25.5" stroke={color || 'currentColor'} stroke-width="2" />
+            <circle cx="27" cy="27" r="25.5" stroke={color || 'currentColor'} strokeWidth="2" />
             <path
                 d="M52.5004 27C52.5004 40.5797 41.8855 51.6802 28.5004 52.4566C28.5002 36.747 28.5002 36.2914 28.5003 35.3653C28.5003 34.7398 28.5004 33.8997 28.5004 28L28.5004 19.0956L28.5004 1.54339C41.8855 2.31981 52.5004 13.4203 52.5004 27Z"
                 fill={color || 'currentColor'}
                 stroke={color || 'currentColor'}
-                stroke-width="3"
+                strokeWidth="3"
             />
         </svg>
     )
@@ -128,12 +128,12 @@ export const SVGTheme = ({ color }: { color?: string }) => {
 
 export const SVGStarFilled = ({ color, isFilled }: { color?: string, isFilled?: boolean }) => {
     return (
-        <svg data-svg-starFilled viewBox="0 0 62 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg data-svg-star-filled viewBox="0 0 62 58" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M31 1.61804L37.7089 22.266L37.8212 22.6115H38.1844H59.895L42.3308 35.3726L42.0369 35.5861L42.1492 35.9316L48.8581 56.5795L31.2939 43.8184L31 43.6049L30.7061 43.8184L13.1419 56.5795L19.8508 35.9316L19.9631 35.5861L19.6692 35.3726L2.10503 22.6115H23.8156H24.1788L24.2911 22.266L31 1.61804Z"
                 fill={isFilled ? color || 'currentColor' : 'transparent'}
                 stroke={color || 'currentColor'}
-                stroke-width="3"
+                strokeWidth="3"
             />
         </svg>
     )
@@ -150,8 +150,8 @@ export const SVGAddFilled = ({ color }: { color?: string }) => {
 export const SVGAdd = ({ color }: { color?: string }) => {
     return (
         <svg viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M22.5 3L22.5 42" stroke={color || 'currentColor'} stroke-width="3" stroke-linecap="round" />
-            <path d="M42 22.5L3 22.5" stroke={color || 'currentColor'} stroke-width="3" stroke-linecap="round" />
+            <path d="M22.5 3L22.5 42" stroke={color || 'currentColor'} strokeWidth="3" strokeLinecap="round" />
+            <path d="M42 22.5L3 22.5" stroke={color || 'currentColor'} strokeWidth="3" strokeLinecap="round" />
         </svg>
     )
 }
