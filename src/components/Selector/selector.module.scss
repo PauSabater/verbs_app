@@ -1,5 +1,6 @@
 .container {
     --pd-left-selector: calc(var(--pd-lg) + 5px);
+
     display: inline;
     position: relative;
 }
@@ -16,13 +17,15 @@
     font-size: inherit;
     white-space: nowrap;
     color: currentColor;
-    // background-color: var(--c-primary-lighter);
-    // background: rgb(34,193,195);
-    // background: linear-gradient(0deg, transparent 0%, var(--c-primary-lighter) 120%);
     background-color: transparent;
     border: 2px solid var(--c-primary-lighter-hover);
     appearance: none;
+    margin: var(--selector-mg);
     transition: background-color var(--tr-base);
+
+    &.fullwidth {
+        width: 100%;
+    }
 
     &:hover {
         background-color: var(--c-primary-lighter);
@@ -39,14 +42,13 @@
         width: 15px;
         transform: translateY(-50%);
         transition: transform var(--tr-base);
+        color: var(--selector-c-svg);
     }
 
-    &[aria-expanded="true"] svg {
+    &[aria-expanded='true'] svg {
         pointer-events: all;
-        transform:  translateY(-50%) scaleY(-1);
+        transform: translateY(-50%) scaleY(-1);
     }
-
-
 }
 
 .selectedValue {
@@ -54,7 +56,8 @@
     align-self: end;
 }
 
-.primary, .primary svg {
+.primary,
+.primary svg {
     color: var(--c-primary);
 }
 
@@ -71,7 +74,7 @@
     min-width: 250px;
     width: max-content;
     opacity: 0;
-    top: var(--height-selector);
+    top: calc(var(--height-selector) - 2px);
     left: 0;
     margin: 0;
     padding: var(--mg-lg) 0;
@@ -83,6 +86,10 @@
     box-shadow: -1px 1px 8px -3px var(--c-primary-light);
     z-index: 100;
     transition: opacity var(--tr-faster);
+
+    &.fullwidth {
+        width: calc(100% - 4px);
+    }
 
     &.expanded {
         pointer-events: all;
@@ -123,7 +130,7 @@
     cursor: pointer;
     display: block;
     // background: red;
-    width: fill-available;
+    width: stretch;
     width: -moz-available;
     padding: 3px var(--pd-left-selector);
     font-weight: 400;
@@ -132,7 +139,7 @@
     // transition-delay: var(--tr-base);
 }
 
-.input[type="radio"] {
+.input[type='radio'] {
     position: absolute;
     left: 0;
     opacity: 0;
@@ -150,8 +157,6 @@
 .input ~ .label:hover {
     background-color: var(--c-grey-lighter);
 }
-
-
 
 // .weight500 {
 //     font-weight: 500;

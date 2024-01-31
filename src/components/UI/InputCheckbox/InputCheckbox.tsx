@@ -17,7 +17,6 @@ export default function InputCheckbox(props: {
 
     const shouldInputBeChecked = ()=> {
         if (props.localstorageKey && props.localstorageValue) {
-            console.log("lets go!!")
             const isChecked = checkLocalstorageItem(props.localstorageKey, props.localstorageValue)
             if (props.callbackOnChecked) props.callbackOnChecked(props.label, isChecked)
             return isChecked

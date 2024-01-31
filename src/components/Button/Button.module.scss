@@ -1,7 +1,9 @@
 .Button {
     --btn-height: 50px;
+    --btn-fs: var(--btn-fs, var(--fs-global));
 
     cursor: pointer;
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -11,11 +13,12 @@
     padding: 0 var(--pd-xl);
     margin: var(--btn-mg);
     border-radius: 10px;
-    font-size: var(--fs-global);
+    font-size: var(--btn-fs);
     font-weight: 500;
     color: var(--c-white);
     border: none;
     transition: background var(--tr-base);
+    // background-color: ;
 
     svg {
         width: 20px;
@@ -90,6 +93,11 @@
     }
 }
 
+.transparent {
+    background-color: transparent;
+    color: var(--c-font-global);
+}
+
 .secondaryReverse {
     color: var(--c-secondary);
     border: 2px solid var(--c-secondary);
@@ -129,17 +137,40 @@
 }
 
 .fullWidth {
-    width: -moz-available;
+    width: stretch;
     text-align: center;
     justify-content: center;
 }
 
 .inactive {
-    pointer-events: none;
+    pointer-events: all;
     background-color: var(--c-grey-light);
 }
 
 .lg {
     --btn-height: 60px;
     font-size: var(--fs-lg);
+}
+
+.xs {
+    --btn-height: 35px;
+    font-size: var(--fs-2xs);
+}
+
+.xsSquare {
+    --btn-height: 35px;
+    width: var(--btn-height);
+    padding: 0;
+    margin: 0;
+
+    svg {
+        height: 17px;
+        margin: auto;
+        transform: none;
+    }
+
+    &:hover svg {
+        transform: scale(1.2);
+    }
+
 }

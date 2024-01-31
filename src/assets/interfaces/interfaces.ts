@@ -1,4 +1,20 @@
 
+export interface IVerbProperties {
+    level: string
+    verbHTML: string
+    stemFormationHTML: string
+    isIrregular: boolean
+    isSeparable: boolean
+    auxiliary: string
+    translations: {
+        en: string
+        es: string
+        fr: string
+        de: string
+    }
+}
+
+
 export interface IVerbData {
     url: string,
     verb: string,

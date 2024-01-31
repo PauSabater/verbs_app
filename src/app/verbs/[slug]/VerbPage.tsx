@@ -1,23 +1,24 @@
 'use client'
 
-import VerbTable from "@/components/VerbTable/VerbTable"
-import { CollapsibleTenses } from "@/components/CollapsibleTenses/CollapsibleTenses"
+import VerbTable from '@/components/VerbTable/VerbTable'
+import { CollapsibleTenses } from '@/components/CollapsibleTenses/CollapsibleTenses'
 import styles from './verb.module.scss'
-import { ModalExercises } from "@/components/ModalExercises/ModalExercises"
-import { Fragment, Reducer, useEffect, useLayoutEffect, useRef, useState } from "react"
-import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation"
-import { ISelectorDropdownOptions, Selector } from "@/components/Selector/Selector"
-import VerbHeader from "@/components/VerbHeader/VerbHeader"
-import { getOptionsDropdown, getUtteraceInstance, setLocalstorageItem, verbsTenseException } from "@/utils/utils"
-import { ExerciseCheckboxList } from "@/components/ExerciseCheckboxList/ExerciseCheckboxList"
+import ModalExercises from '@/components/ModalExercises/ModalExercises'
+import { Fragment, Reducer, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { ExerciseConjugation } from '@/components/ExerciseConjugation/ExerciseConjugation'
+import { ISelectorDropdownOptions, Selector } from '@/components/Selector/Selector'
+import VerbHeader from '@/components/VerbHeader/VerbHeader'
+import { getOptionsDropdown, getUtteraceInstance, setLocalstorageItem, verbsTenseException } from '@/utils/utils'
+import { ExerciseCheckboxList } from '@/components/ExerciseCheckboxList/ExerciseCheckboxList'
 import { useReducer } from 'react'
-import { IPageState, TPageAction, actions, reducer } from "./pageReducer"
-import Lesson from "@/components/Lesson/Lesson"
-import { getTenseFromTenseName } from "@/components/ExerciseConjugation/ExerciseConjugation.exports"
+import { IPageState, TPageAction, actions, reducer } from './pageReducer'
+import Lesson from '@/components/Lesson/Lesson'
+import { getTenseFromTenseName } from '@/components/ExerciseConjugation/ExerciseConjugation.exports'
 
 interface IVerbsPage {
-    slug: string,
-    data: any,
+    slug: string
+    nextSlug: string
+    data: any
     texts: any
 }
 
@@ -37,72 +38,77 @@ export default function VerbsPage(params: IVerbsPage) {
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null)
     const refModal = useRef(null)
     const refPageContent = useRef(null)
-    const pageVerbData = JSON.parse(params.data).props.verbData
-    const collapsiblesTense =  verbsTenseException.includes(pageVerbData.verb)
+    const pageVerbData = JSON.parse(params.data).props.verbData.verb
+    const collapsiblesTense = verbsTenseException.includes(pageVerbData.verb)
         ? pageVerbsTexts.collapsiblesException
         : pageVerbsTexts.collapsibles
 
     useLayoutEffect(() => {
+        console.log(pageVerbData)
 
         if (refPageContent.current === null) return
 
-        document.addEventListener(
-            "openModalExercise", (e) => {
-                e.stopPropagation()
-                setExerciseTense((e as any).detail.tense)
-                setSelectedTensesFromCheckboxList([])
-                openConjugationExercise()
-            }
-        )
+        document.addEventListener('openModalExercise', (e) => {
+            e.stopPropagation()
+            setExerciseTense((e as any).detail.tense)
+            setSelectedTensesFromCheckboxList([])
+            openConjugationExercise()
+        })
 
-        getUtteraceInstance()
-            .then((utterance)=> {
-                setUtterance(utterance)
-            })
+        getUtteraceInstance().then((utterance) => {
+            setUtterance(utterance)
+        })
     }, [])
 
     // Action when tenses list selection has been confirmed
-    useEffect(()=> {
+    useEffect(() => {
         if (state.selectedTensesFromCheckboxList.length > 0) {
             openTensesCheckboxList()
         }
     }, [state.selectedTensesFromCheckboxList])
 
+    const openConjugationExercise = () =>
+        dispatch({
+            type: actions.OPEN_CONJUGATION_EXERCISE
+        })
 
-    const openConjugationExercise = ()=> dispatch({
-        type: actions.OPEN_CONJUGATION_EXERCISE
-    })
+    const closeConjugationExercise = () =>
+        dispatch({
+            type: actions.CLOSE_CONJUGATION_EXERCISE
+        })
 
-    const closeConjugationExercise = ()=> dispatch({
-        type: actions.CLOSE_CONJUGATION_EXERCISE
-    })
+    const openTensesCheckboxList = () =>
+        dispatch({
+            type: actions.OPEN_TENSES_CHECKBOXLIST
+        })
 
-    const openTensesCheckboxList = ()=> dispatch({
-        type: actions.OPEN_TENSES_CHECKBOXLIST
-    })
+    const closeTensesCheckboxList = () =>
+        dispatch({
+            type: actions.CLOSE_TENSES_CHECKBOXLIST
+        })
 
-    const closeTensesCheckboxList = ()=> dispatch({
-        type: actions.CLOSE_TENSES_CHECKBOXLIST
-    })
+    const openModalLesson = (lesson: string) =>
+        dispatch({
+            type: actions.OPEN_MODAL_LESSON,
+            payload: lesson
+        })
 
-    const openModalLesson = (lesson: string)=> dispatch({
-        type: actions.OPEN_MODAL_LESSON,
-        payload: lesson
-    })
+    const closeModalLesson = () =>
+        dispatch({
+            type: actions.CLOSE_MODAL_LESSON
+        })
 
-    const closeModalLesson = ()=> dispatch({
-        type: actions.CLOSE_MODAL_LESSON
-    })
+    const setExerciseTense = (tense: string) =>
+        dispatch({
+            type: actions.SET_EXERCISE_TENSE,
+            payload: tense
+        })
 
-    const setExerciseTense = (tense: string)=> dispatch({
-        type: actions.SET_EXERCISE_TENSE,
-        payload: tense
-    })
-
-    const setExerciseTensesCheckboxList = (options: ISelectorDropdownOptions[] | null)=> dispatch({
-        type: actions.SET_TENSES_CHECKBOXLIST,
-        payload: options as ISelectorDropdownOptions[]
-    })
+    const setExerciseTensesCheckboxList = (options: ISelectorDropdownOptions[] | null) =>
+        dispatch({
+            type: actions.SET_TENSES_CHECKBOXLIST,
+            payload: options as ISelectorDropdownOptions[]
+        })
 
     const setSelectedTensesFromCheckboxList = (tenses: string[]) => {
         setLocalstorageItem('selectedTenses', tenses)
@@ -112,16 +118,16 @@ export default function VerbsPage(params: IVerbsPage) {
         })
     }
 
-    const triggerExerciseCheckboxListModal = (itemsList: ISelectorDropdownOptions[])=> {
+    const triggerExerciseCheckboxListModal = (itemsList: ISelectorDropdownOptions[]) => {
         setExerciseTensesCheckboxList(itemsList)
         openTensesCheckboxList()
     }
 
-    const btnCollapsiblesAction = ()=> {
-        console.log("COLLAPSIBLES ACTION!!")
+    const btnCollapsiblesAction = () => {
+        console.log('COLLAPSIBLES ACTION!!')
     }
 
-    const verbHeaderProps = ()=> {
+    const verbHeaderProps = () => {
         return {
             button: pageVerbsTexts.btnPractice,
             verb: pageVerbData.verb,
@@ -137,111 +143,110 @@ export default function VerbsPage(params: IVerbsPage) {
         }
     }
 
-    const callbackCloseModal = ()=> {
+    const callbackCloseModal = () => {
         closeTensesCheckboxList()
         closeConjugationExercise()
     }
 
-    const callbackOnExerciseCheckboxListConfirm = (selectedTensesList: string[])=> {
+    const callbackOnExerciseCheckboxListConfirm = (selectedTensesList: string[]) => {
         setSelectedTensesFromCheckboxList(selectedTensesList)
         closeTensesCheckboxList()
         openConjugationExercise()
     }
 
     const ExerciseContent = (): React.JSX.Element => {
-        return ( (state.exerciseTense) || state.selectedTensesFromCheckboxList.length > 0
-            ?   <ExerciseConjugation
-                    verb={pageVerbData.verb}
-                    tensesDropdown={collapsiblesTense}
-                    texts={pageVerbsTexts.exerciseText}
-                    tenseExercise={state.exerciseTense}
-                    allTenses={pageVerbData.data.tenses}
-                    selectedTenses={state.selectedTensesFromCheckboxList}
-                ></ExerciseConjugation>
-            :   <Fragment />
+        console.log("TRY TO RENDER EXERCISE")
+        console.log(state.exerciseTense)
+        console.log(state.selectedTensesFromCheckboxList)
+
+        return state.exerciseTense || state.selectedTensesFromCheckboxList.length > 0 ? (
+            <ExerciseConjugation
+                verb={pageVerbData.verb}
+                tensesDropdown={collapsiblesTense}
+                texts={pageVerbsTexts.exerciseText}
+                tenseExercise={state.exerciseTense}
+                allTenses={pageVerbData.data.tenses}
+                selectedTenses={state.selectedTensesFromCheckboxList}
+            ></ExerciseConjugation>
+        ) : (
+            <Fragment />
         )
     }
 
     const ExerciseListCheckboxes = (): React.JSX.Element =>
-        state.exerciseTensesCheckboxList
-            ?   <ExerciseCheckboxList
-                    statement={pageVerbsTexts.exerciseConjugation.statement}
-                    items={state.exerciseTensesCheckboxList}
-                    callbackOnConfirm={callbackOnExerciseCheckboxListConfirm}
-                ></ExerciseCheckboxList>
-            :   <></>
+        state.exerciseTensesCheckboxList ? (
+            <ExerciseCheckboxList
+                statement={pageVerbsTexts.exerciseConjugation.statement}
+                items={state.exerciseTensesCheckboxList}
+                callbackOnConfirm={callbackOnExerciseCheckboxListConfirm}
+            ></ExerciseCheckboxList>
+        ) : (
+            <></>
+        )
 
-    const callbackCloseModalLesson = ()=> {
+    const callbackCloseModalLesson = () => {}
 
-    }
-
-    const onLessonOpen = ()=> {
+    const onLessonOpen = () => {
         openModalLesson('präsens')
     }
 
-
-    return (
-        pageVerbData ?
-            <div className={styles.pageContent} ref={refPageContent}>
-                <div>My Post: {params.slug}</div>
-                <VerbHeader {...verbHeaderProps()}></VerbHeader>
-                <h1>{`Conjugations`}</h1>
-                <div>
-                    { [1, 2, 3].map((e, i) => {
-                        return (
-                            <CollapsibleTenses
-                                texts={{title: collapsiblesTense[i].title}}
-                                action={btnCollapsiblesAction}
-                                tenses={collapsiblesTense[i].tenses}
-                                examples={pageVerbData.examples}
-                                utterance={utterance}
-                            >
-                                {
-                                    (collapsiblesTense[i].tenses as string[]).map((tableTense, i) => {
-                                        return (
-                                            <VerbTable
-                                                key={tableTense}
-                                                // mode={"indicative"}
-                                                verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense)}
-                                                callbackLessonOpen={onLessonOpen}
-                                                utterance={utterance}
-                                            ></VerbTable>
-                                        )
-                                    })
-                                }
-                            </CollapsibleTenses>
-                        )
-                    })
-
-                    }
-
-                    <ModalExercises
-                        text={""}
-                        open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
-                        ref={refModal}
-                        callbackClose={callbackCloseModal}
-                    >
-                        {state.isExerciseConjugationOpen === true
-                            ? <ExerciseContent />
-                            : state.isCheckboxListOpen ? <ExerciseListCheckboxes/> : ''
-                        }
-                    </ModalExercises>
-
-                    <ModalExercises
-                        text={""}
-                        open={state.isModalLessonOpen}
-                        // ref={refModalLesson}
-                        callbackClose={closeModalLesson}
-                        widerVersion={true}
-                        padding={'paddingBase'}
-                    >
-                        <Lesson
-                            lesson={"präsens"}
+    return pageVerbData ? (
+        <div className={styles.pageContent} ref={refPageContent}>
+            {/* <div>My Post: {params.slug}</div> */}
+            <VerbHeader {...verbHeaderProps()}></VerbHeader>
+            <h1>HEYY {params.nextSlug}</h1>
+            <h1>{`Conjugations`}</h1>
+            <div>
+                {[1, 2].map((e, i) => {
+                    return (
+                        <CollapsibleTenses
+                            texts={{ title: collapsiblesTense[i].title }}
+                            action={btnCollapsiblesAction}
+                            tenses={collapsiblesTense[i].tenses}
+                            examples={pageVerbData.examples}
                             utterance={utterance}
-                        />
-                    </ModalExercises>
-                </div>
+                            key={`tenses-table-${i}`}
+                        >
+                            {(collapsiblesTense[i].tenses as string[]).map((tableTense, i) => {
+                                return (
+                                    <VerbTable
+                                        key={tableTense}
+                                        tense={tableTense}
+                                        // mode={"indicative"}
+                                        verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense)}
+                                        callbackLessonOpen={onLessonOpen}
+                                        utterance={utterance}
+                                    ></VerbTable>
+                                )
+                            })}
+                        </CollapsibleTenses>
+                    )
+                })}
+
+                <ModalExercises
+                    text={''}
+                    open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
+                    ref={refModal}
+                    callbackClose={callbackCloseModal}
+                >
+                    {state.isExerciseConjugationOpen === true
+                        ? <ExerciseContent /> : state.isCheckboxListOpen
+                        ? <ExerciseListCheckboxes /> : ''
+                    }
+                </ModalExercises>
+
+                <ModalExercises
+                    text={''}
+                    open={state.isModalLessonOpen}
+                    callbackClose={closeModalLesson}
+                    widerVersion={true}
+                    padding={'paddingBase'}
+                >
+                    <Lesson lesson={'präsens'} utterance={utterance} />
+                </ModalExercises>
             </div>
-        : <></>
+        </div>
+    ) : (
+        <></>
     )
 }

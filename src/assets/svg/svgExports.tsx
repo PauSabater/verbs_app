@@ -2,9 +2,10 @@ import { isError, isSuccess } from "@/utils/constants";
 import { ReactNode } from "react";
 
 export function SVGExercise({color}: {color?: string}) { return (
-    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M11.4 19.9L9.99998 18.5L13.55 14.95L5.04998 6.44998L1.49998 9.99998L0.0999756 8.59998L1.49998 7.14998L0.0999756 5.74998L2.19998 3.64998L0.799976 2.19998L2.19998 0.799976L3.64998 2.19998L5.74998 0.0999756L7.14998 1.49998L8.59998 0.0999756L9.99998 1.49998L6.44998 5.04998L14.95 13.55L18.5 9.99998L19.9 11.4L18.5 12.85L19.9 14.25L17.8 16.35L19.2 17.8L17.8 19.2L16.35 17.8L14.25 19.9L12.85 18.5L11.4 19.9Z"
-            fill={color || "currentColor"}
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+        <path
+            d="m539.846-94-45.999-46 142-142L282-635.847l-142 142-46-45.999 56.77-58-45.999-46 84-84-56-57.23 42.153-42.153 57.23 56 84-84 46 45.999 58-56.769L466.153-820l-142 142L678-324.153l142-142 45.999 45.999-56.769 58 45.999 46-84 84 56 57.23-42.153 42.153-57.23-56-84 84-46-45.999-58 56.77Z"
+            fill={color || 'currentColor'}
         />
     </svg>
 )}
@@ -12,8 +13,8 @@ export function SVGExercise({color}: {color?: string}) { return (
 export function SVGRepeat({color}: {color?: string}) { return (
     <svg viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.25 7.24999C15.4256 7.24999 17.5523 7.89513 19.3613 9.10383C21.1702 10.3125 22.5801 12.0305 23.4127 14.0405C24.2452 16.0505 24.4631 18.2622 24.0386 20.396C23.6142 22.5298 22.5666 24.4898 21.0282 26.0282C19.4898 27.5665 17.5298 28.6142 15.396 29.0386C13.2622 29.4631 11.0505 29.2452 9.04048 28.4127C7.03049 27.5801 5.31253 26.1702 4.10383 24.3613C2.89514 22.5523 2.25 20.4256 2.25 18.25"
-            stroke={color || "currentColor"} strokeWidth="3.5" stroke-linecap="round"/>
-        <path d="M16 12L12 7.5L16 3" stroke={color || "currentColor"} strokeWidth="3" stroke-linecap="square"/>
+            stroke={color || "currentColor"} strokeWidth="3.5" strokeLinecap="round"/>
+        <path d="M16 12L12 7.5L16 3" stroke={color || "currentColor"} strokeWidth="3" strokeLinecap="square"/>
     </svg>
 )}
 
@@ -97,6 +98,66 @@ export const SVGBookmark = ({color}: {color?: string})=> { return (
 
 )}
 
+export const SVGBookmarkFilled = ({ color, isFilled }: { color?: string; isFilled?: boolean }) => {
+    return (
+        <svg data-svg-bookmark-filled viewBox="0 0 36 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M5 1.5H31C33.2091 1.5 35 3.29086 35 5.5V46.0179C35 46.7897 34.1628 47.2706 33.4961 46.8817L21.0232 39.6058C19.155 38.5161 16.8449 38.5161 14.9768 39.6058L2.50387 46.8817C1.83721 47.2706 1 46.7897 1 46.0179V5.5C1 3.29086 2.79086 1.5 5 1.5Z"
+                fill={isFilled ? color || 'currentColor' : 'transparent'}
+                stroke={color || 'currentColor'}
+                strokeWidth="3"
+            />
+        </svg>
+    )
+}
+
+export const SVGTheme = ({ color }: { color?: string }) => {
+    return (
+        <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="27" cy="27" r="25.5" stroke={color || 'currentColor'} strokeWidth="2" />
+            <path
+                d="M52.5004 27C52.5004 40.5797 41.8855 51.6802 28.5004 52.4566C28.5002 36.747 28.5002 36.2914 28.5003 35.3653C28.5003 34.7398 28.5004 33.8997 28.5004 28L28.5004 19.0956L28.5004 1.54339C41.8855 2.31981 52.5004 13.4203 52.5004 27Z"
+                fill={color || 'currentColor'}
+                stroke={color || 'currentColor'}
+                strokeWidth="3"
+            />
+        </svg>
+    )
+}
+
+
+export const SVGStarFilled = ({ color, isFilled }: { color?: string, isFilled?: boolean }) => {
+    return (
+        <svg data-svg-star-filled viewBox="0 0 62 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M31 1.61804L37.7089 22.266L37.8212 22.6115H38.1844H59.895L42.3308 35.3726L42.0369 35.5861L42.1492 35.9316L48.8581 56.5795L31.2939 43.8184L31 43.6049L30.7061 43.8184L13.1419 56.5795L19.8508 35.9316L19.9631 35.5861L19.6692 35.3726L2.10503 22.6115H23.8156H24.1788L24.2911 22.266L31 1.61804Z"
+                fill={isFilled ? color || 'currentColor' : 'transparent'}
+                stroke={color || 'currentColor'}
+                strokeWidth="3"
+            />
+        </svg>
+    )
+}
+
+export const SVGAddFilled = ({ color }: { color?: string }) => {
+    return (
+        <svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M58 29C58 45.0162 45.0162 58 29 58C12.9838 58 0 45.0162 0 29C0 12.9838 12.9838 0 29 0C45.0162 0 58 12.9838 58 29ZM29 5C31.4852 5 33.5 7.01477 33.5 9.5V24.5H48.5C50.9852 24.5 53 26.5148 53 29C53 31.4852 50.9852 33.5 48.5 33.5H33.5V48.5C33.5 50.9852 31.4852 53 29 53C26.5148 53 24.5 50.9852 24.5 48.5V33.5H9.5C7.01477 33.5 5 31.4852 5 29C5 26.5148 7.01477 24.5 9.5 24.5H24.5V9.5C24.5 7.01477 26.5148 5 29 5Z" fill={color || 'currentColor'}/>
+        </svg>
+    )
+}
+
+export const SVGAdd = ({ color }: { color?: string }) => {
+    return (
+        <svg viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.5 3L22.5 42" stroke={color || 'currentColor'} strokeWidth="3" strokeLinecap="round" />
+            <path d="M42 22.5L3 22.5" stroke={color || 'currentColor'} strokeWidth="3" strokeLinecap="round" />
+        </svg>
+    )
+}
+
+
+
 export const SVGFacebook = ({bg}: {bg?: string})=> {
     return (
         <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -177,6 +238,54 @@ export const SVGLinkedIn = ({bg}: {bg?: string}) => {
             </defs>
         </svg>
 
+    )
+}
+
+
+export const SVGSearch = ({ color }: { color?: string }) => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path
+                d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+                fill={color || 'currentColor'}
+            />
+        </svg>
+    )
+}
+
+export const SVGFilter = ({ color }: { color?: string }) => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path
+                d="M200-160v-280h-80v-80h240v80h-80v280h-80Zm0-440v-200h80v200h-80Zm160 0v-80h80v-120h80v120h80v80H360Zm80 440v-360h80v360h-80Zm240 0v-120h-80v-80h240v80h-80v120h-80Zm0-280v-360h80v360h-80Z"
+                fill={color || 'currentColor'}
+            />
+        </svg>
+    )
+}
+
+
+export const SVGLink = ({ color }: { color?: string }) => {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path
+                d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"
+                fill={color || 'currentColor'}
+            />
+        </svg>
+    )
+}
+
+
+export const SVGStar = ({ color }: { color?: string }) => {
+    return (
+        <svg viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+                d="M10.5 1.61804L12.3819 7.40983L12.4941 7.75532H12.8574H18.9473L14.0205 11.3348L13.7266 11.5484L13.8388 11.8939L15.7207 17.6857L10.7939 14.1061L10.5 13.8926L10.2061 14.1061L5.27931 17.6857L7.16118 11.8939L7.27344 11.5484L6.97954 11.3348L2.05275 7.75532H8.1426H8.50587L8.61813 7.40983L10.5 1.61804Z"
+                stroke={color || 'currentColor'}
+                strokeWidth={1}
+            />
+        </svg>
     )
 }
 

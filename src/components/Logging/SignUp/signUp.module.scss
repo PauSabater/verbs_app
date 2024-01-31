@@ -1,0 +1,21 @@
+.title {
+    font-size: var(--fs-3xl);
+    color: var(--c-global-font-light);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.switch {
+    text-align: center;
+
+    span {
+        cursor: pointer;
+        color: var(--c-primary);
+        font-weight: var(--fw-medium);
+        transition: color var(--tr-base);
+
+        &:hover {
+            color: var(--c-primary-dark);
+        }
+    }
+}

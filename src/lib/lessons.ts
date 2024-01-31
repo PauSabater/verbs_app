@@ -1,10 +1,10 @@
-
-
 export async function getLessonData(lesson: string) {
+    let lessonWithUmlaut = lesson
+    if ((lesson = 'prasens')) lessonWithUmlaut = 'präsens'
+    if ((lesson = 'praterium')) lessonWithUmlaut = 'präterium'
 
     let lessonData
-    await import(`../../public/data/lessons/${lesson}.json`)
-    .then(result => {
+    await import(`../../public/data/lessons/${lessonWithUmlaut}.json`).then((result) => {
         lessonData = result
     })
 
@@ -12,7 +12,7 @@ export async function getLessonData(lesson: string) {
     // will receive `posts` as a prop at build time
     return {
         props: {
-            lessonData,
-        },
+            lessonData
+        }
     }
 }

@@ -36,8 +36,15 @@
     left: 0;
     opacity: 0;
     background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(0);
     transition: opacity var(--tr-base);
+
+    &.blurred {
+        backdrop-filter: blur(0);
+    }
+
+    &.dark {
+        background: rgba(0, 0, 0, 0.2);
+    }
 }
 
 .wrapRelative {
@@ -66,6 +73,10 @@
 
     &.widerVersion {
         max-width: 850px;
+    }
+
+    &.signUpVersion {
+        max-width: 700px;
     }
 
     &.paddingBase {

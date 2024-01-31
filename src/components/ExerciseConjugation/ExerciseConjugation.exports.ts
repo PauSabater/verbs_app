@@ -94,11 +94,11 @@ export const getButtonColor = (state: string, isLastExercise: boolean, isSecondB
 }
 
 export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: string): IConjugation[] | undefined => {
-    const tenseToFind = tableTense === 'präsens' ? 'Präsens' : tableTense
 
     for (const mode of Object.values(tenses)) {
-        for (const tense of Object.values(mode)) {
-            if ((tense as IVerbTense).tense === tenseToFind) return (tense as IVerbTense).conjugations
+
+        if (mode.hasOwnProperty(tableTense)) {
+            return mode[tableTense][0].conjugations
         }
     }
 
@@ -106,10 +106,10 @@ export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: stri
 }
 
 export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string): IVerbTense | undefined => {
-
     for (const mode of Object.values(tenses)) {
-        for (const tense of Object.values(mode)) {
-            if ((tense as IVerbTense).tense === tableTense) return tense as IVerbTense
+
+        if (mode.hasOwnProperty(tableTense)) {
+            return mode[tableTense][0]
         }
     }
 

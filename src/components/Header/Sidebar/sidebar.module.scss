@@ -1,0 +1,88 @@
+.sideBar {
+    --sidebar-width: 55px;
+
+    position: fixed;
+    display: grid;
+    grid-template-rows: repeat(6, 70px);
+    left: 0;
+    top: 0;
+    height: 100vh;
+    padding-top: 90px;
+    width: var(--sidebar-width);
+    // background: #81bc32;
+    background: var(--bg-white);
+    border-right: 1px solid var(--c-grey-lighter);
+    // box-shadow: 0px -2px 11px 0px var(--c-primary-lighter);
+    transition: width var(--tr-fast), transform var(--tr-fast);
+    overflow: hidden;
+    z-index: 45;
+
+    &:hover {
+        width: 180px;
+
+        a {
+            pointer-events: all;
+            opacity: 1;
+        }
+    }
+
+    &.isClosed {
+        transform: translateX(calc(var(--sidebar-width) * -1))
+    }
+}
+
+.linkContainer {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--sidebar-width);
+
+    &:hover {
+        // background-color: var(--c-grey-lightest);
+
+        svg {
+            color: var(--c-primary-dark);
+        }
+    }
+
+    &.linkAbsolute {
+        position: absolute;
+        left: 0;
+        bottom: 200px;
+    }
+
+    svg {
+        color: var(--c-grey);
+        height: 30px;
+        width: 20px;
+        transition: color var(--tr-base);
+
+        &[data-svg-star-filled] {
+            width: 22px;
+        }
+
+        &[data-svg-bookmark-filled] {
+            width: 13px;
+        }
+    }
+
+    a {
+        pointer-events: none;
+        position: absolute;
+        left: 0;
+        padding-left: var(--sidebar-width);
+        text-wrap: nowrap;
+        font-size: var(--fs-xs);
+        text-decoration: none;
+        color: var(--c-font-global-lighter);
+        opacity: 0;
+        font-weight: var(--fw-medium);
+        transition: opacity var(--tr-base), color var(--tr-base);
+
+        &:hover {
+            color: var(--c-primary-dark);
+        }
+    }
+}

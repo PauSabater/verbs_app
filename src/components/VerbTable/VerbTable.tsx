@@ -16,6 +16,7 @@ interface IVerbData {
 }
 
 interface IVerbTable {
+    tense: string,
     verbData: IVerbData | undefined,
     mode?: string,
     utterance: SpeechSynthesisUtterance | null,
@@ -28,7 +29,7 @@ export default function VerbTable(props: IVerbTable) {
         //First, we initialize our event
         const event = new CustomEvent('openModalExercise', {
             detail: {
-                tense: tense,
+                tense: props.tense,
                 mode: props.mode
             },
             bubbles: false
@@ -63,18 +64,18 @@ export default function VerbTable(props: IVerbTable) {
                     <tr>
                         <th colSpan={3} className={styles.tenseTitle}>
                             <div onClick={()=> dispatchModalOpen((props.verbData as IVerbData).tense)}>
-                                <HoverWithInfo text={`practise ${props.verbData.tense} tense`} bg={"primaryLighter"}>
-                                    {props.verbData.tense}
+                                <HoverWithInfo text={`practise ${props.tense} tense`} bg={"primaryLighter"}>
+                                    {props.tense}
                                     <SVGExercise></SVGExercise>
                                 </HoverWithInfo>
                             </div>
                             <div onClick={()=> props.callbackLessonOpen ? props.callbackLessonOpen() : null}>
-                                <HoverWithInfo text={`lesson for ${props.verbData.tense} tense`} bg={"primaryLighter"}>
+                                <HoverWithInfo text={`lesson for ${props.tense} tense`} bg={"primaryLighter"}>
                                     <SVGDoc></SVGDoc>
                                 </HoverWithInfo>
                             </div>
                             <div onClick={()=> playAudio(getTextForConjugationAudio() as string)}>
-                                <HoverWithInfo text={`lesson for ${props.verbData.tense} tense`} bg={"primaryLighter"}>
+                                <HoverWithInfo text={`lesson for ${props.tense} tense`} bg={"primaryLighter"}>
                                     <SVGAudio></SVGAudio>
                                 </HoverWithInfo>
                             </div>

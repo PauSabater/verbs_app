@@ -81,6 +81,8 @@
     }
 
     &.isPost {
+        overflow: visible;
+
         h1 {
             font-size: var(--fs-3xl);
         }

@@ -1,0 +1,110 @@
+.container {
+    pointer-events: none;
+    box-sizing: border-box;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    bottom: 100%;
+    left: 50%;
+    padding: var(--pd-sm) var(--pd-md);
+    width: auto;
+    width: 235px;
+    border-radius: 5px;
+    opacity: 0;
+    background: var(--bg-white);
+    box-shadow: 3px 3px 5px 2px rgba(0,0,0,0.11);
+    transform: translateX(-50%) translateY(3px);
+    transition: opacity var(--tr-base), transform var(--tr-base);
+
+    &:after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        top: 100%;
+        left: 0;
+        background: transparent;
+    }
+
+    .verb, .trans {
+        margin: auto 0 auto 0;
+        height: min-content;
+    }
+
+    .verb {
+        font-size: var(--fs-sm) !important;
+        font-weight: var(--fw-bold);
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .trans {
+        font-size: var(--fs-2xs) !important;
+        font-style: italic;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin-bottom: var(--mg-xs);
+        line-height: 1.5;
+    }
+
+    .verbInfoContainer {
+        --info-height: 23px;
+
+        justify-content: space-between;
+    }
+
+    .verbInfoContainer, .infoOnRight, .infoOnLeft {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+    }
+
+    .infoOnRight, .infoOnLeft {
+        height: var(--info-height);
+    }
+
+    .verbInfoContainer {
+        flex-wrap: wrap;
+    }
+
+    .verbInfoContainer svg {
+        height: 18px;
+        padding-left: var(--pd-sm);
+        color: var(--c-icon);
+        transition: color var(--tr-base);
+
+        &:hover {
+            color: var(--c-icon-hover);
+        }
+    }
+
+    .infoOnRight {
+        --info-circle-color: var(--c-icon-light);
+        --info-circle-height: 20px;
+
+        div {
+            margin: auto 0 auto 0;
+        }
+
+        p:first-of-type {
+            color: var(--c-icon-light);
+        }
+
+        p {
+            font-size: var(--fs-2xs) !important;
+            font-weight: var(--fw-regular);
+            margin: auto 0 auto 0;
+            color: var(--c-font-global-lighter);
+            height: min-content;
+        }
+    }
+
+    .btnsContainer {
+        display: flex;
+        flex-direction: row;
+        gap: var(--mg-xs);
+    }
+}

@@ -1,13 +1,12 @@
 .container {
     --btn-mg: var(--mg-lg) 0 0 0;
+    --selector-c-svg: var(--c-icon-light);
 
     display: grid;
-    grid-template-columns: 600px var(--width-page-content-text);
-    width: var(--width-page-content-text);
+    grid-template-columns: auto var(--width-page-content-text);
+    width: var(--width-page-content-wide-resp);
     margin: auto;
     margin-top: var(--mg-page-top-sm);
-    // transform: translateX(-100px);
-    width: fit-content;
 
     & > div:first-child {
         grid-column-start: 1;

@@ -1,0 +1,67 @@
+.container {
+    position: relative;
+    width: stretch;
+
+    svg {
+        height: 25px;
+        color: var(--c-grey);
+        transition: color var(--tr-base);
+    }
+
+    svg:first-child {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+.filterIconContainer {
+    cursor: pointer;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    border-radius: 5px 5px 0 0;
+    transform: translateY(-1px);
+    transition: background-color var(--tr-base);
+
+    &:hover {
+        background-color: var(--c-primary-lighter);
+
+        svg {
+            color: var(--c-grey-darker);
+        }
+    }
+}
+
+.input {
+    box-sizing: border-box;
+    height: var(--searchBar-input-height);
+    width: 100%;
+    border: none;
+    border: 1px solid var(--c-grey-lighter);
+    border-radius: var(--br-base);
+    padding-left: 60px;
+    // background-color: var(--c-grey-lightest);
+    font-size: var(--fs-xs);
+    color: var(--c-font-global-light);
+    transition: background-color var(--tr-base);
+
+    &::placeholder {
+        font-weight: 300;
+        color: var(--c-font-global-light);
+    }
+
+
+    &:focus {
+        background-color: var(--c-grey-lightest);
+        border: none;
+        outline: none;
+        border-radius: var(--br-base) var(--br-base) 0 0;
+    }
+}
