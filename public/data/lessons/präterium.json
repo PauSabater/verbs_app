@@ -7,6 +7,7 @@
         "level": "A1",
         "tags": ["präsens"]
     },
+    "verbsUsed": ["sein", "haben"],
     "sections": [
         {
             "type": "h1-lesson",
@@ -18,7 +19,7 @@
         },
         {
             "type": "paragraph",
-            "content": "<p>The <b><i>Präsens</i></b> tense in German direclty corresponds to the present tense in English. It is used to describe actions that are happening right now or habitual actions. </br>However, it can also be used to describe future actions or actions happenning now with continuation on the future. This is because in German the future tense is rarely used and there is no present continuous. The <i>Präsens</i> should be the first tense to learn when starting to learn German.</p>"
+            "content": "Start text  $__sein[verb-link-hover]__$ The <b><i>Präsens</i></b> tense in German direclty corresponds to the present tense in English. It is used to describe actions that are happening right now or habitual actions. </br>However, it can also be used to describe future actions or actions happenning now with continuation on the  future. This is because in German the future tense is rarely used and there is no present continuous. The <i>Präsens</i> should be the first tense to learn when starting to learn German."
         },
         {
             "type": "callout",

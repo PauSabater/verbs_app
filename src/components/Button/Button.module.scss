@@ -3,6 +3,7 @@
     --btn-fs: var(--btn-fs, var(--fs-global));
 
     cursor: pointer;
+    box-sizing: border-box;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -142,11 +143,34 @@
 }
 
 .inactive {
-    pointer-events: none;
+    pointer-events: all;
     background-color: var(--c-grey-light);
 }
 
 .lg {
     --btn-height: 60px;
     font-size: var(--fs-lg);
+}
+
+.xs {
+    --btn-height: 35px;
+    font-size: var(--fs-2xs);
+}
+
+.xsSquare {
+    --btn-height: 35px;
+    width: var(--btn-height);
+    padding: 0;
+    margin: 0;
+
+    svg {
+        height: 17px;
+        margin: auto;
+        transform: none;
+    }
+
+    &:hover svg {
+        transform: scale(1.2);
+    }
+
 }

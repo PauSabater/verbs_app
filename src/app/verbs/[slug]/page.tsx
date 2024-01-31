@@ -11,7 +11,12 @@ export default async function Page({ params }: { params: { slug: string, nextSlu
 
     return (
         <Fragment>
-            <VerbsPage slug={params.slug} nextSlug={params.nextSlug} data={JSON.stringify(pageData)} texts={JSON.stringify(pageTexts)}></VerbsPage>
+            <VerbsPage
+                slug={params.slug}
+                nextSlug={params.nextSlug}
+                data={JSON.stringify(pageData)}
+                texts={JSON.stringify(pageTexts)}
+            ></VerbsPage>
         </Fragment>
     )
 }
@@ -57,14 +62,6 @@ type Props = {
 }
 
 export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
-    // read route params
-    // const id = params.id
-
-    // // fetch data
-    // const product = await fetch(`https://.../${id}`).then((res) => res.json())
-
-    // // optionally access and extend (rather than replace) parent metadata
-    // const previousImages = (await parent).openGraph?.images || []
 
     const posts: any[] = []
 

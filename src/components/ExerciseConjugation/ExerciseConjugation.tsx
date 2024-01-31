@@ -16,7 +16,7 @@ import { getCorrectAnswers, getOptionsDropdown, getRandomInt, setLocalstorageIte
 import { IExerciseConjugationState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
 import { ExerciseHelp } from './Components/ExerciseHelp/ExerciseHelp'
 import { ExerciseHelpTrigger } from './Components/ExerciseHelpTrigger/ExerciseHelpTrigger'
-import { getAllVerbTenses } from '@/lib/getApiData'
+import { getAllVerbTenses, getApiVerbData } from '@/lib/getApiData'
 
 /**
  * Component that renders a conjugaion exercise.
@@ -25,8 +25,8 @@ import { getAllVerbTenses } from '@/lib/getApiData'
  * @returns {ReactNode}
  */
 export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
-    // console.log("EXERCISE CONJUG!!")
-    // console.log(props)
+    console.log("EXERCISE CONJUG!!")
+    console.log(props)
 
     const [state, dispatch] = useReducer<Reducer<IExerciseConjugationState, TExerciseConjugationAction>>(reducer, {
         exerciseState: statesExerciseConjugation.filling,
@@ -152,18 +152,22 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     useEffect(() => {
         const tense = props.tenseExercise
 
+        console.log("LETS USE EFFECT TO GET DATA")
+
         // Call API in case the tenses are not passed as property
         if (!props.allTenses) {
             (async () => {
-                const allTensesResp: any = (await getAllVerbTenses(props.verb)) as unknown as any
-                const allTensesObj: any = allTensesResp.data.tenses
+                const allTensesResp: any = (await getApiVerbData(props.verb)) as unknown as any
+                console.log("RESPONSE IS")
+                console.log(allTensesResp)
+                const allTensesObj: any = allTensesResp.props.verbData.verb.data.tenses
                 if (props.tenseExercise) {
                     setExerciseConjugations(getConjugationFromTense(allTensesObj, tense))
                     animateReveal()
                 }
             })()
         }
-    }, [])
+    }, [props.verb])
 
     /**
      * Updates conjugation data when a change on the select component is confirmed, and triggers inputs animation

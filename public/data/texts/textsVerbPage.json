@@ -4,19 +4,19 @@
         "collapsibles": [
             {
                 "title": "Levels A1 - A2",
-                "tenses": ["Präsens", "Perfekt", "Imperative", "Konjunktiv II", "Partizip II"]
+                "tenses": ["präsens", "perfekt", "imperative", "konjunktiv_II", "partizip_II"]
             },{
                 "title": "Levels B1 - B2",
-                "tenses": ["Präteritum", "Futur I", "Plusquam."]
+                "tenses": ["präteritum", "futur I", "plusquam."]
             }
         ],
         "collapsiblesException": [
             {
                 "title": "Levels A1 - A2",
-                "tenses": ["Präsens", "Präteritum", "Imperative", "Partizip II"]
+                "tenses": ["präsens", "präteritum", "imperative", "partizip II"]
             },{
                 "title": "Levels B1 - B2",
-                "tenses": ["Futur I", "Plusquam."]
+                "tenses": ["futur I", "plusquam."]
             }
         ],
         "exerciseText": {

@@ -9,7 +9,6 @@ export default function VerbLayout({
   }) {
     return (
       <section>
-        <h1>HELOOOOO LAYOOUTÍ</h1>
         {children}
       </section>
     )

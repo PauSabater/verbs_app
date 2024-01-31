@@ -3,8 +3,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    width: 40px;
+    height: var(--info-circle-height, 40px);
+    width: var(--info-circle-height, 40px);
     border-radius: 25px;
     background: transparent;
     border: 1px solid var(--info-circle-color, --c-font-global);

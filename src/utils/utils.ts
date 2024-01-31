@@ -124,5 +124,29 @@ export const getCorrectAnswers = (answerHTML: string): string[] => {
         return answers
 
     } else return [answerHTML]
+}
 
+
+export const extractVarTextGetString = (text: string) => {
+    const regex = /(?<=\$)(.*?)(?=\$)/
+    let strMatched = regex.exec(text)
+    if (!strMatched) return
+
+    console.log("STRING MATCHED")
+    console.log(strMatched)
+    return strMatched[1].replaceAll('_', '')
+}
+
+export const variablesTextGetProp = (textClean: string) => {
+    const regexProps = /(?<=\[)(.*?)(?=\])/
+    let strProp
+    let strPropMatched = regexProps.exec(textClean)
+    // console.log('PROPS ARE')
+    // console.log(strPropMatched)
+    if (!strPropMatched) return
+    return strPropMatched[1]
+}
+
+export const variablesTextGetValue = (textClean: string, strProp: string | undefined) => {
+    return textClean.replace(/[\[\]]/g, '').replace(strProp || '', '')
 }

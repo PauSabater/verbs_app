@@ -155,6 +155,10 @@ export default function VerbsPage(params: IVerbsPage) {
     }
 
     const ExerciseContent = (): React.JSX.Element => {
+        console.log("TRY TO RENDER EXERCISE")
+        console.log(state.exerciseTense)
+        console.log(state.selectedTensesFromCheckboxList)
+
         return state.exerciseTense || state.selectedTensesFromCheckboxList.length > 0 ? (
             <ExerciseConjugation
                 verb={pageVerbData.verb}
@@ -188,7 +192,7 @@ export default function VerbsPage(params: IVerbsPage) {
 
     return pageVerbData ? (
         <div className={styles.pageContent} ref={refPageContent}>
-            <div>My Post: {params.slug}</div>
+            {/* <div>My Post: {params.slug}</div> */}
             <VerbHeader {...verbHeaderProps()}></VerbHeader>
             <h1>HEYY {params.nextSlug}</h1>
             <h1>{`Conjugations`}</h1>
@@ -207,6 +211,7 @@ export default function VerbsPage(params: IVerbsPage) {
                                 return (
                                     <VerbTable
                                         key={tableTense}
+                                        tense={tableTense}
                                         // mode={"indicative"}
                                         verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense)}
                                         callbackLessonOpen={onLessonOpen}
@@ -218,14 +223,21 @@ export default function VerbsPage(params: IVerbsPage) {
                     )
                 })}
 
-                <ModalExercises text={''} open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true} ref={refModal} callbackClose={callbackCloseModal}>
-                    {state.isExerciseConjugationOpen === true ? <ExerciseContent /> : state.isCheckboxListOpen ? <ExerciseListCheckboxes /> : ''}
+                <ModalExercises
+                    text={''}
+                    open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
+                    ref={refModal}
+                    callbackClose={callbackCloseModal}
+                >
+                    {state.isExerciseConjugationOpen === true
+                        ? <ExerciseContent /> : state.isCheckboxListOpen
+                        ? <ExerciseListCheckboxes /> : ''
+                    }
                 </ModalExercises>
 
                 <ModalExercises
                     text={''}
                     open={state.isModalLessonOpen}
-                    // ref={refModalLesson}
                     callbackClose={closeModalLesson}
                     widerVersion={true}
                     padding={'paddingBase'}
