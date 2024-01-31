@@ -15,6 +15,9 @@ export const getVerbsProperties = async (verbs: string[])=> {
     verbs.forEach(verb => parametersUrl = `${parametersUrl}${verb}&`)
     parametersUrl.slice(0, -1)
 
+    console.log("DATA URI TO FETCH")
+    console.log(`http://localhost:9090/api/verbs/get/props/${parametersUrl}`)
+
       // Fetch data from external API
     const res = await fetch(`http://localhost:9090/api/verbs/get/props/${parametersUrl}`)
 

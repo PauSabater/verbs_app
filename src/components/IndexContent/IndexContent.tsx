@@ -7,6 +7,7 @@ import { SVGArrow } from '@/assets/svg/svgExports'
 import { ButtonBookmark } from '../Bookmarker/ButtonBookmark'
 import { ButtonShare } from '../ButtonShare/ButtonShare'
 import { Selector } from '../Selector/Selector'
+import { fontTitles } from '@/app/fonts'
 
 interface IIndexContent {
     content: any,
@@ -141,7 +142,7 @@ export function IndexContent(props: IIndexContent) {
                 className={`${styles.titleContainer} ${!isExpanded ? styles.isRetracted : ''}`}
                 onClick={()=> handleTitleListClick()}
             >
-                <p className={styles.title}>Table of contents</p>
+                <p className={`${styles.title} ${fontTitles.className}`}>Table of contents</p>
                 <SVGArrow></SVGArrow>
             </div>
             <ul

@@ -34,8 +34,8 @@ export const LessonPageContext = createContext<IContextLessonPage>({} as IContex
 
 export function LessonPage(props: ILessonPage) {
 
-    console.log("IN LESSONS PAGE PROPS ARE")
-    console.log(props.dataVerbsInText)
+    // console.log("IN LESSONS PAGE PROPS ARE")
+    // console.log(props.dataVerbsInText)
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null)
     const [intersectedHeading, setIntersectedHeading] = useState<string>('')
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)

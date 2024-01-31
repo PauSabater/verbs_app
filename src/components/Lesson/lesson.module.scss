@@ -1,4 +1,6 @@
 .container {
+    --lesson-fs: var(--fs-global);
+
     overflow: auto;
     height: 100%;
     margin-right: 20px;
@@ -33,7 +35,7 @@
     }
 
     a {
-        font-size: var(--fs-example);
+        font-size: var(--lesson-fs);
         font-weight: var(--fw-medium);
         color: var(--c-primary-dark);
         transition: color var(--tr-base);
@@ -51,7 +53,7 @@
     }
 
     &.isPost p {
-        font-size: var(--fs-global);
+        font-size: var(--lesson-fs);
     }
 
     h1, h2, h3 {
@@ -105,7 +107,7 @@
 
 .item {
     margin-bottom: var(--mg-lg);
-    margin-top: var(--mg-xl);
+    margin-top: var(--mg-lg);
 
     p {
         margin: 0;
@@ -127,7 +129,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    // margin-left: var(--mg-xs);
+    margin-top: var(--mg-xs);
     color: var(--c-primary-dark);
 
     svg {
@@ -145,7 +147,11 @@
     p {
         font-size: var(--fs-example);
         color: var(--c-primary-dark);
-        margin: var(--mg-xs) var(--mg-sm) 0 0;
+    }
+
+    & > p {
+        margin-right: var(--mg-sm);
+
     }
 
     span {
@@ -155,8 +161,10 @@
 
 .containerExampleAndTranslation {
     i {
+        display: block;
         font-size: var(--fs-example);
         color: var(--c-grey-dark);
+        margin-top: var(--mg-xs);
     }
 }
 
@@ -262,21 +270,14 @@
         background-color: var(--c-primary-lighter);
     }
 
-    // // // .table,
-    // // // .headings,
-    // .value {
-    //     border-right: 2px solid var(--c-grey-light);
-    //     border-right-style: dotted;
-    //     border-collapse: collapse;
-    // }
-
     .headings,
     .row {
         height: 30px;
     }
+}
 
-    // .value {
-    //     height: 35px;
-    // }
-
+.inlineParagraph {
+    p {
+        display: inline;
+    }
 }

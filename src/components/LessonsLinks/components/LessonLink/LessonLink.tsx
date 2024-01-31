@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react'
 import styles from './lessonLink.module.scss'
 import Link from 'next/link'
 import { replaceUmlautsURL } from '@/utils/utils'
-import InfoInCircle from '@/components/UI/InfoInCircle/InfoInCircle'
+import InfoInCircle from '@/elements/InfoInCircle/InfoInCircle'
 
 interface ILessonsLink {
     tense: string,

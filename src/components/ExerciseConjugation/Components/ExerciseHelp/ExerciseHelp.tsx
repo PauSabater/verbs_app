@@ -1,5 +1,5 @@
 // import Image from 'next/image'
-import Callout from '@/components/UI/Callout/Callout'
+import Callout from '@/components/Callout/Callout'
 import { IConjugation } from '../../ExerciseConjugation.exports'
 import styles from './ExerciseHelp.module.scss'
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack'

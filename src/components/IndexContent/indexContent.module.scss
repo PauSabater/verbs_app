@@ -76,13 +76,13 @@
     svg {
         margin: auto 20.5px auto 0;
         height: 10px;
-        transform: scaleY(1);
+        transform: scaleY(-1);
         transition: transform var(--tr-base);
         color: var(--c-icon-light);
     }
 
     &.isRetracted svg {
-        transform: scaleY(-1);
+        transform: scaleY(1);
     }
 
     &:hover {

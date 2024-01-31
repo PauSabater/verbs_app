@@ -1,4 +1,4 @@
-import InfoInCircle from '@/components/UI/InfoInCircle/InfoInCircle'
+import InfoInCircle from '@/elements/InfoInCircle/InfoInCircle'
 import styles from './verbDetails.module.scss'
 import { Fragment } from 'react'
 

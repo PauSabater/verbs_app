@@ -1,0 +1,13 @@
+.inline, .link, .hoveredLinkContainer {
+    display: inline;
+}
+
+.hoveredLinkContainer {
+    position: relative;
+
+    &:hover > div {
+        pointer-events: all;
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
