@@ -17,6 +17,7 @@ import { IExerciseConjugationState, TExerciseConjugationAction, actions, reducer
 import { ExerciseHelp } from './Components/ExerciseHelp/ExerciseHelp'
 import { ExerciseHelpTrigger } from './Components/ExerciseHelpTrigger/ExerciseHelpTrigger'
 import { getAllVerbTenses, getApiVerbData } from '@/lib/getApiData'
+import LoaderSpin from '@/elements/LoaderSpin/LoaderSpin'
 
 /**
  * Component that renders a conjugaion exercise.
@@ -128,9 +129,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         })
     }
 
-    useLayoutEffect(()=>{
-        console.log("exercise render")
-    },[])
+    useLayoutEffect(() => {
+        console.log('exercise render')
+    }, [])
 
     // Array with the exercise inputs
     const refsInputs = [useRef<any>(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]
@@ -146,23 +147,25 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      * Sets exercise on multiple exercises mode
      */
     useEffect(() => {
-        if (props.selectedTenses && props.selectedTenses.length > 1) setSelectedTense(props.selectedTenses[0])
+        if (props.selectedTenses && props.selectedTenses.length > 1) {
+            setSelectedTense(props.selectedTenses[0])
+        }
     }, [props.selectedTenses])
 
+    /**
+     * Actions with change in the exercise verb
+     */
     useEffect(() => {
         const tense = props.tenseExercise
 
-        console.log("LETS USE EFFECT TO GET DATA")
-
         // Call API in case the tenses are not passed as property
         if (!props.allTenses) {
-            (async () => {
+            ;(async () => {
                 const allTensesResp: any = (await getApiVerbData(props.verb)) as unknown as any
-                console.log("RESPONSE IS")
-                console.log(allTensesResp)
                 const allTensesObj: any = allTensesResp.props.verbData.verb.data.tenses
                 if (props.tenseExercise) {
                     setExerciseConjugations(getConjugationFromTense(allTensesObj, tense))
+                    restartAllInputs()
                     animateReveal()
                 }
             })()
@@ -443,7 +446,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             <div className={styles.exerciseConjugation} data-exercise data-state={state.exerciseState}>
                 <div className={styles.container}>
                     <ExerciseStatement />
-
                     <div className={styles.rowsContainer} data-animate={state.triggerInputsAnimation}>
                         {state.exerciseConjugations !== undefined ? (
                             state.exerciseConjugations.map((conj, i) => {
@@ -491,6 +493,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             />
         </Fragment>
     ) : (
-        <></>
+        <LoaderSpin isLoading={true}></LoaderSpin>
     )
 }

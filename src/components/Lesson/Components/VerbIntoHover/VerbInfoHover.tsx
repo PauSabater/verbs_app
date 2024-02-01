@@ -14,15 +14,17 @@ interface IVerbInfoHover {
 // verb-link-hover
 export const VerbInfoHover = (props: IVerbInfoHover): JSX.Element => {
 
-    console.log("INFO HOVER")
-    console.log(props)
-
     const lessonPageContext = useContext(LessonPageContext)
+
     if (!lessonPageContext.dataVerbsInText) return <></>
 
     const dataVerb = lessonPageContext.dataVerbsInText.find((verb)=> verb.verb === props.verb)
 
     if (!dataVerb) return <></>
+
+    const onClick = ()=> {
+        lessonPageContext.callbackOnExerciseOpen(props.verb)
+    }
 
     return dataVerb ? (
         <div className={styles.container}>
@@ -49,7 +51,7 @@ export const VerbInfoHover = (props: IVerbInfoHover): JSX.Element => {
                     text={''}
                     icon={'exercise'}
                     size={'xsSquare'}
-                    callback={lessonPageContext.callbackOnExerciseOpen}
+                    callback={(e: Event) => onClick()}
                 ></Button>
                 <Button
                     title={`open verb page for ${props.verb}`}

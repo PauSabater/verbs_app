@@ -2,7 +2,7 @@
 
 :root {
     --width-page-content: 100%;
-    --width-page-content-wide-resp: clamp(800px, 80vw, 1400px);
+    --width-page-content-wide-resp: clamp(800px, 80vw, 1300px);
     --width-page-wide-max: 1600px;
     --width-page-additional-content: 300px;
     // --width-page-content: 900px;
@@ -57,8 +57,8 @@
 
 
     // Colors
-    --c-verb-stem: var(--c-primary);
-    --c-verb-prefix: var(--c-secondary);
+    --c-verb-stem: var(--c-secondary);
+    --c-verb-prefix: var(--c-primary);
 
     --bg-valid: var(--c-secondary-lighter);
     // --bg-valid-dark: hsl(var(--c-primary-h), var(--c-primary-s), 85%);
@@ -128,6 +128,8 @@
     --c-white-no-change: hsl(136, 0%, 96%);
     --c-whitest: white;
     --c-white: hsl(136, 0%, 96%);
+    --c-white-dark: hsl(136, 0%, 86%);
+    --c-white-darker: hsl(136, 0%, 76%);
     --bg-main: var(--c-white);
     --bg-white: rgb(250, 250, 250);
     --bg-white-translucent: hsl(0, 0%, 100%, 0.8);
@@ -149,7 +151,7 @@
     --fw-bolder: 800;
     --fw-bold: 600;
     --fw-medium: 500;
-    --fw-regular: 300;
+    --fw-regular: 400;
     --fw-light: 300;
     --fw-lighter: 200;
 
@@ -210,8 +212,10 @@
 
 
 
-    --c-verb-stem: var(--c-primary);
-    --c-verb-ending: var(--c-secondary);
+    --c-verb-stem: var(--c-secondary);
+    --c-verb-ending: var(--c-primary);
+
+    --zi-highest: 1000;
 
 }
 
@@ -234,4 +238,8 @@
     background-color: var(--bg-white);
     transition: background-color var(--tr-fast);
     scroll-behavior: smooth;
+}
+
+:root.mode-dark {
+    background-color: rgb(29, 29, 29) !important;
 }

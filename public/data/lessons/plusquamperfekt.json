@@ -1,13 +1,13 @@
 {
     "props": {
         "tense": "präsens",
-        "title": "Das Präsens (German Present Tense): usage, conjugation and exercises",
+        "title": "Das Plusquamperfekt (German Past Perfect): usage, conjugation and exercises",
         "datePublished": "Dec 21, 2023",
         "dateUpdated": "",
         "level": "A1",
         "tags": ["präsens"]
     },
-    "verbsUsed": ["sein", "lesen", "trinken", "arbeiten", "spielen", "werden", "können", "mögen", "helfen", "geben", "sprechen", "nehmen", "sehen", "stehen", "schlafen", "fahren", "raten", "laufen" ],
+    "verbsUsed": ["sein", "lesen", "trinken", "arbeiten", "spielen", "werden", "können", "mögen", "helfen", "geben", "sprechen", "nehmen", "sehen", "stehen", "schlafen", "fahren", "raten", "laufen"],
     "sections": [
         {
             "type": "h1-lesson",
@@ -19,11 +19,11 @@
         },
         {
             "type": "paragraph",
-            "content": "The <b><i>Präsens</i></b> tense in German direclty corresponds to the present tense in English. It is used to describe actions that are happening right now or habitual actions. </br>However, it can also be used to describe future actions or actions happenning now with continuation on the  future. This is because in German the future tense is rarely used and there is no present continuous. The <i>Präsens</i> should be the first tense to learn when starting to learn German."
+            "content": "The <b><i>Plusquamperfekt</b></i> tense in German, also known as the \"pluperfect\", is used to express actions that occurred before another action in the past. It is formed using the auxiliary verb \"haben\" or \"sein\" in the Imperfekt tense (Pr\u00E4teritum), along with the past participle of the main verb. The <i>Plusquamperfekt</i> tense is widely used and normally substitutes all past forms, especially in the spoken language. It should be the second tense to learn when learning German."
         },
         {
             "type": "callout",
-            "content": "With the <i>Präsens</i>, you are getting 4 tenses in one: <strong>present</strong>, <strong>present continuous</strong>, <strong>present perfect</strong> and, in some cases, also the <strong>future</strong>! &nbsp;&nbsp; &#127881"
+            "content": "With the <i>Plusquamperfekt</i>, you are getting 4 tenses in one, as it can be used like with the English tenses <strong>past simple</strong>, <strong>past continuous</strong>, <strong>past perfect</strong> and <strong>past perfect continuous</strong>! &nbsp;&nbsp; &#127881"
         },
         {
             "type": "h2",
@@ -129,11 +129,6 @@
             "type": "exercise-btn",
             "content": "practise spielen",
             "param": "spielen"
-        },
-        {
-            "type": "exercise-embeded___",
-            "content": "präsens",
-            "param": "tanzen"
         },
         {
             "type": "h3",
@@ -339,7 +334,7 @@
             "marginList": true,
             "example": {
                 "audio": "Du siehst einen Film.",
-                "text": "Example: Du $__siehst-sehen[verb-link-hover]__$  einen Film.",
+                "text": "Example: Du $__siehst-sehen[verb-link-hover]__$  einen Film.  mir wirklich.",
                 "translation": "(You really help me.)"
             }
         },
@@ -581,6 +576,3 @@
         }
     ]
 }
-
-
-

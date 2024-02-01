@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import styles from './sidebar.module.scss'
 import Link from 'next/link'
 import { SVGAdd, SVGAddFilled, SVGBookmark, SVGBookmarkFilled, SVGExercise, SVGStar, SVGStarFilled, SVGTheme } from '@/assets/svg/svgExports'
@@ -12,8 +12,30 @@ interface ISidebar {
 export function Sidebar(props: ISidebar) {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false)
 
+    // Create the event.
+    const eventAwesome = new CustomEvent('toggleMode', {
+        bubbles: true,
+        detail: { text: () => 'hello' }
+    })
+
+    useEffect(() => {
+        window.addEventListener(
+            'toggleMode',
+            (e) => {
+                console.log("EVENT RECEIVED")
+                document.documentElement.classList.add('mode-dark')
+            },
+            false
+        )
+    }, [])
+
     const closeModal = () => {
         setIsSignUpOpen(false)
+    }
+
+    const toggleMode = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        console.log('click toggle')
+        e.target.dispatchEvent(eventAwesome)
     }
 
     return (
@@ -35,7 +57,7 @@ export function Sidebar(props: ISidebar) {
                     <SVGStarFilled isFilled={false} />
                     <Link href={'/lessons/prasens'}>my verbs</Link>
                 </div>
-                <div className={`${styles.linkContainer} ${styles.linkAbsolute}`}>
+                <div className={`${styles.linkContainer} ${styles.linkAbsolute}`} onClick={(e)=> toggleMode(e)}>
                     <SVGTheme />
                     <Link href={'/lessons/prasens'}>toggle mode</Link>
                 </div>

@@ -1,10 +1,12 @@
 .container {
     --lesson-fs: var(--fs-global);
+    --btn-mg: var(--mg-lg) 0 0 0;
 
     overflow: auto;
     height: 100%;
     margin-right: 20px;
     width: fit-content;
+    // margin-bottom: 100px;
 
     /* Works on Firefox */
     * {
@@ -35,15 +37,16 @@
     }
 
     a {
+        position: relative;
+        padding-top: var(--pd-xs);
         font-size: var(--lesson-fs);
         font-weight: var(--fw-medium);
-        color: var(--c-primary-dark);
+        color: var(--c-f-global-lighter);
         transition: color var(--tr-base);
-        text-decoration: none;
+        text-decoration: underline;
 
         &:hover {
-            color: var(--c-primary-darker);
-            text-decoration: underline;
+            color: var(--c-primary-dark);
         }
     }
 
@@ -124,20 +127,30 @@
 }
 
 .containerExample {
-    --fs-example: calc(var(--fs-xs) + 0.5);
+    --fs-example: var(--fs-xs);
 
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: var(--mg-xs);
-    color: var(--c-primary-dark);
+    margin-top: var(--mg-sm);
+    color: var(--c-font-global-light);
+
+    a {
+        color: var(--c-font-global-light);
+        font-weight: var(--fw-regular);
+        text-decoration: none;
+    }
 
     svg {
         cursor: pointer;
         height: 20px;
         width: 20px;
         margin-top: 1px;
-        animation: transform var(--tr-fast);
+        animation: transform var(--tr-base);
+
+        path {
+            stroke-width: 20;
+        }
 
         &:hover {
             transform: scale(1.1);
@@ -145,8 +158,9 @@
     }
 
     p {
-        font-size: var(--fs-example);
-        color: var(--c-primary-dark);
+        font-size: var(--fs-xs);
+        font-weight: 300;
+        margin: 0;
     }
 
     & > p {
@@ -163,8 +177,9 @@
     i {
         display: block;
         font-size: var(--fs-example);
-        color: var(--c-grey-dark);
+        color: var(--c-font-global-light);
         margin-top: var(--mg-xs);
+        font-weight: var(--fw-light);
     }
 }
 
@@ -172,6 +187,7 @@
     position: relative;
     color: var(--c-font-global);
     width: fit-content;
+    margin-bottom: var(--mg-md);
 
     svg[data-svg-audio] {
         position: absolute;
@@ -204,6 +220,7 @@
         u {
             text-decoration: none;
             color: var(--c-verb-stem);
+            font-weight: var(--fw-medium);
         }
 
         b[data-verb-stem] {
@@ -217,10 +234,11 @@
         i {
             font-style: normal;
             color: var(--c-verb-prefix);
+            font-weight: var(--fw-medium);
         }
 
         &.prefix {
-            font-weight: 800;
+            font-weight: var(--fw-medium);
             color: var(--c-verb-prefix);
         }
     }

@@ -1,7 +1,7 @@
 // 'use client'
 
 // import dynamic from 'next/dynamic'
-import { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Context, Fragment, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import styles from './lesson.module.scss'
 import { sanitize } from 'isomorphic-dompurify'
 import Callout from '../Callout/Callout'
@@ -9,21 +9,31 @@ import { SVGAudio } from '@/assets/svg/svgExports'
 import { getAnchorId, removeTags, replaceWithCurrentUrl } from '@/utils/utils'
 import { AudioIcon } from '../AudioIcon/AudioIcon'
 import { Button } from '../Button/Button'
-import Link from 'next/link'
 import { TextReplaced } from './Components/TextReplaced/TextRepaced'
 import { LinkWithInfoHover } from './Components/LinkWithInfoHover/LinkWithInfoHover'
 import { fontTitles } from '@/app/fonts'
+import { LessonPageContext } from '@/app/lessons/[slug]/LessonPage'
+import { ExerciseConjugation } from '../ExerciseConjugation/ExerciseConjugation'
+
+interface ILessonExample {
+    audio: string,
+    text: string,
+    translation: string
+}
 
 export interface ILessonSection {
     type: string
     content?: string
-    parts?: { type: string; content: string; contentHtml?: string}[]
+    parts?: { type: string; content: string; contentHtml?: string }[]
     itemsList?: any
     table?: any
     marginList?: boolean
+    param?: string
+    example?: ILessonExample
 }
 
 interface ITable {
+    audio?: string
     headings: string[]
     rows: string[][]
 }
@@ -32,11 +42,7 @@ interface IItemsList {
         items: [
             {
                 text: string,
-                example: {
-                    audio: string,
-                    text: string,
-                    translation: string
-                }
+                example: ILessonExample
             }
         ]
 }
@@ -52,9 +58,13 @@ interface ILesson {
     data?: any
     onHeadingIntersection?: Function,
     callbackOnExerciseOpen?: Function
+    exerciseTexts?: any
 }
 
 export default function Lesson(props: ILesson): React.JSX.Element {
+
+    const lessonPageContext = useContext(LessonPageContext)
+
     const [data, setData] = useState<ILessonSections | null>(props.data || null)
     const refLessonContainer = useRef(null)
     const [headings, setHeadings] = useState<string[] | null>(null)
@@ -110,6 +120,7 @@ export default function Lesson(props: ILesson): React.JSX.Element {
     }
 
     const getTemplateSection = (section: ILessonSection) => {
+
         if (section.type === 'paragraph-components') {
 
             if (!section.parts) return <></>
@@ -135,8 +146,20 @@ export default function Lesson(props: ILesson): React.JSX.Element {
                 }
             }
 
-            return <p className={styles.inlineParagraph}>{paragraphComponents}</p>
+            return (
+                <p
+                    className={`${styles.inlineParagraph} ${section.marginList && section.marginList === true ? styles.listMargin : ''}`}
+                >
+                    {paragraphComponents}
+                </p>
+            )
 
+        }
+
+        if (section.type === 'example') {
+            if (section.example) {
+                return <>{getExampleWithAudio(section.example, section.marginList && section.marginList === true ? true : false)}</>
+            }
         }
 
 
@@ -180,7 +203,14 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         if (props.isPost && section.type === 'exercise-btn') {
             return (
                 <div className={section.marginList ? styles.listMargin : ''}>
-                    <Button icon={'exercise'} text={section.content || ''} callback={props.callbackOnExerciseOpen}></Button>
+                    <Button
+                        icon={'exercise'}
+                        text={section.content || ''}
+                        callback={onBtnExerciseClick}
+                        paramOnClick={section.param}
+                        // color={'greyDark'}
+                        // size={'square'}
+                    ></Button>
                 </div>
             )
         }
@@ -188,7 +218,29 @@ export default function Lesson(props: ILesson): React.JSX.Element {
             return <>{getTableTemplate(section.table, section.marginList ? true : false, section.type)}</>
         }
 
+        // if (section.type === 'exercise-embeded') {
+        //     console.log("HEYY TEXTS ARE")
+        //     console.log(props.exerciseTexts)
+        //     return (
+        //             <ExerciseConjugation
+        //                 // isDynamic={true}
+        //                 verb={'sein'}
+        //                 tensesDropdown={['prasens']}
+        //                 texts={JSON.parse(props.exerciseTexts)}
+        //                 tenseExercise={'präsens'}
+        //                 // allTenses={props.exercisesTense}
+        //                 selectedTenses={['prasens']}
+        //                 isSingleTense={true}
+        //             ></ExerciseConjugation>
+        //     )
+        // }
+
         return <></>
+    }
+
+    const onBtnExerciseClick = (verb: string)=> {
+        console.log("HEY ON BTN CLICK")
+        lessonPageContext.callbackOnExerciseOpen(verb)
     }
 
     const getTableAudioText = (table: ITable) => {
@@ -206,7 +258,7 @@ export default function Lesson(props: ILesson): React.JSX.Element {
     const getTableTemplate = (table: ITable, hasMargin: boolean, type?: string) => {
         return (
             <div className={`${styles.tableContainer} ${hasMargin ? styles.listMargin : ''}`}>
-                <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={getTableAudioText(table)} />
+                {table.audio ? <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={table.audio} /> : <></>}
                 <table className={styles.table}>
                     {table.headings ? (
                         <thead>
@@ -246,9 +298,9 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         )
     }
 
-    const getExampleWithAudio = (example: { audio: string; text: string; translation: string }) => {
+    const getExampleWithAudio = (example: { audio: string; text: string; translation: string }, hasMargin?: boolean) => {
         return (
-            <div className={styles.containerExampleAndTranslation}>
+            <div className={`${styles.containerExampleAndTranslation} ${hasMargin ? styles.listMargin : ''}`}>
                 <div className={styles.containerExample}>
                     <p>
                         <TextReplaced text={example.text}></TextReplaced>

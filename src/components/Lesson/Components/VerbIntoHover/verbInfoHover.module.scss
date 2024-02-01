@@ -15,12 +15,12 @@
     box-shadow: 3px 3px 5px 2px rgba(0,0,0,0.11);
     transform: translateX(-50%) translateY(3px);
     transition: opacity var(--tr-base), transform var(--tr-base);
-
+z-index
     &:after {
         content: '';
         position: absolute;
         width: 100%;
-        height: 5px;
+        height: 10px;
         top: 100%;
         left: 0;
         background: transparent;
