@@ -16,8 +16,8 @@ const EmbeddedExercise = forwardRef(
             background?: 'dark' | 'blurred'
             callbackClose?: Function
             widerVersion?: boolean
-            isSignUp?: boolean
             padding?: 'paddingBase'
+            isSideEmbedded?: boolean
         },
         ref
     ) => {
@@ -58,13 +58,6 @@ const EmbeddedExercise = forwardRef(
 
         return (
             <div data-embedded-exercise="true" className={`${styles.container} ${styles[isOpen ? 'open' : 'closed']}`}>
-                <div
-                    className={`${styles.background} ${props.background ? styles[props.background] : ''}`}
-                    onClick={(e) => {
-                        handleBackgroundClick(e)
-                    }}
-                ></div>
-                {/* <p>{text}</p> */}
                 <div className={`${styles.container} ${styles[props.widerVersion ? 'widerVersion' : '']} ${styles[props.padding || '']}`}>
                     <div
                         className={`${stylesBtnClose.container} ${styles.btnClose}`}

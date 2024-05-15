@@ -36,15 +36,13 @@ export const LessonPageContext = createContext<IContextLessonPage>({} as IContex
 
 export function LessonPage(props: ILessonPage) {
 
-
-    // console.log("IN LESSONS PAGE PROPS ARE")
-    // console.log(props.dataVerbsInText)
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null)
     const [intersectedHeading, setIntersectedHeading] = useState<string>('')
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
     const refModal = useRef(null)
     const textsExercise = JSON.parse(props.textsExercise)
     const [verbExercise, setVerbExercise] = useState<string>('')
+    const [isEmbeddedExerciseOpen, setIsEmbeddedExerciseOpen] = useState<boolean>(true)
 
     useLayoutEffect(() => {
         getUtteraceInstance().then((utterance) => {
@@ -82,22 +80,7 @@ export function LessonPage(props: ILessonPage) {
         >
             <div className={styles.container}>
                 <LessonHeader></LessonHeader>
-                <IndexContent content={props.data} intersectedIndex={intersectedHeading}></IndexContent>
 
-                {/* <div className={styles.sideContent}>
-                    <EmbeddedExercise text={''} open={isModalOpen} ref={refModal} callbackClose={callbackCloseModal}>
-                        <ExerciseConjugation
-                            // isDynamic={true}
-                            verb={'sein'}
-                            tensesDropdown={props.exercisesTense}
-                            texts={textsExercise}
-                            tenseExercise={'präsens'}
-                            // allTenses={props.exercisesTense}
-                            selectedTenses={[props.exercisesTense]}
-                            isSingleTense={true}
-                        ></ExerciseConjugation>
-                    </EmbeddedExercise>
-                </div> */}
                 <Lesson
                     data={props.data}
                     utterance={utterance}
@@ -107,6 +90,21 @@ export function LessonPage(props: ILessonPage) {
                     exerciseTexts={props.textsExercise}
                     // callbackOnExerciseOpen={callbackOpenModal}
                 ></Lesson>
+
+                <div className={styles.sideContent}>
+                    <IndexContent content={props.data} intersectedIndex={intersectedHeading}></IndexContent>
+                    {/* <EmbeddedExercise text={''} open={isEmbeddedExerciseOpen} ref={refModal} callbackClose={callbackCloseModal}>
+                        <ExerciseConjugation
+                            verb={'sein'}
+                            tensesDropdown={props.exercisesTense}
+                            texts={textsExercise}
+                            tenseExercise={'präsens'}
+                            selectedTenses={[props.exercisesTense]}
+                            isSingleTense={true}
+                            isEmbedded={true}
+                        ></ExerciseConjugation>
+                    </EmbeddedExercise> */}
+                </div>
 
                 {/* {props.lessonsProps.map((lesson) => {
                     return <LessonLink tense={lesson.tense} title={lesson.title} level={lesson.level}></LessonLink>

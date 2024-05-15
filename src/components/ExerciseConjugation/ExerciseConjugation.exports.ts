@@ -59,6 +59,8 @@ export interface IExerciseConjugation {
     allTenses?: IVerbAllTenses,
     selectedTenses?: string[],
     isSingleTense?: boolean
+    isEmbedded?: boolean
+    // isIrregular: string
 }
 
 export const statesExerciseConjugation = {
@@ -105,7 +107,7 @@ export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: stri
     return
 }
 
-export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string): IVerbTense | undefined => {
+export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string, isConditionalSubj?: string): IVerbTense | undefined => {
     for (const mode of Object.values(tenses)) {
 
         if (mode.hasOwnProperty(tableTense)) {

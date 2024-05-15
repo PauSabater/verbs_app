@@ -31,6 +31,11 @@ export function getRandomInt(max: number) {
     return Math.floor(Math.random() * max);
 }
 
+export function cleanConjugation(conj: string) {
+    const regex = /[()⁷&#42;]/g
+    return conj.replace(regex, '')
+}
+
 export const getOptionsDropdown = (tenses: any)=> {
     let optionsDropdown: ISelectorDropdownOptions[] = []
 

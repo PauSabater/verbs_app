@@ -64,7 +64,7 @@ export default function Header() {
                     <Link href={'/lessons'}>lessons</Link>
                 </div>
             </nav>
-            <Sidebar isOpen={isSidebarOpen} />
+            {/* <Sidebar isOpen={isSidebarOpen} /> */}
             <ModalExercises
                 text={''}
                 open={isSignUpOpen}

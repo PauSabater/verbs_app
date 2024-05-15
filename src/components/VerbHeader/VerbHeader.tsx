@@ -41,8 +41,8 @@ export default function VerbHeader(props: IVerbHeader) {
         <div className={styles.container}>
             <div className={styles.containerTitle}>
                 <VerbTitle verbHTML={props.verbHTML} />
-                <VerbDetails {...propsVerbDetails}/>
             </div>
+            <VerbDetails {...propsVerbDetails}/>
             <VerbStemFormation stemFormationHTML={props.stemFormationHTML} />
             <p className={styles.translation}>{props.translation}</p>
             <VerbDescription text={props.description}></VerbDescription>

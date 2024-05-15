@@ -3,20 +3,25 @@
         "btnPractice": "Practise & conjugation",
         "collapsibles": [
             {
-                "title": "Levels A1 - A2",
-                "tenses": ["präsens", "perfekt", "imperative", "konjunktiv_II", "partizip_II"]
+                "title": "Indicative",
+                "description": "Learn and practise the verb -verb- in the present, past and future tenses of the Indicative Active mode",
+                "tenses": ["präsens", "präteritum", "perfekt", "plusquam", "futur_I", "futur_II"]
             },{
-                "title": "Levels B1 - B2",
-                "tenses": ["präteritum", "futur I", "plusquam."]
-            }
-        ],
-        "collapsiblesException": [
-            {
-                "title": "Levels A1 - A2",
-                "tenses": ["präsens", "präteritum", "imperative", "partizip II"]
+                "title": "Imperative",
+                "description": "Learn and practise the verb -verb- in the present tense of the imperative Active mode",
+                "tenses": ["imperative"]
             },{
-                "title": "Levels B1 - B2",
-                "tenses": ["futur I", "plusquam."]
+                "title": "Subjunctive I",
+                "description": "Learn and practise the verb -verb- in the present, perfect and future tenses of the Subjunctive I mode",
+                "tenses": ["konj_perfekt", "konjunktiv_I", "konj_futur_I", "konj_futur_II"]
+            },{
+                "title": "Subjunctive II",
+                "description": "Learn and practise the verb -verb- in the present, perfect and future tenses of the Subjunctive I mode",
+                "isConditionalSubj": true,
+                "tenses": ["konjunktiv_II", "konj_plusquam"]
+            },{
+                "title": "Infinitive/Participle",
+                "tenses": ["infinitiv_I", "infinitiv_II", "partizip_I", "partizip_II"]
             }
         ],
         "exerciseText": {

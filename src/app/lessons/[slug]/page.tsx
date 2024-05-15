@@ -39,7 +39,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 }
 
 export async function generateStaticParams() {
-    const posts = [{ slug: 'prasens' },  { slug: 'plusquamperfekt' }, { slug: 'prateritum' }]
+    const posts = [{ slug: 'prasens' }, { slug: 'perfekt' },  { slug: 'plusquamperfekt' }, { slug: 'prateritum' }]
 
     return posts.map((post) => ({
         slug: post.slug

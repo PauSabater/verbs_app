@@ -443,7 +443,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
     return state.exerciseConjugations ? (
         <Fragment>
-            <div className={styles.exerciseConjugation} data-exercise data-state={state.exerciseState}>
+            <div className={`${styles.exerciseConjugation} ${props.isEmbedded ? styles.isEmbedded : ''}`} data-exercise data-state={state.exerciseState}>
                 <div className={styles.container}>
                     <ExerciseStatement />
                     <div className={styles.rowsContainer} data-animate={state.triggerInputsAnimation}>
@@ -486,6 +486,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 textBtn={props.texts.help.textBtn}
                 title={props.texts.help.title}
                 callout={props.texts.help.callout}
+                isEmbedded={props.isEmbedded}
                 tense={state.selectedTense}
                 isOpen={state.isHelpOpen}
                 conjugation={state.exerciseConjugations}

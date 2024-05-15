@@ -1,6 +1,6 @@
 .container {
-    position: sticky;
-    top: var(--mg-page-top-sm);
+    position: relative;
+    // top: var(--mg-page-top-sm);
     height: 600px;
     width: 300px;
     // border: 2px dotted var(--c-grey-light);

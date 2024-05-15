@@ -4,11 +4,13 @@ import { Fragment, useLayoutEffect } from 'react'
 import { sanitize } from 'isomorphic-dompurify'
 import { SVGAudio, SVGDoc, SVGExercise } from '@/assets/svg/svgExports'
 import { HoverWithInfo } from '../HoverWithInfo/HoverWithInfo'
-import { speak } from '@/utils/utils'
+import { cleanConjugation, speak } from '@/utils/utils'
 
 interface IVerbData {
         tense: string,
         conjugations: {
+                preconjugation?: string,
+                preconjugationHTML?: string,
                 person: string,
                 conjugation: string,
                 conjugationHTML: string
@@ -87,8 +89,15 @@ export default function VerbTable(props: IVerbTable) {
                         props.verbData.conjugations.map((row, i) => {
                             return (
                                 <tr key={`row-${row.person}`}>
-                                    {row.person ? <td>{row.person}</td> : <></>}
-                                    <td dangerouslySetInnerHTML={{__html: sanitize(row.conjugationHTML)}}></td>
+                                    {row.preconjugationHTML
+                                        ? <td dangerouslySetInnerHTML={{__html: sanitize(cleanConjugation(row.preconjugationHTML))}}></td>
+                                        : <></>
+                                    }
+                                    {row.person
+                                        ? <td>{row.person}</td>
+                                        : <></>
+                                    }
+                                    <td dangerouslySetInnerHTML={{__html: sanitize(cleanConjugation(row.conjugationHTML))}}></td>
                                 </tr>
                             )
                         })
