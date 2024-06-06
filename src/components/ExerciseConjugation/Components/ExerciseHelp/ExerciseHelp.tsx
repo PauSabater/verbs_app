@@ -3,8 +3,9 @@ import Callout from '@/components/Callout/Callout'
 import { IConjugation } from '../../ExerciseConjugation.exports'
 import styles from './ExerciseHelp.module.scss'
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { sanitize } from 'isomorphic-dompurify'
+import { ExerciseConjugationContext } from '../../ExerciseConjugation'
 // import { Fragment, ReactNode } from 'react'
 // import { sanitize } from 'isomorphic-dompurify'
 // import { SVGExercise } from '@/assets/svg/svgExports'
@@ -25,7 +26,13 @@ export function ExerciseHelp(props: IExerciseHelp) {
 
     const [isHelpOpen, setIsHelpOpen] = useState<boolean | null>(null)
 
+    const test = useContext(ExerciseConjugationContext)
+
     useEffect(()=> {
+
+        console.log('HEAAAA')
+        console.log(test)
+
         setIsHelpOpen(props.isOpen)
     }, [props.isOpen])
 

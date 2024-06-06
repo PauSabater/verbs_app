@@ -4,7 +4,7 @@ import { Fragment, useLayoutEffect } from 'react'
 import { sanitize } from 'isomorphic-dompurify'
 import { SVGAudio, SVGDoc, SVGExercise } from '@/assets/svg/svgExports'
 import { HoverWithInfo } from '../HoverWithInfo/HoverWithInfo'
-import { cleanConjugation, speak } from '@/utils/utils'
+import { cleanConjugation, replaceTenseForURL, speak } from '@/utils/utils'
 
 interface IVerbData {
         tense: string,
@@ -18,28 +18,30 @@ interface IVerbData {
 }
 
 interface IVerbTable {
+    verb: string,
     tense: string,
     verbData: IVerbData | undefined,
     mode?: string,
     utterance: SpeechSynthesisUtterance | null,
-    callbackLessonOpen?: Function
+    callbackLessonOpen?: Function,
+    isSeparable: boolean
 }
 
 export default function VerbTable(props: IVerbTable) {
 
-    const dispatchModalOpen = (tense: string)=> {
-        //First, we initialize our event
-        const event = new CustomEvent('openModalExercise', {
-            detail: {
-                tense: props.tense,
-                mode: props.mode
-            },
-            bubbles: false
-        })
+    // const dispatchModalOpen = (tense: string)=> {
+    //     //First, we initialize our event
+    //     const event = new CustomEvent('openModalExercise', {
+    //         detail: {
+    //             tense: props.tense,
+    //             mode: props.mode
+    //         },
+    //         bubbles: false
+    //     })
 
-        // Next, we dispatch the event.
-        document.dispatchEvent(event);
-    }
+    //     // Next, we dispatch the event.
+    //     document.dispatchEvent(event);
+    // }
 
     const getTextForConjugationAudio = ()=> {
 
@@ -65,12 +67,12 @@ export default function VerbTable(props: IVerbTable) {
                 <thead>
                     <tr>
                         <th colSpan={3} className={styles.tenseTitle}>
-                            <div onClick={()=> dispatchModalOpen((props.verbData as IVerbData).tense)}>
+                            <a href={`https://localhost:3000/exercise?tenses=${replaceTenseForURL(props.tense)}&verbs=${props.verb}`}>
                                 <HoverWithInfo text={`practise ${props.tense} tense`} bg={"primaryLighter"}>
                                     {props.tense}
                                     <SVGExercise></SVGExercise>
                                 </HoverWithInfo>
-                            </div>
+                            </a>
                             <div onClick={()=> props.callbackLessonOpen ? props.callbackLessonOpen() : null}>
                                 <HoverWithInfo text={`lesson for ${props.tense} tense`} bg={"primaryLighter"}>
                                     <SVGDoc></SVGDoc>
@@ -97,7 +99,20 @@ export default function VerbTable(props: IVerbTable) {
                                         ? <td>{row.person}</td>
                                         : <></>
                                     }
-                                    <td dangerouslySetInnerHTML={{__html: sanitize(cleanConjugation(row.conjugationHTML))}}></td>
+                                    {
+                                        props.isSeparable === false || (props.isSeparable && props.tense !== 'präsens' && props.tense !== 'präteritum')
+                                            ? <td dangerouslySetInnerHTML={
+                                                {__html: sanitize(cleanConjugation(row.conjugationHTML))}}></td>
+                                            :
+                                                <><td
+                                                    dangerouslySetInnerHTML={{__html: sanitize(cleanConjugation(row.conjugationHTML.split(' ')[0]))}}>
+                                                </td>
+                                                <td
+                                                    dangerouslySetInnerHTML={{__html: sanitize(cleanConjugation(row.conjugationHTML.split(' ')[1]))}}>
+                                                </td>
+                                                </>
+                                    }
+
                                 </tr>
                             )
                         })
@@ -106,6 +121,10 @@ export default function VerbTable(props: IVerbTable) {
             </table>
         </div>
     )
+}
+
+const getHTMLRowSeparable = ()=> {
+
 }
 
 {/* <table>

@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useLayoutEffect } from 'react'
-import { Fragment, ReactNode, Reducer, useEffect, useReducer, useRef } from 'react'
+import React, { Context, useLayoutEffect } from 'react'
+import { Fragment, ReactNode, Reducer, useEffect, useReducer, useRef, createContext, useContext } from 'react'
 import { sanitize } from 'isomorphic-dompurify'
 import styles from './exerciseConjugation.module.scss'
 import stylesFdb from './Components/Feedback/feedBack.module.scss'
@@ -18,6 +18,11 @@ import { ExerciseHelp } from './Components/ExerciseHelp/ExerciseHelp'
 import { ExerciseHelpTrigger } from './Components/ExerciseHelpTrigger/ExerciseHelpTrigger'
 import { getAllVerbTenses, getApiVerbData } from '@/lib/getApiData'
 import LoaderSpin from '@/elements/LoaderSpin/LoaderSpin'
+import { VerbsList } from './Components/VerbsList/VerbsList'
+import { TensesList } from './Components/TensesList/TensesList'
+import { ShareExercise } from './Components/ShareExercise/ShareExercise'
+
+export const ExerciseConjugationContext = createContext<IExerciseConjugationState | null>(null)
 
 /**
  * Component that renders a conjugaion exercise.
@@ -30,6 +35,8 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     // console.log(props)
 
     const [state, dispatch] = useReducer<Reducer<IExerciseConjugationState, TExerciseConjugationAction>>(reducer, {
+        currentVerb: props.verb,
+        currentTense: props.tenseExercise,
         exerciseState: statesExerciseConjugation.filling,
         exerciseConjugations: undefined,
         numFilledInputs: 0,
@@ -41,8 +48,45 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         tenseToConfirm: '',
         triggerInputsAnimation: false,
         currentExerciseNumber: 0,
-        isHelpOpen: false
+        isHelpOpen: false,
+        successTenses: [],
+        verbs: props.verbs ? props.verbs.map((verb)=> {
+            return {
+                verb: verb,
+                isCompleted: false
+            }
+        }) : [],
+        tenses: props.tenses.map((tense)=> {
+            return {
+                tense: tense,
+                isCompleted: false
+            }
+        })
     })
+
+    // Tenses already made and succeeded
+    const setCompletedVerb = (verb: string) => {
+        dispatch({
+            type: actions.SET_COMPLETED_VERB,
+            payload: verb
+        })
+    }
+
+    // Tenses already made and succeeded
+    const setCurrentVerb = (verb: string) => {
+        dispatch({
+            type: actions.SET_CURRENT_VERB,
+            payload: verb
+        })
+    }
+
+        // Tenses already made and succeeded
+    const setCurrentTense = (tense: string) => {
+        dispatch({
+            type: actions.SET_CURRENT_TENSE,
+            payload: tense
+        })
+    }
 
     // The state of the exercise
     const setExerciseState = (state: TExerciseState) =>
@@ -129,9 +173,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         })
     }
 
-    useLayoutEffect(() => {
-        console.log('exercise render')
-    }, [])
+
 
     // Array with the exercise inputs
     const refsInputs = [useRef<any>(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]
@@ -337,9 +379,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             if (isSuccess(state)) return 'repeat'
         } else {
             if (isSuccess(state) && !isLastOfSerial) return 'next'
-            // if(isSuccess(state) && isLastOfSerial) return props.texts.button.startAgain
-            // if(isError(state)) return props.texts.button.checkAgain
-            // return props.texts.button.check
         }
     }
 
@@ -430,7 +469,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 {(props.selectedTenses && props.selectedTenses.length > 1) || props.isSingleTense === true ? (
                     <Fragment>
                         <span data-text>{props.texts.textTense}</span>
-                        <span>{state.selectedTense}</span>
+                        <span>{state.currentTense}</span>
                     </Fragment>
                 ) : (
                     <Selector color={'primary'} selectedOption={state.selectedTense} options={getOptionsDropdown(props.tensesDropdown)} callbackOnChange={handleSelectorChange} />
@@ -441,59 +480,84 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         )
     }
 
-    return state.exerciseConjugations ? (
+    return (
         <Fragment>
-            <div className={`${styles.exerciseConjugation} ${props.isEmbedded ? styles.isEmbedded : ''}`} data-exercise data-state={state.exerciseState}>
-                <div className={styles.container}>
-                    <ExerciseStatement />
-                    <div className={styles.rowsContainer} data-animate={state.triggerInputsAnimation}>
-                        {state.exerciseConjugations !== undefined ? (
-                            state.exerciseConjugations.map((conj, i) => {
-                                return (
-                                    <div key={i} className={styles.row}>
-                                        <p className={styles.person}>{conj.person}</p>
-                                        <ExerciseTextInput
-                                            ref={refsInputs[i]}
-                                            answers={getCorrectAnswers(conj.conjugation)}
-                                            answerHTML={conj.conjugationHTML}
-                                            checkResult={false}
-                                            actionOnFilled={actionOnFilledInput}
-                                            actionOnEmptied={actionOnEmptiedInput}
-                                            actionOnCorrected={actionOnCorrectedInput}
-                                        />
-                                    </div>
+            <ExerciseConjugationContext.Provider value={state as any}>
+
+                <div className={styles.layoutExercise}>
+
+                    <div className={`${styles.exerciseConjugation} ${props.isEmbedded ? styles.isEmbedded : ''}`} data-exercise data-state={state.exerciseState}>
+                        <div className={styles.container}>
+
+                            {
+                                state.exerciseConjugations ?
+                                    <>
+                                        <ExerciseStatement />
+                                        <div className={styles.rowsContainer} data-animate={state.triggerInputsAnimation}>
+                                            {state.exerciseConjugations !== undefined ? (
+                                                state.exerciseConjugations.map((conj, i) => {
+                                                    return (
+                                                        <div key={i} className={styles.row}>
+                                                            <p className={styles.person}>{conj.person === 'er' ? 'er/sie/es' : conj.person}</p>
+                                                            <ExerciseTextInput
+                                                                ref={refsInputs[i]}
+                                                                answers={getCorrectAnswers(conj.conjugation)}
+                                                                answerHTML={conj.conjugationHTML}
+                                                                checkResult={false}
+                                                                actionOnFilled={actionOnFilledInput}
+                                                                actionOnEmptied={actionOnEmptiedInput}
+                                                                actionOnCorrected={actionOnCorrectedInput}
+                                                            />
+                                                        </div>
+                                                    )
+                                                })
+                                            ) : (
+                                                <></>
+                                            )}
+                                        </div>
+                                    </>
+
+                                : (
+                                    <LoaderSpin isLoading={true}></LoaderSpin>
                                 )
-                            })
-                        ) : (
-                            <></>
-                        )}
+                            }
+
+                        </div>
+
+                        <ExerciseHelpTrigger
+                            exerciseState={state.exerciseState}
+                            isOpen={state.isHelpOpen}
+                            openTxt={props.texts.help.openTxt}
+                            closeTxt={props.texts.help.closeTxt}
+                            action={() => setIsHelpOpen(!state.isHelpOpen)}
+                        />
+
+                        <ExerciseFeedback />
+                        <Alert isOpen={state.isTenseAlertOpen} texts={props.texts.alertTenseChange} actionsOnAlertConfirm={actionsOnAlertConfirm} actionsOnAlertNegate={actionsOnAlertNegate} />
+
                     </div>
+
+                    <div className={styles.sideInfo}>
+                        {props.verbs && props.verbs?.length > 1 ? <VerbsList/> : <></>}
+                        {props.tenses && props.tenses?.length > 1 ? <TensesList/> : <></>}
+                        <ShareExercise/>
+                    </div>
+
                 </div>
 
-                <ExerciseHelpTrigger
-                    exerciseState={state.exerciseState}
+                <ExerciseHelp
+                    text={props.texts.help.text}
+                    textBtn={props.texts.help.textBtn}
+                    title={props.texts.help.title}
+                    callout={props.texts.help.callout}
+                    isEmbedded={props.isEmbedded}
+                    tense={state.selectedTense}
                     isOpen={state.isHelpOpen}
-                    openTxt={props.texts.help.openTxt}
-                    closeTxt={props.texts.help.closeTxt}
-                    action={() => setIsHelpOpen(!state.isHelpOpen)}
+                    conjugation={state.exerciseConjugations}
+                    actionClose={() => setIsHelpOpen(false)}
                 />
 
-                <ExerciseFeedback />
-                <Alert isOpen={state.isTenseAlertOpen} texts={props.texts.alertTenseChange} actionsOnAlertConfirm={actionsOnAlertConfirm} actionsOnAlertNegate={actionsOnAlertNegate} />
-            </div>
-            <ExerciseHelp
-                text={props.texts.help.text}
-                textBtn={props.texts.help.textBtn}
-                title={props.texts.help.title}
-                callout={props.texts.help.callout}
-                isEmbedded={props.isEmbedded}
-                tense={state.selectedTense}
-                isOpen={state.isHelpOpen}
-                conjugation={state.exerciseConjugations}
-                actionClose={() => setIsHelpOpen(false)}
-            />
+            </ExerciseConjugationContext.Provider>
         </Fragment>
-    ) : (
-        <LoaderSpin isLoading={true}></LoaderSpin>
     )
 }

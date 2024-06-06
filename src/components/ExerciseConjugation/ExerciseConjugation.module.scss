@@ -3,12 +3,19 @@
 .exerciseConjugation {
     --height-feedback: 200px;
     --exercise-conj-z-index: 99;
+    --exercise-conj-pad: var(--mg-md) var(--mg-xl);
 
     position: relative;
     display: flex;
     flex-direction: column;
     height: inherit;
     animation: reveal var(--tr-base);
+}
+
+.layoutExercise {
+    display: grid;
+    grid-template-columns: 70% auto;
+    grid-column-gap: 20px;
 }
 
 @keyframes reveal {
@@ -50,11 +57,12 @@
     --exercise-input-br: 1px;
 
     box-sizing: border-box;
-    padding: var(--mg-md) var(--mg-xl);
-    border: 3px dotted lightgrey;
+    padding: var(--mg-md) 70px;
+    // border: 3px dotted lightgrey;
     border-radius: 20px;
     width: var(--exercise-width);
-    height: var(--exercise-height);
+    height: 80vh;
+    background: var(--bg-white);
 
     .statement {
         margin: 0 0 var(--mg-xl) 0;
@@ -212,4 +220,11 @@
         font-size: var(--fs-sm);
         margin: calc(var(--mg-lg) + 5px) 0 var(--mg-lg);
     }
+}
+
+.sideInfo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
 }

@@ -12,16 +12,20 @@
                 "tenses": ["imperative"]
             },{
                 "title": "Subjunctive I",
+                "mode": "subjunctive_I",
                 "description": "Learn and practise the verb -verb- in the present, perfect and future tenses of the Subjunctive I mode",
-                "tenses": ["konj_perfekt", "konjunktiv_I", "konj_futur_I", "konj_futur_II"]
+                "tenses": ["konj_perfekt", "konjunktiv_I", "konjunktiv_II", "konj_plusquam", "konj_futur_I", "konj_futur_II"]
             },{
                 "title": "Subjunctive II",
                 "description": "Learn and practise the verb -verb- in the present, perfect and future tenses of the Subjunctive I mode",
-                "isConditionalSubj": true,
+                "mode": "subjunctive_II",
                 "tenses": ["konjunktiv_II", "konj_plusquam"]
             },{
-                "title": "Infinitive/Participle",
-                "tenses": ["infinitiv_I", "infinitiv_II", "partizip_I", "partizip_II"]
+                "title": "Infinitive",
+                "tenses": ["infinitiv_I", "infinitiv_II"]
+            },{
+                "title": "Participle",
+                "tenses": ["partizip_I", "partizip_II"]
             }
         ],
         "exerciseText": {

@@ -4,8 +4,8 @@
 
     td {
         font-size: var(--fs-sm);
-        letter-spacing: -0.3px;
-        margin-bottom: var(--mg-xs);
+        letter-spacing: -0.2px;
+        display: inline-flex;
 
         &:first-child {
             width: 30px;
@@ -13,7 +13,7 @@
     }
 
     tbody tr {
-        line-height: 22px;
+        line-height: 23px;
 
         td > i {
             display: inline-block;

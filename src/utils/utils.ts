@@ -173,3 +173,114 @@ export const variablesTextGetProp = (textClean: string) => {
 export const variablesTextGetValue = (textClean: string, strProp: string | undefined) => {
     return textClean.replace(/[\[\]]/g, '').replace(strProp || '', '')
 }
+
+export const getTenseNames = (tense: string, lang: string)=> {
+    // const tenses = {
+    //     konj_perfek
+    // }
+    // if (tense === 'konj_perfek') return 'Imperfect'
+    // if (tense === 'konjunktiv_I') return 'Present'
+    // if (tense === 'konj_perfek') return 'Imperfect'
+    // if (tense === 'konjunktiv_I') return 'Present'
+
+}
+
+export const replaceTenseForURL = (tense: string) => {
+    switch (tense) {
+        case 'präsens':
+            return 'prasens'
+        case 'präteritum':
+            return 'präteritum'
+        default:
+            return tense
+    }
+}
+
+export const replaceTenseFromURL = (tense: string) => {
+    switch (tense) {
+        case 'prasens':
+            return 'präsens'
+        case 'prateritum':
+            return 'präteritum'
+        default:
+            return tense
+    }
+}
+
+export const getTenseNumEquivalent = (number: number) => {
+    switch (number) {
+        case 1:
+            return 'präsens'
+        case 2:
+            return 'präteritum'
+        case 3:
+            return 'perfekt'
+        case 4:
+            return 'plusquamperfekt'
+        case 5:
+            return 'futur I'
+        case 6:
+            return 'futur II'
+        case 7:
+            return 'infinitive I'
+        case 8:
+            return 'infinitive II'
+        case 9:
+            return 'partizip I'
+        case 10:
+            return 'partizip II'
+        case 11:
+            return 'imperative'
+        case 12:
+            return 'konjunktiv I'
+        case 13:
+            return 'konjunktiv II'
+        case 14:
+            return 'konjunktiv plusquamperfekt'
+        case 15:
+            return 'konjunktiv perfekt'
+        case 16:
+            return 'konjunktiv futur I'
+        case 17:
+            return 'konjunktiv futur II'
+    }
+}
+
+export const getTenseFromNumber = (tense: string) => {
+    switch (tense) {
+        case 'präsens':
+            return 1
+        case 'präteritum':
+            return 2
+        case 'perfekt':
+            return 3
+        case 'plusquam':
+            return 4
+        case 'futur_I':
+            return 5
+        case 'futur_II':
+            return 6
+        case 'infinitiv_I':
+            return 7
+        case 'infinitiv_II':
+            return 8
+        case 'partizip_I':
+            return 9
+        case 'partizip_II':
+            return 10
+        case 'imperative':
+            return 11
+        case 'konjunktiv_II':
+            return 12
+        case 'konjunktiv II':
+            return 13
+        case 'konj_plusquam':
+            return 14
+        case 'konjunktiv perfekt':
+            return 15
+        case 'konjunktiv futur I':
+            return 16
+        case 'konjunktiv futur II':
+            return 17
+    }
+}

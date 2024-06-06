@@ -43,6 +43,10 @@ export interface IVerbTense {
     conjugations: IConjugation[]
 }
 
+// export interface conditionalOrConjunctiveII {
+
+// }
+
 export interface IVerbAllTenses {
     indicative: IVerbTense[],
     conjunctive: IVerbTense[],
@@ -58,8 +62,10 @@ export interface IExerciseConjugation {
     texts: IExerciseConjugationTexts,
     allTenses?: IVerbAllTenses,
     selectedTenses?: string[],
-    isSingleTense?: boolean
-    isEmbedded?: boolean
+    isSingleTense?: boolean,
+    isEmbedded?: boolean,
+    verbs?: string[],
+    tenses: string[]
     // isIrregular: string
 }
 
@@ -107,7 +113,25 @@ export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: stri
     return
 }
 
-export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string, isConditionalSubj?: string): IVerbTense | undefined => {
+export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string, mode?: string): IVerbTense | undefined => {
+
+    console.log("hey")
+    // console.log(tenses)
+    console.log(tableTense)
+    console.log(mode || '--')
+
+    if (mode === 'subjunctive_II' && tableTense === 'konjunktiv_II') {
+        const mode = tenses.conditionalOrConjunctiveII as any
+        console.log(mode[tableTense][0])
+        return mode[tableTense][0]
+    }
+
+    if (mode === 'subjunctive_I' && tableTense === 'konjunktiv_II') {
+        const mode = tenses.conjunctive as any
+        console.log(mode[tableTense][0])
+        return mode[tableTense][0]
+    }
+
     for (const mode of Object.values(tenses)) {
 
         if (mode.hasOwnProperty(tableTense)) {

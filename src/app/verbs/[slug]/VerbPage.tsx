@@ -15,6 +15,7 @@ import { IPageState, TPageAction, actions, reducer } from './pageReducer'
 import Lesson from '@/components/Lesson/Lesson'
 import { getTenseFromTenseName } from '@/components/ExerciseConjugation/ExerciseConjugation.exports'
 import EmbeddedExercise from '@/components/EmbeddedExercise/EmbeddedExercise'
+// import { createContext, useContext } from 'react'
 
 interface IVerbsPage {
     slug: string
@@ -43,8 +44,6 @@ export default function VerbsPage(params: IVerbsPage) {
     const collapsiblesTense = pageVerbsTexts.collapsibles
 
     useLayoutEffect(() => {
-        console.log(pageVerbData)
-
         if (refPageContent.current === null) return
 
         document.addEventListener('openModalExercise', (e) => {
@@ -57,6 +56,9 @@ export default function VerbsPage(params: IVerbsPage) {
         getUtteraceInstance().then((utterance) => {
             setUtterance(utterance)
         })
+
+        console.log("DATA IS")
+        console.log(pageVerbData)
     }, [])
 
     // Action when tenses list selection has been confirmed
@@ -139,6 +141,8 @@ export default function VerbsPage(params: IVerbsPage) {
             isIrregular: pageVerbData.data.properties.isIrregular,
             isSeparable: pageVerbData.data.properties.isSeparable,
             description: pageVerbData.descriptions?.en || '',
+            prefixed: pageVerbData.data.properties.prefixed ? true : false,
+            reflexive: JSON.stringify(pageVerbData.data.properties.reflexive) === "true" ? true : false,
             listBtnTenses: getOptionsDropdown(collapsiblesTense),
             translation: pageVerbData.data.properties.translations.en,
             callbackOnBtnClick: triggerExerciseCheckboxListModal
@@ -156,21 +160,21 @@ export default function VerbsPage(params: IVerbsPage) {
         openConjugationExercise()
     }
 
-    const ExerciseContent = (): React.JSX.Element => {
+    // const ExerciseContent = (): React.JSX.Element => {
 
-        return state.exerciseTense || state.selectedTensesFromCheckboxList.length > 0 ? (
-            <ExerciseConjugation
-                verb={pageVerbData.verb}
-                tensesDropdown={collapsiblesTense}
-                texts={pageVerbsTexts.exerciseText}
-                tenseExercise={state.exerciseTense}
-                allTenses={pageVerbData.data.tenses}
-                selectedTenses={state.selectedTensesFromCheckboxList}
-            ></ExerciseConjugation>
-        ) : (
-            <Fragment />
-        )
-    }
+    //     return state.exerciseTense || state.selectedTensesFromCheckboxList.length > 0 ? (
+    //         <ExerciseConjugation
+    //             verb={pageVerbData.verb}
+    //             tensesDropdown={collapsiblesTense}
+    //             texts={pageVerbsTexts.exerciseText}
+    //             tenseExercise={state.exerciseTense}
+    //             allTenses={pageVerbData.data.tenses}
+    //             selectedTenses={state.selectedTensesFromCheckboxList}
+    //         ></ExerciseConjugation>
+    //     ) : (
+    //         <Fragment />
+    //     )
+    // }
 
     const ExerciseListCheckboxes = (): React.JSX.Element =>
         state.exerciseTensesCheckboxList ? (
@@ -192,10 +196,11 @@ export default function VerbsPage(params: IVerbsPage) {
     return pageVerbData ? (
         <div className={styles.pageContent} ref={refPageContent}>
             {/* <div>My Post: {params.slug}</div> */}
+            <h1>{JSON.stringify(pageVerbData.data.properties.reflexive) === "true" ? "YESYES" : "nono"}</h1>
             <VerbHeader {...verbHeaderProps()}></VerbHeader>
             <h1>{`Conjugations`}</h1>
             <div>
-                {[1, 2, 3, 4, 5].map((e, i) => {
+                {[1, 2, 3, 4, 5, 6].map((e, i) => {
                     return (
                         <CollapsibleTenses
                             texts={{ title: collapsiblesTense[i].title, description: collapsiblesTense[i].description }}
@@ -209,12 +214,14 @@ export default function VerbsPage(params: IVerbsPage) {
                             {(collapsiblesTense[i].tenses as string[]).map((tableTense, i) => {
                                 return (
                                     <VerbTable
+                                        verb={pageVerbData.verb}
                                         key={tableTense}
                                         tense={tableTense}
                                         // mode={"indicative"}
-                                        verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense, collapsiblesTense[i]?.isConditionalSubj || false)}
+                                        verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense, collapsiblesTense[i]?.mode || false)}
                                         callbackLessonOpen={onLessonOpen}
                                         utterance={utterance}
+                                        isSeparable={pageVerbData.data.properties.isSeparable}
                                     ></VerbTable>
                                 )
                             })}

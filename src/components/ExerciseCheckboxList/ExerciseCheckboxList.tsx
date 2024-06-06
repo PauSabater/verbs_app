@@ -5,7 +5,7 @@ import styles from './exerciseCheckboxList.module.scss'
 import stylesExercise from '../ExerciseConjugation/exerciseConjugation.module.scss'
 import { ISelectorDropdownOptions } from '../Selector/Selector'
 import InputCheckbox from '../UI/InputCheckbox/InputCheckbox'
-import { ExerciseFeedback } from '../ExerciseConjugation/Components/Feedback/ExerciseFeedback'
+import { ExerciseFeedback } from '../ExerciseConjugation/Components/Feedback/ExerciseFeedback___'
 import { TExerciseState } from '../ExerciseConjugation/ExerciseConjugation.exports'
 
 interface IExerciseCheckboxList {

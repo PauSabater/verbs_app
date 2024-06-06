@@ -2,6 +2,8 @@ import { IConjugation, TExerciseState } from "./ExerciseConjugation.exports";
 
 
 export interface IExerciseConjugationState {
+    currentVerb: string,
+    currentTense: string,
     exerciseState: TExerciseState,
     exerciseConjugations: IConjugation[] | undefined,
     numFilledInputs: number,
@@ -13,7 +15,16 @@ export interface IExerciseConjugationState {
     tenseToConfirm: string,
     triggerInputsAnimation: boolean,
     currentExerciseNumber: number,
-    isHelpOpen: boolean
+    isHelpOpen: boolean,
+    successTenses: string[],
+    verbs: {
+        verb: string,
+        isCompleted: boolean
+    }[]
+    tenses: {
+        tense: string,
+        isCompleted: boolean
+    }[]
 }
 
 export type TExerciseConjugationActions =
@@ -29,6 +40,9 @@ export type TExerciseConjugationActions =
     | 'SET_TRIGGER_INPUTS_ANIMATION'
     | 'SET_CURRENT_EXERCISE_NUMBER'
     | 'SET_IS_HELP_OPEN'
+    | 'SET_COMPLETED_VERB'
+    | 'SET_CURRENT_VERB'
+    | 'SET_CURRENT_TENSE'
 
 export type TExerciseConjugationAction = {
     type: TExerciseConjugationActions,
@@ -47,7 +61,10 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_TENSE_TO_CONFIRM: 'SET_TENSE_TO_CONFIRM',
     SET_TRIGGER_INPUTS_ANIMATION: 'SET_TRIGGER_INPUTS_ANIMATION',
     SET_CURRENT_EXERCISE_NUMBER: 'SET_CURRENT_EXERCISE_NUMBER',
-    SET_IS_HELP_OPEN: 'SET_IS_HELP_OPEN'
+    SET_IS_HELP_OPEN: 'SET_IS_HELP_OPEN',
+    SET_COMPLETED_VERB: 'SET_COMPLETED_VERB',
+    SET_CURRENT_VERB: 'SET_CURRENT_VERB',
+    SET_CURRENT_TENSE: 'SET_CURRENT_TENSE'
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {

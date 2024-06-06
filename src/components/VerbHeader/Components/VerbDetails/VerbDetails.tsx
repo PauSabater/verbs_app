@@ -8,7 +8,9 @@ interface IVerbHeader {
     level: string,
     isIrregular: boolean,
     isSeparable: boolean,
-    isAuxiliary: boolean
+    isAuxiliary: boolean,
+    prefixed?: boolean,
+    reflexive?: boolean,
 }
 
 export default function VerbDetails(props: IVerbHeader) {
@@ -17,10 +19,22 @@ export default function VerbDetails(props: IVerbHeader) {
         <div className={styles.container}>
             <InfoInCircle text={props.level} />
             <p>#{props.number}</p>
+            <p className={styles.separator}>|</p><p>{props.isIrregular ? "irregular" : "regular"}</p>
             {
-                props.isIrregular
-                    ? <><p className={styles.separator}>|</p><p>{"irregular"}</p></>
-                    : <Fragment/>
+                props.isSeparable === true
+                    ? <><p className={styles.separator}>|</p><p>{"separable"}</p></>
+                    : <></>
+            }
+            {
+                props.prefixed && props.prefixed === true
+                    ? <><p className={styles.separator}>|</p><p>{"prefixed"}</p></>
+                    : <></>
+            }
+            <p>{props.reflexive ? "yeees" : "nooo"}</p>
+            {
+                props.reflexive
+                    ? <><p className={styles.separator}>|</p><p>{"reflexive"}</p></>
+                    : <></>
             }
         </div>
     )
