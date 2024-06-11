@@ -11,7 +11,9 @@ interface ITextReplaced {
 // verb-link-hover
 export const TextReplaced = (props: ITextReplaced): JSX.Element => {
 
-    if (!props.text.includes('$__' || '')) return <></>
+    if (!props.text.includes('$__' || '')) return (
+        <p dangerouslySetInnerHTML={{ __html: sanitize(props.text || '') }}></p>
+    )
 
     const variableExtracted = extractVarTextGetString(props.text)
     if (!variableExtracted) return <></>
@@ -21,6 +23,9 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
 
     // Get value
     let value = variablesTextGetValue(variableExtracted, strProp)
+
+    const valuePath = value.includes('-') ? value.split('-')[1] : value
+    const valueText = value.includes('-') ? value.split('-')[0] : value
 
     if (strProp === 'verb-link-hover') {
         const htmlEl: JSX.Element = <Link href={`/verbs/${value}`}>{value}</Link>
@@ -33,9 +38,9 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
             <>
                 <p className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(previousStr) }}></p>
                 <div className={styles.hoveredLinkContainer}>
-                    <VerbInfoHover verb={'sein'}></VerbInfoHover>
-                    <Link className={styles.link} href={`/verbs/${value}`}>
-                        {value}
+                    <VerbInfoHover verb={valuePath}></VerbInfoHover>
+                    <Link className={styles.link} href={`/verbs/${valuePath}`}>
+                        {valueText}
                     </Link>
                 </div>
                 <p className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(nextStr) }}></p>

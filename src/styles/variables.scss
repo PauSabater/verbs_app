@@ -1,16 +1,17 @@
 @use './mixins.scss';
 
 :root {
-    --width-page-content: 100%;
-    --width-page-content-wide-resp: clamp(800px, 80vw, 1400px);
+    --width-page-content: 1050px;
+    --width-page-content-wide-resp: clamp(800px, 80vw, 1300px);
     --width-page-wide-max: 1600px;
-    --width-page-additional-content: 300px;
+    --width-page-additional-content: 400px;
     // --width-page-content: 900px;
     --width-page-content-wider: calc(var(--width-page-content) + var(--width-page-additional-content));
     --width-page-content-text: 750px;
 
     @include mixins.desktop {
-        --width-page-content: 900px;
+        --width-page-additional-content: 350px;
+        --width-page-content: 950px;
         --width-page-content-text: 700px;
     }
 
@@ -57,8 +58,8 @@
 
 
     // Colors
-    --c-verb-stem: var(--c-primary);
-    --c-verb-prefix: var(--c-secondary);
+    --c-verb-stem: var(--c-secondary);
+    --c-verb-prefix: var(--c-primary);
 
     --bg-valid: var(--c-secondary-lighter);
     // --bg-valid-dark: hsl(var(--c-primary-h), var(--c-primary-s), 85%);
@@ -86,7 +87,10 @@
 
     --c-secondary-lighter: hsl(335, 98%, 96%);
     --c-secondary-light: hsl(335, 98%, 75%);
-    --c-secondary: hsl(335, 98%, 50%);
+    --c-secondary: #DF00A6;
+    // --c-secondary: hsl(335, 98%, 50%);
+    //rgb(194, 9, 193)
+    // #DF00A6
     --c-secondary-dark: hsl(335, 98%, 30%);
     --c-secondary-darker: hsl(335, 98%, 15%);
 
@@ -128,14 +132,19 @@
     --c-white-no-change: hsl(136, 0%, 96%);
     --c-whitest: white;
     --c-white: hsl(136, 0%, 96%);
+    --c-white-dark: hsl(136, 0%, 86%);
+    --c-white-darker: hsl(136, 0%, 76%);
     --bg-main: var(--c-white);
-    --bg-white: rgb(250, 250, 250);
+    // --bg-main-light: #faf8fe;
+    --bg-main-light: #f8fafc;
+    --bg-whitest: rgb(255, 255, 255);
+    --bg-white: rgb(255, 255, 255);
     --bg-white-translucent: hsl(0, 0%, 100%, 0.8);
     --bg-white-translucent-dark-mode: hsl(0, 0%, 100%, 1);
 
     --c-icon: var(--c-grey-dark);
     --c-icon-light: var(--c-grey);
-    --c-border-dotted: hsl(0, 0%, 85%);
+    --c-border-dotted: hsl(0, 0%, 80%);
 
     // Transitions
     --tr-faster: 0.1s;
@@ -177,7 +186,7 @@
     --fw-medium: 600;
     --fw-bold: 800;
 
-    @include mixins.desktop {
+    @include mixins.desktop-lg {
         --fs-5xl: 4.1rem;
         --fs-4xl: 3.5rem;
         --fs-3xl: 2.4rem;
@@ -186,6 +195,18 @@
         --fs-lg: 1.3rem;
         --fs-global: 1.1rem;
         --fs-sm: 1.05rem;
+    }
+
+    @include mixins.desktop {
+        --fs-5xl: 4.1rem;
+        --fs-4xl: 3.5rem;
+        --fs-3xl: 2.4rem;
+        --fs-2xl: 2.1rem;
+        --fs-xl: 1.7rem;
+        --fs-lg: 1.25rem;
+        --fs-global: 1.05rem;
+        --fs-sm: 1rem;
+        --fs-xs: 0.9rem;
     }
 
     @include mixins.mobile-tablet {
@@ -210,8 +231,10 @@
 
 
 
-    --c-verb-stem: var(--c-primary);
-    --c-verb-ending: var(--c-secondary);
+    --c-verb-stem: var(--c-secondary);
+    --c-verb-ending: var(--c-primary);
+
+    --zi-highest: 1000;
 
 }
 
@@ -231,7 +254,11 @@
 }
 
 #page-root {
-    background-color: var(--bg-white);
+    background-color: rgb(253, 253, 253);
     transition: background-color var(--tr-fast);
     scroll-behavior: smooth;
+}
+
+:root.mode-dark {
+    background-color: rgb(29, 29, 29) !important;
 }

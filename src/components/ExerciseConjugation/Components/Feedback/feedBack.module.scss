@@ -4,16 +4,17 @@
     --c-border: var(--c-success);
     --feedback-bg: transparent;
     --size-icon: 25px;
+    --height-feedback: 50px;
 
     box-sizing: border-box;
     position: relative;
     display: grid;
-    grid-template-rows: 50% 50%;
+    grid-template-rows: 100%;
     height: var(--height-feedback);
     width: calc(100% - 0px);
     padding: 0 var(--pd-modal-horitz);
-    bottom: 0;
-    left: 0;
+    margin-bottom: 120px;
+    margin-top: auto;
     background-color: var(--feedback-bg);
     border-radius: 0 0 10px 10px;
     transition: background-color var(--tr-fast);
@@ -30,6 +31,7 @@
         height: var(--size-icon);
         width: var(--size-icon);
         margin-right: var(--mg-sm);
+        margin-left: 0;
     }
 
     &[data-state="success"] {
@@ -64,7 +66,7 @@
 .containerBtns {
     display: grid;
     gap: var(--mg-xs);
-    grid-template-columns: 190px auto;
+    // grid-template-columns: calc(50% - (var(--mg-xs) / 2)) calc(50% - (var(--mg-xs) / 2));
 }
 
 

@@ -7,15 +7,16 @@ interface IButton {
     width?: "fullWidth" | "fitContent",
     icon?: "exercise" | "repeat" | "next" | "link",
     color?: TColor,
-    size?: "lg" | "xs" | "xsSquare",
+    size?: "lg" | "xs" | "xsSquare" | "square"
     callback?: Function
     type?: "submit" | "reset"
     title?: string
     isLink?: boolean
     path?: string
+    paramOnClick?: string
 }
 
-export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success" | "transparent"
+export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success" | "transparent" | "greyDark"
 
 export function Button(props: IButton) {
 
@@ -27,8 +28,13 @@ export function Button(props: IButton) {
     }
 
     const handleBtnClick = ()=> {
+        console.log("CLIIIIIICK")
         if (!props.callback) return
-        props.callback()
+        props.callback(props.paramOnClick || '')
+    }
+
+    const getClassNames = ()=> {
+        return `${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']}`
     }
 
     return (
@@ -36,7 +42,7 @@ export function Button(props: IButton) {
             {!props.isLink ? (
                 <button
                     title={props.title || ''}
-                    className={`${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']}`}
+                    className={getClassNames()}
                     type={props.type}
                     onClick={() => handleBtnClick()}
                 >

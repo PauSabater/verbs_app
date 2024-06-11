@@ -16,6 +16,8 @@ interface IVerbHeader {
     stemFormationHTML: string,
     isIrregular: boolean,
     isSeparable: boolean,
+    prefixed: boolean,
+    reflexive: boolean,
     button: string,
     description: string,
     translation: string,
@@ -30,7 +32,9 @@ export default function VerbHeader(props: IVerbHeader) {
         level: props.level,
         isIrregular: props.isIrregular,
         isSeparable: props.isSeparable,
+        isReflexive: props.reflexive,
         isAuxiliary: true,
+        prefixed: props.prefixed
     }
 
     const handleBtnClick = ()=> {
@@ -41,8 +45,8 @@ export default function VerbHeader(props: IVerbHeader) {
         <div className={styles.container}>
             <div className={styles.containerTitle}>
                 <VerbTitle verbHTML={props.verbHTML} />
-                <VerbDetails {...propsVerbDetails}/>
             </div>
+            <VerbDetails {...propsVerbDetails}/>
             <VerbStemFormation stemFormationHTML={props.stemFormationHTML} />
             <p className={styles.translation}>{props.translation}</p>
             <VerbDescription text={props.description}></VerbDescription>

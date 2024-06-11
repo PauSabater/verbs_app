@@ -14,6 +14,8 @@ import { useReducer } from 'react'
 import { IPageState, TPageAction, actions, reducer } from './pageReducer'
 import Lesson from '@/components/Lesson/Lesson'
 import { getTenseFromTenseName } from '@/components/ExerciseConjugation/ExerciseConjugation.exports'
+import EmbeddedExercise from '@/components/EmbeddedExercise/EmbeddedExercise'
+// import { createContext, useContext } from 'react'
 
 interface IVerbsPage {
     slug: string
@@ -39,13 +41,9 @@ export default function VerbsPage(params: IVerbsPage) {
     const refModal = useRef(null)
     const refPageContent = useRef(null)
     const pageVerbData = JSON.parse(params.data).props.verbData.verb
-    const collapsiblesTense = verbsTenseException.includes(pageVerbData.verb)
-        ? pageVerbsTexts.collapsiblesException
-        : pageVerbsTexts.collapsibles
+    const collapsiblesTense = pageVerbsTexts.collapsibles
 
     useLayoutEffect(() => {
-        console.log(pageVerbData)
-
         if (refPageContent.current === null) return
 
         document.addEventListener('openModalExercise', (e) => {
@@ -58,10 +56,16 @@ export default function VerbsPage(params: IVerbsPage) {
         getUtteraceInstance().then((utterance) => {
             setUtterance(utterance)
         })
+
+        console.log("DATA IS")
+        console.log(pageVerbData)
     }, [])
 
     // Action when tenses list selection has been confirmed
     useEffect(() => {
+        console.log("hey")
+        console.log(collapsiblesTense)
+
         if (state.selectedTensesFromCheckboxList.length > 0) {
             openTensesCheckboxList()
         }
@@ -136,7 +140,9 @@ export default function VerbsPage(params: IVerbsPage) {
             stemFormationHTML: pageVerbData.data.properties.stemFormationHTML,
             isIrregular: pageVerbData.data.properties.isIrregular,
             isSeparable: pageVerbData.data.properties.isSeparable,
-            description: pageVerbData.descriptions.en,
+            description: pageVerbData.descriptions?.en || '',
+            prefixed: pageVerbData.data.properties.prefixed ? true : false,
+            reflexive: JSON.stringify(pageVerbData.data.properties.reflexive) === "true" ? true : false,
             listBtnTenses: getOptionsDropdown(collapsiblesTense),
             translation: pageVerbData.data.properties.translations.en,
             callbackOnBtnClick: triggerExerciseCheckboxListModal
@@ -154,24 +160,21 @@ export default function VerbsPage(params: IVerbsPage) {
         openConjugationExercise()
     }
 
-    const ExerciseContent = (): React.JSX.Element => {
-        console.log("TRY TO RENDER EXERCISE")
-        console.log(state.exerciseTense)
-        console.log(state.selectedTensesFromCheckboxList)
+    // const ExerciseContent = (): React.JSX.Element => {
 
-        return state.exerciseTense || state.selectedTensesFromCheckboxList.length > 0 ? (
-            <ExerciseConjugation
-                verb={pageVerbData.verb}
-                tensesDropdown={collapsiblesTense}
-                texts={pageVerbsTexts.exerciseText}
-                tenseExercise={state.exerciseTense}
-                allTenses={pageVerbData.data.tenses}
-                selectedTenses={state.selectedTensesFromCheckboxList}
-            ></ExerciseConjugation>
-        ) : (
-            <Fragment />
-        )
-    }
+    //     return state.exerciseTense || state.selectedTensesFromCheckboxList.length > 0 ? (
+    //         <ExerciseConjugation
+    //             verb={pageVerbData.verb}
+    //             tensesDropdown={collapsiblesTense}
+    //             texts={pageVerbsTexts.exerciseText}
+    //             tenseExercise={state.exerciseTense}
+    //             allTenses={pageVerbData.data.tenses}
+    //             selectedTenses={state.selectedTensesFromCheckboxList}
+    //         ></ExerciseConjugation>
+    //     ) : (
+    //         <Fragment />
+    //     )
+    // }
 
     const ExerciseListCheckboxes = (): React.JSX.Element =>
         state.exerciseTensesCheckboxList ? (
@@ -193,29 +196,32 @@ export default function VerbsPage(params: IVerbsPage) {
     return pageVerbData ? (
         <div className={styles.pageContent} ref={refPageContent}>
             {/* <div>My Post: {params.slug}</div> */}
+            <h1>{JSON.stringify(pageVerbData.data.properties.reflexive) === "true" ? "YESYES" : "nono"}</h1>
             <VerbHeader {...verbHeaderProps()}></VerbHeader>
-            <h1>HEYY {params.nextSlug}</h1>
             <h1>{`Conjugations`}</h1>
             <div>
-                {[1, 2].map((e, i) => {
+                {[1, 2, 3, 4, 5, 6].map((e, i) => {
                     return (
                         <CollapsibleTenses
-                            texts={{ title: collapsiblesTense[i].title }}
+                            texts={{ title: collapsiblesTense[i].title, description: collapsiblesTense[i].description }}
                             action={btnCollapsiblesAction}
                             tenses={collapsiblesTense[i].tenses}
                             examples={pageVerbData.examples}
                             utterance={utterance}
                             key={`tenses-table-${i}`}
+                            verb={pageVerbData.verb}
                         >
                             {(collapsiblesTense[i].tenses as string[]).map((tableTense, i) => {
                                 return (
                                     <VerbTable
+                                        verb={pageVerbData.verb}
                                         key={tableTense}
                                         tense={tableTense}
                                         // mode={"indicative"}
-                                        verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense)}
+                                        verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense, collapsiblesTense[i]?.mode || false)}
                                         callbackLessonOpen={onLessonOpen}
                                         utterance={utterance}
+                                        isSeparable={pageVerbData.data.properties.isSeparable}
                                     ></VerbTable>
                                 )
                             })}
@@ -223,7 +229,7 @@ export default function VerbsPage(params: IVerbsPage) {
                     )
                 })}
 
-                <ModalExercises
+                {/* <ModalExercises
                     text={''}
                     open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
                     ref={refModal}
@@ -233,7 +239,11 @@ export default function VerbsPage(params: IVerbsPage) {
                         ? <ExerciseContent /> : state.isCheckboxListOpen
                         ? <ExerciseListCheckboxes /> : ''
                     }
-                </ModalExercises>
+                </ModalExercises> */}
+{/*
+                <h1>{`Practise`}</h1>
+
+                <ExerciseContent /> */}
 
                 <ModalExercises
                     text={''}
@@ -244,6 +254,18 @@ export default function VerbsPage(params: IVerbsPage) {
                 >
                     <Lesson lesson={'präsens'} utterance={utterance} />
                 </ModalExercises>
+
+                {/* <EmbeddedExercise text={''} open={true} ref={refModal} callbackClose={callbackCloseModal}>
+                    <ExerciseConjugation
+                        verb={'sein'}
+                        tensesDropdown={props.exercisesTense}
+                        texts={textsExercise}
+                        tenseExercise={'präsens'}
+                        selectedTenses={[props.exercisesTense]}
+                        isSingleTense={true}
+                        isEmbedded={true}
+                    ></ExerciseConjugation>
+                </EmbeddedExercise> */}
             </div>
         </div>
     ) : (

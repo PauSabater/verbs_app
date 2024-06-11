@@ -28,11 +28,13 @@ interface ITensesExamples {
 
 export function TensesExamples(props: ITensesExamples) {
     const getExamples = (tense: string, lang: TLangs, i: number) => {
+        if (tense === 'plusquam') tense = 'plusquamperfekt'
         for (const mode of Object.values(props.examples)) {
             for (const [tenseName, langs] of Object.entries(mode)) {
                 if (tenseName.toLowerCase() === tense.toLowerCase()) {
                     return (
                         <div className={styles.examplesContainer} key={`${i}-${mode}-${tenseName}`}>
+                            <p className={styles.tense}>{tenseName}</p>
                             <div className={styles.audioAndSentence}>
                                 <p dangerouslySetInnerHTML={{ __html: sanitize(langs.de) }}></p>
                                 <AudioIcon text={removeTags(langs.de)} utterance={props.utterance as SpeechSynthesisUtterance} />

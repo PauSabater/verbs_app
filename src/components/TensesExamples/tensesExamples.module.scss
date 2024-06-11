@@ -12,7 +12,7 @@
 }
 
 .examplesContainer {
-    margin: 7px 0 var(--mg-lg);
+    margin: 7px 0 20px;
 
     p {
         margin: 0;
@@ -22,12 +22,26 @@
         font-style: italic;
         font-weight: var(--fw-light);
         color: var(--c-font-global-light);
+        font-size: var(--fs-2xs);
+    }
+
+    .tense {
+        font-weight: var(--fw-light);
+        color: var(--c-font-global-light);
+        font-size: var(--fs-xs);
+        margin-bottom: var(--mg-xs);
     }
 }
 
 .audioAndSentence {
     display: flex;
     align-items: center;
+    width: fill-available;
+
+    p {
+        width: 100%;
+        font-size: var(--fs-xs);
+    }
 
     svg {
         color: var(--c-grey-dark);

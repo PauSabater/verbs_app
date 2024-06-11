@@ -4,7 +4,7 @@ import styles from './verbInfoHover.module.scss'
 import { useContext } from 'react'
 import { LessonPageContext } from '@/app/lessons/[slug]/LessonPage'
 import { AudioIcon } from '@/components/AudioIcon/AudioIcon'
-import InfoInCircle from '@/components/UI/InfoInCircle/InfoInCircle'
+import InfoInCircle from '@/elements/InfoInCircle/InfoInCircle'
 import { Button } from '@/components/Button/Button'
 
 interface IVerbInfoHover {
@@ -15,16 +15,26 @@ interface IVerbInfoHover {
 export const VerbInfoHover = (props: IVerbInfoHover): JSX.Element => {
 
     const lessonPageContext = useContext(LessonPageContext)
+
     if (!lessonPageContext.dataVerbsInText) return <></>
 
-    const dataVerb = lessonPageContext.dataVerbsInText.find((verb)=> verb.verb = props.verb)
+    const dataVerb = lessonPageContext.dataVerbsInText.find((verb)=> verb.verb === props.verb)
+
+    if (!dataVerb) return <></>
+
+    const onClick = ()=> {
+        lessonPageContext.callbackOnExerciseOpen(props.verb)
+    }
 
     return dataVerb ? (
         <div className={styles.container}>
             <div className={styles.verbInfoContainer}>
                 <div className={styles.infoOnLeft}>
                     <p className={styles.verb}>{dataVerb.verb}</p>
-                    {lessonPageContext.utterance ? <AudioIcon text={'sein'} utterance={lessonPageContext.utterance}></AudioIcon> : <></>}
+                    {lessonPageContext.utterance
+                        ? <AudioIcon text={props.verb} utterance={lessonPageContext.utterance}></AudioIcon>
+                        : <></>
+                    }
                 </div>
                 <div className={styles.infoOnRight}>
                     <InfoInCircle text={dataVerb.properties.level}></InfoInCircle>
@@ -41,7 +51,7 @@ export const VerbInfoHover = (props: IVerbInfoHover): JSX.Element => {
                     text={''}
                     icon={'exercise'}
                     size={'xsSquare'}
-                    callback={lessonPageContext.callbackOnExerciseOpen}
+                    callback={(e: Event) => onClick()}
                 ></Button>
                 <Button
                     title={`open verb page for ${props.verb}`}

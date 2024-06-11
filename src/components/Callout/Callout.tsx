@@ -18,7 +18,7 @@ export default function Callout(props: ICallout) {
 
     return (
         <div className={styles.container}>
-            <div className={styles.content} dangerouslySetInnerHTML={{__html: sanitize(props.text)}}></div>
+            <p className={styles.content} dangerouslySetInnerHTML={{__html: sanitize(props.text)}}></p>
             {
                 getCalloutIcon(props.type || '')
             }

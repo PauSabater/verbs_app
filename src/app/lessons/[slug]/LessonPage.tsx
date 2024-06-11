@@ -10,6 +10,8 @@ import { sanitize } from 'isomorphic-dompurify'
 import ModalExercises from '@/components/ModalExercises/ModalExercises'
 import { ExerciseConjugation } from '@/components/ExerciseConjugation/ExerciseConjugation'
 import { IVerbProperties } from '@/assets/interfaces/interfaces'
+import LessonLink from '@/components/LessonsLinks/components/LessonLink/LessonLink'
+import EmbeddedExercise from '@/components/EmbeddedExercise/EmbeddedExercise'
 
 interface ILessonPage {
     host: string
@@ -34,14 +36,13 @@ export const LessonPageContext = createContext<IContextLessonPage>({} as IContex
 
 export function LessonPage(props: ILessonPage) {
 
-    console.log("IN LESSONS PAGE PROPS ARE")
-    console.log(props.dataVerbsInText)
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | null>(null)
     const [intersectedHeading, setIntersectedHeading] = useState<string>('')
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
     const refModal = useRef(null)
     const textsExercise = JSON.parse(props.textsExercise)
     const [verbExercise, setVerbExercise] = useState<string>('')
+    const [isEmbeddedExerciseOpen, setIsEmbeddedExerciseOpen] = useState<boolean>(true)
 
     useLayoutEffect(() => {
         getUtteraceInstance().then((utterance) => {
@@ -57,10 +58,14 @@ export function LessonPage(props: ILessonPage) {
         setIsModalOpen(false)
     }
 
-    const callbackOpenModal = () => {
+    const callbackOpenModal = (verb: string) => {
         console.log("HEY CLICK!!")
-        setIsModalOpen(true)
-        setVerbExercise('sein')
+        console.log("VERB IS")
+        console.log(verb)
+        if (verb) {
+            setIsModalOpen(true)
+            setVerbExercise(verb)
+        }
     }
 
     return (
@@ -75,15 +80,35 @@ export function LessonPage(props: ILessonPage) {
         >
             <div className={styles.container}>
                 <LessonHeader></LessonHeader>
-                <IndexContent content={props.data} intersectedIndex={intersectedHeading}></IndexContent>
+
                 <Lesson
                     data={props.data}
                     utterance={utterance}
                     lesson={'präsens'}
                     isPost={true}
                     onHeadingIntersection={handleHeadingIntersection}
-                    callbackOnExerciseOpen={callbackOpenModal}
+                    exerciseTexts={props.textsExercise}
+                    // callbackOnExerciseOpen={callbackOpenModal}
                 ></Lesson>
+
+                <div className={styles.sideContent}>
+                    <IndexContent content={props.data} intersectedIndex={intersectedHeading}></IndexContent>
+                    {/* <EmbeddedExercise text={''} open={isEmbeddedExerciseOpen} ref={refModal} callbackClose={callbackCloseModal}>
+                        <ExerciseConjugation
+                            verb={'sein'}
+                            tensesDropdown={props.exercisesTense}
+                            texts={textsExercise}
+                            tenseExercise={'präsens'}
+                            selectedTenses={[props.exercisesTense]}
+                            isSingleTense={true}
+                            isEmbedded={true}
+                        ></ExerciseConjugation>
+                    </EmbeddedExercise> */}
+                </div>
+
+                {/* {props.lessonsProps.map((lesson) => {
+                    return <LessonLink tense={lesson.tense} title={lesson.title} level={lesson.level}></LessonLink>
+                })} */}
 
                 <ModalExercises text={''} open={isModalOpen} ref={refModal} callbackClose={callbackCloseModal}>
                     <ExerciseConjugation
@@ -95,6 +120,7 @@ export function LessonPage(props: ILessonPage) {
                         // allTenses={props.exercisesTense}
                         selectedTenses={[props.exercisesTense]}
                         isSingleTense={true}
+                        tenses={['präsens']}
                     ></ExerciseConjugation>
                 </ModalExercises>
             </div>

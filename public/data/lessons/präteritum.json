@@ -19,11 +19,11 @@
         },
         {
             "type": "paragraph",
-            "content": "Start text  $__sein[verb-link-hover]__$ The <b><i>Präsens</i></b> tense in German direclty corresponds to the present tense in English. It is used to describe actions that are happening right now or habitual actions. </br>However, it can also be used to describe future actions or actions happenning now with continuation on the  future. This is because in German the future tense is rarely used and there is no present continuous. The <i>Präsens</i> should be the first tense to learn when starting to learn German."
+            "content": "The <b><i>Präsens</i></b> tense in German direclty corresponds to the present tense in English. It is used to describe actions that are happening right now or habitual actions. </br>However, it can also be used to describe future actions or actions happenning now with continuation on the  future. This is because in German the future tense is rarely used and there is no present continuous. The <i>Präsens</i> should be the first tense to learn when starting to learn German."
         },
         {
             "type": "callout",
-            "content": "<p>With the <i>Präsens</i>, you are getting 4 tenses in one: <strong>present</strong>, <strong>present continuous</strong>, <strong>present perfect</strong> and, in some cases, also the <strong>future</strong>! &nbsp;&nbsp; &#127881</p>"
+            "content": "With the <i>Präsens</i>, you are getting 4 tenses in one: <strong>present</strong>, <strong>present continuous</strong>, <strong>present perfect</strong> and, in some cases, also the <strong>future</strong>! &nbsp;&nbsp; &#127881"
         },
         {
             "type": "h2",
@@ -31,42 +31,41 @@
         },
         {
             "type": "paragraph",
-            "content": "<p>We use the <i>Präsens</i> tense to express:</p>"
+            "content": "We use the <i>Präsens</i> tense to express:"
         },
         {
             "type": "list",
-            "content": "heyy",
             "itemsList": {
                 "items": [
                     {
                         "text": "<b>Present Actions:</b> Describing actions happening in the present.",
                         "example": {
-                            "intro": "Example:",
-                            "text": "Ich <a href='replace-url/verbs/lesen' target='_blank'>lese</a> ein Buch.",
+                            "audio": "Ich lese ein Buch.",
+                            "text": "Example: Ich $__lese-lesen[verb-link-hover]__$ ein Buch.",
                             "translation": "(I am reading a book.)"
                         }
                     },
                     {
                         "text": "<b>Habitual Actions:</b> Expressing routine or habitual actions.",
                         "example": {
-                            "intro": "Example:",
-                            "text": "Ich <a href='replace-url/verbs/trinken' target='_blank'>trinke</a> jeden Morgen Kaffee.",
+                            "audio": "Ich trinke jeden Morgen Kaffee.",
+                            "text": "Ich $__trinke-trinken[verb-link-hover]__$ jeden Morgen Kaffee.",
                             "translation": "(I drink coffee every morning.)"
                         }
                     },
                     {
                         "text": "<b>General Truths:</b> Stating facts or general truths.",
                         "example": {
-                            "intro": "Example:",
-                            "text": "Die Erde <a href='replace-url/verbs/sind' target='_blank'> ist</a>rund.",
+                            "audio": "Die Erde is rund.",
+                            "text": "Die Erde $__ist-sein[verb-link-hover]__$ rund.",
                             "translation": "(The Earth ist round.)"
                         }
                     },
                     {
                         "text": "<b>Actions already started and still happening:</b> In english we would use the present perfect tense: 'He has been playing...'.",
                         "example": {
-                            "intro": "Example:",
-                            "text": "Er <a href='replace-url/verbs/arbeiten' target='_blank'>arbeitet</a> seit 3 monate ins Kino.",
+                            "audio": "Er arbeitet seit 3 monate ins Kino.",
+                            "text": "Er $__arbeitet-arbeiten[verb-link-hover]__$ seit 3 monate ins Kino.",
                             "translation": "(He has been working in the cinema for 3 months.)"
                         }
                     }
@@ -82,8 +81,22 @@
             "content": "Regular verbs"
         },
         {
-            "type": "paragraph",
-            "content": "<p>For regular verbs ending in <b data-verb-prefix>-en</b> (e.g., <a href='replace-url/verbs/splielen' target=\"_blank\">spiel<b data-verb-prefix>en</b></a> - <i>to play</i>), the infinitive ending <b data-verb-prefix>-en</b> is replaced by the following endings:</p>"
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "For regular verbs ending in <b data-verb-prefix>-en</b> (e.g., "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "spielen",
+                    "contentHtml": "spiel<b data-verb-prefix>en</b>"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>to play</i>), the infinitive ending <b data-verb-prefix>-en</b> is replaced by the following endings:"
+                }
+            ]
         },
         {
             "type": "table",
@@ -101,15 +114,28 @@
         },
         {
             "type": "exercise-btn",
-            "content": "practise präsens for splielen"
+            "content": "practise präsens for spielen"
         },
         {
             "type": "h3",
             "content": "Irregular verbs"
         },
         {
-            "type": "paragraph",
-            "content": "<p>Some irregular verbs require memorization since they will not follow any pattern (e.g., <a href='replace-url/verbs/sein' target=\"_blank\">sein</a> - <i>to play</i>):</p>"
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "Some irregular verbs require memorization since they will not follow any pattern (e.g., "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "sein"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>to be</i>):"
+                }
+            ]
         },
         {
             "type": "table",
@@ -130,8 +156,45 @@
             "content": "practise präsens for sein"
         },
         {
-            "type": "paragraph",
-            "content": "<p>The 5 most important verbs of this type are the following: <a href='replace-url/verbs/sein' target=\"_blank\">sein</a>, <a href='replace-url/verbs/haben' target=\"_blank\">haben</a>, <a href='replace-url/verbs/werden' target=\"_blank\">werden</a>, <a href='replace-url/verbs/könen' target=\"_blank\">könen</a>, <a href='replace-url/verbs/mögen' target=\"_blank\">mögen</a></p>"
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The 5 most important verbs of this type are the following: "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "sein"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "werden"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "könen"
+                },
+                {
+                    "type": "text",
+                    "content": " and "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "mögen"
+                },
+                {
+                    "type": "text",
+                    "content": "."
+                }
+            ]
         },
         {
             "type": "h3",
@@ -146,7 +209,7 @@
             "itemsList": {
                 "items": [
                     {
-                        "text": "<b>e  →  i:</b> for example <a href='replace-url/verbs/helfen' target=\"_blank\">helfen</a> (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"ie\"</b>:"
+                        "text": "<b>e  →  i:</b> for  example $__helfen-helfen[verb-link-hover]__$ (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"ie\"</b>:"
                     }
                 ]
             }
@@ -172,16 +235,44 @@
             "content": "practise präsens for helfen"
         },
         {
-            "type": "paragraph",
-            "marginList": true,
-            "content": "<p>Other examples are <a href='replace-url/verbs/geben' target=\"_blank\">geben</a>, <a href='replace-url/verbs/sprechen' target=\"_blank\">sprechen</a> and <a href='replace-url/verbs/nehmen' target=\"_blank\">nehmen</a></p>"
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "Other examples are  "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "geben"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "sprechen"
+                },
+                {
+                    "type": "text",
+                    "content": " and "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "nehmen"
+                },
+                {
+                    "type": "text",
+                    "content": "."
+                }
+            ]
         },
         {
             "type": "list",
             "itemsList": {
                 "items": [
                     {
-                        "text": "<b>e  →  ie:</b> for example <a href='replace-url/verbs/sehen' target=\"_blank\">sehen</a> (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"i\"</b>:"
+                        "text": "<b>e  →  ie:</b> for example $__sehen-sehen[verb-link-hover]__$ (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"i\"</b>:"
                     }
                 ]
             }
@@ -207,16 +298,44 @@
             "content": "practise präsens for sehen"
         },
         {
-            "type": "paragraph",
-            "marginList": true,
-            "content": "<p>Other examples are <a href='replace-url/verbs/lesen' target=\"_blank\">lesen</a>, <a href='replace-url/verbs/sehen' target=\"_blank\">sehen</a> and <a href='replace-url/verbs/stehlen' target=\"_blank\">stehlen</a></p>"
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "Other examples are  "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "lesen"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "sehen"
+                },
+                {
+                    "type": "text",
+                    "content": " and "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "stehen"
+                },
+                {
+                    "type": "text",
+                    "content": "."
+                }
+            ]
         },
         {
             "type": "list",
             "itemsList": {
                 "items": [
                     {
-                        "text": "<b>a  →  ä:</b> for example <a href='replace-url/verbs/fallen' target=\"_blank\">fallen</a> (to fall) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"ä\"</b>:"
+                        "text": "<b>a  →  ä:</b> for example $__fallen-fallen[verb-link-hover]__$ (to fall) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"ä\"</b>:"
                     }
                 ]
             }
@@ -242,16 +361,44 @@
             "content": "practise präsens for fallen"
         },
         {
-            "type": "paragraph",
-            "marginList": true,
-            "content": "<p>Other examples are <a href='replace-url/verbs/schlafen' target=\"_blank\">schlafen</a>, <a href='replace-url/verbs/fahren' target=\"_blank\">fahren</a> and <a href='replace-url/verbs/raten' target=\"_blank\">raten</a></p>"
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "Other examples are  "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "schlafen"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "fahren"
+                },
+                {
+                    "type": "text",
+                    "content": " and "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "raten"
+                },
+                {
+                    "type": "text",
+                    "content": "."
+                }
+            ]
         },
         {
             "type": "list",
             "itemsList": {
                 "items": [
                     {
-                        "text": "<b>a  →  äu:</b> for example <a href='replace-url/verbs/laufen' target=\"_blank\">laufen</a> (to fall) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"äu\"</b>:"
+                        "text": "<b>a  →  äu:</b> for example $__laufen[verb-link-hover]__$ (to run) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"äu\"</b>:"
                     }
                 ]
             }

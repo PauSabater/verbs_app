@@ -4,22 +4,25 @@
 
     td {
         font-size: var(--fs-sm);
-        margin-bottom: var(--mg-xs);
+        letter-spacing: -0.2px;
+        display: inline-flex;
 
         &:first-child {
-            width: 50px;
+            width: 30px;
         }
     }
 
     tbody tr {
-        line-height: 27px;
+        line-height: 23px;
 
         td > i {
             display: inline-block;
-            min-width: 50px;
+            min-width: 60px;
         }
 
         b {
+            font-weight: 600;
+
             u {
                 color: var(--c-verb-stem);
                 text-decoration: none;

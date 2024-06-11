@@ -13,7 +13,7 @@ export default function InputSearchBar(props: IInputSearchBar) {
     const [urlFetchData, setUrlFetchData] = useState<string>('')
 
     useLayoutEffect(()=> {
-        setUrlFetchData(window.location.href.includes('localhost') ? 'http://localhost:9090/verbs/get/search/' : '?')
+        setUrlFetchData(window.location.href.includes('localhost') ? 'http://localhost:9090/api/verbs/get/search/' : '?')
     },[])
 
     const onInputChange = async (e: ChangeEvent<HTMLInputElement>) => {

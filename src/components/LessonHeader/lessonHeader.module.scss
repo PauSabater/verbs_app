@@ -4,11 +4,15 @@
     --icon-bookmark-fs: var(--fs-xs);
 
     box-sizing: border-box;
+    position: relative;
     background-color: var(--c-primary-dark);
+    // background: #585668;
+    background: linear-gradient(135deg, var(--c-black-light), var(--c-primary-dark));
     padding: 40px 60px;
     border-radius: 20px;
     width: calc(100% + 60px);
     margin-left: -60px;
+    z-index: 2;
 
     p {
         color: var(--c-font-white-dark);

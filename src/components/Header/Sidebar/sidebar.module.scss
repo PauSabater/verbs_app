@@ -1,5 +1,5 @@
 .sideBar {
-    --sidebar-width: 55px;
+    --sidebar-width: 50px;
 
     position: fixed;
     display: grid;
@@ -10,8 +10,9 @@
     padding-top: 90px;
     width: var(--sidebar-width);
     // background: #81bc32;
-    background: var(--bg-white);
-    border-right: 1px solid var(--c-grey-lighter);
+    background: var(--c-white);
+    // background: linear-gradient(290deg, var(--c-grey-dark), var(--c-black-light));
+    border-right: 1px solid var(--c-grey-light);
     // box-shadow: 0px -2px 11px 0px var(--c-primary-lighter);
     transition: width var(--tr-fast), transform var(--tr-fast);
     overflow: hidden;
@@ -54,7 +55,7 @@
     }
 
     svg {
-        color: var(--c-grey);
+        color: var(--c-grey-darker);
         height: 30px;
         width: 20px;
         transition: color var(--tr-base);

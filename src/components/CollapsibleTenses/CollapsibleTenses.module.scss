@@ -1,6 +1,6 @@
 .container {
-    --pd-collapsible: var(--pd-xl);
-    --height-opener: 80px;
+    --pd-collapsible: var(--pd-lg);
+    --height-opener: 100px;
     --mg-bottom-collapsible: 90px;
 
     display: grid;
@@ -8,7 +8,6 @@
     column-gap: var(--pd-sm);
     width: fit-content;
     margin: 0 auto var(--mg-bottom-collapsible) auto;
-    border-radius: 10px;
     overflow: hidden;
 }
 
@@ -17,7 +16,6 @@
     grid-row-start: 2;
     padding: 0 var(--pd-collapsible) var(--pd-collapsible) calc(var(--pd-collapsible) + 15px);
     grid-template-columns: repeat(3, 33.3%);
-    background-color: var(--c-primary-lighter);
 
     button {
         margin-top: var(--mg-lg);
@@ -32,13 +30,28 @@
     justify-content: center;
     padding-left: calc(var(--pd-collapsible) + 15px);
     height: var(--height-opener);
-    background-color: var(--c-primary-lighter);
+    border-bottom: 1px dotted var(--c-border-dotted);
+
+    h2 {
+        margin-top: 0;
+    }
+
+
+}
+
+.tablesContainer {
+    border: 3px dotted var(--c-border-dotted);
+    background-color: var(--bg-main-light);
+    border-radius: 10px;
 }
 
 .containerExamples {
-    grid-row-start: 1;
-    grid-row-end: 3;
     border: 3px dotted var(--c-border-dotted);
     border-radius: 10px;
     padding: 0 var(--pd-collapsible) var(--pd-collapsible) var(--pd-collapsible);
+}
+
+.description {
+    margin: 0;
+    font-size: var(--fs-sm);
 }

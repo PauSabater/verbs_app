@@ -16,12 +16,14 @@
     font-size: var(--btn-fs);
     font-weight: 500;
     color: var(--c-white);
+    line-height: var(--btn-height);
     border: none;
     transition: background var(--tr-base);
     // background-color: ;
 
     svg {
-        width: 20px;
+        width: 22px;
+        margin: auto;
         transform: translateX(-15px);
         transition: transform var(--tr-base);
 
@@ -59,6 +61,14 @@
 
     &:hover {
         background: var(--c-primary-dark);
+    }
+}
+
+.greyDark {
+    background-color: var(--c-grey-darker);
+
+    &:hover {
+        background: var(--c-black-light);
     }
 }
 
@@ -172,5 +182,31 @@
     &:hover svg {
         transform: scale(1.2);
     }
+}
 
+.square {
+    --btn-square-height: 45px;
+
+    position: relative;
+    background: var(--c-grey-lighter);
+    color: var(--c-font-global);
+    // border: 2px dotted var(--c-grey-darker);
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: var(--btn-square-height);
+        background-color: var(--c-grey-darker);
+        border-radius: 10px;
+    }
+
+    svg {
+        color: var(--c-white);
+        left: 10px;
+        height: 25px;
+        width: 25px;
+    }
 }

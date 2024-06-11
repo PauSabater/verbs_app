@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    min-height: 100vh;
+    background: rgb(242, 242, 242);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 80%;
+    width: clamp(1000px, 80vw, 1200px);
+    margin: auto;
+}
+
+// .containerExercise {
+//     background: var(--bg-white);
+// }

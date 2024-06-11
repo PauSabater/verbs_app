@@ -1,0 +1,40 @@
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    background: var(--bg-white);
+    border-radius: 20px;
+    padding: var(--mg-md) var(--mg-xl);
+    height: fit-content;
+}
+
+.verb,
+.underlined {
+    margin: 0;
+    padding: 0;
+}
+
+.underlined {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.tense {
+    margin: 0;
+}
+
+.active {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.success {
+    color: blue;
+}
+
+.error {
+    color: red;
+}
+
+.inactive {
+    color: grey;
+}

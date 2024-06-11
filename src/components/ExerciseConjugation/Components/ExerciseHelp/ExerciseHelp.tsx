@@ -1,9 +1,11 @@
 // import Image from 'next/image'
-import Callout from '@/components/UI/Callout/Callout'
+import Callout from '@/components/Callout/Callout'
 import { IConjugation } from '../../ExerciseConjugation.exports'
 import styles from './ExerciseHelp.module.scss'
 import { ButtonBack } from '@/components/ButtonBack/ButtonBack'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { sanitize } from 'isomorphic-dompurify'
+import { ExerciseConjugationContext } from '../../ExerciseConjugation'
 // import { Fragment, ReactNode } from 'react'
 // import { sanitize } from 'isomorphic-dompurify'
 // import { SVGExercise } from '@/assets/svg/svgExports'
@@ -16,14 +18,21 @@ interface IExerciseHelp {
     tense: string,
     isOpen: boolean,
     conjugation: IConjugation[] | undefined,
-    actionClose: Function
+    actionClose: Function,
+    isEmbedded?: boolean
 }
 
 export function ExerciseHelp(props: IExerciseHelp) {
 
     const [isHelpOpen, setIsHelpOpen] = useState<boolean | null>(null)
 
+    const test = useContext(ExerciseConjugationContext)
+
     useEffect(()=> {
+
+        // console.log('HEAAAA')
+        // console.log(test)
+
         setIsHelpOpen(props.isOpen)
     }, [props.isOpen])
 
@@ -31,36 +40,27 @@ export function ExerciseHelp(props: IExerciseHelp) {
         props.actionClose()
     }
 
-    return  (
-        <div date-state={isHelpOpen ? "true" : "false"} className={`${styles.container} ${isHelpOpen ? styles.isOpen : ''}`}>
+    return (
+        <div date-state={isHelpOpen ? 'true' : 'false'} className={`${styles.container} ${isHelpOpen ? styles.isOpen : ''} ${props.isEmbedded ? styles.isEmbedded : ''}`}>
             <div className={styles.content}>
-                <ButtonBack
-                    text={props.textBtn}
-                    action={()=> handleBtnCloseClick}
-                    sense={"right"}
-                ></ButtonBack>
+                <ButtonBack text={props.textBtn} action={() => handleBtnCloseClick} sense={'right'}></ButtonBack>
                 {/* <p className={`${styles.title}`}>{`${props.tense}`}</p> */}
                 {/* <p>{props.text}</p> */}
                 {/* {props.children} */}
-                <Callout
-                    text={props.callout}
-                    type={'idea'}
-                ></Callout>
+                {/* {!props.isEmbedded ? <Callout text={props.callout} type={'idea'}></Callout> : <></>} */}
+
                 <div className={styles.table}>
-                    {
-                        props.conjugation && props.conjugation.map((conj, i)=> {
-                            return  (
+                    {props.conjugation &&
+                        props.conjugation.map((conj, i) => {
+                            return (
                                 <div key={`help-row-${i}`} className={styles.row}>
                                     <p className={styles.val}>{conj.person}</p>
-                                    <p className={styles.val}>{conj.conjugation}</p>
+                                    <div className={styles.val} dangerouslySetInnerHTML={{ __html: sanitize(conj.conjugationHTML || '') }}></div>
                                 </div>
                             )
-                        })
-
-                    }
+                        })}
                 </div>
             </div>
         </div>
-
     )
 }

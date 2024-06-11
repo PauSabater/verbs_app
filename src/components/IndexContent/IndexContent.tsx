@@ -7,6 +7,7 @@ import { SVGArrow } from '@/assets/svg/svgExports'
 import { ButtonBookmark } from '../Bookmarker/ButtonBookmark'
 import { ButtonShare } from '../ButtonShare/ButtonShare'
 import { Selector } from '../Selector/Selector'
+import { fontTitles } from '@/app/fonts'
 
 interface IIndexContent {
     content: any,
@@ -132,16 +133,9 @@ export function IndexContent(props: IIndexContent) {
 
     return (
         <div className={styles.container} ref={refContainer}>
-            <Selector
-                isLinksList={true}
-                isFullwidth={true}
-                options={[{options: ['prateritum', 'prateritum test']}]}
-            ></Selector>
-            <div
-                className={`${styles.titleContainer} ${!isExpanded ? styles.isRetracted : ''}`}
-                onClick={()=> handleTitleListClick()}
-            >
-                <p className={styles.title}>Table of contents</p>
+            <Selector isLinksList={true} isFullwidth={true} options={[{ options: ['prateritum', 'prateritum test'] }]}></Selector>
+            <div className={`${styles.titleContainer} ${!isExpanded ? styles.isRetracted : ''}`} onClick={() => handleTitleListClick()}>
+                <p className={`${styles.title} ${fontTitles.className}`}>Table of contents</p>
                 <SVGArrow></SVGArrow>
             </div>
             <ul
@@ -151,18 +145,15 @@ export function IndexContent(props: IIndexContent) {
                 ref={refListContainer}
                 // style={`${heightExpandable ? `height: ${heightExpandable.toString()}px;` : ''}`}
             >
-                {
-                    lessonData ? lessonData.sections.map((section: ILessonSection, i: number)=> {
-                        return <Fragment key={i}>{getTitles(section)}</Fragment>
-                    })
-                : ''}
+                {lessonData
+                    ? lessonData.sections.map((section: ILessonSection, i: number) => {
+                          return <Fragment key={i}>{getTitles(section)}</Fragment>
+                      })
+                    : ''}
             </ul>
             <div className={styles.iconsContainer}>
                 <div className={styles.bookmarkContainer}>
-                    <ButtonBookmark
-                        text={'Bookmark lesson'}
-                        isReverse={false}
-                    />
+                    <ButtonBookmark text={'Bookmark lesson'} isReverse={false} />
                 </div>
                 <div className={styles.shareIconsContainer}>
                     <p>Share on</p>
@@ -173,6 +164,17 @@ export function IndexContent(props: IIndexContent) {
                     <ButtonShare icon={'linkedIn'} />
                 </div>
             </div>
+            {/* <div className={styles.decoration}>
+                <svg viewBox="0 0 404 404" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="202" cy="202" r="202" fill="url(#paint0_radial_248_2)" />
+                    <defs>
+                        <radialGradient id="paint0_radial_248_2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(202 202) rotate(90) scale(202)">
+                            <stop stop-color="#3A0891" stop-opacity="0.5" />
+                            <stop offset="1" stop-color="#3A0891" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div> */}
         </div>
     )
 }

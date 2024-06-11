@@ -1,6 +1,6 @@
 .container {
-    position: sticky;
-    top: var(--mg-page-top-sm);
+    position: relative;
+    // top: var(--mg-page-top-sm);
     height: 600px;
     width: 300px;
     // border: 2px dotted var(--c-grey-light);
@@ -26,6 +26,18 @@
     .h3 {
         padding-left: var(--pd-lg);
 
+    }
+}
+
+.decoration {
+    position: absolute;
+    top: -700px;
+    left: -20vw;
+    z-index: -1;
+    opacity: 0.6;
+
+    svg {
+        width: 60vw;
     }
 }
 
@@ -76,13 +88,13 @@
     svg {
         margin: auto 20.5px auto 0;
         height: 10px;
-        transform: scaleY(1);
+        transform: scaleY(-1);
         transition: transform var(--tr-base);
         color: var(--c-icon-light);
     }
 
     &.isRetracted svg {
-        transform: scaleY(-1);
+        transform: scaleY(1);
     }
 
     &:hover {

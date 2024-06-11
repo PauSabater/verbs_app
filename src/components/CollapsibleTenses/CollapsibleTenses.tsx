@@ -5,9 +5,11 @@ import styles from './CollapsibleTenses.module.scss'
 import { useRef } from 'react'
 import { Button } from '../Button/Button'
 import { IExamples, TensesExamples } from '../TensesExamples/TensesExamples'
+import { fontTitles } from '@/app/fonts'
 
 interface ICollapsibleTexts {
-    title: string
+    title: string,
+    description?: string,
 }
 
 interface ICollapsibleTenses {
@@ -17,6 +19,7 @@ interface ICollapsibleTenses {
     children: ReactNode
     action: Function
     utterance: SpeechSynthesisUtterance | null
+    verb: string
 }
 
 export function CollapsibleTenses(props: ICollapsibleTenses) {
@@ -36,22 +39,35 @@ export function CollapsibleTenses(props: ICollapsibleTenses) {
 
     return (
         <div className={styles.container}>
-            <div
-                className={styles.clickableOpener}
-                ref={refCollapsibleTrigger}
-                onClick={() => {
-                    handleCollapsibleClick()
-                }}
-            >
-                <h2>{props.texts.title}</h2>
-            </div>
-            <div className={styles.collapsibleContent} ref={refCollapsibleContent}>
-                {props.children}
-                <Button callback={buttonAction} text={`Practise ${props.texts.title}`} color={'primary'} icon={'exercise'} />
+            <div className={styles.tablesContainer}>
+                <div
+                    className={styles.clickableOpener}
+                    ref={refCollapsibleTrigger}
+                    onClick={() => {
+                        handleCollapsibleClick()
+                    }}
+                >
+                    <h2 className={`${styles.title}`}>{props.texts.title}</h2>
+                    <p className={styles.description}>{props.texts.description?.replace('-verb-', props.verb)}</p>
+                </div>
+                <div className={styles.collapsibleContent} ref={refCollapsibleContent}>
+                    {props.children}
+                    <Button
+                        callback={buttonAction}
+                        text={`Practise ${props.texts.title}`}
+                        color={'primary'}
+                        icon={'exercise'}
+                    />
+                </div>
             </div>
             {props.examples ?
                 <div className={styles.containerExamples}>
-                    <TensesExamples title={'Examples'} tenses={props.tenses} examples={props.examples} utterance={props.utterance} />
+                    <TensesExamples
+                        title={'Examples'}
+                        tenses={props.tenses}
+                        examples={props.examples}
+                        utterance={props.utterance}
+                    />
                 </div>
                 : ''
             }

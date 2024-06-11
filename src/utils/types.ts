@@ -1,1 +1,1 @@
-export type persons = 'ich' | 'du' | 'er' | "wir" | 'ihr' | 'sie'
+export type persons = 'ich' | 'du' | 'er/sie/es' | "wir" | 'ihr' | 'sie'
