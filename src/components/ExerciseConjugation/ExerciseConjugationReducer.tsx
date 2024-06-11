@@ -1,9 +1,14 @@
 import { IConjugation, TExerciseState } from "./ExerciseConjugation.exports";
 
+export interface ITensesState {
+    tense: string,
+    tenseState: 'success' | 'error' | 'active' | 'inactive'
+}
 
 export interface IExerciseConjugationState {
     currentVerb: string,
     currentTense: string,
+    currentVerbTensesConj: any,
     exerciseState: TExerciseState,
     exerciseConjugations: IConjugation[] | undefined,
     numFilledInputs: number,
@@ -20,11 +25,8 @@ export interface IExerciseConjugationState {
     verbs: {
         verb: string,
         isCompleted: boolean
-    }[]
-    tenses: {
-        tense: string,
-        isCompleted: boolean
-    }[]
+    }[],
+    tensesState: ITensesState[]
 }
 
 export type TExerciseConjugationActions =
@@ -43,6 +45,8 @@ export type TExerciseConjugationActions =
     | 'SET_COMPLETED_VERB'
     | 'SET_CURRENT_VERB'
     | 'SET_CURRENT_TENSE'
+    | 'SET_CURRENT_VERB_TENSES_CONJ'
+    | 'SET_TENSES_STATE'
 
 export type TExerciseConjugationAction = {
     type: TExerciseConjugationActions,
@@ -64,16 +68,33 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_IS_HELP_OPEN: 'SET_IS_HELP_OPEN',
     SET_COMPLETED_VERB: 'SET_COMPLETED_VERB',
     SET_CURRENT_VERB: 'SET_CURRENT_VERB',
-    SET_CURRENT_TENSE: 'SET_CURRENT_TENSE'
+    SET_CURRENT_TENSE: 'SET_CURRENT_TENSE',
+    SET_CURRENT_VERB_TENSES_CONJ: 'SET_CURRENT_VERB_TENSES_CONJ',
+    SET_TENSES_STATE: 'SET_TENSES_STATE'
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {
 
     switch (action.type) {
+        case actions.SET_CURRENT_TENSE:
+            return {
+                ...state,
+                currentTense: action.payload as TExerciseState
+            }
         case actions.SET_EXERCISE_STATE:
             return {
                 ...state,
                 exerciseState: action.payload as TExerciseState
+            }
+        case actions.SET_CURRENT_VERB_TENSES_CONJ:
+            return {
+                ...state,
+                currentVerbTensesConj: action.payload as TExerciseState
+            }
+        case actions.SET_TENSES_STATE:
+            return {
+                ...state,
+                tensesState: action.payload as any
             }
         case actions.SET_CONJUGATIONS:
             return {

@@ -17,3 +17,24 @@
     text-decoration: underline;
     font-weight: 600;
 }
+
+.tense {
+    margin: 0;
+}
+
+.active {
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.success {
+    color: blue;
+}
+
+.error {
+    color: red;
+}
+
+.inactive {
+    color: grey;
+}

@@ -13,9 +13,9 @@ export const TensesList = ()=> {
         >
             <p>Tenses</p>
             {
-                context && context.tenses ? context.tenses.map((tense)=> {
+                context && context.tensesState ? context.tensesState.map((tense)=> {
                     return (
-                        <p className={tense.tense === context.currentTense ? styles.underlined : styles.verb}>{tense.tense}</p>
+                        <p className={`${styles.tense} ${styles[tense.tenseState]}`}>{tense.tense}</p>
                     )
                 })
 

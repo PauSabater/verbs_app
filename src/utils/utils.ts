@@ -246,6 +246,45 @@ export const getTenseNumEquivalent = (number: number) => {
     }
 }
 
+export const getModeTenses = (mode: string) => {
+    switch (mode) {
+        case 'indicative':
+            return ['präsens', 'präteritum', 'perfekt']
+        // case 2:
+        //     return 'präteritum'
+        // case 3:
+        //     return 'perfekt'
+        // case 4:
+        //     return 'plusquamperfekt'
+        // case 5:
+        //     return 'futur I'
+        // case 6:
+        //     return 'futur II'
+        // case 7:
+        //     return 'infinitive I'
+        // case 8:
+        //     return 'infinitive II'
+        // case 9:
+        //     return 'partizip I'
+        // case 10:
+        //     return 'partizip II'
+        // case 11:
+        //     return 'imperative'
+        // case 12:
+        //     return 'konjunktiv I'
+        // case 13:
+        //     return 'konjunktiv II'
+        // case 14:
+        //     return 'konjunktiv plusquamperfekt'
+        // case 15:
+        //     return 'konjunktiv perfekt'
+        // case 16:
+        //     return 'konjunktiv futur I'
+        // case 17:
+        //     return 'konjunktiv futur II'
+    }
+}
+
 export const getTenseFromNumber = (tense: string) => {
     switch (tense) {
         case 'präsens':

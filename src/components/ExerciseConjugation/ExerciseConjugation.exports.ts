@@ -103,6 +103,8 @@ export const getButtonColor = (state: string, isLastExercise: boolean, isSecondB
 
 export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: string): IConjugation[] | undefined => {
 
+    if (!tenses) return
+
     for (const mode of Object.values(tenses)) {
 
         if (mode.hasOwnProperty(tableTense)) {

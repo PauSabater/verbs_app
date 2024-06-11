@@ -30,8 +30,8 @@ export function ExerciseHelp(props: IExerciseHelp) {
 
     useEffect(()=> {
 
-        console.log('HEAAAA')
-        console.log(test)
+        // console.log('HEAAAA')
+        // console.log(test)
 
         setIsHelpOpen(props.isOpen)
     }, [props.isOpen])

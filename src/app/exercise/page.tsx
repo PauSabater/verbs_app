@@ -11,35 +11,43 @@ export default function Page() {
 
     const searchParams = useSearchParams()
 
-    const verbs = searchParams.get('verbs')?.split('-')
-    const tenses = searchParams.get('tenses')?.split('-').map((tense)=> {
+    const verbs = searchParams.get('verbs')?.split(',')
+    const tenses = searchParams.get('tenses')?.split(',').map((tense)=> {
         return replaceTenseFromURL(tense)
     })
+
+    const mode = searchParams.get('mode')
 
 
     return (
         <>
-            {/* <h1>Search: {'tense'}</h1>
-            <h1>verbs: {verbs ? verbs[0] : ''}</h1>
-            <h1>uhh</h1> */}
-            <div className={styles.container}>
-                <div className={styles.layout}>
-                    <div className={styles.containerExercise}>
-                        <ExerciseConjugation
-                            verb={verbs ? verbs[0] : ''}
-                            tensesDropdown={['hey', 'eho']}
-                            texts={textsVerbExercise}
-                            tenseExercise={tenses ? tenses[0] : ''}
-                            selectedTenses={['präsens', 'präteritum']}
-                            isSingleTense={false}
-                            // isSingleUse={false}
-                            isEmbedded={true}
-                            verbs={verbs}
-                            tenses={tenses || []}
-                        ></ExerciseConjugation>
+            {
+                <div className={styles.container}>
+                    <div className={styles.layout}>
+                        <div className={styles.containerExercise}>
+                            {
+                                mode ?
+                                    <div>
+                                        <h1>{mode}</h1>
+                                    </div>
+                                :
+                                    <ExerciseConjugation
+                                        verb={verbs ? verbs[0] : ''}
+                                        tensesDropdown={['hey', 'eho']}
+                                        texts={textsVerbExercise}
+                                        tenseExercise={tenses ? tenses[0] : ''}
+                                        selectedTenses={['präsens', 'präteritum']}
+                                        isSingleTense={false}
+                                        // isSingleUse={false}
+                                        isEmbedded={true}
+                                        verbs={verbs}
+                                        tenses={tenses || []}
+                                    ></ExerciseConjugation>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         </>
     )
 }

@@ -6,9 +6,7 @@
     --exercise-conj-pad: var(--mg-md) var(--mg-xl);
 
     position: relative;
-    display: flex;
-    flex-direction: column;
-    height: inherit;
+    display: grid;
     animation: reveal var(--tr-base);
 }
 
@@ -55,9 +53,11 @@
 
 .isEmbedded{
     --exercise-input-br: 1px;
+    --exercice-input-height: 45px;
+    --exercise-input-mg: var(--mg-sm);
 
     box-sizing: border-box;
-    padding: var(--mg-md) 70px;
+    padding: var(--mg-xl) 70px;
     // border: 3px dotted lightgrey;
     border-radius: 20px;
     width: var(--exercise-width);
@@ -74,10 +74,9 @@
     position: relative;
     display: inline-flex;
     flex-direction: column;
-    height: inherit;
     overflow-y: auto;
     padding: var(--pd-modal-vertical) var(--pd-modal-horitz) 0 var(--pd-modal-horitz);
-    transform: translateY(20px);
+    // transform: translateY(20px);
     z-index: var(--exercise-conj-z-index);
 }
 

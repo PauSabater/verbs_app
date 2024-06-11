@@ -9,6 +9,18 @@ export const getApiVerbData = async (verb: string) => {
     return { props: { verbData } }
 }
 
+export const getApiVerbConjugationsFromTenses = async (verb: string, tenses: string[]) => {
+    let tensesStr = ''
+    tenses.forEach((tense)=> {
+        tensesStr = tensesStr === '' ? tense : `${tensesStr},${tense}`
+    })
+    // Fetch data from external API
+    const res = await fetch(`http://localhost:9090/api/verbs/get/tenses/${verb}?tenses=${tensesStr}`)
+    const verbData = await res.json()
+    // Pass data to the page via props
+    return { props: { verbData } }
+}
+
 export const getVerbsProperties = async (verbs: string[])=> {
 
     let parametersUrl = '?'

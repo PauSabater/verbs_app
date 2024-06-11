@@ -8,6 +8,7 @@
     align-items: center;
     margin-left: calc(var(--pd-modal-horitz) - var(--help-trigger-pd));
     padding: 0 var(--pd-md);
+    margin-left: calc(var(--mg-md) * -1);
     // background: var(--c-primary-lighter);
     width: fit-content;
     border-radius: var(--br-base);

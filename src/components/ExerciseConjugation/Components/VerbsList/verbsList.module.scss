@@ -13,7 +13,23 @@
     padding: 0;
 }
 
+.title {
+    margin: 0 0 var(--mg-sm) 0;
+
+}
+
+.verbContainer {
+    position: relative;
+}
+
 .underlined {
     text-decoration: underline;
     font-weight: 600;
+}
+
+.progress {
+    position: absolute;
+    left: -22px;
+    height: 35px;
+    top: 3px;
 }

@@ -120,6 +120,7 @@ export function LessonPage(props: ILessonPage) {
                         // allTenses={props.exercisesTense}
                         selectedTenses={[props.exercisesTense]}
                         isSingleTense={true}
+                        tenses={['präsens']}
                     ></ExerciseConjugation>
                 </ModalExercises>
             </div>
