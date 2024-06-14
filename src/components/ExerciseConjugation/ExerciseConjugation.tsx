@@ -217,28 +217,40 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     useEffect(() => {
         const tense = state.currentTense
 
-        console.log("HEY IN CURRENT VERB EFFECT")
-
         // Call API in case the tenses are not passed as property
         if (!props.allTenses) {
             (async () => {
-                console.log("HELLO WE ARE IN CALL API")
 
-                const tensesResp: any = (await getApiVerbConjugationsFromTenses(props.verb, props.tenses)) as unknown as any
-                const tensesObj: any = tensesResp.props.verbData.verb.data.tenses
+                let tensesObj: any
+                // Check if the verb is saved on localstorage:
+                const verbLocalStorage = window.localStorage.getItem('verb-current')
 
-                if (tensesObj) setCurrentVerbTensesConj(tensesObj)
+                if (!props.conjugationCurrentVerb) {
+                    if (verbLocalStorage) {
+                        const objVerbLocalStorage = JSON.parse(verbLocalStorage)
 
-                // console.log(tensesObj)
+                        if (objVerbLocalStorage.verb === state.currentVerb) {
+                            tensesObj = objVerbLocalStorage.tenses
+                            console.log(tensesObj)
+                        }
+                        else {
+                            const tensesResp: any = (await getApiVerbConjugationsFromTenses(props.verb, props.tenses)) as unknown as any
+                            tensesObj = tensesResp.props.verbData.verb.data.tenses
+                        }
+                    } else {
+                        const tensesResp: any = (await getApiVerbConjugationsFromTenses(props.verb, props.tenses)) as unknown as any
+                        tensesObj = tensesResp.props.verbData.verb.data.tenses
+                    }
 
-                console.log("HEYYY IT IS SET")
-                console.log(state.currentVerbTensesConj)
-
-                if (props.tenseExercise) {
-                    setExerciseConjugations(getConjugationFromTense(tensesObj, props.tenseExercise))
-                    restartAllInputs()
-                    animateReveal()
+                    if (tensesObj) setCurrentVerbTensesConj(tensesObj)
                 }
+
+                setExerciseConjugations(
+                    props.conjugationCurrentVerb || getConjugationFromTense(tensesObj, props.tenseExercise)
+                )
+                restartAllInputs()
+                animateReveal()
+
             })()
         }
     }, [state.currentVerb])

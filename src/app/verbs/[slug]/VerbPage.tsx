@@ -43,8 +43,29 @@ export default function VerbsPage(params: IVerbsPage) {
     const pageVerbData = JSON.parse(params.data).props.verbData.verb
     const collapsiblesTense = pageVerbsTexts.collapsibles
 
+
     useLayoutEffect(() => {
         if (refPageContent.current === null) return
+
+        const verbLocalStorage = localStorage.getItem('verb-current')
+        let objLocalStorage
+
+        if (verbLocalStorage) {
+            objLocalStorage = JSON.parse(verbLocalStorage)
+        }
+
+        console.log("IAAA")
+        console.log(objLocalStorage)
+
+        if (!objLocalStorage || objLocalStorage.verb !== params.slug) {
+            const verbLocalStorageNew = {
+                verb: pageVerbData.verb,
+                tenses: pageVerbData.data.tenses
+            }
+
+            localStorage.setItem('verb-current', JSON.stringify(verbLocalStorageNew))
+        }
+
 
         document.addEventListener('openModalExercise', (e) => {
             e.stopPropagation()
@@ -152,22 +173,6 @@ export default function VerbsPage(params: IVerbsPage) {
         setSelectedTensesFromCheckboxList(selectedTensesList)
         closeTensesCheckboxList()
         openConjugationExercise()
-    }
-
-    const ExerciseContent = (): React.JSX.Element => {
-
-        // return state.exerciseTense || state.selectedTensesFromCheckboxList.length > 0 ? (
-        //     <ExerciseConjugation
-        //         verb={pageVerbData.verb}
-        //         tensesDropdown={collapsiblesTense}
-        //         texts={pageVerbsTexts.exerciseText}
-        //         tenseExercise={state.exerciseTense}
-        //         allTenses={pageVerbData.data.tenses}
-        //         selectedTenses={state.selectedTensesFromCheckboxList}
-        //     ></ExerciseConjugation>
-        // ) : (
-        //     <Fragment />
-        // )
     }
 
     const ExerciseListCheckboxes = (): React.JSX.Element =>

@@ -56,7 +56,6 @@ export function CollapsibleTenses(props: ICollapsibleTenses) {
                     {props.children}
                     <Link href={`/exercise?mode=${props.mode}&verbs=${props.verb}`}>
                         <Button
-                            callback={()=> console.log("hey")}
                             text={`Practise ${props.texts.title}`}
                             color={'primary'}
                             icon={'exercise'}

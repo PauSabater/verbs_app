@@ -36,7 +36,8 @@ export interface ILessonSection {
     exercise?: {
         verb: string,
         tense: string
-    }
+    },
+    path?: string
 }
 
 interface ITable {
@@ -193,6 +194,16 @@ export default function Lesson(props: ILesson): React.JSX.Element {
                 ></h3>
             )
         }
+        if (section.type === 'h4') {
+            return (
+                <h4
+                    className={fontTitles.className}
+                    id={getAnchorId(section.content)}
+                    data-is-heading="true"
+                    dangerouslySetInnerHTML={{ __html: sanitize(section.content || '') }}
+                ></h4>
+            )
+        }
         if (section.type === 'paragraph') {
             return (
                 <p
@@ -213,7 +224,6 @@ export default function Lesson(props: ILesson): React.JSX.Element {
 
             return (
                 <div className={section.marginList ? styles.listMargin : ''}>
-
                     <ButtonWithExercise
                         buttonText={section.content || ''}
                         verb={section.exercise?.verb || ''}
@@ -223,26 +233,22 @@ export default function Lesson(props: ILesson): React.JSX.Element {
                 </div>
             )
         }
+        if (props.isPost && section.type === 'exercise-btn-link') {
+
+            return (
+                <div className={section.marginList ? styles.listMargin : ''}>
+                    <Button
+                        icon={'exercise'}
+                        text={section.content || ''}
+                        isLink={true}
+                        path={section.path}
+                    ></Button>
+                </div>
+            )
+        }
         if (section.type.includes('table')) {
             return <>{getTableTemplate(section.table, section.marginList ? true : false, section.type)}</>
         }
-
-        // if (section.type === 'exercise-embeded') {
-        //     console.log("HEYY TEXTS ARE")
-        //     console.log(props.exerciseTexts)
-        //     return (
-        //             <ExerciseConjugation
-        //                 // isDynamic={true}
-        //                 verb={'sein'}
-        //                 tensesDropdown={['prasens']}
-        //                 texts={JSON.parse(props.exerciseTexts)}
-        //                 tenseExercise={'präsens'}
-        //                 // allTenses={props.exercisesTense}
-        //                 selectedTenses={['prasens']}
-        //                 isSingleTense={true}
-        //             ></ExerciseConjugation>
-        //     )
-        // }
 
         return <></>
     }

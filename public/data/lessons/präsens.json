@@ -7,6 +7,14 @@
         "level": "A1",
         "tags": ["präsens"]
     },
+    "tenseExercises": "präsens",
+    "verbsExercises": [
+        "spielen",
+        "sein",
+        "helfen",
+        "sehen",
+        "fallen"
+    ],
     "verbsUsed": [
         "sein",
         "lesen",
@@ -573,9 +581,9 @@
             ]
         },
         {
-            "type": "exercise-btn",
-            "content": "start exercise",
-            "param": ["spielen", "tanzen", "lachen", "wohnen"]
+            "type": "exercise-btn-link",
+            "content": "start exercise 1",
+            "path": "/exercises/prasens-tense-regular-verbs"
         },
         {
             "type": "paragraph-components",
@@ -619,9 +627,9 @@
             ]
         },
         {
-            "type": "exercise-btn",
-            "content": "start exercise",
-            "param": ["sein", "werden", "können", "mögen"]
+            "type": "exercise-btn-link",
+            "content": "start exercise 2",
+            "path": "/exercises/prasens-tense-irregular-verbs"
         }
     ]
 }

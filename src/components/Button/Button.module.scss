@@ -37,8 +37,19 @@
     }
 }
 
+a.Button {
+    text-decoration: none !important;
+    padding-top: 0 !important;
+    font-weight: 500;
+}
+
 .primaryDark {
     background-color: var(--c-primary-dark);
+    color: var(--c-white) !important;
+
+    svg {
+        color: var(--c-white);
+    }
 
     &:hover {
         background: var(--c-primary-darker);

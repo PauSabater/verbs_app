@@ -1,0 +1,20 @@
+{
+    "exercises": [
+        {
+            "title": "Practise the präsens tense of regular verbs.",
+            "path": "prasens-tense-regular-verbs",
+            "description": "All regular verbs will follow the same pattern.",
+            "level": "A1",
+            "verbs": ["spielen", "tanzen", "lachen", "wohnen"],
+            "tenses": ["präsens"]
+        },
+        {
+            "title": "Practise the präsens tense of irregular verbs.",
+            "path": "prasens-tense-irregular-verbs",
+            "description": "These verbs require memorization in their present tense as they do not follow any pattern.",
+            "level": "A1",
+            "verbs": ["sein", "dürfen", "können", "mögen"],
+            "tenses": ["präsens"]
+        }
+    ]
+}

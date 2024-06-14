@@ -1,8 +1,9 @@
 import { Button } from "@/components/Button/Button";
 import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation";
 import { IExerciseConjugationTexts } from "@/components/ExerciseConjugation/ExerciseConjugation.exports";
-import { useLayoutEffect, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import styles from './buttonWithExercise.module.scss'
+import { LessonPageContext } from "@/app/lessons/[slug]/LessonPage";
 
 
 interface IButtonWithExercise {
@@ -15,7 +16,25 @@ interface IButtonWithExercise {
 
 export default function ButtonWithExercise(props: IButtonWithExercise): React.JSX.Element {
 
+    const lessonPageContext = useContext(LessonPageContext)
     const [showExercise, setShowExercise] = useState<boolean>(false)
+
+    console.log("UAU")
+    console.log(lessonPageContext.verbsConjugations)
+    console.log(props.verb)
+
+    const verbConjugation = lessonPageContext.verbsConjugations.find((conj: any)=> {
+        return conj.verb == props.verb
+    })
+
+    // for (const conj of lessonPageContext.verbsConjugations) {
+    //     console.log('ieie')
+    //     console.log(conj)
+
+    // }
+
+    console.log('we havbe')
+    console.log(verbConjugation.conjugations)
 
     const onBtnExerciseClick = ()=> {
         setShowExercise(true)
@@ -55,6 +74,7 @@ export default function ButtonWithExercise(props: IButtonWithExercise): React.JS
                         tenses={[props.exerciseTense || '']}
                         isLessonExercise={true}
                         actionOnBtnClose={onCloseExercise}
+                        conjugationCurrentVerb={verbConjugation.conjugations || undefined}
                     ></ExerciseConjugation>
                 :<></>
             }
