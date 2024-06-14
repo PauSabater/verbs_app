@@ -18,7 +18,7 @@ export const ExerciseHelpTrigger = (props: IExerciseHelpTriggerInterface)=> {
             onClick={()=> props.action()}
         >
             {props.isOpen ? <SVGCross/> : <SVGHelp/>}
-            <p>{!props.isOpen ? props.openTxt : props.closeTxt}</p>
+            <p data-trigger-text>{!props.isOpen ? props.openTxt : props.closeTxt}</p>
         </div>
     )
 }

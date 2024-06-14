@@ -56,16 +56,10 @@ export default function VerbsPage(params: IVerbsPage) {
         getUtteraceInstance().then((utterance) => {
             setUtterance(utterance)
         })
-
-        console.log("DATA IS")
-        console.log(pageVerbData)
     }, [])
 
     // Action when tenses list selection has been confirmed
     useEffect(() => {
-        console.log("hey")
-        console.log(collapsiblesTense)
-
         if (state.selectedTensesFromCheckboxList.length > 0) {
             openTensesCheckboxList()
         }
@@ -160,23 +154,24 @@ export default function VerbsPage(params: IVerbsPage) {
         openConjugationExercise()
     }
 
-    // const ExerciseContent = (): React.JSX.Element => {
+    const ExerciseContent = (): React.JSX.Element => {
 
-    //     return state.exerciseTense || state.selectedTensesFromCheckboxList.length > 0 ? (
-    //         <ExerciseConjugation
-    //             verb={pageVerbData.verb}
-    //             tensesDropdown={collapsiblesTense}
-    //             texts={pageVerbsTexts.exerciseText}
-    //             tenseExercise={state.exerciseTense}
-    //             allTenses={pageVerbData.data.tenses}
-    //             selectedTenses={state.selectedTensesFromCheckboxList}
-    //         ></ExerciseConjugation>
-    //     ) : (
-    //         <Fragment />
-    //     )
-    // }
+        // return state.exerciseTense || state.selectedTensesFromCheckboxList.length > 0 ? (
+        //     <ExerciseConjugation
+        //         verb={pageVerbData.verb}
+        //         tensesDropdown={collapsiblesTense}
+        //         texts={pageVerbsTexts.exerciseText}
+        //         tenseExercise={state.exerciseTense}
+        //         allTenses={pageVerbData.data.tenses}
+        //         selectedTenses={state.selectedTensesFromCheckboxList}
+        //     ></ExerciseConjugation>
+        // ) : (
+        //     <Fragment />
+        // )
+    }
 
     const ExerciseListCheckboxes = (): React.JSX.Element =>
+
         state.exerciseTensesCheckboxList ? (
             <ExerciseCheckboxList
                 statement={pageVerbsTexts.exerciseConjugation.statement}
@@ -210,6 +205,7 @@ export default function VerbsPage(params: IVerbsPage) {
                             utterance={utterance}
                             key={`tenses-table-${i}`}
                             verb={pageVerbData.verb}
+                            mode={collapsiblesTense[i].mode}
                         >
                             {(collapsiblesTense[i].tenses as string[]).map((tableTense, i) => {
                                 return (
@@ -229,7 +225,7 @@ export default function VerbsPage(params: IVerbsPage) {
                     )
                 })}
 
-                {/* <ModalExercises
+                <ModalExercises
                     text={''}
                     open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
                     ref={refModal}
@@ -239,7 +235,7 @@ export default function VerbsPage(params: IVerbsPage) {
                         ? <ExerciseContent /> : state.isCheckboxListOpen
                         ? <ExerciseListCheckboxes /> : ''
                     }
-                </ModalExercises> */}
+                </ModalExercises>
 {/*
                 <h1>{`Practise`}</h1>
 

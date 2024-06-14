@@ -14,8 +14,8 @@ export async function getLessonData(lessonPath: string) {
     console.log("HEY WE GOT LESSON FOR")
     console.log(lessonPath)
 
-    // By returning { props: { posts } }, the Blog component
-    // will receive `posts` as a prop at build time
+    // By returning { props: { lessonData } }, the lesson component
+    // will receive `lessonData` as a prop at build time
     return {
         props: {
             lessonData

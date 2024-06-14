@@ -20,7 +20,7 @@ export function IndexContent(props: IIndexContent) {
     const lessonData = JSON.parse(props.content)
 
     const [elsIndex, setElsIndex] = useState<HTMLElement[] | null>(null)
-    const [isExpanded, setIsExpanded] = useState<boolean>(true)
+    const [isExpanded, setIsExpanded] = useState<boolean>(false)
     const [heightExpandable, setHeightExpandable] = useState<string>('auto')
 
     const refContainer = useRef<HTMLDivElement | null>(null)

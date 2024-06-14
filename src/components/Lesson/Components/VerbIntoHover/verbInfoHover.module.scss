@@ -106,5 +106,9 @@ z-index
         display: flex;
         flex-direction: row;
         gap: var(--mg-xs);
+
+        a {
+            padding: 0;
+        }
     }
 }

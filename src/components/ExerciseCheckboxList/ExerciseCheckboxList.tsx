@@ -7,43 +7,29 @@ import { ISelectorDropdownOptions } from '../Selector/Selector'
 import InputCheckbox from '../UI/InputCheckbox/InputCheckbox'
 import { ExerciseFeedback } from '../ExerciseConjugation/Components/Feedback/ExerciseFeedback___'
 import { TExerciseState } from '../ExerciseConjugation/ExerciseConjugation.exports'
+import { useRouter } from 'next/navigation'
 
 interface IExerciseCheckboxList {
     statement: string
     items: ISelectorDropdownOptions[]
     callbackOnConfirm: Function
+    isExerciseLayout?: boolean
+    verbs: string[]
 }
 
 export function ExerciseCheckboxList(props: IExerciseCheckboxList): JSX.Element {
+
     const [selectedItems, setSelectedItems] = useState<string[]>([])
-
     const [exerciseCheckboxListState, setExerciseCheckboxListState] = useState<TExerciseState>('empty')
-
     const [selectedArray, setSelectedArray] = useState<string[]>([])
+    const router = useRouter()
 
-    // useEffect(()=> {
-    //     if (selectedArray.length > 0) setExerciseCheckboxListState("filled")
-    //     else setExerciseCheckboxListState("empty")
-    // }, [selectedArray])
+
+    console.log(props.items)
+
 
     const updateSelectedItems = (event: Event) => {
         const elInput = event.target as HTMLInputElement
-        // const valueInput = elInput.getAttribute("data-value")
-        // if (!valueInput) return
-
-        // const newSelectedArray: string[] = selectedArray
-
-        // if (elInput.checked) {
-        //     newSelectedArray.push(valueInput)
-        //     setSelectedArray([
-        //         ...selectedArray,
-        //         valueInput
-        //     ])
-        // }
-        // // else {
-        // //     newSelectedArray.splice(selectedArray.indexOf(valueInput), 1)
-        // // }
-        // // setSelectedArray(newSelectedArray)
         const value = elInput.getAttribute('data-value')
         if (!value) return
 
@@ -72,6 +58,18 @@ export function ExerciseCheckboxList(props: IExerciseCheckboxList): JSX.Element 
     const confirmChoices = () => {
         console.log('HEY CONFIRM!!')
         props.callbackOnConfirm(selectedArray)
+
+        let tensesString = ''
+        let verbsString = ''
+        selectedArray.forEach((tense, i)=> {
+            tensesString = i === 0 ? tense : `${tensesString},${tense}`
+        })
+
+        props.verbs.forEach((verb, i)=> {
+            verbsString = i === 0 ? verb : `${verbsString},${verb}`
+        })
+
+        router.push(`/exercise?tenses=${tensesString}&verbs=${verbsString}`)
     }
 
     const getCheckboxesListTemplate = (options: string[]) => {
@@ -91,8 +89,8 @@ export function ExerciseCheckboxList(props: IExerciseCheckboxList): JSX.Element 
     }
 
     return (
-        <div className={`${styles.container}`}>
-            <div className={`${stylesExercise.container} ${styles.containeList}`}>
+        <div className={`${styles.container} ${props.isExerciseLayout ? styles.exerciseLayout : ''}`}>
+            <div className={`${stylesExercise.container} ${styles.containerList}`}>
                 <div className={stylesExercise.statement}>{props.statement}</div>
                 {props.items.map((groupOptions, i) => {
                     return (
@@ -102,8 +100,8 @@ export function ExerciseCheckboxList(props: IExerciseCheckboxList): JSX.Element 
                         </Fragment>
                     )
                 })}
+                <ExerciseFeedback exerciseState={exerciseCheckboxListState} btnText={'string'} callBackBtn={confirmChoices} />
             </div>
-            <ExerciseFeedback exerciseState={exerciseCheckboxListState} btnText={'string'} callBackBtn={confirmChoices} />
         </div>
     )
 }

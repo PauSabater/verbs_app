@@ -4,10 +4,12 @@
         "collapsibles": [
             {
                 "title": "Indicative",
+                "mode": "indicative",
                 "description": "Learn and practise the verb -verb- in the present, past and future tenses of the Indicative Active mode",
                 "tenses": ["präsens", "präteritum", "perfekt", "plusquam", "futur_I", "futur_II"]
             },{
                 "title": "Imperative",
+                "mode": "imperative",
                 "description": "Learn and practise the verb -verb- in the present tense of the imperative Active mode",
                 "tenses": ["imperative"]
             },{
@@ -22,9 +24,11 @@
                 "tenses": ["konjunktiv_II", "konj_plusquam"]
             },{
                 "title": "Infinitive",
+                "mode": "infinitive",
                 "tenses": ["infinitiv_I", "infinitiv_II"]
             },{
                 "title": "Participle",
+                "mode": "partizip",
                 "tenses": ["partizip_I", "partizip_II"]
             }
         ],

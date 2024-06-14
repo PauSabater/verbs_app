@@ -8,15 +8,7 @@
         "tags": ["präsens"]
     },
     "verbsUsed": [
-        {
-            "verb": "sein",
-            "help": "<b>Sein</b> is a strong <b>irregular</b> verb and its form need memorisation"
-        },
-        {
-            "verb": "lesen",
-            "help": "<b>Sein</b> is a strong <b>irregular</b> verb and its form need memorisation"
-        },
-
+        "sein",
         "lesen",
         "trinken",
         "arbeiten",
@@ -26,6 +18,7 @@
         "mögen",
         "helfen",
         "geben",
+        "fallen",
         "sprechen",
         "nehmen",
         "sehen",
@@ -33,7 +26,10 @@
         "schlafen",
         "fahren",
         "raten",
-        "laufen"
+        "laufen",
+        "tanzen",
+        "lachen",
+        "wohnen"
     ],
     "sections": [
         {
@@ -46,11 +42,11 @@
         },
         {
             "type": "paragraph",
-            "content": "The <b><i>Präsens</i></b> tense in German direclty corresponds to the present tense in English. It is used to describe actions that are happening right now or habitual actions. </br>However, it can also be used to describe future actions or actions happenning now with continuation on the  future. This is because in German the future tense is rarely used and there is no present continuous. The <i>Präsens</i> should be the first tense to learn when starting to learn German."
+            "content": "The <b><i>Präsens</i></b> tense in German direclty corresponds to the present tense in English. It is mostly used to describe actions that are happening right now or habitual actions. </br>However, it is also frequently used to describe future actions or actions happenning now with continuation on the  future. This is because in German the future tense is rarely used and there is no present continuous tense. The <i>Präsens</i> should be the first tense to learn when starting to learn German."
         },
         {
             "type": "callout",
-            "content": "With the <i>Präsens</i>, you are getting 4 tenses in one: <strong>present</strong>, <strong>present continuous</strong>, <strong>present perfect</strong> and, in some cases, also the <strong>future</strong>! &nbsp;&nbsp; &#127881"
+            "content": "With the <i>Präsens</i>, you are getting 3 tenses in one: <strong>present</strong>, <strong>present continuous</strong> and <strong>future</strong>! &nbsp;&nbsp; &#127881"
         },
         {
             "type": "h2",
@@ -105,7 +101,7 @@
         },
         {
             "type": "paragraph",
-            "content": "The conjugation rules must be differentiated between <b>regular</b> verbs, which will always follow the same rules; a few <b>irregular verbs</b>, which must be memorised individually; and <b>stem-vowel-changing</b> irregular verbs, which will have some slight modifications from the regular ones."
+            "content": "The conjugation rules differ among <b>regular</b> verbs, which always follow the same rules; a few <b>irregular verbs</b>, which must be memorized individually; and <b>stem-vowel-changing</b> irregular verbs, which have slight modifications compared to the regular ones."
         },
         {
             "type": "h3",
@@ -154,8 +150,12 @@
         },
         {
             "type": "exercise-btn",
-            "content": "practise spielen",
-            "param": "spielen"
+            "content": "practise präsens for spielen",
+            "param": "spielen",
+            "exercise": {
+                "verb": "spielen",
+                "tense": "präsens"
+            }
         },
         {
             "type": "exercise-embeded___",
@@ -208,8 +208,12 @@
         },
         {
             "type": "exercise-btn",
-            "content": "practise sein",
-            "param": "sein"
+            "content": "practise präsens for sein",
+            "param": "sein",
+            "exercise": {
+                "verb": "sein",
+                "tense": "präsens"
+            }
         },
         {
             "type": "paragraph-components",
@@ -298,8 +302,12 @@
         {
             "type": "exercise-btn",
             "marginList": true,
-            "content": "practise helfen",
-            "param": "helfen"
+            "content": "practise präsens for helfen",
+            "param": "helfen",
+            "exercise": {
+                "verb": "helfen",
+                "tense": "präsens"
+            }
         },
         {
             "type": "paragraph-components",
@@ -373,8 +381,12 @@
         {
             "type": "exercise-btn",
             "marginList": true,
-            "content": "practise sehen",
-            "param": "sehen"
+            "content": "practise präsens for sehen",
+            "param": "sehen",
+            "exercise": {
+                "verb": "sehen",
+                "tense": "präsens"
+            }
         },
         {
             "type": "paragraph-components",
@@ -439,8 +451,13 @@
         {
             "type": "exercise-btn",
             "marginList": true,
-            "content": "practise fallen",
-            "param": "fallen"
+            "content": "practise präsens for fallen",
+            "param": "fallen",
+            "exercise": {
+                "verb": "fallen",
+                "tense": "präsens"
+            }
+
         },
         {
             "type": "paragraph-components",

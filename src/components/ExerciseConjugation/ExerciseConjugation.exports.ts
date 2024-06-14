@@ -56,7 +56,7 @@ export interface IVerbAllTenses {
 
 export interface IExerciseConjugation {
     verb: string,
-    tensesDropdown: any,
+    tensesDropdown?: any,
     tenseExercise: string,
     modeExercise?: string,
     texts: IExerciseConjugationTexts,
@@ -65,7 +65,9 @@ export interface IExerciseConjugation {
     isSingleTense?: boolean,
     isEmbedded?: boolean,
     verbs?: string[],
-    tenses: string[]
+    tenses: string[],
+    isLessonExercise?: boolean,
+    actionOnBtnClose?: any
     // isIrregular: string
 }
 
