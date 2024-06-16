@@ -60,7 +60,7 @@ export default function Header() {
                     <Button text={'Sign in'} callback={() => setIsSignUpOpen(true)}></Button>
                 </div>
                 <div className={`${styles.linksContainer}`}>
-                    <Link href={'/lessons'}>exercises</Link>
+                    <Link href={'/exercises'}>exercises</Link>
                     <Link href={'/lessons'}>lessons</Link>
                 </div>
             </nav>

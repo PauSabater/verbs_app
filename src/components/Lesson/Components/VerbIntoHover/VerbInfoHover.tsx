@@ -51,7 +51,9 @@ export const VerbInfoHover = (props: IVerbInfoHover): JSX.Element => {
                     text={''}
                     icon={'exercise'}
                     size={'xsSquare'}
-                    callback={(e: Event) => onClick()}
+                    color={'primaryDark'}
+                    isLink={true}
+                    path={`/exercise?tenses=präsens&verbs=${props.verb}`}
                 ></Button>
                 <Button
                     title={`open verb page for ${props.verb}`}

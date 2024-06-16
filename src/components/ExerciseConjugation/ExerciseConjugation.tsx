@@ -10,7 +10,7 @@ import { Button } from '../Button/Button'
 import { Selector } from '../Selector/Selector'
 import Alert from '../Alert/Alert'
 import { isSuccess, isError } from '@/utils/constants'
-import { SVGCross, SVGHelp, getFeedbackSvg } from '@/assets/svg/svgExports'
+import { SVGCross, SVGExercise, SVGHelp, getFeedbackSvg } from '@/assets/svg/svgExports'
 import { IConjugation, IExerciseConjugation, IVerbAllTenses, TExerciseState, getButtonColor, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
 import { getCorrectAnswers, getOptionsDropdown, getRandomInt, setLocalstorageItem } from '@/utils/utils'
 import { IExerciseConjugationState, ITensesState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
@@ -217,28 +217,40 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     useEffect(() => {
         const tense = state.currentTense
 
-        console.log("HEY IN CURRENT VERB EFFECT")
-
         // Call API in case the tenses are not passed as property
         if (!props.allTenses) {
             (async () => {
-                console.log("HELLO WE ARE IN CALL API")
 
-                const tensesResp: any = (await getApiVerbConjugationsFromTenses(props.verb, props.tenses)) as unknown as any
-                const tensesObj: any = tensesResp.props.verbData.verb.data.tenses
+                let tensesObj: any
+                // Check if the verb is saved on localstorage:
+                const verbLocalStorage = window.localStorage.getItem('verb-current')
 
-                if (tensesObj) setCurrentVerbTensesConj(tensesObj)
+                if (!props.conjugationCurrentVerb) {
+                    if (verbLocalStorage) {
+                        const objVerbLocalStorage = JSON.parse(verbLocalStorage)
 
-                // console.log(tensesObj)
+                        if (objVerbLocalStorage.verb === state.currentVerb) {
+                            tensesObj = objVerbLocalStorage.tenses
+                            console.log(tensesObj)
+                        }
+                        else {
+                            const tensesResp: any = (await getApiVerbConjugationsFromTenses(props.verb, props.tenses)) as unknown as any
+                            tensesObj = tensesResp.props.verbData.verb.data.tenses
+                        }
+                    } else {
+                        const tensesResp: any = (await getApiVerbConjugationsFromTenses(props.verb, props.tenses)) as unknown as any
+                        tensesObj = tensesResp.props.verbData.verb.data.tenses
+                    }
 
-                console.log("HEYYY IT IS SET")
-                console.log(state.currentVerbTensesConj)
-
-                if (props.tenseExercise) {
-                    setExerciseConjugations(getConjugationFromTense(tensesObj, props.tenseExercise))
-                    restartAllInputs()
-                    animateReveal()
+                    if (tensesObj) setCurrentVerbTensesConj(tensesObj)
                 }
+
+                setExerciseConjugations(
+                    props.conjugationCurrentVerb || getConjugationFromTense(tensesObj, props.tenseExercise)
+                )
+                restartAllInputs()
+                animateReveal()
+
             })()
         }
     }, [state.currentVerb])
@@ -499,7 +511,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
     const ExerciseFeedback = (): React.JSX.Element => {
         return (
-            <div className={stylesFdb.container} data-state={state.exerciseState}>
+            <div data-feedback className={stylesFdb.container} data-state={state.exerciseState}>
                 <div className={stylesFdb.message}>
                     {getFeedbackSvg(state.exerciseState)}
                     <p>{getFeedbackText(state.exerciseState)}</p>
@@ -536,7 +548,18 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     const ExerciseStatement = () => {
         return (
             <div className={styles.statement}>
-                <p dangerouslySetInnerHTML={{ __html: sanitize(props.texts.statement) }}></p>
+                {
+                    props.isLessonExercise
+                        ?
+                        <div className={styles.titleContainer}>
+                            <div className={styles.svgContainer}>
+                                <SVGExercise></SVGExercise>
+                            </div>
+                            <p className={styles.titleLessonExercise}>Exercise</p>
+                        </div>
+                        : <></>
+                }
+                <p data-statement-text dangerouslySetInnerHTML={{ __html: sanitize(props.texts.statement) }}></p>
                 {(props.selectedTenses && props.selectedTenses.length > 1) || props.isSingleTense === true ? (
                     <Fragment>
                         <span data-text>{props.texts.textTense}</span>
@@ -551,13 +574,24 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         )
     }
 
+    const CrossClose = ()=> {
+        if (!props.actionOnBtnClose) return <></>
+
+        return (
+            <div className={styles.cross} onClick={()=> props.actionOnBtnClose()}>
+                <SVGCross color={'var(--c-grey-dark)'}></SVGCross>
+            </div>
+        )
+    }
+
     return (
         <Fragment>
             <ExerciseConjugationContext.Provider value={state as any}>
 
                 <div className={styles.layoutExercise}>
 
-                    <div className={`${styles.exerciseConjugation} ${props.isEmbedded ? styles.isEmbedded : ''}`} data-exercise data-state={state.exerciseState}>
+                    <div className={`${styles.exerciseConjugation} ${props.isEmbedded ? styles.isEmbedded : ''} ${props.isLessonExercise ? styles.isLessonExercise : ''}`} data-exercise data-state={state.exerciseState}>
+
                         <div className={styles.container}>
 
                             {
@@ -605,6 +639,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
                         <ExerciseFeedback />
                         <Alert isOpen={state.isTenseAlertOpen} texts={props.texts.alertTenseChange} actionsOnAlertConfirm={actionsOnAlertConfirm} actionsOnAlertNegate={actionsOnAlertNegate} />
+
+
+                        {   props.isLessonExercise ? <CrossClose/> : <></> }
 
                     </div>
 

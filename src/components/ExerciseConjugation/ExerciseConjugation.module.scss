@@ -2,7 +2,7 @@
 
 .exerciseConjugation {
     --height-feedback: 200px;
-    --exercise-conj-z-index: 99;
+    --exercise-conj-z-index: 1;
     --exercise-conj-pad: var(--mg-md) var(--mg-xl);
 
     position: relative;
@@ -138,6 +138,91 @@
     font-weight: 400;
     color: var(--c-black-lighter);
     align-self: center;
+}
+
+
+.isLessonExercise {
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 30px;
+    background-color: var(--bg-white);
+    border: 2px dotted var(--c-grey-light);
+    height: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+
+    .cross {
+        cursor: pointer;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 30px;
+        top: 30px;
+        height: 45px;
+        width: 45px;
+        border-radius: 30px;
+        z-index: calc(var(--exercise-conj-z-index) + 4);
+        transition: background-color var(--tr-base);
+
+        &:hover {
+            background-color: var(--c-grey-light);
+        }
+
+        svg {
+            pointer-events: none;
+            margin: auto;
+        }
+    }
+
+    .statement {
+        margin: 0 0 var(--mg-md) 0;
+    }
+
+    div[data-feedback] {
+        height: 10px;
+        margin-bottom: 60px;
+    }
+
+    p, span {
+        font-size: var(--fs-global) !important;
+    }
+
+    p[data-trigger-text] {
+        margin: var(--mg-sm);
+        font-size: var(--fs-xs) !important;
+    }
+
+    p[data-statement-text] {
+        margin-bottom: var(--mg-sm);
+        margin-top: var(--mg-sm);
+    }
+
+    .titleContainer {
+        display: flex;
+        margin-bottom: 20px;
+
+        p {
+            margin: 0;
+        }
+
+        .svgContainer {
+            display: flex;
+            padding: 3px;
+            margin-right: var(--mg-sm);
+
+            svg {
+                color: var(--c-grey-dark);
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
+
+    .titleLessonExercise {
+        font-weight: 600;
+        font-size: var(--fs-lg) !important;
+    }
 }
 
 

@@ -9,6 +9,8 @@
     --width-page-content-wider: calc(var(--width-page-content) + var(--width-page-additional-content));
     --width-page-content-text: 750px;
 
+    scroll-padding-top: 50px;
+
     @include mixins.desktop {
         --width-page-additional-content: 350px;
         --width-page-content: 950px;

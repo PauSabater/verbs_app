@@ -7,10 +7,23 @@
     height: 100%;
 }
 
+.exerciseLayout {
+    display: grid;
+    grid-template-columns: 70% auto;
+    grid-column-gap: 20px;
+}
+
 .containerList {
     transform: translateY(20px);
     animation: reveal var(--tr-base);
     height: stretch;
+
+    box-sizing: border-box;
+    padding: var(--mg-xl) 70px;
+    border-radius: 20px;
+    width: var(--exercise-width);
+    height: 80vh;
+    background: var(--bg-white);
 }
 
 .exerciseCheckboxList {

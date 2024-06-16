@@ -1,0 +1,5 @@
+.cardsContainer {
+    display: grid;
+    grid-template-columns: calc(50% - 20px) calc(50% - 20px);
+    grid-column-gap: 40px;
+}

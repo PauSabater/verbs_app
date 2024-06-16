@@ -1,0 +1,38 @@
+.card {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+    border: 3px dotted var(--c-grey-light);
+    border-radius: var(--br-base);
+    margin-bottom: var(--mg-lg);
+
+    p, h2 {
+        text-decoration: none;
+    }
+}
+
+.title {
+    font-size: var(--fs-lg);
+}
+
+.cardLink {
+    cursor: pointer;
+    text-decoration: none;
+    color: unset;
+}
+
+.verb, .tense {
+    padding: 5px 15px;
+    border-radius: 20px;
+    background-color: var(--c-primary-lighter);
+    margin-left: var(--mg-xs);
+}
+
+.tense {
+    background-color: var(--c-primary-lighter);
+}
+
+.intro {
+    display: inline-block;
+    width: 60px;
+}

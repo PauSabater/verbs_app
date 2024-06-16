@@ -19,6 +19,7 @@ interface ILessonPage {
     exercisesTense: string
     textsExercise: any
     dataVerbsInText: any
+    verbsConjugations: any
 }
 
 interface IContextLessonPage {
@@ -30,6 +31,7 @@ interface IContextLessonPage {
         properties: IVerbProperties
     }[]
     callbackOnExerciseOpen: Function
+    verbsConjugations: any
 }
 
 export const LessonPageContext = createContext<IContextLessonPage>({} as IContextLessonPage)
@@ -75,7 +77,8 @@ export function LessonPage(props: ILessonPage) {
                 selectorLinksPath: '/lessons',
                 utterance: utterance,
                 dataVerbsInText: props.dataVerbsInText,
-                callbackOnExerciseOpen: callbackOpenModal
+                callbackOnExerciseOpen: callbackOpenModal,
+                verbsConjugations: props.verbsConjugations
             }}
         >
             <div className={styles.container}>
@@ -110,7 +113,7 @@ export function LessonPage(props: ILessonPage) {
                     return <LessonLink tense={lesson.tense} title={lesson.title} level={lesson.level}></LessonLink>
                 })} */}
 
-                <ModalExercises text={''} open={isModalOpen} ref={refModal} callbackClose={callbackCloseModal}>
+                {/* <ModalExercises text={''} open={isModalOpen} ref={refModal} callbackClose={callbackCloseModal}>
                     <ExerciseConjugation
                         // isDynamic={true}
                         verb={verbExercise}
@@ -122,7 +125,7 @@ export function LessonPage(props: ILessonPage) {
                         isSingleTense={true}
                         tenses={['präsens']}
                     ></ExerciseConjugation>
-                </ModalExercises>
+                </ModalExercises> */}
             </div>
         </LessonPageContext.Provider>
     )

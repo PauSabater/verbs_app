@@ -56,7 +56,7 @@ export interface IVerbAllTenses {
 
 export interface IExerciseConjugation {
     verb: string,
-    tensesDropdown: any,
+    tensesDropdown?: any,
     tenseExercise: string,
     modeExercise?: string,
     texts: IExerciseConjugationTexts,
@@ -65,7 +65,10 @@ export interface IExerciseConjugation {
     isSingleTense?: boolean,
     isEmbedded?: boolean,
     verbs?: string[],
-    tenses: string[]
+    tenses: string[],
+    isLessonExercise?: boolean,
+    actionOnBtnClose?: any
+    conjugationCurrentVerb?: any
     // isIrregular: string
 }
 
@@ -117,10 +120,10 @@ export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: stri
 
 export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string, mode?: string): IVerbTense | undefined => {
 
-    console.log("hey")
-    // console.log(tenses)
-    console.log(tableTense)
-    console.log(mode || '--')
+    // console.log("hey")
+    // // console.log(tenses)
+    // console.log(tableTense)
+    // console.log(mode || '--')
 
     if (mode === 'subjunctive_II' && tableTense === 'konjunktiv_II') {
         const mode = tenses.conditionalOrConjunctiveII as any

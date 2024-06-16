@@ -14,6 +14,9 @@ import { LinkWithInfoHover } from './Components/LinkWithInfoHover/LinkWithInfoHo
 import { fontTitles } from '@/app/fonts'
 import { LessonPageContext } from '@/app/lessons/[slug]/LessonPage'
 import { ExerciseConjugation } from '../ExerciseConjugation/ExerciseConjugation'
+import textsVerbExercise from '@/data/textsVerbExercise.json'
+import { getApiVerbConjugationsFromTenses } from '@/lib/getApiData'
+import ButtonWithExercise from './Components/ButtonWithExercise/ButtonWithExercise'
 
 interface ILessonExample {
     audio: string,
@@ -30,6 +33,11 @@ export interface ILessonSection {
     marginList?: boolean
     param?: string
     example?: ILessonExample
+    exercise?: {
+        verb: string,
+        tense: string
+    },
+    path?: string
 }
 
 interface ITable {
@@ -186,6 +194,16 @@ export default function Lesson(props: ILesson): React.JSX.Element {
                 ></h3>
             )
         }
+        if (section.type === 'h4') {
+            return (
+                <h4
+                    className={fontTitles.className}
+                    id={getAnchorId(section.content)}
+                    data-is-heading="true"
+                    dangerouslySetInnerHTML={{ __html: sanitize(section.content || '') }}
+                ></h4>
+            )
+        }
         if (section.type === 'paragraph') {
             return (
                 <p
@@ -201,15 +219,29 @@ export default function Lesson(props: ILesson): React.JSX.Element {
             return <>{getListTemplate(section.itemsList)}</>
         }
         if (props.isPost && section.type === 'exercise-btn') {
+
+            if(!section.exercise?.verb) return
+
+            return (
+                <div className={section.marginList ? styles.listMargin : ''}>
+                    <ButtonWithExercise
+                        buttonText={section.content || ''}
+                        verb={section.exercise?.verb || ''}
+                        exerciseTexts={textsVerbExercise}
+                        exerciseTense={section.exercise?.tense}
+                    />
+                </div>
+            )
+        }
+        if (props.isPost && section.type === 'exercise-btn-link') {
+
             return (
                 <div className={section.marginList ? styles.listMargin : ''}>
                     <Button
                         icon={'exercise'}
                         text={section.content || ''}
-                        callback={onBtnExerciseClick}
-                        paramOnClick={section.param}
-                        // color={'greyDark'}
-                        // size={'square'}
+                        isLink={true}
+                        path={section.path}
                     ></Button>
                 </div>
             )
@@ -217,23 +249,6 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         if (section.type.includes('table')) {
             return <>{getTableTemplate(section.table, section.marginList ? true : false, section.type)}</>
         }
-
-        // if (section.type === 'exercise-embeded') {
-        //     console.log("HEYY TEXTS ARE")
-        //     console.log(props.exerciseTexts)
-        //     return (
-        //             <ExerciseConjugation
-        //                 // isDynamic={true}
-        //                 verb={'sein'}
-        //                 tensesDropdown={['prasens']}
-        //                 texts={JSON.parse(props.exerciseTexts)}
-        //                 tenseExercise={'präsens'}
-        //                 // allTenses={props.exercisesTense}
-        //                 selectedTenses={['prasens']}
-        //                 isSingleTense={true}
-        //             ></ExerciseConjugation>
-        //     )
-        // }
 
         return <></>
     }

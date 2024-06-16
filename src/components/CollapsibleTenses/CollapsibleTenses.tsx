@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import { Button } from '../Button/Button'
 import { IExamples, TensesExamples } from '../TensesExamples/TensesExamples'
 import { fontTitles } from '@/app/fonts'
+import Link from 'next/link'
 
 interface ICollapsibleTexts {
     title: string,
@@ -20,6 +21,7 @@ interface ICollapsibleTenses {
     action: Function
     utterance: SpeechSynthesisUtterance | null
     verb: string
+    mode: string
 }
 
 export function CollapsibleTenses(props: ICollapsibleTenses) {
@@ -52,12 +54,14 @@ export function CollapsibleTenses(props: ICollapsibleTenses) {
                 </div>
                 <div className={styles.collapsibleContent} ref={refCollapsibleContent}>
                     {props.children}
-                    <Button
-                        callback={buttonAction}
-                        text={`Practise ${props.texts.title}`}
-                        color={'primary'}
-                        icon={'exercise'}
-                    />
+                    <Link href={`/exercise?mode=${props.mode}&verbs=${props.verb}`}>
+                        <Button
+                            text={`Practise ${props.texts.title}`}
+                            color={'primary'}
+                            icon={'exercise'}
+                        />
+                    </Link>
+
                 </div>
             </div>
             {props.examples ?

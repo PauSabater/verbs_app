@@ -1,0 +1,24 @@
+.input {
+    display: none;
+}
+
+.inputContainer {
+    display: flex;
+
+}
+
+.label {
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid grey;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.input:checked + .label {
+    border: 2px solid black;
+}
+
+.inputsContainer {
+    display: flex;
+}
