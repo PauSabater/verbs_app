@@ -12,6 +12,8 @@
     "verbsExercises": [
         "spielen",
         "sein",
+        "haben",
+        "werden",
         "helfen",
         "sehen",
         "fallen"
@@ -174,6 +176,100 @@
                 "tense": "präteritum"
             }
         },
+        {
+            "type": "h4",
+            "content": "Haben"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "haben",
+                    "contentHtml": "haben"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>to have</i> (ex: 'Ich war krank.' - <i>I was sick.</i>), follows the same endings than the regular verbs, but the <b>-b</b> on its stem will change to <b>-t</b>:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "haben"],
+                "rows": [
+                    ["ich", "<span>ha<u>t</u><i>te</i></span>"],
+                    ["du", "<span>ha<u>t</u><i>test</i></span>"],
+                    ["es", "<span>ha<u>t</u><i>te</i></span>"],
+                    ["wir", "<span>ha<u>t</u><i>ten</i></span>"],
+                    ["ihr", "<span>ha<u>t</u><i>tet</i></span>"],
+                    ["Sie", "<span>ha<u>t</u><i>ten</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for haben",
+            "param": "haben",
+            "exercise": {
+                "verb": "haben",
+                "tense": "präteritum"
+            }
+        },
+{
+            "type": "h4",
+            "content": "Werden"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "werden",
+                    "contentHtml": "werden"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>to become</i> (ex: 'Ich war krank.' - <i>I was sick.</i>), follows the same endings than the regular verbs, but the <b>-e</b> on its stem will change to <b>-u</b>:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "haben"],
+                "rows": [
+                    ["ich", "<span>w<u>u</u>rd<i>e</i></span>"],
+                    ["du", "<span>w<u>u</u>rd<i>est</i></span>"],
+                    ["es", "<span>w<u>u</u>rd<i>e</i></span>"],
+                    ["wir", "<span>w<u>u</u>rd<i>en</i></span>"],
+                    ["ihr", "<span>w<u>u</u>rd<i>et</i></span>"],
+                    ["Sie", "<span>w<u>u</u>rd<i>en</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for werden",
+            "param": "haben",
+            "exercise": {
+                "verb": "werden",
+                "tense": "präteritum"
+            }
+        },
+
+
+
+
         {
             "type": "h3",
             "content": "Stem-vowel changing irregular verbs"
