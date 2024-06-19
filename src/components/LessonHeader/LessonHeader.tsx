@@ -3,16 +3,30 @@ import InfoInCircle from '../../elements/InfoInCircle/InfoInCircle'
 import styles from './lessonHeader.module.scss'
 import { ButtonBookmark } from '../Bookmarker/ButtonBookmark'
 import { fontTitles } from '@/app/fonts'
+import { useContext } from 'react'
+import { LessonPageContext } from '@/app/lessons/[slug]/LessonPage'
 
-export function LessonHeader() {
+interface ILessonHeader {
+    title: string,
+    level: string,
+    date: string
+}
+
+export function LessonHeader(props: ILessonHeader) {
+
+    const lessonPageContext = useContext(LessonPageContext)
+
+    console.log("IEP")
+    console.log(lessonPageContext)
+
     return (
         <div className={styles.container}>
-            <h1 className={fontTitles.className}>Das Präsens (German Present Tense): usage, conjugation and exercises</h1>
+            <h1 className={fontTitles.className}>{props.title}</h1>
             <div className={styles.levelContainer}>
-                <InfoInCircle text={'A1'} />
+                <InfoInCircle text={props.level} />
                 <p>level</p>
                 <p>|</p>
-                <p>Dec 21, 2023</p>
+                <p>{props.date}</p>
             </div>
             <ButtonBookmark text={'Bookmark lesson'} />
             {/* <p className={styles.intro}>The Präsens tense in German direclty corresponds to the present tense in English, as it is used to describe actions that are happening right now or habitual actions.

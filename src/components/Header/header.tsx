@@ -16,6 +16,8 @@ export default function Header() {
     const [isSignUpOpen, setIsSignUpOpen] = useState(false)
     const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
+    const isLoggedVal = window.localStorage.getItem('is-logged')
+    const isUserLogged = isLoggedVal === 'true'
 
     const closeModal = ()=> {
         setIsSignUpOpen(false)
@@ -57,7 +59,10 @@ export default function Header() {
 
                 <div className={styles.authenticationContainer}>
                     <Button text={'log in'} color={'transparent'} callback={() => setIsSignUpOpen(true)}></Button>
-                    <Button text={'Sign in'} callback={() => setIsSignUpOpen(true)}></Button>
+                    {
+                        isUserLogged ? <Button text={'Sign in'} callback={() => setIsSignUpOpen(true)}></Button>
+                        : <p>HELLO</p>
+                    }
                 </div>
                 <div className={`${styles.linksContainer}`}>
                     <Link href={'/exercises'}>exercises</Link>

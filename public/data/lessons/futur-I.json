@@ -1,21 +1,18 @@
 {
     "props": {
-        "tense": "perfekt",
-        "title": "Das Perfekt (German Present Perfekt): usage, conjugation and exercises",
+        "tense": "futur_I",
+        "title": "Das Futur I (German Future tense): usage, conjugation and exercises",
         "datePublished": "Dec 21, 2023",
         "dateUpdated": "",
-        "level": "A1",
-        "tags": ["präteritum"]
+        "level": "B1",
+        "tags": ["futur I"]
     },
     "verbsUsed": [
-        "haben",
-        "sehen",
-        "fahren",
-        "leben",
-        "öffnen",
-        "essen",
-        "machen",
-        "einkaufen"
+        "sein",
+        "helfen",
+        "regnen",
+        "einkaufen",
+        "gehen"
     ],
     "tenseExercises": "präteritum",
     "verbsExercises": [
@@ -36,11 +33,11 @@
         },
         {
             "type": "paragraph",
-            "content": "The <b><i>Perfekt</i></b> tense in German, equivalent to the present perfect tense in English, is used to describe actions that have been completed in the past and have relevance to the present. It is commonly used in spoken German and informal writing."
+            "content": "The <b><i>Futur I</i></b> tense is used in German to talk about actions or events that will happen in the future. While the present tense is often used for near-future events, Futur I is used to emphasize that an action will definitely take place at a future time."
         },
         {
             "type": "callout",
-            "content": "The <i>Perfekt</i> tense in German is used more frequently than in languages like English, where the Simple Past tense is primarily used in written contexts."
+            "content": "The <b><i>Futur I</i></b> tense is not very important in the German language and is not critical to learn, but you should still learn it since it is very easy!"
         },
         {
             "type": "h2",
@@ -55,35 +52,35 @@
             "itemsList": {
                 "items": [
                     {
-                        "text": "Describing a completed action with present relevance:",
+                        "text": "Expressing Future Intentions or Plans:",
                         "example": {
-                            "audio": "Ich habe gestern einen Film gesehen",
-                            "text": "Example: Ich <b>habe</b> gestern einen Film $__gesehen-sehen[verb-link-hover]__$ ",
-                            "translation": "(I watched a movie yesterday)"
+                            "audio": "Ich werde morgen einkaufen gehen",
+                            "text": "Example: Ich <b>werde</b> morgen einkaufen $__gehen-gehen[verb-link-hover]__$ ",
+                            "translation": "(I will go shopping tomorrow.)"
                         }
                     },
                     {
-                        "text": "Indicating a change of location or state:",
+                        "text": "Making Predictions or Assumptions about the Future:",
                         "example": {
-                            "audio": "Er ist nach Berlin gefahren.",
-                            "text": "Er <b>ist</b> nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
-                            "translation": "(He went to Berlin)"
+                            "audio": "Es wird morgen regnen.",
+                            "text": "Es <b>wird</b> morgen $__regnen-regnen[verb-link-hover]__$.",
+                            "translation": "(It will rain tomorrow)"
                         }
                     },
                     {
-                        "text": "Talking about an experience:",
+                        "text": "Expressing Promises or Assurances:",
                         "example": {
-                            "audio": "Sie hat in Frankreich gelebt.",
-                            "text": "Sie <b>hat</b> in Frankreich $__gelebt-leben[verb-link-hover]__$.",
-                            "translation": "(She has lived in France)"
+                            "audio": "Ich werde dir helfen",
+                            "text": "Ich <b>werde</b> dir $__helfen-helfen[verb-link-hover]__$.",
+                            "translation": "(I will help you)"
                         }
                     },
-                                        {
-                        "text": "Expressing a past action with a visible result:",
+                    {
+                        "text": "Speculating about the Present or the Future:",
                         "example": {
-                            "audio": "Er hat das Fenster geöffnet.",
-                            "text": "Er <b>hat</b> das Fenster $__geöffnet-öffnen[verb-link-hover]__$.",
-                            "translation": "(He has opened the window)"
+                            "audio": "Er wird jetzt zu Hause sein.",
+                            "text": "Er <b>wird</b> jetzt zu Hause $__sein-sein[verb-link-hover]__$.",
+                            "translation": "(He will be at home now)"
                         }
                     }
                 ]

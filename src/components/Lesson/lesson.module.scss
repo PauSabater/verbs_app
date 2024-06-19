@@ -36,6 +36,11 @@
         color: var(--c-font-global-light);
     }
 
+    b {
+        font-weight: 700;
+        color: var(--c-font-global-light);
+    }
+
     a {
         position: relative;
         padding-top: var(--pd-xs);
@@ -55,7 +60,8 @@
         margin-top: 0;
     }
 
-    &.isPost p {
+    &.isPost p,
+    &.isPost li {
         font-size: var(--lesson-fs);
     }
 
@@ -74,6 +80,10 @@
     }
 
     h3 {
+        font-size: var(--fs-lg);
+    }
+
+    h4 {
         font-size: var(--fs-lg);
     }
 

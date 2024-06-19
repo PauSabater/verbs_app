@@ -34,13 +34,16 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
         const previousStr = textWithoutVar[0].replaceAll('$', '').replaceAll('_', '')
         const nextStr = textWithoutVar[1].replaceAll('$', '').replaceAll('_', '')
 
+        console.log('UIUI')
+        console.log(valueText)
+
         return (
             <>
                 <p className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(previousStr) }}></p>
                 <div className={styles.hoveredLinkContainer}>
                     <VerbInfoHover verb={valuePath}></VerbInfoHover>
                     <Link className={styles.link} href={`/verbs/${valuePath}`}>
-                        {valueText}
+                        <span dangerouslySetInnerHTML={{ __html: sanitize(valueText.replaceAll('=', '-').replaceAll('?', ' ') || '') }}></span>
                     </Link>
                 </div>
                 <p className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(nextStr) }}></p>
