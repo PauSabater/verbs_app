@@ -12,9 +12,6 @@ import { Metadata, ResolvingMetadata } from 'next'
 
 export default async function Page({ params }: { params: { slug: string } }) {
 
-    console.log("IN DATA PAGE, WE HAVE")
-    console.log(params)
-
     // Data requests in server:
     const dataResponse = await getLessonData(params.slug)
     const pageData = dataResponse.props.lessonData as any

@@ -3,6 +3,7 @@ import { sanitize } from "isomorphic-dompurify"
 import Link from "next/link"
 import styles from './textReplaced.module.scss'
 import { VerbInfoHover } from "../VerbIntoHover/VerbInfoHover"
+import { useState } from "react"
 
 interface ITextReplaced {
     text: string
@@ -15,41 +16,89 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
         <p dangerouslySetInnerHTML={{ __html: sanitize(props.text || '') }}></p>
     )
 
-    const variableExtracted = extractVarTextGetString(props.text)
-    if (!variableExtracted) return <></>
+    const splitByPattern = (inputString: string) => {
+        // Define the regular expression pattern to match $__ANY-STRING-HERE__$
+        const regex = /\$__[^$]+__\$/g;
 
-    // Get property
-    const strProp = variablesTextGetProp(variableExtracted)
+        // Split the input string using the defined pattern
+        const parts = inputString.split(regex)
 
-    // Get value
-    let value = variablesTextGetValue(variableExtracted, strProp)
+        // Find all the splitters in the input string
+        const splitters: string[] = inputString.match(regex) || []
 
-    const valuePath = value.includes('-') ? value.split('-')[1] : value
-    const valueText = value.includes('-') ? value.split('-')[0] : value
+        // console.log("HEY SPLIT HERE!")
+        // console.log(result)
+        // console.log(splitters)
 
-    if (strProp === 'verb-link-hover') {
-        const htmlEl: JSX.Element = <Link href={`/verbs/${value}`}>{value}</Link>
+        // Combine parts and splitters
+        const result: string[] = [];
+        for (let i = 0; i < parts.length; i++) {
+            result.push(parts[i]);
+            if (i < splitters.length) {
+                result.push(splitters[i]);
+            }
+        }
 
-        const textWithoutVar = props.text.split(variableExtracted)
-        const previousStr = textWithoutVar[0].replaceAll('$', '').replaceAll('_', '')
-        const nextStr = textWithoutVar[1].replaceAll('$', '').replaceAll('_', '')
+        if (splitters.length > 1) {
+            console.log("HEY HEY MORE!")
+            console.log(result)
+        }
 
-        console.log('UIUI')
-        console.log(valueText)
+        return result
+    }
+
+    const splitText: string[] = splitByPattern(props.text)
+
+
+    const VerbWithInfoOnHover = (props: {text: string})=> {
+
+        const [dispayInfoHover, setDisplayInfoHover] = useState(false)
+
+        const variableExtracted = extractVarTextGetString(props.text)
+
+        if (!variableExtracted) return <></>
+
+        // Get property
+        const strProp = variablesTextGetProp(variableExtracted)
+
+        // Get value
+        let value = variablesTextGetValue(variableExtracted, strProp)
+
+        const valuePath = value.includes('-') ? value.split('-')[1] : value
+        const valueText = value.includes('-') ? value.split('-')[0] : value
+
+        const onMouseOver = ()=> {
+            console.log("HEY MOUSE OVER")
+            setDisplayInfoHover(true)
+        }
+
+        return (
+            <span className={styles.hoveredLinkContainer}>
+                {
+                    dispayInfoHover
+                        ? <VerbInfoHover verb={valuePath}></VerbInfoHover>
+                        : <></>
+                }
+                <Link className={styles.link} href={`/verbs/${valuePath}`} onMouseOver={onMouseOver}>
+                    <span dangerouslySetInnerHTML={{ __html: sanitize(valueText.replaceAll('=', '-').replaceAll('?', ' ') || '') }}></span>
+                </Link>
+            </span>
+        )
+    }
+
+    // if (strProp === 'verb-link-hover') {
 
         return (
             <>
-                <p className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(previousStr) }}></p>
-                <div className={styles.hoveredLinkContainer}>
-                    <VerbInfoHover verb={valuePath}></VerbInfoHover>
-                    <Link className={styles.link} href={`/verbs/${valuePath}`}>
-                        <span dangerouslySetInnerHTML={{ __html: sanitize(valueText.replaceAll('=', '-').replaceAll('?', ' ') || '') }}></span>
-                    </Link>
-                </div>
-                <p className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(nextStr) }}></p>
+            {
+                splitText.map((part: string) => {
+                    return part.includes('verb-link-hover')
+                        ? <VerbWithInfoOnHover text={part}/>
+                        : <span className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(part) }}></span>
+                })
+            }
             </>
         )
-    }
 
     return <></>
 }

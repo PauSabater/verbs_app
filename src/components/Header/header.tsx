@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { Button } from '../Button/Button'
 import SearchBar from '../SearchBar/SearchBar'
 import styles from './header.module.scss'
@@ -10,6 +10,9 @@ import Link from 'next/link'
 import { Sidebar } from './Sidebar/Sidebar'
 import Logging from '../Logging/Logging'
 import { fontTitles } from '@/app/fonts'
+import { SVGChevron } from '@/assets/svg/svgExports'
+import header from '@/data/header.json'
+
 
 export default function Header() {
 
@@ -66,7 +69,8 @@ export default function Header() {
                 </div>
                 <div className={`${styles.linksContainer}`}>
                     <Link href={'/exercises'}>exercises</Link>
-                    <Link href={'/lessons'}>lessons</Link>
+                    <SubMenuLessons />
+
                 </div>
             </nav>
             {/* <Sidebar isOpen={isSidebarOpen} /> */}
@@ -82,5 +86,66 @@ export default function Header() {
                 <Logging></Logging>
             </ModalExercises>
         </Fragment>
+    )
+}
+
+const SubMenuLessons = ()=> {
+
+    const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
+    const [isEventAdded, setIsEventAdded] = useState(false)
+    const refContainer = useRef(null)
+
+    useEffect(() => {
+        if (isEventAdded === false) {
+            setIsEventAdded(true)
+            document.addEventListener('click', outsideListListener)
+        }
+    }, [])
+
+    const outsideListListener = (e: Event)=> {
+        console.log(e.target)
+        console.log((e.target as HTMLElement).nodeName)
+
+        if (!(refContainer.current && (refContainer.current as HTMLElement).contains(e.target as Node))) {
+            setIsSubMenuOpen(false)
+        }
+    }
+
+    return (
+        <div ref={refContainer} className={styles.subMenuContainer}>
+            <div className={styles.itemContainer}>
+                <p className={styles.item} onClick={()=> setIsSubMenuOpen(!isSubMenuOpen)}>lessons</p>
+                <SVGChevron />
+
+                <div className={`${styles.submenu} ${isSubMenuOpen ? styles.isOpen : ''}`}>
+                    {
+                        header.columns.map((column, i)=> {
+
+                            return (
+                                <ul key={`col-${i}`} className={styles.listSubmenu}>{
+
+                                    column.map((bloc, i)=> {
+                                        return (
+                                            <Fragment key={`fr-${i}`}>
+                                            <p key={`title-${i}`} className={styles.listTitle}>{bloc.title}</p>
+                                            {
+                                                bloc.items.map((item, i)=> {
+                                                    return (
+                                                        <li key={`item-${i}`} className={styles.itemSubmenu}>
+                                                            <Link onClick={()=> setIsSubMenuOpen(false)} href={item.path}>{item.title}</Link>
+                                                        </li>
+                                                    )
+                                                })
+                                            }
+                                            </Fragment>
+                                        )
+                                    })
+                                }</ul>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+        </div>
     )
 }

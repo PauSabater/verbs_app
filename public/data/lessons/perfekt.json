@@ -15,7 +15,11 @@
         "öffnen",
         "essen",
         "machen",
-        "einkaufen"
+        "sein",
+        "schreiben",
+        "einkaufen",
+        "verstehen",
+        "studieren"
     ],
     "tenseExercises": "präteritum",
     "verbsExercises": [
@@ -58,7 +62,7 @@
                         "text": "Describing a completed action with present relevance:",
                         "example": {
                             "audio": "Ich habe gestern einen Film gesehen",
-                            "text": "Example: Ich <b>habe</b> gestern einen Film $__gesehen-sehen[verb-link-hover]__$ ",
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ gestern einen Film $__gesehen-sehen[verb-link-hover]__$",
                             "translation": "(I watched a movie yesterday)"
                         }
                     },
@@ -66,7 +70,7 @@
                         "text": "Indicating a change of location or state:",
                         "example": {
                             "audio": "Er ist nach Berlin gefahren.",
-                            "text": "Er <b>ist</b> nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
+                            "text": "Example: Er $__ist-sein[verb-link-hover]__$ nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
                             "translation": "(He went to Berlin)"
                         }
                     },
@@ -74,7 +78,7 @@
                         "text": "Talking about an experience:",
                         "example": {
                             "audio": "Sie hat in Frankreich gelebt.",
-                            "text": "Sie <b>hat</b> in Frankreich $__gelebt-leben[verb-link-hover]__$.",
+                            "text": "Example: Sie $__hat-haben[verb-link-hover]__$ in Frankreich $__gelebt-leben[verb-link-hover]__$.",
                             "translation": "(She has lived in France)"
                         }
                     },
@@ -82,7 +86,7 @@
                         "text": "Expressing a past action with a visible result:",
                         "example": {
                             "audio": "Er hat das Fenster geöffnet.",
-                            "text": "Er <b>hat</b> das Fenster $__geöffnet-öffnen[verb-link-hover]__$.",
+                            "text": "Example: Er $__hat-haben[verb-link-hover]__$ das Fenster $__geöffnet-öffnen[verb-link-hover]__$.",
                             "translation": "(He has opened the window)"
                         }
                     }
@@ -95,7 +99,7 @@
         },
         {
             "type": "html",
-            "content": "<p>The Perfekt tense is formed using two components:</p><ol><li>The <b data-verb-stem>auxiliary verb</b> (either <b>'haben'</b> or <b>'sein'</b>) conjugated in the <b>present tense</b>.</li><li>The <b data-verb-prefix><i>Partizip II</i></b> of the <b>main verb.</b></li>"
+            "content": "<p>The Perfekt tense is formed using two components:</p><ol><li>The <b data-verb-stem>auxiliary verb</b> (either '$__haben-haben[verb-link-hover]__$' or '$__sein-sein[verb-link-hover]__$') conjugated in the <b>present tense</b>.</li><li>The <b data-verb-prefix><i>Partizip II</i></b> of the <b>main verb.</b></li>"
         },
         {
             "type": "image",
@@ -129,25 +133,25 @@
         },
         {
             "type": "paragraph",
-            "content": "The auxiliary verbs used on the <i>Perfekt</i> tense are <b>haben</b> and <b>sein</b>:"
+            "content": "The auxiliary verbs used on the <i>Perfekt</i> tense are $__haben-haben[verb-link-hover]__$ and $__sein-sein[verb-link-hover]__$:"
         },
         {
             "type": "list",
             "itemsList": {
                 "items": [
                     {
-                        "text": "<b>Haben:</b> Used with most verbs:",
+                        "text": "<b>$__Haben-haben[verb-link-hover]__$:</b> Used with most verbs:",
                         "example": {
                             "audio": "Ich habe Gemüse gegessen.",
-                            "text": "Ich <b>habe</b> Gemüse $__gegessen-essen[verb-link-hover]__$ ",
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ Gemüse $__gegessen-essen[verb-link-hover]__$ ",
                             "translation": "(I have eaten vegetables)"
                         }
                     },
                     {
-                        "text": "<b>Sein:</b> Used with verbs that indicate a change of state or movement (e.g., 'gehen' - to go, 'kommen' - to come):",
+                        "text": "<b>$__Sein-sein[verb-link-hover]__$:</b> Used with verbs that indicate a change of state or movement (e.g., 'gehen' - to go, 'kommen' - to come):",
                         "example": {
                             "audio": "Er ist nach Berlin gefahren.",
-                            "text": "Er <b>ist</b> nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
+                            "text": "Example: Er $__ist-sein[verb-link-hover]__$ nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
                             "translation": "(He went to Berlin)"
                         }
                     }
@@ -282,7 +286,7 @@
                         "text": "<b>Separable prefixed verbs:</b> <b data-verb-stem>ge-</b> is inserted between the prefix and the stem:",
                         "example": {
                             "audio": "Ich habe Obst und Gemüse eingekauft",
-                            "text": "Example: Ich <b>habe</b> Obst und Gemüse $__ein<b data=verb=stem>ge</b>kauft-einkaufen[verb-link-hover]__$",
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ Obst und Gemüse $__einkaufen-eingekauft[verb-link-hover]__$",
                             "translation": "(I have shopped for fruits and vegetables.)"
                         }
                     },
@@ -290,8 +294,8 @@
                         "text": "<b>Inseparable prefixed verbs:</b> there is no <b data-verb-stem>ge-</b> added:",
                         "example": {
                             "audio": "Ich habe die Aufgabe verstanden.",
-                            "text": "Ich <b>habe</b> die Aufgabe $__verstanden-verstehen[verb-link-hover]__$",
-                            "translation": "(He went to Berlin)"
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ die Aufgabe $__verstanden-verstehen[verb-link-hover]__$",
+                            "translation": "(I understood the exercises.)"
                         }
                     }
                 ]
@@ -309,7 +313,7 @@
                         "text": "Verbs ending with <b>-ieren</b> do not take the </b> <b data-verb-stem>ge-</b> prefix and will take the <b data-verb-prefix>-t</b> ending:",
                         "example": {
                             "audio": "Ich habe an der Universität studiert.",
-                            "text": "Example: Ich <b>habe</b> an der Universität $__studier<b data=verb=prefix>t</b>-studieren[verb-link-hover]__$.",
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ an der Universität $__studier<b data=verb=prefix>t</b>-studieren[verb-link-hover]__$.",
                             "translation": "(I have shopped for fruits and vegetables.)"
                         }
                     }

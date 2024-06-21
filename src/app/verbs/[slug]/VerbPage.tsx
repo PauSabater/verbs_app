@@ -196,7 +196,6 @@ export default function VerbsPage(params: IVerbsPage) {
     return pageVerbData ? (
         <div className={styles.pageContent} ref={refPageContent}>
             {/* <div>My Post: {params.slug}</div> */}
-            <h1>{JSON.stringify(pageVerbData.data.properties.reflexive) === "true" ? "YESYES" : "nono"}</h1>
             <VerbHeader {...verbHeaderProps()}></VerbHeader>
             <h1>{`Conjugations`}</h1>
             <div>

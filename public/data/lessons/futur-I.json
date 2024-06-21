@@ -1,6 +1,6 @@
 {
     "props": {
-        "tense": "futur_I",
+        "tense": "futur-I",
         "title": "Das Futur I (German Future tense): usage, conjugation and exercises",
         "datePublished": "Dec 21, 2023",
         "dateUpdated": "",
@@ -16,11 +16,12 @@
     ],
     "tenseExercises": "präteritum",
     "verbsExercises": [
-        "spielen",
+        "werden",
         "sein",
         "haben",
         "verstehen",
-        "studieren"
+        "studieren",
+        "spielen"
     ],
     "sections": [
         {
@@ -37,7 +38,7 @@
         },
         {
             "type": "callout",
-            "content": "The <b><i>Futur I</i></b> tense is not very important in the German language and is not critical to learn, but you should still learn it since it is very easy!"
+            "content": "The <b><i>Futur I</i></b> tense is not very important in the German language and is not critical to learn, but you must still learn it. Good news is that it is very easy!"
         },
         {
             "type": "h2",
@@ -91,16 +92,59 @@
             "content": "Conjugation"
         },
         {
-            "type": "html",
-            "content": "<p>The Perfekt tense is formed using two components:</p><ol><li>The <b data-verb-stem>auxiliary verb</b> (either <b>'haben'</b> or <b>'sein'</b>) conjugated in the <b>present tense</b>.</li><li>The <b data-verb-prefix><i>Partizip II</i></b> of the <b>main verb.</b></li>"
+            "type": "paragraph",
+            "content": "The <i>Futur I</i> tense is formed with the <b>present</b> tense of the auxiliary verb <b>\"werden\"</b> and the <b>infinitive</b> of the main verb. Here's how to conjugate \"werden\" in the present tense:"
         },
         {
-            "type": "image",
-            "image": {
-                "src": "/img/lessons/perfekt-formation.svg",
-                "alt": "german Perkect tense conjugation",
-                "height": 71.5,
-                "width": 300
+            "type": "table",
+            "table": {
+                "audio": "ich werde, du wirst, (er) (sie) (es) wird, wir werden, ihr werdet, sie werden.",
+                "headings": ["person", "sein"],
+                "rows": [
+                    ["ich", "<span>werd<i>e</i></span>"],
+                    ["du", "<span>w<u>ir</u><i>st</i></b></span>"],
+                    ["er/sie/es", "<span>w<u>ir</u><i>d</i></span>"],
+                    ["wir", "<span>werd<i>en</i></span>"],
+                    ["ihr", "<span>werd<i>et</i></span>"],
+                    ["Sie", "<span>werd<i>en</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präsens for werden",
+            "param": "werden",
+            "exercise": {
+                "verb": "werden",
+                "tense": "präsens"
+            }
+        },
+        {
+            "type": "paragraph",
+            "content": "Forming the <i>Futur I</i> tense will be very easy once you know the present tense of the verb <b>\"werden\"</b>, as the main verb takes the infinitive tense:"
+        },
+        {
+            "type": "table",
+            "table": {
+                "audio": "ich werde spielen, du wirst spielen, (er) (sie) (es) wird spielen, wir werden spielen, ihr werdet spielen, sie werden spielen.",
+                "headings": ["person", "spielen"],
+                "rows": [
+                    ["ich", "<span><i data-width-sm>werde</i> <b>spiel<i>en</i></b></span>"],
+                    ["du", "<span><i data-width-sm>wirst</i> <b>spiel<i>en</i></b></span>"],
+                    ["er/sie/es", "<span><i data-width-sm>wird</i> <b>spiel<i>en</i></b></span>"],
+                    ["wir", "<span><i data-width-sm>werden</i> <b>spiel<i>en</i></b></span>"],
+                    ["ihr", "<span><i data-width-sm>werdet</i> <b>spiel<i>en</i></b></span>"],
+                    ["Sie", "<span><i data-width-sm>werden</i> <b>spiel<i>en</i></b></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise Futur I for spielen",
+            "param": "spielen",
+            "exercise": {
+                "verb": "spielen",
+                "tense": "futur_I"
             }
         },
         {
@@ -109,209 +153,24 @@
         },
         {
             "type": "paragraph",
-            "content": "In main clauses, the auxiliary verb is in the second position, and the past participle is at the end of the sentence."
+            "content": "In main clauses, the auxiliary verb is in the second position after the subject, and the past participle is at the end of the sentence."
         },
         {
             "type": "image",
             "image": {
-                "src": "/img/lessons/perfekt-word-order.svg",
-                "alt": "german Perkect tense conjugation",
-                "height": 110,
-                "width": 242
+                "src": "/img/lessons/futur-I-word-order.svg",
+                "alt": "german Futur I word order",
+                "height": 78,
+                "width": 286
             }
         },
         {
             "type": "h3",
-            "content": "Auxiliary Verbs: 'haben' and 'sein'"
+            "content": "Examples"
         },
         {
             "type": "paragraph",
             "content": "The auxiliary verbs used on the <i>Perfekt</i> tense are <b>haben</b> and <b>sein</b>:"
-        },
-        {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>Haben:</b> Used with most verbs:",
-                        "example": {
-                            "audio": "Ich habe Gemüse gegessen.",
-                            "text": "Ich <b>habe</b> Gemüse $__gegessen-essen[verb-link-hover]__$ ",
-                            "translation": "(I have eaten vegetables)"
-                        }
-                    },
-                    {
-                        "text": "<b>Sein:</b> Used with verbs that indicate a change of state or movement (e.g., 'gehen' - to go, 'kommen' - to come):",
-                        "example": {
-                            "audio": "Er ist nach Berlin gefahren.",
-                            "text": "Er <b>ist</b> nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
-                            "translation": "(He went to Berlin)"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "type": "callout",
-            "content": "It is very important to master the conjugations of <b>haben</b> and <b>sein</b> to learn the <i>Perfekt</i> tense:"
-        },
-        {
-            "type": "h4",
-            "content": "Sein präsens conjugation:"
-        },
-        {
-            "type": "table",
-            "table": {
-                "audio": "ich bin, du bist, (er) (sie) (es) ist, wir sein, ihr sind, sie sind.",
-                "headings": ["person", "sein"],
-                "rows": [
-                    ["ich", "<i>bin</i>"],
-                    ["du", "<i>bist</i>"],
-                    ["er/sie/es", "<i>ist</i>"],
-                    ["wir", "<i>sind</i>"],
-                    ["ihr", "<i>seid</i>"],
-                    ["Sie", "<i>sind</i>"]
-                ]
-            }
-        },
-        {
-            "type": "exercise-btn",
-            "content": "practise präsens for sein",
-            "param": "sein",
-            "exercise": {
-                "verb": "sein",
-                "tense": "präsens"
-            }
-        },
-        {
-            "type": "h4",
-            "content": "Haben präsens conjugation:"
-        },
-        {
-            "type": "table",
-            "table": {
-                "audio": "ich habe, du hast, (er) (sie) (es) hat, wir haben, ihr habt, sie haben.",
-                "headings": ["person", "haben"],
-                "rows": [
-                    ["ich", "<span>hab</b><b><i>e</i></span>"],
-                    ["du", "<span><u>ha</u><i>st</i></span>"],
-                    ["er/sie/es", "<span><u>ha</u><i>t</i></span>"],
-                    ["wir", "<span>hab<i>en</i></span>"],
-                    ["ihr", "<span>hab<i>t</i></span>"],
-                    ["Sie", "<span>hab<i>en</i></span>"]
-                ]
-            }
-        },
-        {
-            "type": "exercise-btn",
-            "content": "practise präsens for haben",
-            "param": "haben",
-            "exercise": {
-                "verb": "haben",
-                "tense": "präsens"
-            }
-        },
-        {
-            "type": "h2",
-            "content": "Forming the <i>Partizip II</i>"
-        },
-        {
-            "type": "paragraph",
-            "content": "The main verb of the <i>Perfekt</i> tense will take the <i>Partizip II</i> (past participle) form. In English, it is equivalent to forms like \"eaten,\" \"gone,\" or \"written.\""
-        },
-        {
-            "type": "paragraph",
-            "content": "The formation of Partizip II depends on whether the verb is regular (weak), irregular (strong), or a mixed verb (with characteristics of both)."
-        },
-        {
-            "type": "h3",
-            "content": "Regular verbs"
-        },
-        {
-            "type": "paragraph",
-            "content": "We will follow the next steps:"
-        },
-        {
-            "type": "html",
-            "content": "<ol><li>Remove the infinitive ending (<b data-verb-prefix>-en</b> or <b data-verb-prefix>-n</b>):<ul><li>mach<s>en</s> <i>(to do)</i> → mach</li></ul></li>   <li>Add the prefix <b data-verb-stem>ge-</b> to the stem:<ul><li>mach → <b data-verb-stem>ge</b>-mach</li></ul><li>Add the suffix \"<b data-verb-prefix>-t</b>\":<ul><li>ge-mach → gemach<b data-verb-prefix>t</b></li><ul></li></ol>"
-        },
-        {
-            "type": "paragraph",
-            "content": "So, the Partizip II of \"$__machen-machen[verb-link-hover]__$\" is \"<b data-verb-stem>ge<b>mach<b data-verb-prefix>t</b>.\""
-        },
-        {
-            "type": "html",
-            "content": "<p>More examples:</p><ul><li>lernen <i>(to learn)</i> → <b data-verb-stem>ge</b>lern<b data-verb-prefix>t</b></li><li>spielen <i>(to play)</i> → <b data-verb-stem>ge</b>spiel<b data-verb-prefix>t</b></li><ul>"
-        },
-        {
-            "type": "h3",
-            "content": "Irregular verbs"
-        },
-        {
-            "type": "paragraph",
-            "content": "For most of the irregular verbs we will follow the next steps:"
-        },
-        {
-            "type": "html",
-            "content": "<ol><li>Change the stem vowel (if necessary, as per the verb's pattern) and remove the infinitive ending (<b data-verb-prefix>-en</b> or <b data-verb-prefix>-n</b>):<ul><li>schreib<s>en</s> <i>(to write)</i> → schr<b data-verb-stem>ie</b>b- (past stem)</li></ul></li>   <li>Add the prefix <b data-verb-stem>ge-</b> to the stem:<ul><li>schrieb → <b data-verb-stem>ge</b>-schrieben</li></ul><li>Add the suffix \"<b data-verb-prefix>-en</b>\":<ul><li>ge-schrieben → geschrieb<b data-verb-prefix>en</b></li><ul></li></ol>"
-        },
-        {
-            "type": "paragraph",
-            "content": "So, the Partizip II of \"$__schreiben-schreiben[verb-link-hover]__$\" is \"<b data-verb-stem>ge<b>schrieb<b data-verb-prefix>en</b>.\""
-        },
-        {
-            "type": "html",
-            "content": "<p>More examples:</p><ul><li>sehen <i>(to see)</i>  → <b data-verb-stem>ge</b>seh<b data-verb-prefix>en</b></li><li>sprechen <i>(to speak)</i>  → <b data-verb-stem>ge</b>sproch<b data-verb-prefix>en</b></li><ul>"
-        },
-        {
-            "type": "h3",
-            "content": "Special Cases"
-        },
-        {
-            "type": "h4",
-            "content": "Verbs with prefixes"
-        },
-        {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>Separable prefixed verbs:</b> <b data-verb-stem>ge-</b> is inserted between the prefix and the stem:",
-                        "example": {
-                            "audio": "Ich habe Obst und Gemüse eingekauft",
-                            "text": "Example: Ich <b>habe</b> Obst und Gemüse $__ein<b data=verb=stem>ge</b>kauft-einkaufen[verb-link-hover]__$",
-                            "translation": "(I have shopped for fruits and vegetables.)"
-                        }
-                    },
-                    {
-                        "text": "<b>Inseparable prefixed verbs:</b> there is no <b data-verb-stem>ge-</b> added:",
-                        "example": {
-                            "audio": "Ich habe die Aufgabe verstanden.",
-                            "text": "Ich <b>habe</b> die Aufgabe $__verstanden-verstehen[verb-link-hover]__$",
-                            "translation": "(He went to Berlin)"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "type": "h4",
-            "content": "Verbs ending with -ieren"
-        },
-{
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "Verbs ending with <b>-ieren</b> do not take the </b> <b data-verb-stem>ge-</b> prefix and will take the <b data-verb-prefix>-t</b> ending:",
-                        "example": {
-                            "audio": "Ich habe an der Universität studiert.",
-                            "text": "Example: Ich <b>habe</b> an der Universität $__studier<b data=verb=prefix>t</b>-studieren[verb-link-hover]__$.",
-                            "translation": "(I have shopped for fruits and vegetables.)"
-                        }
-                    }
-                ]
-            }
         }
     ]
 }

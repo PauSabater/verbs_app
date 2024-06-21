@@ -19,10 +19,6 @@ export default function ButtonWithExercise(props: IButtonWithExercise): React.JS
     const lessonPageContext = useContext(LessonPageContext)
     const [showExercise, setShowExercise] = useState<boolean>(false)
 
-    console.log("UAU")
-    console.log(lessonPageContext.verbsConjugations)
-    console.log(props.verb)
-
     const verbConjugation = lessonPageContext.verbsConjugations.find((conj: any)=> {
         return conj.verb == props.verb
     })
@@ -32,9 +28,6 @@ export default function ButtonWithExercise(props: IButtonWithExercise): React.JS
     //     console.log(conj)
 
     // }
-
-    console.log('we havbe')
-    console.log(verbConjugation.conjugations)
 
     const onBtnExerciseClick = ()=> {
         setShowExercise(true)

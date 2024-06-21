@@ -156,6 +156,13 @@ export const SVGAdd = ({ color }: { color?: string }) => {
     )
 }
 
+export const SVGChevron = ({ color }: { color?: string }) => {
+    return (
+        <svg data-svg-chevron viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.5 10L0.870833 0.250001L12.1292 0.25L6.5 10Z" fill={color || 'currentColor'}/>
+        </svg>
+    )
+}
 
 
 export const SVGFacebook = ({bg}: {bg?: string})=> {

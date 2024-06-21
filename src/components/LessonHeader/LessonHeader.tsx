@@ -16,9 +16,6 @@ export function LessonHeader(props: ILessonHeader) {
 
     const lessonPageContext = useContext(LessonPageContext)
 
-    console.log("IEP")
-    console.log(lessonPageContext)
-
     return (
         <div className={styles.container}>
             <h1 className={fontTitles.className}>{props.title}</h1>

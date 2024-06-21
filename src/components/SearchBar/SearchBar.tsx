@@ -34,13 +34,10 @@ export default function SearchBar(props: ISearchBar) {
     const outsideListListener = (e: Event)=> {
         console.log(e.target)
         if (refContainer.current && (refContainer.current as HTMLElement).contains(e.target as Node)) {
-            console.log("CONTAINS!!")
             // Case we click a link close the list
             if ((e.target as HTMLElement).nodeName === 'A') {
                 setIsListOpen(false)
             }
-            // console.log('CONTAAAAINS')
-            // console.log((e.target as HTMLElement).nodeName)
         } else {
             setIsListOpen(false)
         }

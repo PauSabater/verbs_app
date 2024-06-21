@@ -232,7 +232,9 @@ export default function Lesson(props: ILesson): React.JSX.Element {
                 //     className={section.marginList ? styles.listMargin : ''}
                 //     dangerouslySetInnerHTML={{ __html: sanitize(section.content || '') }}
                 // ></p>
-                <TextReplaced text={section.content || ''}></TextReplaced>
+                <>
+                    <p><TextReplaced text={section.content || ''}></TextReplaced></p>
+                </>
             )
         }
         if (section.type === 'callout') {
@@ -343,7 +345,7 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         return (
             <div className={`${styles.containerExampleAndTranslation} ${hasMargin ? styles.listMargin : ''}`}>
                 <div className={styles.containerExample}>
-                    <p>
+                    <p className={styles.example}>
                         <TextReplaced text={example.text}></TextReplaced>
                         {/* <span dangerouslySetInnerHTML={{ __html: sanitize(replaceWithCurrentUrl(example.text) || '') }}></span> */}
                     </p>
