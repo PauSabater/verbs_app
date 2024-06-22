@@ -19,7 +19,10 @@ interface ISelector {
     color?: string
     weight?: string
     // handleSelectInputChangeEvent: Function,
-    callbackOnChange?: Function
+    callbackOnChange?: Function,
+    isExerciseGenerate?: boolean,
+    type?: 'checkbox' | 'radio',
+    columns?: 3;
 }
 
 export function Selector(props: ISelector) {
@@ -33,7 +36,9 @@ export function Selector(props: ISelector) {
     const [selectedOption, setSelectedOption] = useState<string>(props.selectedOption || '')
 
     useEffect(()=> {
-        setSelectedOption(props.selectedOption || 'More lessons')
+        if (!props.isExerciseGenerate) {
+            setSelectedOption(props.selectedOption || 'More lessons')
+        }
     }, [props.selectedOption])
 
     const handleButtonClick = ()=> {
@@ -41,8 +46,8 @@ export function Selector(props: ISelector) {
     }
 
     const handleInputChangeEvent = (e: ChangeEvent<HTMLInputElement>)=> {
-        setTimeout(()=> setIsExpanded(false), 75)
-        if (props.callbackOnChange) props.callbackOnChange(e.target.name, e.target.getAttribute("data-group"))
+        if (!props.isExerciseGenerate) setTimeout(()=> setIsExpanded(false), 75)
+        if (props.callbackOnChange) props.callbackOnChange(e.target.name, e.target.getAttribute("data-group"), e.target.checked)
     }
 
 
@@ -55,12 +60,12 @@ export function Selector(props: ISelector) {
                             <>
                                 <input
                                     key={`input-${index}`}
-                                    type="radio"
+                                    type={props.type || 'radio'}
                                     id={`${index}-${option}`}
                                     name={option}
                                     data-group={group}
                                     className={`${styles.input}`}
-                                    checked={option === props.selectedOption}
+                                    // checked={!props.isExerciseGenerate ? option === props.selectedOption}
                                     data-checked={option === props.selectedOption}
                                     onChange={(e) => handleInputChangeEvent(e)}
                                 />
@@ -100,13 +105,19 @@ export function Selector(props: ISelector) {
                 <SVGArrow></SVGArrow>
                 {/* <span className="arrow"></span> */}
             </button>
-            <ul className={`select-dropdown ${styles.dropdown} ${isExpanded ? styles.expanded : ''} ${props.isFullwidth ? styles.fullwidth : ''}`}>
+
+            <ul className={`select-dropdown ${styles.dropdown} ${isExpanded ? styles.expanded : ''} ${props.isFullwidth ? styles.fullwidth : ''} ${styles[`columns-${props.columns}`]} ${props.isExerciseGenerate ? styles.exerciseGenerate : ''}`}>
                 {props.options.map((optionGroup, index) => {
                     return (
                         <Fragment key={`fr-${index}`}>
-                            <label key={`title-${index}`} className={styles.labelTitle}>
-                                {optionGroup.title}
-                            </label>
+                            {
+                                optionGroup.title ?
+                                    <label key={`title-${index}`} className={styles.labelTitle}>
+                                    {optionGroup.title}
+                                    </label>
+                                    : <></>
+                            }
+
                             {getOptionsTemplate(optionGroup.options, optionGroup.title || '')}
                         </Fragment>
                     )

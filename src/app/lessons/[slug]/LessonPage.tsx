@@ -46,6 +46,8 @@ export function LessonPage(props: ILessonPage) {
     const [verbExercise, setVerbExercise] = useState<string>('')
     const [isEmbeddedExerciseOpen, setIsEmbeddedExerciseOpen] = useState<boolean>(true)
 
+    const dataHeader = JSON.parse(props.data).props
+
     useLayoutEffect(() => {
         getUtteraceInstance().then((utterance) => {
             setUtterance(utterance)
@@ -82,7 +84,11 @@ export function LessonPage(props: ILessonPage) {
             }}
         >
             <div className={styles.container}>
-                <LessonHeader></LessonHeader>
+                <LessonHeader
+                    title={dataHeader.title}
+                    level={dataHeader.level}
+                    date={dataHeader.datePublished}
+                ></LessonHeader>
 
                 <Lesson
                     data={props.data}

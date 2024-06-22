@@ -17,6 +17,7 @@ import { ExerciseConjugation } from '../ExerciseConjugation/ExerciseConjugation'
 import textsVerbExercise from '@/data/textsVerbExercise.json'
 import { getApiVerbConjugationsFromTenses } from '@/lib/getApiData'
 import ButtonWithExercise from './Components/ButtonWithExercise/ButtonWithExercise'
+import Image from 'next/image'
 
 interface ILessonExample {
     audio: string,
@@ -37,7 +38,15 @@ export interface ILessonSection {
         verb: string,
         tense: string
     },
-    path?: string
+    path?: string,
+    image?: ILessonImage
+}
+
+interface ILessonImage {
+    src: string,
+    alt: string,
+    height: number,
+    width: number
 }
 
 interface ITable {
@@ -170,6 +179,19 @@ export default function Lesson(props: ILesson): React.JSX.Element {
             }
         }
 
+        if (section.type === 'image') {
+
+            return section.image ? (
+                <Image
+                    src={section.image.src}
+                    height={section.image.height}
+                    width={section.image.width}
+                    alt={section.image.alt}
+                />
+            )
+            : <></>
+        }
+
 
         if ((!props.isPost && section.type === 'h1-lesson') || section.type === 'h1' || (props.isPost && section.type === 'h1-post')) {
             return <h1 id={getAnchorId(section.content)} data-is-heading="true" dangerouslySetInnerHTML={{ __html: sanitize(section.content || '') }}></h1>
@@ -206,14 +228,20 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         }
         if (section.type === 'paragraph') {
             return (
-                <p
-                    className={section.marginList ? styles.listMargin : ''}
-                    dangerouslySetInnerHTML={{ __html: sanitize(section.content || '') }}
-                ></p>
+                // <p
+                //     className={section.marginList ? styles.listMargin : ''}
+                //     dangerouslySetInnerHTML={{ __html: sanitize(section.content || '') }}
+                // ></p>
+                <>
+                    <p><TextReplaced text={section.content || ''}></TextReplaced></p>
+                </>
             )
         }
         if (section.type === 'callout') {
             return <Callout text={section.content || ''}></Callout>
+        }
+        if (section.type === 'html') {
+            return <div><TextReplaced text={section.content || ''}></TextReplaced></div>
         }
         if (section.type === 'list') {
             return <>{getListTemplate(section.itemsList)}</>
@@ -317,7 +345,7 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         return (
             <div className={`${styles.containerExampleAndTranslation} ${hasMargin ? styles.listMargin : ''}`}>
                 <div className={styles.containerExample}>
-                    <p>
+                    <p className={styles.example}>
                         <TextReplaced text={example.text}></TextReplaced>
                         {/* <span dangerouslySetInnerHTML={{ __html: sanitize(replaceWithCurrentUrl(example.text) || '') }}></span> */}
                     </p>

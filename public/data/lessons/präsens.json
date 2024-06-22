@@ -141,7 +141,7 @@
                 "rows": [
                     ["ich", "-e", "spiel<i>-e</i>"],
                     ["du", "-st", "spiel<i>-st</i>"],
-                    ["es/sie/es", "-t", "spiel<i>-t</i>"],
+                    ["er/sie/es", "-t", "spiel<i>-t</i>"],
                     ["wir", "-en", "spiel<i>-en</i>"],
                     ["ihr", "-t", "spiel<i>-t</i>"],
                     ["Sie", "-en", "spiel<i>-en</i>"]
@@ -195,11 +195,11 @@
             "type": "table",
             "table": {
                 "audio": "ich bin, du bist, (er) (sie) (es) ist, wir sein, ihr sind, sie sind.",
-                "headings": ["person", "example"],
+                "headings": ["person", "sein"],
                 "rows": [
                     ["ich", "<i>bin</i>"],
                     ["du", "<i>bist</i>"],
-                    ["es/sie/es", "<i>ist</i>"],
+                    ["er/sie/es", "<i>ist</i>"],
                     ["wir", "<i>sind</i>"],
                     ["ihr", "<i>seid</i>"],
                     ["Sie", "<i>sind</i>"]

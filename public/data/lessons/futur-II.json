@@ -1,0 +1,166 @@
+{
+    "props": {
+        "tense": "futur-I",
+        "title": "Das Futur II (German Future Perfect tense): usage, conjugation and exercises",
+        "datePublished": "Dec 21, 2023",
+        "dateUpdated": "",
+        "level": "B1",
+        "tags": ["futur I"]
+    },
+    "verbsUsed": [
+        "sein",
+        "helfen",
+        "regnen",
+        "einkaufen",
+        "gehen",
+        "werden",
+        "erledigen",
+        "haben"
+    ],
+    "tenseExercises": "futur_I",
+    "verbsExercises": [
+        "werden",
+        "sein",
+        "haben",
+        "verstehen",
+        "studieren",
+        "spielen"
+    ],
+    "sections": [
+        {
+            "type": "h1-lesson",
+            "content": "&#128218; &nbsp;The Präsens tense"
+        },
+        {
+            "type": "h2-post",
+            "content": "Introduction"
+        },
+        {
+            "type": "paragraph",
+            "content": "The <b><i>Futur II</i></b> (future perfect tense equivalent in English), is used in German to express actions that will have been completed at a certain point in the future. It is the equivalent of saying \"will have done\" in English. This tense highlights the completion of an action before a future moment"
+        },
+        {
+            "type": "callout",
+            "content": "The <b><i>Futur II</i></b> is not commonly used on everyday languages, except for Literary Contexts and, in spoken language, polite assumptions."
+        },
+        {
+            "type": "h2",
+            "content": "Usage"
+        },
+        {
+            "type": "paragraph",
+            "content": "We use the <i>Futur II</i> tense to express:"
+        },
+        {
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>Completion in the Future:</b> To indicate that an action will be completed before another future action or time:",
+                        "example": {
+                            "audio": "Bis morgen Abend werde ich die Arbeit erledigt haben",
+                            "text": "Example: Bis morgen Abend $__werde-werden[verb-link-hover]__$ ich die Arbeit $__erledigt-erledigen[verb-link-hover]__$ $__haben-haben[verb-link-hover]__$",
+                            "translation": "(By tomorrow evening, I will have finished the work)"
+                        }
+                    },
+                    {
+                        "text": "<b>Assumptions about the Past:</b>To make assumptions or speculations about something that might have happened in the past",
+                        "example": {
+                            "audio": "Er wird wohl schon gegangen sein",
+                            "text": "Er $__wird-werden[verb-link-hover]__$ wohl schon $__gegangen-gehen[verb-link-hover]__$ $__sein-sein[verb-link-hover]__$",
+                            "translation": "(He will probably have already left)"
+                        }
+                    },
+                    {
+                        "text": "<b>Formal and Literary Contexts:</b> While it is not as commonly used in everyday conversation, Futur II is more often seen in formal writing and literature:"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "h2",
+            "content": "Conjugation"
+        },
+        {
+            "type": "paragraph",
+            "content": "The <i>Futur I</i> tense is formed with the <b>present</b> tense of the auxiliary verb $__werden-werden[verb-link-hover]__$ and the <b>infinitive</b> of the main verb. Here's how to conjugate $__werden-werden[verb-link-hover]__$ in the present tense:"
+        },
+        {
+            "type": "table",
+            "table": {
+                "audio": "ich werde, du wirst, (er) (sie) (es) wird, wir werden, ihr werdet, sie werden.",
+                "headings": ["person", "sein"],
+                "rows": [
+                    ["ich", "<span>werd<i>e</i></span>"],
+                    ["du", "<span>w<u>ir</u><i>st</i></b></span>"],
+                    ["er/sie/es", "<span>w<u>ir</u><i>d</i></span>"],
+                    ["wir", "<span>werd<i>en</i></span>"],
+                    ["ihr", "<span>werd<i>et</i></span>"],
+                    ["Sie", "<span>werd<i>en</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präsens for werden",
+            "param": "werden",
+            "exercise": {
+                "verb": "werden",
+                "tense": "präsens"
+            }
+        },
+        {
+            "type": "paragraph",
+            "content": "Forming the <i>Futur I</i> tense will be very easy once you know the present tense of the verb $__werden-werden[verb-link-hover]__$, as the main verb takes the infinitive tense:"
+        },
+        {
+            "type": "table",
+            "table": {
+                "audio": "ich werde spielen, du wirst spielen, (er) (sie) (es) wird spielen, wir werden spielen, ihr werdet spielen, sie werden spielen.",
+                "headings": ["person", "spielen"],
+                "rows": [
+                    ["ich", "<span><i data-width-sm>werde</i> <b>spiel<i>en</i></b></span>"],
+                    ["du", "<span><i data-width-sm>wirst</i> <b>spiel<i>en</i></b></span>"],
+                    ["er/sie/es", "<span><i data-width-sm>wird</i> <b>spiel<i>en</i></b></span>"],
+                    ["wir", "<span><i data-width-sm>werden</i> <b>spiel<i>en</i></b></span>"],
+                    ["ihr", "<span><i data-width-sm>werdet</i> <b>spiel<i>en</i></b></span>"],
+                    ["Sie", "<span><i data-width-sm>werden</i> <b>spiel<i>en</i></b></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise Futur I for spielen",
+            "param": "spielen",
+            "exercise": {
+                "verb": "spielen",
+                "tense": "futur_I"
+            }
+        },
+        {
+            "type": "h3",
+            "content": "Word order"
+        },
+        {
+            "type": "paragraph",
+            "content": "In main clauses, the auxiliary verb is in the second position after the subject, and the past participle is at the end of the sentence."
+        },
+        {
+            "type": "image",
+            "image": {
+                "src": "/img/lessons/futur-I-word-order.svg",
+                "alt": "german Futur I word order",
+                "height": 78,
+                "width": 286
+            }
+        },
+        {
+            "type": "h3",
+            "content": "Examples"
+        },
+        {
+            "type": "paragraph",
+            "content": "The auxiliary verbs used on the <i>Perfekt</i> tense are <b>haben</b> and <b>sein</b>:"
+        }
+    ]
+}

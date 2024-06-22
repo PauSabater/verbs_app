@@ -78,6 +78,11 @@ export const SVGArrow = ({color = "currentColor", strokeWidth = 6}: {color?: str
     <path d="M5 5.5L26 26.5L47 5.5" stroke={color || "currentColor"} strokeWidth={strokeWidth} strokeLinecap="round"/>
 </svg>
 
+export const SVGArrowNext = ({color = "currentColor", strokeWidth = 6}: {color?: string, strokeWidth?: number})=> <svg width="63" height="52" viewBox="0 0 63 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 13.4545H29.1609C29.7132 13.4545 30.1609 13.0068 30.1609 12.4545V2.11227C30.1609 1.2683 31.1419 0.803862 31.7947 1.33878L62.0226 26.1082C62.5216 26.5171 62.5086 27.2846 61.9959 27.6763L31.768 50.7721C31.1099 51.2749 30.1609 50.8056 30.1609 49.9775V39.5455C30.1609 38.9932 29.7132 38.5455 29.1609 38.5455H2C1.44772 38.5455 1 38.0977 1 37.5455V14.4545C1 13.9023 1.44772 13.4545 2 13.4545Z" fill="none" stroke={color || "currentColor"} stroke-dasharray="2 2"/>
+</svg>
+
+
 export const SVGTailedArrow = () => {return (
     <svg viewBox="0 0 47 51" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M3 14.4545H19.0465C20.1511 14.4545 21.0465 13.5591 21.0465 12.4545V5.95461C21.0465 4.15532 23.237 3.2711 24.4861 4.56618L45.6132 26.4712C46.3794 27.2656 46.3573 28.5305 45.5638 29.2976L24.4366 49.7226C23.1673 50.9497 21.0465 50.0502 21.0465 48.2846V41.5455C21.0465 40.4409 20.1511 39.5455 19.0465 39.5455H3C1.89543 39.5455 1 38.65 1 37.5455V16.4545C1 15.35 1.89543 14.4545 3 14.4545Z" fill="#39088F"/>
@@ -156,6 +161,13 @@ export const SVGAdd = ({ color }: { color?: string }) => {
     )
 }
 
+export const SVGChevron = ({ color }: { color?: string }) => {
+    return (
+        <svg data-svg-chevron viewBox="0 0 13 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.5 10L0.870833 0.250001L12.1292 0.25L6.5 10Z" fill={color || 'currentColor'}/>
+        </svg>
+    )
+}
 
 
 export const SVGFacebook = ({bg}: {bg?: string})=> {

@@ -1,0 +1,66 @@
+{
+    "columns": [
+        [
+            {
+                "title": "Indicativ Tense",
+                "items": [
+                    {
+                        "title": "Präsens",
+                        "path": "/lessons/prasens"
+                    },
+                    {
+                        "title": "Präteritum",
+                        "path": "/lessons/prateritum"
+                    },
+                    {
+                        "title": "Perfekt",
+                        "path": "/lessons/perfekt"
+                    },
+                    {
+                        "title": "Plusquamperfekt",
+                        "path": "/lessons/plusquamperfekt"
+                    },
+                    {
+                        "title": "Futur I",
+                        "path": "/lessons/futur-I"
+                    },
+                    {
+                        "title": "Futur II",
+                        "path": "/lessons/futur-II"
+                    }
+                ]
+            }
+        ],
+        [
+            {
+                "title": "Indicativ Tense",
+                "items": [
+                    {
+                        "title": "Präsens",
+                        "path": "/lessons/prasens"
+                    },
+                    {
+                        "title": "Präteritum",
+                        "path": "/lessons/prateritum"
+                    },
+                    {
+                        "title": "Perfekt",
+                        "path": "/lessons/perfekt"
+                    },
+                    {
+                        "title": "Plusquamperfekt",
+                        "path": "/lessons/plusquamperfekt"
+                    },
+                    {
+                        "title": "Futur I",
+                        "path": "/lessons/futur-I"
+                    },
+                    {
+                        "title": "Futur II",
+                        "path": "/lessons/futur-II"
+                    }
+                ]
+            }
+        ]
+    ]
+}

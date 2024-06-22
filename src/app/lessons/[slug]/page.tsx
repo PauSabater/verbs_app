@@ -7,12 +7,10 @@ import { getLessonData } from '@/lib/lessons'
 import { getApiVerbConjugationsFromTenses, getPageVerbsTexts, getTextsVerbExercise, getVerbsProperties } from '@/lib/getApiData'
 import { headers } from 'next/headers'
 import { getConjugationFromTense } from '@/components/ExerciseConjugation/ExerciseConjugation.exports'
+import { Metadata, ResolvingMetadata } from 'next'
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
-
-    console.log("IN DATA PAGE, WE HAVE")
-    console.log(params)
 
     // Data requests in server:
     const dataResponse = await getLessonData(params.slug)
@@ -57,4 +55,36 @@ export async function generateStaticParams() {
     return posts.map((post) => ({
         slug: post.slug
     }))
+}
+
+type Props = {
+    params: { slug: string }
+    // searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+
+    return {
+        title: getMetaTitle(params.slug),
+        description: `Learn how to conjugate the ${params.slug} tense in German with our comprehensive guide. Discover its usage, master conjugation rules, and practice with exercises.`
+        // openGraph: {
+        //     images: ['/some-specific-page-image.jpg', ...previousImages]
+        // }
+    }
+}
+
+function getMetaTitle(slug: string) {
+
+    switch(slug){
+        case 'prateritum' || 'präteritum':
+            return 'Präteritum (German Simple Past) | Guide and exercises'
+        case 'präsens' || 'prasens':
+            return 'Präsens (German Present Tense) | Guide and exercises'
+        case 'perfekt':
+            return 'Perfect (German Present Perfect Tense) | Guide and exercises'
+        case 'futur-I':
+            return 'Futur I (German Future Tense) | Guide and exercises'
+        default:
+            return ''
+    }
 }

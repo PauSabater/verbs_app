@@ -141,31 +141,9 @@ export const extractVarTextGetString = (text: string) => {
 }
 
 export const variablesTextGetProp = (textClean: string) => {
-
-        // const regex = /(?<=\$)(.*?)(?=\$)/g
-        // let strMatched = text.matchAll(regex)
-        // if (!strMatched) return
-
-        // console.log('HEY MATCHED ARE')
-        // console.log(strMatched)
-
-        // let matchedRegex = []
-
-        // for (const match of strMatched) {
-        //     console.log('matched here in loop')
-        //     console.log(match)
-        //     matchedRegex.push(match)
-        // }
-
-        // console.log('HEY REGEX ARRAY IS')
-        // console.log(matchedRegex)
-
-
     const regexProps = /(?<=\[)(.*?)(?=\])/
     let strProp
     let strPropMatched = regexProps.exec(textClean)
-    // console.log('PROPS ARE')
-    // console.log(strPropMatched)
     if (!strPropMatched) return
     return strPropMatched[1]
 }

@@ -1,20 +1,35 @@
 {
     "props": {
         "tense": "präteritum",
-        "title": "Das Präteritum (German Present Tense): usage, conjugation and exercises",
+        "title": "Das Präteritum (German Past Simple): usage, conjugation and exercises",
         "datePublished": "Dec 21, 2023",
         "dateUpdated": "",
-        "level": "A1",
+        "level": "B1",
         "tags": ["präteritum"]
     },
-    "verbsUsed": ["sein", "haben", "gehen", "finden", "spielen"],
+    "verbsUsed": [
+        "spielen",
+        "sein",
+        "haben",
+        "werden",
+        "können",
+        "müssen",
+        "wollen",
+        "sollen",
+        "dürfen",
+        "mögen"],
     "tenseExercises": "präteritum",
     "verbsExercises": [
         "spielen",
         "sein",
-        "helfen",
-        "sehen",
-        "fallen"
+        "haben",
+        "werden",
+        "können",
+        "müssen",
+        "wollen",
+        "sollen",
+        "dürfen",
+        "mögen"
     ],
     "sections": [
         {
@@ -31,7 +46,7 @@
         },
         {
             "type": "callout",
-            "content": "If you are a beginner, you just need to learn the präteritum of a few verbs. You will slowly learn other verbs as your level increases."
+            "content": "If you are a beginner, you just need to learn the präteritum of a few verbs. You will slowly learn other verbs as your level increases!"
         },
         {
             "type": "h2",
@@ -126,8 +141,94 @@
             "content": "Irregular verbs, the must-know ones for beginners"
         },
         {
-            "type": "paragraph",
-            "content": "In German, while the Perfekt tense is generally preferred in spoken language for most verbs, there are several verbs that are commonly used in their <i>Präteritum</i> (simple past) form, even in everyday speech. These verbs tend to be frequently used and are often essential in narrative contexts. The main verbs that are typically used in their Präteritum form rather than their Perfekt form are:"
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "In German, while the Perfekt tense is generally preferred in spoken language for most verbs, there are several verbs that are more commonly used in their <i>Präteritum</i> (simple past) form, even in everyday speech.</br>The main verbs that are typically used in their Präteritum form rather than their Perfekt form are "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "Sein",
+                    "contentHtml": "sein"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "haben",
+                    "contentHtml": "haben"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "werden, ",
+                    "contentHtml": "werden"
+                },
+                {
+                    "type": "text",
+                    "content": " and the modal verbs "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "können",
+                    "contentHtml": "können"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "Müssen",
+                    "contentHtml": "müssen"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "Wollen",
+                    "contentHtml": "wollen"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "Sollen",
+                    "contentHtml": "sollen"
+                },
+                {
+                    "type": "text",
+                    "content": ", "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "dürfen",
+                    "contentHtml": "dürfen"
+                },
+                {
+                    "type": "text",
+                    "content": " and "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "mögen",
+                    "contentHtml": "mögen"
+                },
+                {
+                    "type": "text",
+                    "content": ":"
+                }
+            ]
         },
         {
             "type": "h4",
@@ -175,53 +276,379 @@
             }
         },
         {
-            "type": "h3",
-            "content": "Stem-vowel changing irregular verbs"
-        },
-        {
-            "type": "paragraph",
-            "content": "<p>Most of irregular verbs will only be stem-vowel changing, where the vowel in the stem changes in the <b>second and third person singular</b> (du and er/sie/es forms). There are three basic types of vowel change:</p>"
-        },
-        {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>e  →  i:</b> for  example $__helfen-helfen[verb-link-hover]__$ (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"ie\"</b>:"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "table-2-3",
-            "marginList": true,
-            "table": {
-                "headings": ["person", "stem-change", "example"],
-                "rows": [
-                    ["ich", "", "helf<i>en</i>"],
-                    ["du", "<b data-verb-stem>e  →  i</b>", "h<u>i</u>lf<i>st</i>"],
-                    ["es", "<b data-verb-stem>e  →  i</b>", "h<u>i</u>lf<i>t</i>"],
-                    ["wir", "", "helf<i>en</i>"],
-                    ["ihr", "", "helf<i>t</i>"],
-                    ["Sie", "", "helf<i>en</i>"]
-                ]
-            }
-        },
-        {
-            "type": "exercise-btn",
-            "marginList": true,
-            "content": "practise präsens for helfen"
+            "type": "h4",
+            "content": "Haben"
         },
         {
             "type": "paragraph-components",
             "parts": [
                 {
                     "type": "text",
-                    "content": "Other examples are  "
+                    "content": "The verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "haben",
+                    "contentHtml": "haben"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>to have</i> (ex: 'Sie hatten großes Glück gestern.' - <i>They had great luck yesterday</i>), follows the same endings than the regular verbs, but the <b>-b</b> on its stem will change to <b data-verb-stem>-t</b>:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "stem-change", "haben"],
+                "rows": [
+                    ["ich", "<span>b  →  </span><b data-verb-stem>t</b>", "<span>ha<u>t</u><i>te</i></span>"],
+                    ["du", "<span>b  →  </span><b data-verb-stem>t</b>", "<span>ha<u>t</u><i>test</i></span>"],
+                    ["es", "<span>b  →  </span><b data-verb-stem>t</b>", "<span>ha<u>t</u><i>te</i></span>"],
+                    ["wir", "<span>b  →  </span><b data-verb-stem>t</b>", "<span>ha<u>t</u><i>ten</i></span>"],
+                    ["ihr", "<span>b  →  </span><b data-verb-stem>t</b>",  "<span>ha<u>t</u><i>tet</i></span>"],
+                    ["Sie", "<span>b  →  </span><b data-verb-stem>t</b>", "<span>ha<u>t</u><i>ten</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for haben",
+            "param": "haben",
+            "exercise": {
+                "verb": "haben",
+                "tense": "präteritum"
+            }
+        },
+        {
+            "type": "h4",
+            "content": "Werden"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "werden",
+                    "contentHtml": "werden"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>to become</i> (ex: 'Er wurde Sänger.' - <i>He became a singer.</i>), follows the same endings than the regular verbs but <b>without the -t</b>, and the <b>-e</b> on its stem will change to <b data-verb-stem>-u</b>:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "stem-change", "werden"],
+                "rows": [
+                    ["ich", "<span>e  →  </span><b data-verb-stem>u</b>", "<span>w<u>u</u>rd<i>e</i></span>"],
+                    ["du", "<span>e  →  </span><b data-verb-stem>u</b>", "<span>w<u>u</u>rd<i>est</i></span>"],
+                    ["es", "<span>e  →  </span><b data-verb-stem>u</b>", "<span>w<u>u</u>rd<i>e</i></span>"],
+                    ["wir", "<span>e  →  </span><b data-verb-stem>u</b>", "<span>w<u>u</u>rd<i>en</i></span>"],
+                    ["ihr", "<span>e  →  </span><b data-verb-stem>u</b>", "<span>w<u>u</u>rd<i>et</i></span>"],
+                    ["Sie", "<span>e  →  </span><b data-verb-stem>u</b>", "<span>w<u>u</u>rd<i>en</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for werden",
+            "param": "werden",
+            "exercise": {
+                "verb": "werden",
+                "tense": "präteritum"
+            }
+        },
+{
+            "type": "h4",
+            "content": "Können"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The modal verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "können",
+                    "contentHtml": "können"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>to be able to</i> (ex: 'Ich konnte gut kochen..' - <i>I was able to cook well</i>), follows the same endings than the regular verbs, but the <b>-ö</b> on its stem will change to <b data-verb-stem>-o</b>:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "stem-change", "können"],
+                "rows": [
+                    ["ich", "<span>ö  →  </span><b data-verb-stem>o</b>", "<span>k<u>o</u>nn<i>te</i></span>"],
+                    ["du", "<span>ö  →  </span><b data-verb-stem>o</b>", "<span>k<u>o</u>nn<i>test</i></span>"],
+                    ["es", "<span>ö  →  </span><b data-verb-stem>o</b>", "<span>k<u>o</u>nn<i>te</i></span>"],
+                    ["wir", "<span>ö  →  </span><b data-verb-stem>o</b>", "<span>k<u>o</u>nn<i>ten</i></span>"],
+                    ["ihr", "<span>ö  →  </span><b data-verb-stem>o</b>", "<span>k<u>o</u>nn<i>tet</i></span>"],
+                    ["Sie", "<span>ö  →  </span><b data-verb-stem>o</b>", "<span>k<u>o</u>nn<i>ten</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for können",
+            "param": "können",
+            "exercise": {
+                "verb": "können",
+                "tense": "präteritum"
+            }
+        },
+        {
+            "type": "h4",
+            "content": "Müssen"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The modal verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "müssen",
+                    "contentHtml": "müssen"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>must / to have to</i> (ex: 'Musstest du das machen?' - <i>Did you have to do that?</i>), follows the same endings than the regular verbs, but the <b>-ü</b> on its stem will change to <b data-verb-stem>-u</b>:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "stem-change", "müssen"],
+                "rows": [
+                    ["ich", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>m<u>u</u>ss<i>te</i></span>"],
+                    ["du", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>m<u>u</u>ss<i>te</i></span>"],
+                    ["es", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>m<u>u</u>ss<i>te</i></span>"],
+                    ["wir", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>m<u>u</u>ss<i>te</i></span>"],
+                    ["ihr", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>m<u>u</u>ss<i>te</i></span>"],
+                    ["Sie", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>m<u>u</u>ss<i>te</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for müssen",
+            "param": "müssen",
+            "exercise": {
+                "verb": "müssen",
+                "tense": "präteritum"
+            }
+        },
+{
+            "type": "h4",
+            "content": "Wollen"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The modal verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "wollen",
+                    "contentHtml": "wollen"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>must / to want</i> (ex: 'Sie wollte letztes Jahr reisen' - <i>she wanted to travel last year</i>), follows the same endings than the regular verbs, without stem changes:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "wollen"],
+                "rows": [
+                    ["ich", "<span>woll<i>te</i></span>"],
+                    ["du", "<span>woll<i>test</i></span>"],
+                    ["es", "<span>woll<i>te</i></span>"],
+                    ["wir", "<span>woll<i>ten</i></span>"],
+                    ["ihr", "<span>woll<i>tet</i></span>"],
+                    ["Sie", "<span>woll<i>ten</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for wollen",
+            "param": "wollen",
+            "exercise": {
+                "verb": "wollen",
+                "tense": "präteritum"
+            }
+        },
+{
+            "type": "h4",
+            "content": "Sollen"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The modal verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "sollen",
+                    "contentHtml": "sollen"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>should, to be supposed to</i> (ex: 'Er sollte für die Prüfung lernen' - <i>he was supposed to study for the exam</i>), follows the same endings than the regular verbs, without stem changes:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "sollen"],
+                "rows": [
+                    ["ich", "<span>soll<i>te</i></span>"],
+                    ["du", "<span>soll<i>test</i></span>"],
+                    ["es", "<span>soll<i>te</i></span>"],
+                    ["wir", "<span>soll<i>ten</i></span>"],
+                    ["ihr", "<span>soll<i>tet</i></span>"],
+                    ["Sie", "<span>soll<i>ten</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for sollen",
+            "param": "sollen",
+            "exercise": {
+                "verb": "sollen",
+                "tense": "präteritum"
+            }
+        },
+{
+            "type": "h4",
+            "content": "Dürfen"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The modal verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "dürfen",
+                    "contentHtml": "dürfen"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>may, be authorised to</i> (ex: 'Sie wollte letztes Jahr reisen' - <i>she wanted to travel last year</i>), follows the same endings than the regular verbs, but the <b>-ü</b> on its stem will change to <b data-verb-stem>-u</b>:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "stem-change", "dürfen"],
+                "rows": [
+                    ["ich", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>d<u>u</u>rf<i>te</i></span>"],
+                    ["du", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>d<u>u</u>rf<i>test</i></span>"],
+                    ["es", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>d<u>u</u>rf<i>te</i></span>"],
+                    ["wir", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>d<u>u</u>rf<i>ten</i></span>"],
+                    ["ihr", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>d<u>u</u>rf<i>tet</i></span>"],
+                    ["Sie", "<span>ü  →  </span><b data-verb-stem>u</b>", "<span>d<u>u</u>rf<i>ten</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for dürfen",
+            "param": "dürfen",
+            "exercise": {
+                "verb": "dürfen",
+                "tense": "präteritum"
+            }
+        },
+{
+            "type": "h4",
+            "content": "Mögen"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "The modal verb "
+                },
+                {
+                    "type": "link-verb-hover-html",
+                    "content": "mögen",
+                    "contentHtml": "mögen"
+                },
+                {
+                    "type": "text",
+                    "content": " - <i>to like</i> (ex: 'Sie mochte den Film nicht.' - <i>she didn't like the movie</i>), follows the same endings than the regular verbs, but the <b>-ög</b> on its stem will change to <b data-verb-stem>-och</b>:"
+                }
+            ]
+        },
+        {
+            "type": "table",
+            "table": {
+                "headings": ["person", "stem-change", "dürfen"],
+                "rows": [
+                    ["ich", "<span>og  →  </span><b data-verb-stem>och</b>", "<span>m<u>och</u><i>te</i></span>"],
+                    ["du", "<span>og  →  </span><b data-verb-stem>och</b>", "<span>m<u>och</u><i>test</i></span>"],
+                    ["es", "<span>og  →  </span><b data-verb-stem>och</b>", "<span>m<u>och</u><i>te</i></span>"],
+                    ["wir", "<span>og  →  </span><b data-verb-stem>och</b>", "<span>m<u>och</u><i>ten</i></span>"],
+                    ["ihr", "<span>og  →  </span><b data-verb-stem>och</b>", "<span>m<u>och</u><i>tet</i></span>"],
+                    ["Sie", "<span>og  →  </span><b data-verb-stem>och</b>", "<span>m<u>och</u><i>ten</i></span>"]
+                ]
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präteritum for mögen",
+            "param": "mögen",
+            "exercise": {
+                "verb": "mögen",
+                "tense": "präteritum"
+            }
+        },
+        {
+            "type": "h2",
+            "content": "Exercises"
+        },
+        {
+            "type": "paragraph-components",
+            "parts": [
+                {
+                    "type": "text",
+                    "content": "<b>Exercise 1:</b> Practise the tense präteritum for the following must-know verbs:</br> "
                 },
                 {
                     "type": "link-verb-hover",
-                    "content": "geben"
+                    "content": "sein"
                 },
                 {
                     "type": "text",
@@ -229,7 +656,55 @@
                 },
                 {
                     "type": "link-verb-hover",
-                    "content": "sprechen"
+                    "content": "haben"
+                },
+                {
+                    "type": "text",
+                    "content": ",  "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "werden"
+                },
+                {
+                    "type": "text",
+                    "content": ",  "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "können"
+                },
+                {
+                    "type": "text",
+                    "content": ",  "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "müssen"
+                },
+                {
+                    "type": "text",
+                    "content": ",  "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "wollen"
+                },
+                {
+                    "type": "text",
+                    "content": ",  "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "sollen"
+                },
+                {
+                    "type": "text",
+                    "content": ",  "
+                },
+                {
+                    "type": "link-verb-hover",
+                    "content": "dürfen"
                 },
                 {
                     "type": "text",
@@ -237,164 +712,18 @@
                 },
                 {
                     "type": "link-verb-hover",
-                    "content": "nehmen"
+                    "content": "mögen"
                 },
                 {
                     "type": "text",
-                    "content": "."
+                    "content": ":"
                 }
             ]
         },
         {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>e  →  ie:</b> for example $__sehen-sehen[verb-link-hover]__$ (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"i\"</b>:"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "table-2-3",
-            "marginList": true,
-            "table": {
-                "headings": ["person", "stem-change", "example"],
-                "rows": [
-                    ["ich", "", "seh<i>e</i>"],
-                    ["du", "<b data-verb-stem>e  →  ie</b>", "s<u>ie</u>h<i>st</i>"],
-                    ["es", "<b data-verb-stem>e  →  ie</b>", "s<u>ie</u>h<i>t</i>"],
-                    ["wir", "", "seh<i>en</i>"],
-                    ["ihr", "", "seh<i>t</i>"],
-                    ["Sie", "", "seh<i>en</i>"]
-                ]
-            }
-        },
-        {
-            "type": "exercise-btn",
-            "marginList": true,
-            "content": "practise präsens for sehen"
-        },
-        {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Other examples are  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "lesen"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "sehen"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "stehen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
-        },
-        {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>a  →  ä:</b> for example $__fallen-fallen[verb-link-hover]__$ (to fall) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"ä\"</b>:"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "table-2-3",
-            "marginList": true,
-            "table": {
-                "headings": ["person", "stem-change", "example"],
-                "rows": [
-                    ["ich", "", "fall<i>e</i>"],
-                    ["du", "<b data-verb-stem>a  →  ä</b>", "f<u>ä</u>ll<i>st</i>"],
-                    ["es", "<b data-verb-stem>a  →  ä</b>", "f<u>ä</u>ll<i>t</i>"],
-                    ["wir", "", "fall<i>en</i>"],
-                    ["ihr", "", "fall<i>t</i>"],
-                    ["Sie", "", "fall<i>en</i>"]
-                ]
-            }
-        },
-        {
-            "type": "exercise-btn",
-            "marginList": true,
-            "content": "practise präsens for fallen"
-        },
-        {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Other examples are  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "schlafen"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "fahren"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "raten"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
-        },
-        {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>a  →  äu:</b> for example $__laufen[verb-link-hover]__$ (to run) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"äu\"</b>:"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "table-2-3",
-            "marginList": true,
-            "table": {
-                "headings": ["person", "stem-change", "example"],
-                "rows": [
-                    ["ich", "", "lauf<i>e</i>"],
-                    ["du", "<b data-verb-stem>a  →  ä</b>", "l<u>äu</u>ff<i>st</i>"],
-                    ["es", "<b data-verb-stem>a  →  ä</b>", "l<u>äu</u>ff<i>t</i>"],
-                    ["wir", "", "lauf<i>en</i>"],
-                    ["ihr", "", "lauf<i>t</i>"],
-                    ["Sie", "", "lauf<i>en</i>"]
-                ]
-            }
+            "type": "exercise-btn-link",
+            "content": "start exercise 1",
+            "path": "/exercises/prateritum-tense-must-know-verbs"
         }
     ]
 }

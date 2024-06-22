@@ -215,10 +215,13 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      * Actions with change in the exercise verb
      */
     useEffect(() => {
-        const tense = state.currentTense
+        fetchExerciseTense()
+    }, [state.currentVerb])
 
-        // Call API in case the tenses are not passed as property
-        if (!props.allTenses) {
+
+
+    const fetchExerciseTense = ()=> {
+           if (!props.allTenses) {
             (async () => {
 
                 let tensesObj: any
@@ -253,7 +256,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
             })()
         }
-    }, [state.currentVerb])
+    }
 
     /**
      * Updates conjugation data when a change on the select component is confirmed, and triggers inputs animation

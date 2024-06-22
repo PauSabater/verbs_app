@@ -1,13 +1,34 @@
 {
     "props": {
         "tense": "perfekt",
-        "title": "Das Plusquamperfekt (German Past Perfect): usage, conjugation and exercises",
+        "title": "Das Perfekt (German Present Perfekt): usage, conjugation and exercises",
         "datePublished": "Dec 21, 2023",
         "dateUpdated": "",
         "level": "A1",
-        "tags": ["präsens"]
+        "tags": ["präteritum"]
     },
-    "verbsUsed": ["sein", "lesen", "trinken", "arbeiten", "spielen", "werden", "können", "mögen", "helfen", "geben", "sprechen", "nehmen", "sehen", "stehen", "schlafen", "fahren", "raten", "laufen"],
+    "verbsUsed": [
+        "haben",
+        "sehen",
+        "fahren",
+        "leben",
+        "öffnen",
+        "essen",
+        "machen",
+        "sein",
+        "schreiben",
+        "einkaufen",
+        "verstehen",
+        "studieren"
+    ],
+    "tenseExercises": "präteritum",
+    "verbsExercises": [
+        "spielen",
+        "sein",
+        "haben",
+        "verstehen",
+        "studieren"
+    ],
     "sections": [
         {
             "type": "h1-lesson",
@@ -19,11 +40,11 @@
         },
         {
             "type": "paragraph",
-            "content": "The <b><i>Perfekt<\/b><\/i> tense in German,  tense in German is a compound tense that is often used to talk about completed actions in the past. It is formed using the present tense of the auxiliary verbs \"haben\" or \"sein,\" along with the past participle of the main verb, such as in <b>Ich habe gespielt<\/b> <i>(I have played)<\/i>. The <i>Perfekt<\/i> tense is widely used and normally substitutes all past forms, especially in the spoken language. It should be the second tense to learn when learning German."
+            "content": "The <b><i>Perfekt</i></b> tense in German, equivalent to the present perfect tense in English, is used to describe actions that have been completed in the past and have relevance to the present. It is commonly used in spoken German and informal writing."
         },
         {
             "type": "callout",
-            "content": "With the <i>Perfekt</i>, you are getting 4 tenses in one, as it can be used like with the English tenses <strong>past simple</strong>, <strong>past continuous</strong>, <strong>past perfect</strong> and <strong>past perfect continuous</strong>! &nbsp;&nbsp; &#127881"
+            "content": "The <i>Perfekt</i> tense in German is used more frequently than in languages like English, where the Simple Past tense is primarily used in written contexts."
         },
         {
             "type": "h2",
@@ -31,42 +52,42 @@
         },
         {
             "type": "paragraph",
-            "content": "The Perfekt tense is commonly used in both spoken and written German to express completed actions in the past. Here are some common situations where the tense Perfekt is used"
+            "content": "We use the <i>Perfekt</i> tense to express:"
         },
         {
             "type": "list",
             "itemsList": {
                 "items": [
                     {
-                        "text": "<b>Describing Completed Actions:</b> actions that have been completed in the past.",
+                        "text": "Describing a completed action with present relevance:",
                         "example": {
-                            "audio": "Ich habe gestern einen Film gesehen.",
-                            "text": "Example: Ich <b>habe</b> gestern einen Film $__gesehen-sehen[verb-link-hover]__$.",
-                            "translation": "(I watched a movie yesterday.)"
+                            "audio": "Ich habe gestern einen Film gesehen",
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ gestern einen Film $__gesehen-sehen[verb-link-hover]__$",
+                            "translation": "(I watched a movie yesterday)"
                         }
                     },
                     {
-                        "text": "<b>Repeated Actions:</b> actions that occurred repeatedly in the past.",
+                        "text": "Indicating a change of location or state:",
                         "example": {
-                            "audio": "Wir haben oft zusammen gegessen.",
-                            "text": "Example: Wir <b>haben</b> oft zusammen $__gegessen-essen[verb-link-hover]__$.",
-                            "translation": "(We often ate together.)"
+                            "audio": "Er ist nach Berlin gefahren.",
+                            "text": "Example: Er $__ist-sein[verb-link-hover]__$ nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
+                            "translation": "(He went to Berlin)"
                         }
                     },
                     {
-                        "text": "<b>Events with Indefinite Time:</b> actions that happened at an unspecified time in the past.",
+                        "text": "Talking about an experience:",
                         "example": {
-                            "audio": "Ich habe schon einmal in Deutschland gewesen.",
-                            "text": "Example: Ich <b>habe</b> schon einmal in Deutschland $__gewesen-essen[verb-link-hover]__$.",
-                            "translation": "(I have been to Germany before.)"
+                            "audio": "Sie hat in Frankreich gelebt.",
+                            "text": "Example: Sie $__hat-haben[verb-link-hover]__$ in Frankreich $__gelebt-leben[verb-link-hover]__$.",
+                            "translation": "(She has lived in France)"
                         }
                     },
-                    {
-                        "text": "<b>Experiences:</b> talk about activities or events one has or has not experienced.",
+                                        {
+                        "text": "Expressing a past action with a visible result:",
                         "example": {
-                            "audio": "Ich habe noch nie Ski gefahren.",
-                            "text": "Example: Ich <b>habe</b> noch nie Ski $__gefahre-fahren[verb-link-hover]__$.",
-                            "translation": "(I have never gone skiing.)"
+                            "audio": "Er hat das Fenster geöffnet.",
+                            "text": "Example: Er $__hat-haben[verb-link-hover]__$ das Fenster $__geöffnet-öffnen[verb-link-hover]__$.",
+                            "translation": "(He has opened the window)"
                         }
                     }
                 ]
@@ -77,89 +98,87 @@
             "content": "Conjugation"
         },
         {
-            "type": "paragraph",
-            "content": "The conjugation rules must be differentiated between <b>regular</b> verbs, which will always follow the same rules; a few <b>irregular verbs</b>, which must be memorised individually; and <b>stem-vowel-changing</b> irregular verbs, which will have some slight modifications from the regular ones."
+            "type": "html",
+            "content": "<p>The Perfekt tense is formed using two components:</p><ol><li>The <b data-verb-stem>auxiliary verb</b> (either '$__haben-haben[verb-link-hover]__$' or '$__sein-sein[verb-link-hover]__$') conjugated in the <b>present tense</b>.</li><li>The <b data-verb-prefix><i>Partizip II</i></b> of the <b>main verb.</b></li>"
+        },
+        {
+            "type": "image",
+            "image": {
+                "src": "/img/lessons/perfekt-formation.svg",
+                "alt": "german Perkect tense conjugation",
+                "height": 71.5,
+                "width": 300
+            }
         },
         {
             "type": "h3",
-            "content": "Regular verbs"
+            "content": "Word order"
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "For regular verbs ending in <b data-verb-prefix>-en</b> (e.g., "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "spielen",
-                    "contentHtml": "spiel<b data-verb-prefix>en</b>"
-                },
-                {
-                    "type": "text",
-                    "content": " - <i>to play</i>), the infinitive ending <b data-verb-prefix>-en</b> is replaced by the following endings:"
-                }
-            ]
+            "type": "paragraph",
+            "content": "In main clauses, the auxiliary verb is in the second position, and the past participle is at the end of the sentence."
         },
         {
-            "type": "table",
-            "table": {
-                "audio": "ich spiele, du spielst, (er) (sie) (es) spielt, wir spielen, ihr spielt, sie spielen. ",
-                "headings": ["person", "ending", "example"],
-                "rows": [
-                    ["ich", "-e", "spiel<i>-e</i>"],
-                    ["du", "-st", "spiel<i>-st</i>"],
-                    ["es/sie/es", "-t", "spiel<i>-t</i>"],
-                    ["wir", "-en", "spiel<i>-en</i>"],
-                    ["ihr", "-t", "spiel<i>-t</i>"],
-                    ["Sie", "-en", "spiel<i>-en</i>"]
+            "type": "image",
+            "image": {
+                "src": "/img/lessons/perfekt-word-order.svg",
+                "alt": "german Perkect tense conjugation",
+                "height": 110,
+                "width": 242
+            }
+        },
+        {
+            "type": "h3",
+            "content": "Auxiliary Verbs: 'haben' and 'sein'"
+        },
+        {
+            "type": "paragraph",
+            "content": "The auxiliary verbs used on the <i>Perfekt</i> tense are $__haben-haben[verb-link-hover]__$ and $__sein-sein[verb-link-hover]__$:"
+        },
+        {
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>$__Haben-haben[verb-link-hover]__$:</b> Used with most verbs:",
+                        "example": {
+                            "audio": "Ich habe Gemüse gegessen.",
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ Gemüse $__gegessen-essen[verb-link-hover]__$ ",
+                            "translation": "(I have eaten vegetables)"
+                        }
+                    },
+                    {
+                        "text": "<b>$__Sein-sein[verb-link-hover]__$:</b> Used with verbs that indicate a change of state or movement (e.g., 'gehen' - to go, 'kommen' - to come):",
+                        "example": {
+                            "audio": "Er ist nach Berlin gefahren.",
+                            "text": "Example: Er $__ist-sein[verb-link-hover]__$ nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
+                            "translation": "(He went to Berlin)"
+                        }
+                    }
                 ]
             }
         },
         {
-            "type": "example",
-            "example": {
-                "audio": "Ich spiele Guitarre.",
-                "text": "Example: Ich $__spiele-spielen[verb-link-hover]__$ Guitarre.",
-                "translation": "(I am playing the guitar.)"
-            }
+            "type": "callout",
+            "content": "It is very important to master the conjugations of <b>haben</b> and <b>sein</b> to learn the <i>Perfekt</i> tense:"
         },
         {
-            "type": "exercise-btn",
-            "content": "practise spielen",
-            "param": "spielen"
+            "type": "h4",
+            "content": "Sein präsens conjugation:"
         },
         {
-            "type": "h3",
-            "content": "Irregular verbs"
-        },
-        {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Some irregular verbs require memorization since they will not follow any pattern (e.g., "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "sein"
-                },
-                {
-                    "type": "text",
-                    "content": " - <i>to be</i>):"
-                }
-            ]
+            "type": "paragraph",
+            "content": "👇🏼 Make sure you master the following conjugation:"
         },
         {
             "type": "table",
             "table": {
                 "audio": "ich bin, du bist, (er) (sie) (es) ist, wir sein, ihr sind, sie sind.",
-                "headings": ["person", "example"],
+                "headings": ["person", "sein"],
                 "rows": [
                     ["ich", "<i>bin</i>"],
                     ["du", "<i>bist</i>"],
-                    ["es/sie/es", "<i>ist</i>"],
+                    ["er/sie/es", "<i>ist</i>"],
                     ["wir", "<i>sind</i>"],
                     ["ihr", "<i>seid</i>"],
                     ["Sie", "<i>sind</i>"]
@@ -167,412 +186,147 @@
             }
         },
         {
-            "type": "example",
-            "example": {
-                "audio": "Ich bin Student.",
-                "text": "Example: Ich $__bin-sein[verb-link-hover]__$ Student.",
-                "translation": "(I am a student.)"
+            "type": "exercise-btn",
+            "content": "practise präsens for sein",
+            "param": "sein",
+            "exercise": {
+                "verb": "sein",
+                "tense": "präsens"
             }
         },
         {
-            "type": "exercise-btn",
-            "content": "practise sein",
-            "param": "sein"
-        },
-        {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "The 5 most important verbs of this type are the following: "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "sein"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "werden"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "können"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "mögen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
-        },
-        {
-            "type": "h3",
-            "content": "Stem-vowel changing irregular verbs"
+            "type": "h4",
+            "content": "Haben präsens conjugation:"
         },
         {
             "type": "paragraph",
-            "content": "<p>Unlike the previous verbs, most of irregular verbs will only be stem-vowel changing, where the vowel in the stem changes in the <b>second and third person singular</b> (du and er/sie/es forms). There are three basic types of vowel change:</p>"
+            "content": "👇🏼 Make sure you master the following conjugation:"
         },
         {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>e  →  i:</b> for  example $__helfen-helfen[verb-link-hover]__$ (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"i\"</b>:"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "table-2-3",
-            "marginList": true,
+            "type": "table",
             "table": {
-                "audio": "ich helfe, du hilfst, (er) (sie) (es) hilft, wir helfen, ihr helft, Sie helfen.",
-                "headings": ["person", "stem-change", "example"],
+                "audio": "ich habe, du hast, (er) (sie) (es) hat, wir haben, ihr habt, sie haben.",
+                "headings": ["person", "haben"],
                 "rows": [
-                    ["ich", "", "helf<i>e</i>"],
-                    ["du", "<b data-verb-stem>e  →  i</b>", "h<u>i</u>lf<i>st</i>"],
-                    ["er/sie/es", "<b data-verb-stem>e  →  i</b>", "h<u>i</u>lf<i>t</i>"],
-                    ["wir", "", "helf<i>en</i>"],
-                    ["ihr", "", "helf<i>t</i>"],
-                    ["Sie", "", "helf<i>en</i>"]
+                    ["ich", "<span>hab</b><b><i>e</i></span>"],
+                    ["du", "<span><u>ha</u><i>st</i></span>"],
+                    ["er/sie/es", "<span><u>ha</u><i>t</i></span>"],
+                    ["wir", "<span>hab<i>en</i></span>"],
+                    ["ihr", "<span>hab<i>t</i></span>"],
+                    ["Sie", "<span>hab<i>en</i></span>"]
                 ]
-            }
-        },
-        {
-            "type": "example",
-            "marginList": true,
-            "example": {
-                "audio": "Du hilfst mir wirklich.",
-                "text": "Example: Du $__hilfst-helfen[verb-link-hover]__$ mir wirklich.",
-                "translation": "(You really help me.)"
             }
         },
         {
             "type": "exercise-btn",
-            "marginList": true,
-            "content": "practise helfen",
-            "param": "helfen"
-        },
-        {
-            "type": "paragraph-components",
-            "marginList": true,
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Other examples are  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "geben"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "sprechen"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "nehmen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
-        },
-        {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>e  →  ie:</b> for example $__sehen-sehen[verb-link-hover]__$ (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"ie\"</b>:"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "table-2-3",
-            "marginList": true,
-            "table": {
-                "audio": "ich sehe, du siehst, (er) (sie) (es) sieht, wir sehen, ihr seht, sie sehen.",
-                "headings": ["person", "stem-change", "example"],
-                "rows": [
-                    ["ich", "", "seh<i>e</i>"],
-                    ["du", "<b data-verb-stem>e  →  ie</b>", "s<u>ie</u>h<i>st</i>"],
-                    ["er/sie/es", "<b data-verb-stem>e  →  ie</b>", "s<u>ie</u>h<i>t</i>"],
-                    ["wir", "", "seh<i>en</i>"],
-                    ["ihr", "", "seh<i>t</i>"],
-                    ["Sie", "", "seh<i>en</i>"]
-                ]
-            }
-        },
-        {
-            "type": "example",
-            "marginList": true,
-            "example": {
-                "audio": "Du siehst einen Film.",
-                "text": "Example: Du $__siehst-sehen[verb-link-hover]__$  einen Film.  mir wirklich.",
-                "translation": "(You really help me.)"
-            }
-        },
-        {
-            "type": "exercise-btn",
-            "marginList": true,
-            "content": "practise sehen",
-            "param": "sehen"
-        },
-        {
-            "type": "paragraph-components",
-            "marginList": true,
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Other examples are  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "lesen"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "stehen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
-        },
-        {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>a  →  ä:</b> for example $__fallen-fallen[verb-link-hover]__$ (to fall) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"ä\"</b>:"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "table-2-3",
-            "marginList": true,
-            "table": {
-                "headings": ["person", "stem-change", "example"],
-                "rows": [
-                    ["ich", "", "fall<i>e</i>"],
-                    ["du", "<b data-verb-stem>a  →  ä</b>", "f<u>ä</u>ll<i>st</i>"],
-                    ["es", "<b data-verb-stem>a  →  ä</b>", "f<u>ä</u>ll<i>t</i>"],
-                    ["wir", "", "fall<i>en</i>"],
-                    ["ihr", "", "fall<i>t</i>"],
-                    ["Sie", "", "fall<i>en</i>"]
-                ]
-            }
-        },
-        {
-            "type": "example",
-            "marginList": true,
-            "example": {
-                "audio": "Die Blätter fallen von den Bäumen.",
-                "text": "Example: Die Blätter $__fallen-fallen[verb-link-hover]__$  von den Bäumen.",
-                "translation": "(The leaves are falling from the trees.)"
-            }
-        },
-        {
-            "type": "exercise-btn",
-            "marginList": true,
-            "content": "practise fallen",
-            "param": "fallen"
-        },
-        {
-            "type": "paragraph-components",
-            "marginList": true,
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Other examples are  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "schlafen"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "fahren"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "raten"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
-        },
-        {
-            "type": "list",
-            "itemsList": {
-                "items": [
-                    {
-                        "text": "<b>a  →  äu:</b> for example $__laufen[verb-link-hover]__$ (to run) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"äu\"</b>:"
-                    }
-                ]
-            }
-        },
-        {
-            "type": "table-2-3",
-            "marginList": true,
-            "table": {
-                "headings": ["person", "stem-change", "example"],
-                "rows": [
-                    ["ich", "", "lauf<i>e</i>"],
-                    ["du", "<b data-verb-stem>a  →  ä</b>", "l<u>äu</u>ff<i>st</i>"],
-                    ["es", "<b data-verb-stem>a  →  ä</b>", "l<u>äu</u>ff<i>t</i>"],
-                    ["wir", "", "lauf<i>en</i>"],
-                    ["ihr", "", "lauf<i>t</i>"],
-                    ["Sie", "", "lauf<i>en</i>"]
-                ]
-            }
-        },
-        {
-            "type": "example",
-            "marginList": true,
-            "example": {
-                "audio": "Ich laufe jeden Morgen im Park.",
-                "text": "Example: Ich $__laufe-laufen[verb-link-hover]__$ jeden Morgen im Park.",
-                "translation": "(The leaves are falling from the trees.)"
+            "content": "practise präsens for haben",
+            "param": "haben",
+            "exercise": {
+                "verb": "haben",
+                "tense": "präsens"
             }
         },
         {
             "type": "h2",
-            "content": "Exercises"
+            "content": "Forming the <i>Partizip II</i>"
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "<b>Exercise 1:</b> Practise tense präsens for the following <b>regular</b> verbs:</br> "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "spielen"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "tanzen"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "lachen"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "wohnen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
+            "type": "paragraph",
+            "content": "The main verb of the <i>Perfekt</i> tense will take the <i>Partizip II</i> (past participle) form. In English, it is equivalent to forms like \"eaten,\" \"gone,\" or \"written.\""
         },
         {
-            "type": "exercise-btn",
-            "content": "start exercise",
-            "param": ["spielen", "tanzen", "lachen", "wohnen"]
+            "type": "paragraph",
+            "content": "The formation of Partizip II depends on whether the verb is regular (weak), irregular (strong), or a mixed verb (with characteristics of both)."
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "<b>Exercise 2:</b> Practise tense präsens for the following <b>irregular</b> verbs:</br> "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "sein"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "werden"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "können"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "mögen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
+            "type": "h3",
+            "content": "Regular verbs"
         },
         {
-            "type": "exercise-btn",
-            "content": "start exercise",
-            "param": ["sein", "werden", "können", "mögen"]
+            "type": "paragraph",
+            "content": "We will follow the next steps:"
+        },
+        {
+            "type": "html",
+            "content": "<ol><li>Remove the infinitive ending (<b data-verb-prefix>-en</b> or <b data-verb-prefix>-n</b>):<ul><li>mach<s>en</s> <i>(to do)</i> → mach</li></ul></li>   <li>Add the prefix <b data-verb-stem>ge-</b> to the stem:<ul><li>mach → <b data-verb-stem>ge</b>-mach</li></ul><li>Add the suffix \"<b data-verb-prefix>-t</b>\":<ul><li>ge-mach → gemach<b data-verb-prefix>t</b></li><ul></li></ol>"
+        },
+        {
+            "type": "paragraph",
+            "content": "So, the Partizip II of \"$__machen-machen[verb-link-hover]__$\" is \"<b data-verb-stem>ge<b>mach<b data-verb-prefix>t</b>.\""
+        },
+        {
+            "type": "html",
+            "content": "<p>More examples:</p><ul><li>lernen <i>(to learn)</i> → <b data-verb-stem>ge</b>lern<b data-verb-prefix>t</b></li><li>spielen <i>(to play)</i> → <b data-verb-stem>ge</b>spiel<b data-verb-prefix>t</b></li><ul>"
+        },
+        {
+            "type": "h3",
+            "content": "Irregular verbs"
+        },
+        {
+            "type": "paragraph",
+            "content": "For most of the irregular verbs we will follow the next steps:"
+        },
+        {
+            "type": "html",
+            "content": "<ol><li>Change the stem vowel (if necessary, as per the verb's pattern) and remove the infinitive ending (<b data-verb-prefix>-en</b> or <b data-verb-prefix>-n</b>):<ul><li>schreib<s>en</s> <i>(to write)</i> → schr<b data-verb-stem>ie</b>b- (past stem)</li></ul></li>   <li>Add the prefix <b data-verb-stem>ge-</b> to the stem:<ul><li>schrieb → <b data-verb-stem>ge</b>-schrieben</li></ul><li>Add the suffix \"<b data-verb-prefix>-en</b>\":<ul><li>ge-schrieben → geschrieb<b data-verb-prefix>en</b></li><ul></li></ol>"
+        },
+        {
+            "type": "paragraph",
+            "content": "So, the Partizip II of \"$__schreiben-schreiben[verb-link-hover]__$\" is \"<b data-verb-stem>ge<b>schrieb<b data-verb-prefix>en</b>.\""
+        },
+        {
+            "type": "html",
+            "content": "<p>More examples:</p><ul><li>sehen <i>(to see)</i>  → <b data-verb-stem>ge</b>seh<b data-verb-prefix>en</b></li><li>sprechen <i>(to speak)</i>  → <b data-verb-stem>ge</b>sproch<b data-verb-prefix>en</b></li><ul>"
+        },
+        {
+            "type": "h3",
+            "content": "Special Cases"
+        },
+        {
+            "type": "h4",
+            "content": "Verbs with prefixes"
+        },
+        {
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>Separable prefixed verbs:</b> <b data-verb-stem>ge-</b> is inserted between the prefix and the stem:",
+                        "example": {
+                            "audio": "Ich habe Obst und Gemüse eingekauft",
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ Obst und Gemüse $__einkaufen-eingekauft[verb-link-hover]__$",
+                            "translation": "(I have shopped for fruits and vegetables.)"
+                        }
+                    },
+                    {
+                        "text": "<b>Inseparable prefixed verbs:</b> there is no <b data-verb-stem>ge-</b> added:",
+                        "example": {
+                            "audio": "Ich habe die Aufgabe verstanden.",
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ die Aufgabe $__verstanden-verstehen[verb-link-hover]__$",
+                            "translation": "(I understood the exercises.)"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "h4",
+            "content": "Verbs ending with -ieren"
+        },
+{
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "Verbs ending with <b>-ieren</b> do not take the </b> <b data-verb-stem>ge-</b> prefix and will take the <b data-verb-prefix>-t</b> ending:",
+                        "example": {
+                            "audio": "Ich habe an der Universität studiert.",
+                            "text": "Example: Ich $__habe-haben[verb-link-hover]__$ an der Universität $__studier<b data=verb=prefix>t</b>-studieren[verb-link-hover]__$.",
+                            "translation": "(I have shopped for fruits and vegetables.)"
+                        }
+                    }
+                ]
+            }
         }
     ]
 }

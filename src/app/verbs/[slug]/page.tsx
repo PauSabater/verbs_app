@@ -21,53 +21,12 @@ export default async function Page({ params }: { params: { slug: string, nextSlu
     )
 }
 
-const verbsList = [
-    'sein',
-    'haben',
-    'werden',
-    'können',
-    'müssen',
-    'sagen',
-    'machen',
-    'gehen',
-    'wissen',
-    'kommen',
-    'sehen',
-    'wollen',
-    'lassen',
-    'stehen',
-    'finden',
-    'liegen',
-    'denken',
-    'nehmen',
-    'tun',
-    'glauben'
-]
-
-export async function generateStaticParams() {
-    const posts: any[] = []
-
-    verbsList.forEach((verb) => {
-        posts.push({ slug: verb })
-    })
-
-    return posts.map((post) => ({
-        slug: post.slug,
-    }))
-}
-
 type Props = {
     params: { slug: string }
-    searchParams: { [key: string]: string | string[] | undefined }
+    // searchParams: { [key: string]: string | string[] | undefined }
 }
 
-export async function generateMetadata({ params, searchParams }: Props, parent: ResolvingMetadata): Promise<Metadata> {
-
-    const posts: any[] = []
-
-    verbsList.forEach((verb) => {
-        posts.push({ slug: verb })
-    })
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: `Conjugation and practise of the German verb "${params.slug}"`,
