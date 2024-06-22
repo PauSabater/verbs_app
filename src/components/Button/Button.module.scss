@@ -56,6 +56,19 @@ a.Button {
     }
 }
 
+.primaryDarker {
+    background-color: var(--c-primary-darker);
+    color: var(--c-white) !important;
+
+    svg {
+        color: var(--c-white);
+    }
+
+    &:hover {
+        background: var(--c-primary-dark);
+    }
+}
+
 .primaryDarkReverse {
     color: var(--c-primary-dark);
     border: 2px solid var(--c-primary-dark);

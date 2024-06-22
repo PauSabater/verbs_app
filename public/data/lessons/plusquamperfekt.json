@@ -1,7 +1,7 @@
 {
     "props": {
         "tense": "plusquamperfekt",
-        "title": "Das Plusquanperfekt (German Present Perfekt): usage, conjugation and exercises",
+        "title": "Das Plusquamperfekt (German Present Perfekt): usage, conjugation and exercises",
         "datePublished": "Dec 21, 2023",
         "dateUpdated": "",
         "level": "A1",
@@ -15,7 +15,8 @@
         "öffnen",
         "essen",
         "machen",
-        "einkaufen"
+        "einkaufen",
+        "sein"
     ],
     "tenseExercises": "präteritum",
     "verbsExercises": [
@@ -55,34 +56,34 @@
             "itemsList": {
                 "items": [
                     {
-                        "text": "<b>Narrative past:</b> When telling a story or describing a series of events, the Plusquamperfekt is used to indicate an action that happened before another past action:",
+                        "text": "<b>Narrative past:</b> When telling a story or describing a series of events, the Plusquamperfekt is used to indicate an action that happened <b>before another past action:</b>",
                         "example": {
-                            "audio": "Nachdem er gegessen hatte, ging er spazieren",
-                            "text": "Example: Nachdem er <b>gegessen</b> hatte einen Film $__gesehen-sehen[verb-link-hover]__$ ",
-                            "translation": "(After he had eaten, he went for a walk)"
+                            "audio": "Als ich auf der Party ankam, hatten sie bereits zu Abend gegessen",
+                            "text": "Example: Als ich auf der Party ankam, $__hatten-haben[verb-link-hover]__$ sie bereits zu Abend $__gegessen-essen[verb-link-hover]__$",
+                            "translation": "(When I arrived at the party, they had already eaten dinner)"
                         }
                     },
                     {
-                        "text": "Indicating a change of location or state:",
+                        "text": "Indicating a change of <b>location or state:</b>",
                         "example": {
                             "audio": "Er ist nach Berlin gefahren.",
-                            "text": "Er <b>ist</b> nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
+                            "text": "Er $__ist-sein[verb-link-hover]__$ nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
                             "translation": "(He went to Berlin)"
                         }
                     },
                     {
-                        "text": "Talking about an experience:",
+                        "text": "Talking about an <b>experience:</b>",
                         "example": {
                             "audio": "Sie hat in Frankreich gelebt.",
-                            "text": "Sie <b>hat</b> in Frankreich $__gelebt-leben[verb-link-hover]__$.",
+                            "text": "Sie $__hat-haben[verb-link-hover]__$ in Frankreich $__gelebt-leben[verb-link-hover]__$.",
                             "translation": "(She has lived in France)"
                         }
                     },
                                         {
-                        "text": "Expressing a past action with a visible result:",
+                        "text": "Expressing a <b>past action with a visible result:</b>",
                         "example": {
                             "audio": "Er hat das Fenster geöffnet.",
-                            "text": "Er <b>hat</b> das Fenster $__geöffnet-öffnen[verb-link-hover]__$.",
+                            "text": "Er $__hat-haben[verb-link-hover]__$ das Fenster $__geöffnet-öffnen[verb-link-hover]__$.",
                             "translation": "(He has opened the window)"
                         }
                     }
@@ -95,12 +96,12 @@
         },
         {
             "type": "html",
-            "content": "<p>The Perfekt tense is formed using two components:</p><ol><li>The <b data-verb-stem>auxiliary verb</b> (either <b>'haben'</b> or <b>'sein'</b>) conjugated in the <b>present tense</b>.</li><li>The <b data-verb-prefix><i>Partizip II</i></b> of the <b>main verb.</b></li>"
+            "content": "<p>The Plusperfekt tense is formed using two components:</p><ol><li>The <b data-verb-stem>auxiliary verb</b> (either <b>'haben'</b> or <b>'sein'</b>) conjugated in the <i>Präteritum</i> tense.</li><li>The <b data-verb-prefix><i>Partizip II</i></b> of the <b>main verb.</b></li>"
         },
         {
             "type": "image",
             "image": {
-                "src": "/img/lessons/perfekt-formation.svg",
+                "src": "/img/lessons/plusquamperfekt-formation.svg",
                 "alt": "german Perkect tense conjugation",
                 "height": 71.5,
                 "width": 300
@@ -117,7 +118,7 @@
         {
             "type": "image",
             "image": {
-                "src": "/img/lessons/perfekt-word-order.svg",
+                "src": "/img/lessons/plusquamperfekt-word-order.svg",
                 "alt": "german Perkect tense conjugation",
                 "height": 110,
                 "width": 242
@@ -129,7 +130,7 @@
         },
         {
             "type": "paragraph",
-            "content": "The auxiliary verbs used on the <i>Perfekt</i> tense are <b>haben</b> and <b>sein</b>:"
+            "content": "As with the <i>Perfekt</i> tense, the auxiliary verbs used on the <i>Plusquamperfekt</i> tense are <b>haben</b> and <b>sein</b>:"
         },
         {
             "type": "list",
@@ -138,16 +139,16 @@
                     {
                         "text": "<b>Haben:</b> Used with most verbs:",
                         "example": {
-                            "audio": "Ich habe Gemüse gegessen.",
-                            "text": "Ich <b>habe</b> Gemüse $__gegessen-essen[verb-link-hover]__$ ",
-                            "translation": "(I have eaten vegetables)"
+                            "audio": "Ich hat Gemüse gegessen.",
+                            "text": "Ich $__hat-haben[verb-link-hover]__$ Gemüse $__gegessen-essen[verb-link-hover]__$ ",
+                            "translation": "(I had eaten vegetables)"
                         }
                     },
                     {
                         "text": "<b>Sein:</b> Used with verbs that indicate a change of state or movement (e.g., 'gehen' - to go, 'kommen' - to come):",
                         "example": {
-                            "audio": "Er ist nach Berlin gefahren.",
-                            "text": "Er <b>ist</b> nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
+                            "audio": "Er war nach Berlin gefahren.",
+                            "text": "Er $__war-sein[verb-link-hover]__$ nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
                             "translation": "(He went to Berlin)"
                         }
                     }
@@ -163,45 +164,53 @@
             "content": "Sein präsens conjugation:"
         },
         {
+            "type": "paragraph",
+            "content": "👇🏼 Make sure you master the following conjugation:"
+        },
+        {
             "type": "table",
             "table": {
-                "audio": "ich bin, du bist, (er) (sie) (es) ist, wir sein, ihr sind, sie sind.",
+                "audio": "ich war, du warst, (er) (sie) (es) war, wir waren, ihr wart, sie waren.",
                 "headings": ["person", "sein"],
                 "rows": [
-                    ["ich", "<i>bin</i>"],
-                    ["du", "<i>bist</i>"],
-                    ["er/sie/es", "<i>ist</i>"],
-                    ["wir", "<i>sind</i>"],
-                    ["ihr", "<i>seid</i>"],
-                    ["Sie", "<i>sind</i>"]
+                    ["ich", "<i>war</i>"],
+                    ["du", "<i>warst</i>"],
+                    ["er/sie/es", "<i>war</i>"],
+                    ["wir", "<i>waren</i>"],
+                    ["ihr", "<i>wart</i>"],
+                    ["Sie", "<i>waren</i>"]
                 ]
             }
         },
         {
             "type": "exercise-btn",
-            "content": "practise präsens for sein",
+            "content": "practise präteritum for sein",
             "param": "sein",
             "exercise": {
                 "verb": "sein",
-                "tense": "präsens"
+                "tense": "präteritum"
             }
         },
         {
             "type": "h4",
-            "content": "Haben präsens conjugation:"
+            "content": "Haben präteritum conjugation:"
+        },
+        {
+            "type": "paragraph",
+            "content": "👇🏼 Make sure you master the following conjugation:"
         },
         {
             "type": "table",
             "table": {
-                "audio": "ich habe, du hast, (er) (sie) (es) hat, wir haben, ihr habt, sie haben.",
+                "audio": "ich hatte, du hattest, (er) (sie) (es) hatte, wir hatten, ihr hattet, sie hatten.",
                 "headings": ["person", "haben"],
                 "rows": [
-                    ["ich", "<span>hab</b><b><i>e</i></span>"],
-                    ["du", "<span><u>ha</u><i>st</i></span>"],
-                    ["er/sie/es", "<span><u>ha</u><i>t</i></span>"],
-                    ["wir", "<span>hab<i>en</i></span>"],
-                    ["ihr", "<span>hab<i>t</i></span>"],
-                    ["Sie", "<span>hab<i>en</i></span>"]
+                    ["ich", "<span>ha<u>t</u><i>te</i></span>"],
+                    ["du", "<span>ha<u>t</u><i>test</i></span>"],
+                    ["er/sie/es", "<span>ha<u>t</u><i>te</i></span>"],
+                    ["wir", "<span>ha<u>t</u><i>ten</i></span>"],
+                    ["ihr", "<span>ha<u>t</u><i>tet</i></span>"],
+                    ["Sie", "<span>ha<u>t</u><i>ten</i></span>"]
                 ]
             }
         },

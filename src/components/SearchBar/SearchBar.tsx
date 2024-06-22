@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { SVGLink } from '@/assets/svg/svgExports'
 
 interface ISearchBar {
-
+    isExerciseGenerate?: boolean
 }
 
 export default function SearchBar(props: ISearchBar) {

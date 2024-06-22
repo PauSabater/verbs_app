@@ -1,5 +1,5 @@
 .container {
-    --searchBar-input-height: 40px;
+    --searchBar-input-height: var(--custom-searchBar-input-height, 40px);
 
     position: relative;
     width: 100%;

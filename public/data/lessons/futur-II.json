@@ -1,7 +1,7 @@
 {
     "props": {
         "tense": "futur-I",
-        "title": "Das Futur I (German Future tense): usage, conjugation and exercises",
+        "title": "Das Futur II (German Future Perfect tense): usage, conjugation and exercises",
         "datePublished": "Dec 21, 2023",
         "dateUpdated": "",
         "level": "B1",
@@ -13,7 +13,9 @@
         "regnen",
         "einkaufen",
         "gehen",
-        "werden"
+        "werden",
+        "erledigen",
+        "haben"
     ],
     "tenseExercises": "futur_I",
     "verbsExercises": [
@@ -35,11 +37,11 @@
         },
         {
             "type": "paragraph",
-            "content": "The <b><i>Futur I</i></b> tense is used in German to talk about actions or events that will happen in the future. While the present tense is often used for near-future events, Futur I is used to emphasize that an action will definitely take place at a future time."
+            "content": "The <b><i>Futur II</i></b> (future perfect tense equivalent in English), is used in German to express actions that will have been completed at a certain point in the future. It is the equivalent of saying \"will have done\" in English. This tense highlights the completion of an action before a future moment"
         },
         {
             "type": "callout",
-            "content": "The <b><i>Futur I</i></b> tense is not very important in the German language and is not critical to learn, but you must still learn it. Good news is that it is very easy!"
+            "content": "The <b><i>Futur II</i></b> is not commonly used on everyday languages, except for Literary Contexts and, in spoken language, polite assumptions."
         },
         {
             "type": "h2",
@@ -47,43 +49,30 @@
         },
         {
             "type": "paragraph",
-            "content": "We use the <i>Perfekt</i> tense to express:"
+            "content": "We use the <i>Futur II</i> tense to express:"
         },
         {
             "type": "list",
             "itemsList": {
                 "items": [
                     {
-                        "text": "Expressing Future Intentions or Plans:",
+                        "text": "<b>Completion in the Future:</b> To indicate that an action will be completed before another future action or time:",
                         "example": {
-                            "audio": "Ich werde morgen einkaufen gehen",
-                            "text": "Example: Ich $__werde-werden[verb-link-hover]__$ morgen einkaufen $__gehen-gehen[verb-link-hover]__$ ",
-                            "translation": "(I will go shopping tomorrow.)"
+                            "audio": "Bis morgen Abend werde ich die Arbeit erledigt haben",
+                            "text": "Example: Bis morgen Abend $__werde-werden[verb-link-hover]__$ ich die Arbeit $__erledigt-erledigen[verb-link-hover]__$ $__haben-haben[verb-link-hover]__$",
+                            "translation": "(By tomorrow evening, I will have finished the work)"
                         }
                     },
                     {
-                        "text": "Making Predictions or Assumptions about the Future:",
+                        "text": "<b>Assumptions about the Past:</b>To make assumptions or speculations about something that might have happened in the past",
                         "example": {
-                            "audio": "Es wird morgen regnen.",
-                            "text": "Es $__wird-werden[verb-link-hover]__$ morgen $__regnen-regnen[verb-link-hover]__$.",
-                            "translation": "(It will rain tomorrow)"
+                            "audio": "Er wird wohl schon gegangen sein",
+                            "text": "Er $__wird-werden[verb-link-hover]__$ wohl schon $__gegangen-gehen[verb-link-hover]__$ $__sein-sein[verb-link-hover]__$",
+                            "translation": "(He will probably have already left)"
                         }
                     },
                     {
-                        "text": "Expressing Promises or Assurances:",
-                        "example": {
-                            "audio": "Ich werde dir helfen",
-                            "text": "Ich $__werde-werden[verb-link-hover]__$ dir $__helfen-helfen[verb-link-hover]__$.",
-                            "translation": "(I will help you)"
-                        }
-                    },
-                    {
-                        "text": "Speculating about the Present or the Future:",
-                        "example": {
-                            "audio": "Er wird jetzt zu Hause sein.",
-                            "text": "Er $__wird-werden[verb-link-hover]__$ jetzt zu Hause $__sein-sein[verb-link-hover]__$.",
-                            "translation": "(He will be at home now)"
-                        }
+                        "text": "<b>Formal and Literary Contexts:</b> While it is not as commonly used in everyday conversation, Futur II is more often seen in formal writing and literature:"
                     }
                 ]
             }

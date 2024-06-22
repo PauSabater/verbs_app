@@ -6,7 +6,7 @@ import LessonsPage from "./LessonsPage"
 
 export default async function Page() {
 
-    const lessonsProps = await getLessonsData(['präsens', 'präteritum', 'perfekt', 'futur-I'])
+    const lessonsProps = await getLessonsData(['präsens', 'präteritum', 'perfekt', 'plusquamperfekt', 'futur-I'])
 
 
     return (

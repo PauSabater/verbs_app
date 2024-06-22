@@ -167,6 +167,10 @@
             "content": "Sein präsens conjugation:"
         },
         {
+            "type": "paragraph",
+            "content": "👇🏼 Make sure you master the following conjugation:"
+        },
+        {
             "type": "table",
             "table": {
                 "audio": "ich bin, du bist, (er) (sie) (es) ist, wir sein, ihr sind, sie sind.",
@@ -193,6 +197,10 @@
         {
             "type": "h4",
             "content": "Haben präsens conjugation:"
+        },
+        {
+            "type": "paragraph",
+            "content": "👇🏼 Make sure you master the following conjugation:"
         },
         {
             "type": "table",

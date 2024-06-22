@@ -67,6 +67,7 @@
 
 .dropdown {
     pointer-events: none;
+    display: grid;
     position: absolute;
     overflow-y: auto;
     list-style: none;
@@ -75,7 +76,7 @@
     width: max-content;
     opacity: 0;
     top: calc(var(--height-selector) - 2px);
-    left: 0;
+    left: -100%;
     margin: 0;
     padding: var(--mg-lg) 0;
     background-color: white;
@@ -85,7 +86,18 @@
     border-bottom-right-radius: var(--br-base);
     box-shadow: -1px 1px 8px -3px var(--c-primary-light);
     z-index: 100;
+
     transition: opacity var(--tr-faster);
+
+    &.columns3 {
+        display: grid;
+        grid-template-columns: 33.3% 33.3% 33.3%;
+    }
+
+    &.exerciseGenerate {
+        border-radius: var(--br-base);
+    }
+
 
     &.fullwidth {
         width: calc(100% - 4px);
@@ -102,6 +114,11 @@
         }
     }
 }
+
+.columns-3 {
+        display: grid !important;
+        grid-template-columns: 33.3% 33.3% 33.3% !important;
+    }
 
 .btnExpanded {
     border-radius: var(--br-base) var(--br-base) 0 0;
@@ -134,12 +151,14 @@
     width: -moz-available;
     padding: 3px var(--pd-left-selector);
     font-weight: 400;
+    text-wrap: nowrap;
     transform: translateY(5px);
-    transition: transform var(--tr-base), background-color var(--tr-base);
+    transition: transform var(--tr-base), background-color var(--tr-fast), border-color var(--tr-base);
     // transition-delay: var(--tr-base);
 }
 
-.input[type='radio'] {
+.input[type='radio'],
+.input[type='checkbox'] {
     position: absolute;
     left: 0;
     opacity: 0;
@@ -156,6 +175,25 @@
 
 .input ~ .label:hover {
     background-color: var(--c-grey-lighter);
+}
+
+.input[type='checkbox'] ~ .label {
+    border: 1px solid var(--c-primary-lighter-hover);
+    border-radius: 20px;
+    margin: 5px 10px;
+    line-height: 28px;
+
+    &:hover {
+        border: 1px solid var(--c-primary-light);
+        background-color: transparent;
+    }
+}
+
+.input[type='checkbox']:checked ~ .label {
+    background-color: var(--c-primary-lighter);
+    border: 1px solid var(--c-primary-dark);
+    outline: 1px solid var(--c-primary-light);
+    font-weight: 400;
 }
 
 // .weight500 {

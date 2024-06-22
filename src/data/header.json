@@ -6,27 +6,27 @@
                 "items": [
                     {
                         "title": "Präsens",
-                        "path": "lessons/prasens"
+                        "path": "/lessons/prasens"
                     },
                     {
                         "title": "Präteritum",
-                        "path": "lessons/prateritum"
+                        "path": "/lessons/prateritum"
                     },
                     {
                         "title": "Perfekt",
-                        "path": "lessons/perfekt"
+                        "path": "/lessons/perfekt"
                     },
                     {
                         "title": "Plusquamperfekt",
-                        "path": "lessons/plusquamperfekt"
+                        "path": "/lessons/plusquamperfekt"
                     },
                     {
                         "title": "Futur I",
-                        "path": "lessons/Futur_I"
+                        "path": "/lessons/futur-I"
                     },
                     {
                         "title": "Futur II",
-                        "path": "lessons/Futur_IO"
+                        "path": "/lessons/futur-II"
                     }
                 ]
             }
@@ -37,27 +37,27 @@
                 "items": [
                     {
                         "title": "Präsens",
-                        "path": "lessons/prasens"
+                        "path": "/lessons/prasens"
                     },
                     {
                         "title": "Präteritum",
-                        "path": "lessons/prateritum"
+                        "path": "/lessons/prateritum"
                     },
                     {
                         "title": "Perfekt",
-                        "path": "lessons/perfekt"
+                        "path": "/lessons/perfekt"
                     },
                     {
                         "title": "Plusquamperfekt",
-                        "path": "lessons/plusquamperfekt"
+                        "path": "/lessons/plusquamperfekt"
                     },
                     {
                         "title": "Futur I",
-                        "path": "lessons/Futur_I"
+                        "path": "/lessons/futur-I"
                     },
                     {
                         "title": "Futur II",
-                        "path": "lessons/Futur_IO"
+                        "path": "/lessons/futur-II"
                     }
                 ]
             }
