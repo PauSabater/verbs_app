@@ -22,10 +22,10 @@ export function Hero() {
 
             <GradientOne />
 
-            <img
+            {/* <img
                 src={'/img/webp/hero-bg.webp'}
                 className={styles.imgBg}
-            ></img>
+            ></img> */}
         </div>
 
     )

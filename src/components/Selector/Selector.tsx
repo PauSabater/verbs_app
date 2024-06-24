@@ -1,7 +1,7 @@
 import { sanitize } from "isomorphic-dompurify"
 import styles from './selector.module.scss'
 import { SVGArrow } from "@/assets/svg/svgExports"
-import { ChangeEvent, Fragment, ReactNode, useContext, useEffect, useState } from "react"
+import { ChangeEvent, Fragment, ReactNode, useContext, useEffect, useRef, useState } from "react"
 import { LessonPageContext } from "@/app/lessons/[slug]/LessonPage"
 import { replaceSpacesForURL } from "@/utils/utils"
 
@@ -28,21 +28,36 @@ interface ISelector {
 export function Selector(props: ISelector) {
 
     const lessonPageContext = useContext(LessonPageContext)
+    const [isEventAdded, setIsEventAdded] = useState(false)
 
     // if (!props.selectedOption) props.selectedOption = 'hey'
 
     const [isExpanded, setIsExpanded] = useState<boolean>(false)
     // const []
     const [selectedOption, setSelectedOption] = useState<string>(props.selectedOption || '')
+    const refContainer = useRef(null)
+    const refBtn = useRef(null)
 
     useEffect(()=> {
         if (!props.isExerciseGenerate) {
             setSelectedOption(props.selectedOption || 'More lessons')
         }
+
+        if (isEventAdded === false) {
+            setIsEventAdded(true)
+            document.addEventListener('click', outsideListListener)
+        }
     }, [props.selectedOption])
 
     const handleButtonClick = ()=> {
         setIsExpanded(!isExpanded)
+    }
+
+    const outsideListListener = (e: Event)=> {
+        if (e.target === refBtn.current) return
+        if (!(refContainer.current && (refContainer.current as HTMLElement).contains(e.target as Node))) {
+            setIsExpanded(false)
+        }
     }
 
     const handleInputChangeEvent = (e: ChangeEvent<HTMLInputElement>)=> {
@@ -100,13 +115,17 @@ export function Selector(props: ISelector) {
                 aria-expanded={isExpanded}
                 aria-controls="select-dropdown"
                 onClick={() => handleButtonClick()}
+                ref={refBtn}
             >
                 <span className={styles.selectedValue}>{selectedOption || props.selectedOption}</span>
                 <SVGArrow></SVGArrow>
                 {/* <span className="arrow"></span> */}
             </button>
 
-            <ul className={`select-dropdown ${styles.dropdown} ${isExpanded ? styles.expanded : ''} ${props.isFullwidth ? styles.fullwidth : ''} ${styles[`columns-${props.columns}`]} ${props.isExerciseGenerate ? styles.exerciseGenerate : ''}`}>
+            <ul
+                ref={refContainer}
+                className={`select-dropdown ${styles.dropdown} ${isExpanded ? styles.expanded : ''} ${props.isFullwidth ? styles.fullwidth : ''} ${styles[`columns-${props.columns}`]} ${props.isExerciseGenerate ? styles.exerciseGenerate : ''}`}
+            >
                 {props.options.map((optionGroup, index) => {
                     return (
                         <Fragment key={`fr-${index}`}>

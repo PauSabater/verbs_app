@@ -163,6 +163,37 @@ export const getTenseNames = (tense: string, lang: string)=> {
 
 }
 
+    // "Präsens",
+    // "Präteritum",
+    // "Perfekt",
+    // "Plusquamperfekt",
+    // "Futur I",
+    // "Futur II",
+    // "Imperativ",
+    // "Konj II Präteritum",
+    // "Konj II Plusquam.",
+    // "Konj II Futur I",
+    // "Konj II Futur II",
+    // "Konj I Präsens",
+    // "Konj I Futur I",
+    // "Konj I Futur II",
+    // "Konj I Perfekt",
+    // "Partizip II"
+
+export const replaceTensesFromStringForUrl = (tense: string)=> {
+    const tenseToCheck = tense.toLowerCase()
+
+    switch (tenseToCheck) {
+        case 'futur I':
+            return 'futur_I'
+        case 'Futur II':
+            return 'futur_II'
+        default:
+            return tenseToCheck
+    }
+}
+
+
 export const replaceTenseForURL = (tense: string) => {
     switch (tense) {
         case 'präsens':

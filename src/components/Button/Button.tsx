@@ -28,7 +28,6 @@ export function Button(props: IButton) {
     }
 
     const handleBtnClick = ()=> {
-        console.log("CLIIIIIICK")
         if (!props.callback) return
         props.callback(props.paramOnClick || '')
     }

@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { ExerciseConjugation } from '@/components/ExerciseConjugation/ExerciseConjugation'
 import textsVerbExercise from '@/data/textsVerbExercise.json'
@@ -13,12 +13,44 @@ export default function Page() {
 
     const searchParams = useSearchParams()
 
-    const verbs = searchParams.get('verbs')?.split(',')
-    const tenses = searchParams.get('tenses')?.split(',').map((tense)=> {
-        return replaceTenseFromURL(tense)
-    })
+    // const verbs = searchParams.get('verbs')?.split(',')
+    // const tenses =
 
-    const mode = searchParams.get('mode')
+
+    const [verbs, setVerbs] = useState(searchParams.get('verbs')?.split(','))
+    const [tenses, setTenses] = useState(searchParams.get('tenses')?.split(',').map((tense)=> {
+        return replaceTenseFromURL(tense)
+    }))
+    const [mode, setMode] = useState(searchParams.get('mode'))
+    const [isExerciseSetOpen, setIsExerciseSetOpen] = useState((!verbs || verbs.length === 0 || !tenses || tenses.length === 0) && !mode)
+
+    useEffect(() => {
+        console.log("helo SEARCH PARAMS")
+        const updatedVerbs = searchParams.get('verbs')?.split(',')
+        const updatedTenses = searchParams.get('tenses')?.split(',').map((tense)=> {
+            return replaceTenseFromURL(tense)
+        })
+        const updatedMode = searchParams.get('mode')
+
+        setVerbs(updatedVerbs)
+        setTenses(updatedTenses)
+        setMode(updatedMode)
+
+        console.log('new verbs')
+        console.log(updatedVerbs)
+
+        console.log('new tenses')
+        console.log(updatedTenses)
+
+        setIsExerciseSetOpen((!updatedVerbs || updatedVerbs.length === 0 || !updatedTenses || updatedTenses.length === 0) && !mode)
+
+        console.log('display is')
+        console.log((!updatedVerbs || updatedVerbs.length === 0 || !updatedTenses || updatedTenses.length === 0) && !mode)
+
+    },[searchParams])
+
+
+
 
     const items = [
             {
@@ -86,6 +118,10 @@ export default function Page() {
         }
     }
 
+    const onSetExerciseOpenChange = (isOpen: boolean)=> {
+        setIsExerciseSetOpen(isOpen)
+    }
+
 
     return (
         <>
@@ -114,6 +150,8 @@ export default function Page() {
                                         isEmbedded={true}
                                         verbs={verbs}
                                         tenses={tenses || []}
+                                        isSetNewExerciseOpen={isExerciseSetOpen}
+                                        callbackOnSetExerciseChange={onSetExerciseOpenChange}
                                     ></ExerciseConjugation>
                             }
                         </div>

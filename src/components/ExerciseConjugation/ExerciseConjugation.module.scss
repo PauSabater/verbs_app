@@ -10,7 +10,66 @@
     animation: reveal var(--tr-base);
 }
 
+.newExerciseBtn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    box-sizing: border-box;
+    width: 100%;
+    background: var(--bg-white);
+    border-radius: 20px;
+    padding: var(--mg-md) var(--mg-xl);
+    font-size: var(--fs-xs);
+    text-align: left;
+    border: none;
+    color: var(--c-font-global);
+
+    &:hover {
+        outline: 1px solid var(--c-grey-light);
+    }
+
+    svg {
+        height: 20px;
+        opacity: 0.7;
+    }
+}
+
+.containerSetNewExercise {
+    pointer-events: none;
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    padding: var(--pd-md);
+    background-color: var(--bg-white);
+    border-radius: 20px;
+    z-index: 20;
+    transition: opacity var(--tr-base);
+
+    // grid-column-start: 1;
+    // grid-column-end: 2;
+    // grid-row-start: 1;
+
+    &[data-open="true"] {
+        pointer-events: all;
+        opacity: 1;
+    }
+}
+
+.containerAlign {
+    width: 100%;
+    max-width: 650px;
+}
+
 .layoutExercise {
+    position: relative;
     display: grid;
     grid-template-columns: 70% auto;
     grid-column-gap: 20px;

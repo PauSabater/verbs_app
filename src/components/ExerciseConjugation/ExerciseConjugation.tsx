@@ -10,7 +10,7 @@ import { Button } from '../Button/Button'
 import { Selector } from '../Selector/Selector'
 import Alert from '../Alert/Alert'
 import { isSuccess, isError } from '@/utils/constants'
-import { SVGCross, SVGExercise, SVGHelp, getFeedbackSvg } from '@/assets/svg/svgExports'
+import { SVGAdd, SVGCross, SVGExercise, SVGHelp, getFeedbackSvg } from '@/assets/svg/svgExports'
 import { IConjugation, IExerciseConjugation, IVerbAllTenses, TExerciseState, getButtonColor, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
 import { getCorrectAnswers, getOptionsDropdown, getRandomInt, setLocalstorageItem } from '@/utils/utils'
 import { IExerciseConjugationState, ITensesState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
@@ -21,6 +21,8 @@ import LoaderSpin from '@/elements/LoaderSpin/LoaderSpin'
 import { VerbsList } from './Components/VerbsList/VerbsList'
 import { TensesList } from './Components/TensesList/TensesList'
 import { ShareExercise } from './Components/ShareExercise/ShareExercise'
+import { ExerciseGenerate } from '../ExerciseGenerate/ExerciseGenerate'
+import { useSearchParams } from 'next/navigation'
 
 export const ExerciseConjugationContext = createContext<IExerciseConjugationState | null>(null)
 
@@ -44,6 +46,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         numErroredInputs: 0,
         numCorrectedInputs: 0,
         isTenseAlertOpen: false,
+        isExerciseSetOpen: props.isSetNewExerciseOpen || false,
         selectedTense: '',
         previousTense: '',
         tenseToConfirm: '',
@@ -190,10 +193,31 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         })
     }
 
+    // Open or close Exercise set
+    const setIsExerciseSetOpen = (isOpen: boolean) => {
+        console.log("HEY CLICK!")
 
+        if (props.callbackOnSetExerciseChange) props.callbackOnSetExerciseChange(isOpen)
+
+        dispatch({
+            type: actions.SET_IS_EXERCISE_STATE_OPEN,
+            payload: isOpen
+        })
+    }
 
     // Array with the exercise inputs
     const refsInputs = [useRef<any>(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]
+
+    // update set Exercise component from page:
+    useEffect(() => {
+        console.log("helo SEARCH PARAMS")
+
+        console.log("IN USE EFFECT! lets add")
+        console.log(props.isSetNewExerciseOpen)
+
+        setIsExerciseSetOpen(props.isSetNewExerciseOpen || false)
+
+    },[props.isSetNewExerciseOpen])
 
     /**
      * Gets needed data and
@@ -651,9 +675,24 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                     <div className={styles.sideInfo}>
                         {props.verbs && props.verbs?.length > 1 ? <VerbsList/> : <></>}
                         {props.tenses && props.tenses?.length > 1 ? <TensesList/> : <></>}
+
+                        <button
+                            className={styles.newExerciseBtn}
+                            onClick={()=> setIsExerciseSetOpen(!state.isExerciseSetOpen)}
+                        >
+                            New exercise
+                                <SVGAdd />
+                        </button>
+
                         <ShareExercise/>
                     </div>
 
+                    <div data-open={state.isExerciseSetOpen} className={styles.containerSetNewExercise}>
+                        <div className={styles.containerAlign}>
+                            <p>Select verb(s) and tenses for your new exercise:</p>
+                            <ExerciseGenerate />
+                        </div>
+                    </div>
                 </div>
 
                 <ExerciseHelp

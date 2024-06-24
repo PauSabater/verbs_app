@@ -259,6 +259,10 @@
     background-color: rgb(253, 253, 253);
     transition: background-color var(--tr-fast);
     scroll-behavior: smooth;
+
+    body {
+        margin: 0;
+    }
 }
 
 :root.mode-dark {

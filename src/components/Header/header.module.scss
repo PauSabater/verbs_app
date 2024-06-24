@@ -59,6 +59,10 @@
     align-items: center;
     grid-column-start: 3;
     height: 100%;
+
+    input::placeholder {
+        font-weight: 500;
+    }
 }
 
 .linksContainer {

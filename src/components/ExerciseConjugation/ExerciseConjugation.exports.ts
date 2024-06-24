@@ -67,8 +67,10 @@ export interface IExerciseConjugation {
     verbs?: string[],
     tenses: string[],
     isLessonExercise?: boolean,
-    actionOnBtnClose?: any
-    conjugationCurrentVerb?: any
+    actionOnBtnClose?: any,
+    conjugationCurrentVerb?: any,
+    isSetNewExerciseOpen?: boolean
+    callbackOnSetExerciseChange?: Function
     // isIrregular: string
 }
 

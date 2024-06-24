@@ -57,7 +57,9 @@ export default function Header() {
                     </Link>
                 </div>
                 <div className={styles.searchBarContainer}>
-                    <SearchBar />
+                    <SearchBar
+                        placeholder={'Search verb'}
+                    />
                 </div>
 
                 <div className={styles.authenticationContainer}>

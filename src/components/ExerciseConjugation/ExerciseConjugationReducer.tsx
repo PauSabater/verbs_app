@@ -15,6 +15,7 @@ export interface IExerciseConjugationState {
     numErroredInputs: number,
     numCorrectedInputs: number,
     isTenseAlertOpen: boolean,
+    isExerciseSetOpen: boolean,
     selectedTense: string,
     previousTense: string,
     tenseToConfirm: string,
@@ -47,6 +48,7 @@ export type TExerciseConjugationActions =
     | 'SET_CURRENT_TENSE'
     | 'SET_CURRENT_VERB_TENSES_CONJ'
     | 'SET_TENSES_STATE'
+    | 'SET_IS_EXERCISE_STATE_OPEN'
 
 export type TExerciseConjugationAction = {
     type: TExerciseConjugationActions,
@@ -70,7 +72,8 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_CURRENT_VERB: 'SET_CURRENT_VERB',
     SET_CURRENT_TENSE: 'SET_CURRENT_TENSE',
     SET_CURRENT_VERB_TENSES_CONJ: 'SET_CURRENT_VERB_TENSES_CONJ',
-    SET_TENSES_STATE: 'SET_TENSES_STATE'
+    SET_TENSES_STATE: 'SET_TENSES_STATE',
+    SET_IS_EXERCISE_STATE_OPEN: 'SET_IS_EXERCISE_STATE_OPEN'
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {
@@ -160,6 +163,12 @@ export function reducer(state: IExerciseConjugationState, action: TExerciseConju
             return {
                 ...state,
                 isHelpOpen: action.payload as boolean
+            }
+
+        case actions.SET_IS_EXERCISE_STATE_OPEN:
+            return {
+                ...state,
+                isExerciseSetOpen: action.payload as boolean
             }
 
         default: return state

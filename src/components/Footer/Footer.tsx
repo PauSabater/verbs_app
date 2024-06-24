@@ -8,7 +8,7 @@ export default function Footer() {
 
     return (
         <Fragment>
-            <div className={styles.footer}></div>
+            <footer className={styles.footer}></footer>
         </Fragment>
     )
 }

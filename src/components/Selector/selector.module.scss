@@ -31,11 +31,12 @@
         background-color: var(--c-primary-lighter);
     }
 
-    option {
-        background-color: red;
+    span {
+        pointer-events: none;
     }
 
     svg {
+        pointer-events: none;
         position: absolute;
         top: 50%;
         right: 20px;
@@ -46,6 +47,7 @@
     }
 
     &[aria-expanded='true'] svg {
+        pointer-events: none;
         pointer-events: all;
         transform: translateY(-50%) scaleY(-1);
     }
@@ -180,8 +182,8 @@
 .input[type='checkbox'] ~ .label {
     border: 1px solid var(--c-primary-lighter-hover);
     border-radius: 20px;
-    margin: 5px 10px;
-    line-height: 28px;
+    margin: 5px 8px;
+    line-height: 40px;
 
     &:hover {
         border: 1px solid var(--c-primary-light);
