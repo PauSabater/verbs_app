@@ -673,16 +673,15 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                     </div>
 
                     <div className={styles.sideInfo}>
-                        {props.verbs && props.verbs?.length > 1 ? <VerbsList/> : <></>}
-                        {props.tenses && props.tenses?.length > 1 ? <TensesList/> : <></>}
-
                         <button
                             className={styles.newExerciseBtn}
                             onClick={()=> setIsExerciseSetOpen(!state.isExerciseSetOpen)}
                         >
                             New exercise
-                                <SVGAdd />
+                            <SVGAdd />
                         </button>
+                        {props.verbs && props.verbs?.length > 1 ? <VerbsList/> : <></>}
+                        {props.tenses && props.tenses?.length > 1 ? <TensesList/> : <></>}
 
                         <ShareExercise/>
                     </div>
@@ -690,7 +689,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                     <div data-open={state.isExerciseSetOpen} className={styles.containerSetNewExercise}>
                         <div className={styles.containerAlign}>
                             <p>Select verb(s) and tenses for your new exercise:</p>
-                            <ExerciseGenerate />
+                            <ExerciseGenerate
+                                isSearchBarOption={false}
+                            />
                         </div>
                     </div>
                 </div>

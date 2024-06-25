@@ -26,10 +26,6 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
         // Find all the splitters in the input string
         const splitters: string[] = inputString.match(regex) || []
 
-        // console.log("HEY SPLIT HERE!")
-        // console.log(result)
-        // console.log(splitters)
-
         // Combine parts and splitters
         const result: string[] = [];
         for (let i = 0; i < parts.length; i++) {
@@ -40,8 +36,8 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
         }
 
         if (splitters.length > 1) {
-            console.log("HEY HEY MORE!")
-            console.log(result)
+            // console.log("HEY HEY MORE!")
+            // console.log(result)
         }
 
         return result

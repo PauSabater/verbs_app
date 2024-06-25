@@ -1,11 +1,11 @@
-import { SVGArrow, SVGExercise, SVGLink, SVGNext, SVGRepeat } from '@/assets/svg/svgExports'
+import { SVGArrow, SVGExercise, SVGLink, SVGNext, SVGRandom, SVGRepeat, SVGSearch } from '@/assets/svg/svgExports'
 import styles from './Button.module.scss'
 import Link from 'next/link'
 
 interface IButton {
     text: string,
     width?: "fullWidth" | "fitContent",
-    icon?: "exercise" | "repeat" | "next" | "link",
+    icon?: "exercise" | "repeat" | "next" | "link" | "random" | "search",
     color?: TColor,
     size?: "lg" | "xs" | "xsSquare" | "square"
     callback?: Function
@@ -14,9 +14,10 @@ interface IButton {
     isLink?: boolean
     path?: string
     paramOnClick?: string
+    isTextOnHover?: boolean
 }
 
-export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "primaryDarker" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success" | "transparent" | "greyDark"
+export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "primaryDarker" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success" | "transparent" | "greyDark" | "greyReverse"
 
 export function Button(props: IButton) {
 
@@ -25,6 +26,8 @@ export function Button(props: IButton) {
         if (props.icon === "repeat") return (<SVGRepeat></SVGRepeat>)
         if (props.icon === "next") return (<SVGArrow></SVGArrow>)
         if (props.icon === 'link') return <SVGLink></SVGLink>
+        if (props.icon === 'random') return <SVGRandom></SVGRandom>
+        if (props.icon === 'search') return <SVGSearch />
     }
 
     const handleBtnClick = ()=> {
@@ -33,7 +36,7 @@ export function Button(props: IButton) {
     }
 
     const getClassNames = ()=> {
-        return `${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']}`
+        return `${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']} ${props.isTextOnHover ? styles.textOnHover : ''}`
     }
 
     return (

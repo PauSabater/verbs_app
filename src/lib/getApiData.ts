@@ -78,7 +78,7 @@ export async function getLessonsData(lessons: string[]) {
         let allLessons: any[] = []
 
         for (const lesson of lessons) {
-            await import(`../../public/data/lessons/${lesson}.json`).then((result) => {
+            await import(decodeURI(`../../public/data/lessons/${decodeURI(lesson)}.json`)).then((result) => {
                 allLessons.push(result.props)
             })
         }

@@ -1,7 +1,7 @@
 {
     "props": {
         "tense": "konjunktiv_II_präteritum",
-        "title": "Das Konjunktiv II Präteritum (German Separable II past tense): usage, conjugation and exercises",
+        "title": "Das Konjunktiv II Präteritum (German Subjunctive II past tense): usage, conjugation and exercises",
         "datePublished": "Dec 21, 2023",
         "dateUpdated": "",
         "level": "B1",
@@ -9,14 +9,9 @@
     },
     "verbsUsed": [
         "haben",
-        "sehen",
-        "fahren",
-        "leben",
-        "öffnen",
-        "essen",
-        "machen",
-        "einkaufen",
-        "sein"
+        "schließen",
+        "konnen",
+        "spielen"
     ],
     "tenseExercises": "präteritum",
     "verbsExercises": [
@@ -37,11 +32,11 @@
         },
         {
             "type": "paragraph",
-            "content": " The <b><i>Konjunktiv II Präteritum</i></b>also known as the subjunctive II past tense, is a unique verb form in German that used to express hypothetical scenarios and indirect speech. While it might seem daunting at first, understanding its formation and usage will open doors to a deeper understanding of German grammar."
+            "content": " The <b><i>Konjunktiv II Präteritum</i></b>, also known as the subjunctive II past tense, is a unique verb form in German that used to express hypothetical scenarios and indirect speech. While it might seem daunting at first, understanding its formation and usage will open doors to a deeper understanding of German grammar."
         },
         {
             "type": "callout",
-            "content": "The <i>Konjunktiv II Präteritum</i> is mostly used on a few verbs that must be memorised. On the rest of verbs the form with \"werden\" will be used."
+            "content": "The <i>Konjunktiv II Präteritum</i> is mostly used on a few verbs that must be memorised. On the rest of verbs the Konjunktiv II form with \"werden\" will be used."
         },
         {
             "type": "h2",
@@ -56,35 +51,27 @@
             "itemsList": {
                 "items": [
                     {
-                        "text": "<b>Express past wishes and desires:</b>",
+                        "text": "<b>Politeness:</b> : it softens the speech when making polite requests or suggestions.",
                         "example": {
-                            "audio": "Hätte ich doch den Zug genommen!",
-                            "text": "Example: $__Hätte-haben[verb-link-hover]__$ ich doch den Zug $__nehmen-genommen[verb-link-hover]__$!",
-                            "translation": "(If only I had taken the train!)"
+                            "audio": "Könnten Sie das Fenster schließen?",
+                            "text": "Example: $__Könnten-können[verb-link-hover]__$ Sie das Fenster $__schließen-schließen[verb-link-hover]__$.",
+                            "translation": "(Could you close the window?)"
                         }
                     },
                     {
-                        "text": "Indicating a change of <b>location or state:</b>",
+                        "text": "<b>General Hypotheticals:</b> it addresses conditions that are imaginary or contrary to fact, not necessarily situated in the past",
                         "example": {
-                            "audio": "Er ist nach Berlin gefahren.",
-                            "text": "Er $__ist-sein[verb-link-hover]__$ nach Berlin $__gefahren-fahren[verb-link-hover]__$.",
-                            "translation": "(He went to Berlin)"
+                            "audio": "Wenn ich König wäre!",
+                            "text": "Example: Wenn ich König $__wäre-sein[verb-link-hover]__$!",
+                            "translation": "(If I were king!)"
                         }
                     },
                     {
-                        "text": "Talking about an <b>experience:</b>",
+                        "text": "<b>Wishes:</b> It expresses wishes or scenarios that are desired yet not real.",
                         "example": {
-                            "audio": "Sie hat in Frankreich gelebt.",
-                            "text": "Sie $__hat-haben[verb-link-hover]__$ in Frankreich $__gelebt-leben[verb-link-hover]__$.",
-                            "translation": "(She has lived in France)"
-                        }
-                    },
-                                        {
-                        "text": "Expressing a <b>past action with a visible result:</b>",
-                        "example": {
-                            "audio": "Er hat das Fenster geöffnet.",
-                            "text": "Er $__hat-haben[verb-link-hover]__$ das Fenster $__geöffnet-öffnen[verb-link-hover]__$.",
-                            "translation": "(He has opened the window)"
+                            "audio": "Ach, wäre das schön!",
+                            "text": "Example: Ach, $__wäre-sein[verb-link-hover]__$ das schön!",
+                            "translation": "(Oh, that would be nice!)"
                         }
                     }
                 ]
@@ -95,35 +82,78 @@
             "content": "Conjugation"
         },
         {
-            "type": "html",
-            "content": "<p>The Plusperfekt tense is formed using two components:</p><ol><li>The <b data-verb-stem>auxiliary verb</b> (either <b>'haben'</b> or <b>'sein'</b>) conjugated in the <i>Präteritum</i> tense.</li><li>The <b data-verb-prefix><i>Partizip II</i></b> of the <b>main verb.</b></li>"
+            "type": "h3",
+            "content": "Regular verbs"
         },
         {
-            "type": "image",
-            "image": {
-                "src": "/img/lessons/plusquamperfekt-formation.svg",
-                "alt": "german Perkect tense conjugation",
-                "height": 71.5,
-                "width": 300
+            "type": "paragraph",
+            "content": "Add the endings <b data-verb-prefix>-te</b>, <b data-verb-prefix>-test</b>, <b data-verb-prefix>-te</b>, <b data-verb-prefix>-ten</b>, <b data-verb-prefix>-tet</b>, <b data-verb-prefix>-ten</b> to the stem of the verb. Importantly, for Konjunktiv II, this is the <b>same form as the <i>Präteritum</i> tense</b> (simple past) tense but used in a subjunctive mood. For example, \"spielen\" (to play) becomes: ich spielte, du spieltest, (er) (sie) (es) spielte, wir spielten, ihr spieltet, sie spielten."
+        },
+        {
+            "type": "table",
+            "table": {
+                "audio": "ich spielte, du spieltest, (er) (sie) (es) spielte, wir spielten, ihr spieltet, sie spielten. ",
+                "headings": ["person", "ending", "spielen"],
+                "rows": [
+                    ["ich", "-te", "spiel<i>-te</i>"],
+                    ["du", "-test", "spiel<i>-test</i>"],
+                    ["es", "-te", "spiel<i>-te</i>"],
+                    ["wir", "-ten", "spiel<i>-ten</i>"],
+                    ["ihr", "-tet", "spiel<i>-tet</i>"],
+                    ["Sie", "-ten", "spiel<i>-ten</i>"]
+                ]
+            }
+        },
+        {
+            "type": "example",
+            "example": {
+                "audio": "Wenn ich mehr Zeit hätte, spielte ich jeden Tag Klavier.",
+                "text": "Example: Wenn ich mehr Zeit $__hätte-haben[verb-link-hover]__$, $__spielte-spielen[verb-link-hover]__$ ich jeden Tag Klavier.",
+                "translation": "(If I had more time, I would play the piano every day)"
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise Konjunktiv II Präteritum for spielen",
+            "param": "spielen",
+            "exercise": {
+                "verb": "spielen",
+                "tense": "TODO"
             }
         },
         {
             "type": "h3",
-            "content": "Word order"
+            "content": "Irregular verbs"
         },
         {
             "type": "paragraph",
-            "content": "In main clauses, the auxiliary verb is in the second position, and the past participle is at the end of the sentence."
+            "content": "Certain verbs are more likely to be used in the Konjunktiv II Präteritum because they often express desires or theoretical possibilities. They are all irregular and the conjugations should be learnt. These include $__sein-sein[verb-link-hover]__$, $__haben-haben[verb-link-hover]__$, $__können-können[verb-link-hover]__$, $__mögen-mögen[verb-link-hover]__$, $__wollen-wollen[verb-link-hover]__$, $__sollen-sollen[verb-link-hover]__$ and $__dürfen-dürfen[verb-link-hover]__$."
         },
         {
-            "type": "image",
-            "image": {
-                "src": "/img/lessons/plusquamperfekt-word-order.svg",
-                "alt": "german Perkect tense conjugation",
-                "height": 110,
-                "width": 242
+            "type": "h4",
+            "content": "Sein"
+        },
+        {
+            "type": "table",
+            "table": {
+                "audio": "ich wäre, du wärest, (er) (sie) (es) wäre, wir wären, ihr wäret, sie wären. ",
+                "headings": ["person", "example"],
+                "rows": [
+                    ["ich", "<span><u>wär</u><i>e</i></span>"],
+                    ["du", "<span><u>wär</u></b><b><i>e</i></b><b><i>st</i></span>"],
+                    ["es", "<span><u>wär</u><i>e</i></span>"],
+                    ["wir", "<span><u>wär</u><i>en</i></span>"],
+                    ["ihr", "<span><u>wär</u></b><b><i>e</i></b><b><i>t</i></span>"],
+                    ["Sie", "<span><b><u>wär</u><i>en</i></b></span>"]
+                ]
             }
         },
+
+
+
+
+
+
         {
             "type": "h3",
             "content": "Auxiliary Verbs: 'haben' and 'sein'"

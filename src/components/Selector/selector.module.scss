@@ -17,7 +17,7 @@
     font-size: inherit;
     white-space: nowrap;
     color: currentColor;
-    background-color: transparent;
+    background-color: var(--bg-white);
     border: 2px solid var(--c-primary-lighter-hover);
     appearance: none;
     margin: var(--selector-mg);
@@ -117,10 +117,37 @@
     }
 }
 
+.columns-2 {
+    display: grid !important;
+    grid-template-columns: 50% 50% !important;
+    left: 0;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
 .columns-3 {
-        display: grid !important;
-        grid-template-columns: 33.3% 33.3% 33.3% !important;
+    display: grid !important;
+    grid-template-columns: 33.3% 33.3% 33.3% !important;
+}
+
+.columns-2,
+.columns-3 {
+    .selectAllItem {
+        grid-column-start: 1;
+        grid-column-end: 3;
     }
+}
+
+.selectAllItem {
+    display: flex;
+    margin: 5px 8px;
+
+    label {
+        padding-left: var(--pd-sm);
+    }
+}
+
+
 
 .btnExpanded {
     border-radius: var(--br-base) var(--br-base) 0 0;
@@ -157,6 +184,10 @@
     transform: translateY(5px);
     transition: transform var(--tr-base), background-color var(--tr-fast), border-color var(--tr-base);
     // transition-delay: var(--tr-base);
+}
+
+.inputSelectAll {
+
 }
 
 .input[type='radio'],

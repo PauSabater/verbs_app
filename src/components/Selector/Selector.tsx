@@ -22,7 +22,9 @@ interface ISelector {
     callbackOnChange?: Function,
     isExerciseGenerate?: boolean,
     type?: 'checkbox' | 'radio',
-    columns?: 3;
+    columns?: number;
+    selectAllOption?: string
+    updatedSelectedOptions?: string[]
 }
 
 export function Selector(props: ISelector) {
@@ -49,6 +51,21 @@ export function Selector(props: ISelector) {
         }
     }, [props.selectedOption])
 
+    // Update checked inputs depending on updated from outside the Select component:
+    useEffect(()=> {
+        const elContainer: HTMLElement | null = refContainer.current
+
+        if (elContainer === null) return
+        const elsInput = (elContainer as HTMLElement).querySelectorAll('input')
+
+        for (const elInput of Array.from(elsInput)) {
+            if (!props.updatedSelectedOptions?.includes(elInput.value) && elInput.checked) {
+                elInput.checked = false
+            }
+        }
+
+    }, [props.updatedSelectedOptions])
+
     const handleButtonClick = ()=> {
         setIsExpanded(!isExpanded)
     }
@@ -61,8 +78,24 @@ export function Selector(props: ISelector) {
     }
 
     const handleInputChangeEvent = (e: ChangeEvent<HTMLInputElement>)=> {
-        if (!props.isExerciseGenerate) setTimeout(()=> setIsExpanded(false), 75)
-        if (props.callbackOnChange) props.callbackOnChange(e.target.name, e.target.getAttribute("data-group"), e.target.checked)
+        if (!props.isExerciseGenerate) {
+            setTimeout(()=> setIsExpanded(false), 75)
+        }
+        if (props.callbackOnChange) {
+            props.callbackOnChange(e.target.name, e.target.getAttribute("data-group"), e.target.checked)
+        }
+    }
+
+    const handleSelectAllEvent = (e: ChangeEvent<HTMLInputElement>) => {
+        const isInputChecked = e.target.checked
+        const elContainer: HTMLElement | null = refContainer.current
+
+        if (elContainer === null) return
+        const elsInput = (elContainer as HTMLElement).querySelectorAll('input')
+
+        for (const elInput of Array.from(elsInput)) {
+            elInput.checked = isInputChecked
+        }
     }
 
 
@@ -80,6 +113,7 @@ export function Selector(props: ISelector) {
                                     name={option}
                                     data-group={group}
                                     className={`${styles.input}`}
+                                    value={option}
                                     // checked={!props.isExerciseGenerate ? option === props.selectedOption}
                                     data-checked={option === props.selectedOption}
                                     onChange={(e) => handleInputChangeEvent(e)}
@@ -135,6 +169,27 @@ export function Selector(props: ISelector) {
                                     {optionGroup.title}
                                     </label>
                                     : <></>
+                            }
+
+                            {
+                                props.selectAllOption ?
+                                <li className={styles.selectAllItem} key={`li-select-all`}>
+                                    <input
+                                        key={`input-${index}`}
+                                        type={props.type || 'radio'}
+                                        id={`${index}-${props.selectAllOption}`}
+                                        name={props.selectAllOption}
+                                        className={`${styles.inputSelectAll}`}
+                                        data-checked={false}
+                                        data-select-all
+                                        onChange={(e) => handleSelectAllEvent(e)}
+                                    />
+                                    <label key={`label-${index}`} htmlFor={`${index}-${props.selectAllOption}`} className={styles.label}>
+                                        {props.selectAllOption}
+                                    </label>
+                                </li>
+
+                                : <></>
                             }
 
                             {getOptionsTemplate(optionGroup.options, optionGroup.title || '')}

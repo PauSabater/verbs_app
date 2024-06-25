@@ -54,9 +54,6 @@ export default function VerbsPage(params: IVerbsPage) {
             objLocalStorage = JSON.parse(verbLocalStorage)
         }
 
-        console.log("IAAA")
-        console.log(objLocalStorage)
-
         if (!objLocalStorage || objLocalStorage.verb !== params.slug) {
             const verbLocalStorageNew = {
                 verb: pageVerbData.verb,
