@@ -95,6 +95,10 @@ export function Selector(props: ISelector) {
 
         for (const elInput of Array.from(elsInput)) {
             elInput.checked = isInputChecked
+
+            if (props.callbackOnChange) {
+                props.callbackOnChange(elInput.name, elInput.getAttribute("data-group"), isInputChecked)
+            }
         }
     }
 
@@ -181,11 +185,11 @@ export function Selector(props: ISelector) {
                                         name={props.selectAllOption}
                                         className={`${styles.inputSelectAll}`}
                                         data-checked={false}
-                                        data-select-all
+                                        data-select-all={"true"}
                                         onChange={(e) => handleSelectAllEvent(e)}
                                     />
                                     <label key={`label-${index}`} htmlFor={`${index}-${props.selectAllOption}`} className={styles.label}>
-                                        {props.selectAllOption}
+                                        {props.selectAllOption.split('#')[0]}
                                     </label>
                                 </li>
 

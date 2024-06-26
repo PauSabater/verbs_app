@@ -5,10 +5,12 @@ import styles from './exerciseGenerate.module.scss'
 import SearchBar from '../SearchBar/SearchBar'
 import { Selector } from '../Selector/Selector'
 import { Button } from '../Button/Button'
-import { useEffect, useState } from 'react'
+import { Reducer, useEffect, useReducer, useState } from 'react'
 import { SVGCross } from '@/assets/svg/svgExports'
 import { replaceTensesFromStringForUrl } from '@/utils/utils'
 import { HoverWithInfo } from '../HoverWithInfo/HoverWithInfo'
+import texts from '../../data/exerciseGenerate.json'
+import { TExerciseGenerateAction, actions, reducer } from './exerciseGenerateReducer'
 
 
 interface IHero {
@@ -17,44 +19,6 @@ interface IHero {
     // bg: string
 }
 
-const SelectorTenses = [
-    "Präsens",
-    "Präteritum",
-    "Perfekt",
-    "Plusquamperfekt",
-    "Futur I",
-    "Futur II",
-    "Imperativ",
-    "Konj II Präteritum",
-    "Konj II Plusquam.",
-    "Konj II Futur I",
-    "Konj II Futur II",
-    "Konj I Präsens",
-    "Konj I Futur I",
-    "Konj I Futur II",
-    "Konj I Perfekt",
-    "Partizip II"
-]
-
-const selectorLevels = [
-    "A1",
-    "A2",
-    "B1",
-    "B2",
-    "C1",
-    "C2",
-    "all",
-]
-
-const selectorTypes = [
-    "Regular",
-    "Irregular",
-    "Separable",
-    "Inseparable",
-    "Prefixed",
-    "Modal",
-    "Auxiliary"
-]
 
 interface IExerciseGenerate {
     isSearchBarOption: boolean
@@ -62,79 +26,145 @@ interface IExerciseGenerate {
 
 export function ExerciseGenerate(props: IExerciseGenerate) {
 
+    const textsExercise = texts.exerciseGenerate
+
     const router = useRouter()
 
-    const [selectedTypes, setSelectedTypes] = useState<string[]>([])
     const [updatedSelectedTypes, setUpdatedSelectedTypes] = useState<string[]>([])
 
-    const [selectedTenses, setSelectedTenses] = useState<string[]>([])
     const [updatedSelectedTenses, setUpdatedSelectedTenses] = useState<string[]>([])
 
-    const [selectedVerbs, setSelectedVerbs] = useState<string[]>([])
-
-    const [selectedLevels, setSelectedLevels] = useState<string[]>([])
     const [updatedSelectedLevels, setUpdatedSelectedLevels] = useState<string[]>([])
 
 
     const [isSearchBarOption, setIsSearchBarOption] = useState<boolean>(props.isSearchBarOption)
 
+    interface IExerciseGenerateState {
+        selectedTypes: string[],
+        selectedTenses: string[],
+        selectedLevels: string[],
+        selectedVerbs: string[],
+        updatedSelectedTypes: string[]
+    }
+
+
+    const [state, dispatch] = useReducer<Reducer<IExerciseGenerateState, TExerciseGenerateAction>>(reducer, {
+        selectedTypes: [],
+        selectedTenses: [],
+        selectedLevels: [],
+        selectedVerbs: [],
+        updatedSelectedTypes: []
+    })
+
+    const setReducerSelectedTenses = (tenses: string[])=> {
+        dispatch({
+            type: actions.SET_SELECTED_TENSES,
+            payload: tenses
+        })
+    }
+
+    const setReducerUpdatedSelectedTypes = (tenses: string[])=> {
+        dispatch({
+            type: actions.SET_UPDATED_SELECTED_TYPES,
+            payload: tenses
+        })
+    }
+
+    const setReducerSelectedTypes = (types: string[])=> {
+        dispatch({
+            type: actions.SET_SELECTED_TYPES,
+            payload: types
+        })
+    }
+
+    const setReducerSelectedLevels = (levels: string[])=> {
+        dispatch({
+            type: actions.SET_SELECTED_LEVELS,
+            payload: levels
+        })
+    }
+
+    const setReducerSelectedVerbs = (verbs: string[])=> {
+        dispatch({
+            type: actions.SET_SELECTED_VERBS,
+            payload: verbs
+        })
+    }
+
     const onTensesSelect = (value: string, group: string, isChecked: boolean)=> {
 
         if (isChecked) {
-            const newTensesState: string[] = selectedTenses || []
+            const newTensesState: string[] = state.selectedTenses || []
             newTensesState.push(value)
-            console.log(newTensesState)
-            // const newCurrentState: string[] = currentState.push('hello')
-            setSelectedTenses([...newTensesState])
+
+            setReducerSelectedTenses(newTensesState)
         }
     }
 
     const onTypesSelect = (value: string, group: string, isChecked: boolean)=> {
 
         if (isChecked) {
-            const newTypesState: string[] = selectedTypes || []
+            const newTypesState: string[] = state.selectedTypes || []
             newTypesState.push(value)
             console.log(newTypesState)
-            // const newCurrentState: string[] = currentState.push('hello')
-            setSelectedTypes([...newTypesState])
+            setReducerSelectedTypes(newTypesState)
+
         }
     }
 
     const onVerbSelect = (value: string)=> {
-        if (selectedVerbs.includes(value)) return
+        if (state.selectedVerbs.includes(value)) return
 
-        const newVerbsState: string[] = selectedVerbs || []
+        const newVerbsState: string[] = state.selectedVerbs || []
         newVerbsState.push(value)
         console.log(value)
-        setSelectedVerbs([...newVerbsState])
+        setReducerSelectedVerbs(newVerbsState)
     }
 
     const onLevelSelect = (value: string)=> {
-        if (selectedVerbs.includes(value)) return
+        if (state.selectedVerbs.includes(value)) return
 
-        const newLevelsState: string[] = selectedLevels || []
+        const newLevelsState: string[] = state.selectedLevels || []
         newLevelsState.push(value)
-        console.log(value)
-        setSelectedLevels([...newLevelsState])
+        setReducerSelectedLevels(newLevelsState)
     }
 
     const onBtnStartClick = ()=> {
-        if (selectedVerbs.length > 0 && selectedTenses.length > 0) {
+
+        if (isSearchBarOption) actionsOnVerbModeAccept()
+
+    }
+
+
+    const actionsOnRandomModeAccept = ()=> {
+
+    }
+
+
+
+
+    const actionsOnVerbModeAccept = ()=> {
+
+        if (state.selectedVerbs.length > 0 && state.selectedTenses.length > 0) {
 
             let tensesString = ''
-            selectedTenses.forEach((tense, i)=> {
+            state.selectedTenses.forEach((tense, i)=> {
                 const tenseForUrl = replaceTensesFromStringForUrl(tense)
                 if (i === 0) tensesString = `${tenseForUrl}`
                 else tensesString = `${tensesString},${tenseForUrl}`
             })
 
             let verbsString = ''
-            selectedVerbs.forEach((verb, i)=> {
+            state.selectedVerbs.forEach((verb, i)=> {
                 if (i === 0) verbsString = `${verb}`
                 else verbsString = `${verbsString},${verb}`
             })
 
             router.push(`/exercise?tenses=${tensesString}&verbs=${verbsString}`)
+        }
+
+        if (state.selectedVerbs.length === 0) {
+
         }
     }
 
@@ -159,27 +189,39 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
 
         switch(listName) {
             case 'types':
-                const newTypesState: string[] = selectedTypes || []
+                const newTypesState: string[] = state.selectedTypes || []
                 newTypesState.splice(newTypesState.indexOf(value), 1)
-                setSelectedTypes([...newTypesState])
-                setUpdatedSelectedTypes([...newTypesState])
+                setReducerSelectedTypes(newTypesState)
+                setReducerUpdatedSelectedTypes(newTypesState)
+                return
+            case 'types-remove-all':
+                setReducerSelectedTypes([])
+                setReducerUpdatedSelectedTypes([])
                 return
             case 'levels':
-                const newLevelsState: string[] = selectedLevels || []
+                const newLevelsState: string[] = state.selectedLevels || []
                 newLevelsState.splice(newLevelsState.indexOf(value), 1)
-                setSelectedLevels([...newLevelsState])
+                setReducerSelectedLevels(newLevelsState)
                 setUpdatedSelectedLevels([...newLevelsState])
                 return
+            case 'levels-remove-all':
+                setReducerSelectedLevels([])
+                setUpdatedSelectedLevels([...[]])
+                return
             case 'tenses':
-                const newTensesState: string[] = selectedTenses || []
+                const newTensesState: string[] = state.selectedTenses || []
                 newTensesState.splice(newTensesState.indexOf(value), 1)
-                setSelectedTenses([...newTensesState])
+                setReducerSelectedTenses(newTensesState)
                 setUpdatedSelectedTenses([...newTensesState])
                 return
+            case 'tenses-remove-all':
+                setReducerSelectedTenses([])
+                setUpdatedSelectedTenses([...[]])
+                return
             case 'verbs':
-                const newVerbsState: string[] = selectedVerbs || []
+                const newVerbsState: string[] = state.selectedVerbs || []
                 newVerbsState.splice(newVerbsState.indexOf(value), 1)
-                setSelectedVerbs([...newVerbsState])
+                setReducerSelectedVerbs(newVerbsState)
                 return
         }
 
@@ -230,37 +272,56 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                             icon={'search'}
                             isTextOnHover={true}
                         ></Button>
+
                         {/* </HoverWithInfo> */}
                     </div>
+
                     <div className={`${styles.typesContainer}`}>
                         <div data-types className={`${styles.selectedTensesContainer}`}>
-                            {selectedTypes.map((type, i) => {
-                                return (
-                                    <div key={`cont-type-${i}`} className={`${styles.selectedTenseContainer} ${styles.animated}`}>
-                                        <p className={styles.selectedTense} key={`type-${i}`}>{type}</p>
-                                        <ButtonRemoveItem
-                                            type='types'
-                                            value={type}
-                                        />
-                                    </div>
-                                )
-                            })}
+                            {state.selectedTypes.length < textsExercise.typesSelector.length
+                                ? state.selectedTypes.map((type, i) => {
+                                    return (
+                                        <div key={`cont-type-${i}`} className={`${styles.selectedTenseContainer} ${styles.animated}`}>
+                                            <p className={styles.selectedTense} key={`type-${i}`}>{type}</p>
+                                            <ButtonRemoveItem
+                                                type='types'
+                                                value={type}
+                                            />
+                                        </div>
+                                    )
+                            })
+
+                            :
+                                <div key={`cont-type-all`} className={`${styles.selectedTenseContainer} ${styles.animated}`}>
+                                    <p
+                                        className={styles.selectedTense}
+                                        key={`type-all`}
+                                    >
+                                        {textsExercise.typesSelectAllOption.labelSelected}
+                                    </p>
+                                    <ButtonRemoveItem
+                                        type='types-remove-all'
+                                        value={textsExercise.typesSelectAllOption.label}
+                                    />
+                                </div>
+                        }
                         </div>
                         <Selector
                             isExerciseGenerate={true}
                             type={'checkbox'}
-                            options={[{ options: selectorTypes }]}
-                            updatedSelectedOptions={updatedSelectedTypes}
+                            options={[{ options: textsExercise.typesSelector }]}
+                            updatedSelectedOptions={state.updatedSelectedTypes}
                             columns={2}
                             selectedOption={'Verb type(s)'}
                             callbackOnChange={onTypesSelect}
-                            selectAllOption={'select all types'}
+                            selectAllOption={textsExercise.typesSelectAllOption.label}
                         />
                     </div>
 
                     <div data-levels className={`${styles.levelsContainer}`}>
                         <div className={`${styles.selectedTensesContainer}`}>
-                            {selectedLevels.map((level, i) => {
+                            {state.selectedLevels.length < textsExercise.levelsSelector.length
+                                ? state.selectedLevels.map((level, i) => {
                                 return (
                                     <div key={`cont-level-${i}`} className={`${styles.selectedTenseContainer} ${styles.animated}`}>
                                         <p className={styles.selectedTense} key={`level-${i}`}>{level}</p>
@@ -270,16 +331,33 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                                         />
                                     </div>
                                 )
-                            })}
+                            })
+
+                            :
+                                <div key={`cont-level-all`} className={`${styles.selectedTenseContainer} ${styles.animated}`}>
+                                    <p
+                                        className={styles.selectedTense}
+                                        key={`level-all`}
+                                    >
+                                        {textsExercise.typesSelectAllOption.labelSelected}
+                                    </p>
+                                    <ButtonRemoveItem
+                                        type='levels-remove-all'
+                                        value={textsExercise.levelsSelectAllOption.label}
+                                    />
+                                </div>
+
+                        }
                         </div>
                         <Selector
                             isExerciseGenerate={true}
                             type={'checkbox'}
-                            options={[{ options: selectorLevels }]}
+                            options={[{ options: textsExercise.levelsSelector }]}
                             updatedSelectedOptions={updatedSelectedLevels}
                             columns={2}
                             selectedOption={'Level(s)'}
                             callbackOnChange={onLevelSelect}
+                            selectAllOption={textsExercise.levelsSelectAllOption.label}
                             // updatedSelection={}
                         />
                     </div>
@@ -300,7 +378,7 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                     </div>
                     <div className={`${styles.searchBarContainer}`}>
                         <div className={`${styles.selectedTensesContainer}`}>
-                            {selectedVerbs ? selectedVerbs.map((verb, i) => {
+                            {state.selectedVerbs ? state.selectedVerbs.map((verb, i) => {
                                 return (
                                     <div key={`cont-verb-${i}`} className={`${styles.selectedTenseContainer} ${styles.animated}`}>
                                         <p className={styles.selectedTense} key={`verb-${i}`}>{verb}</p>
@@ -325,14 +403,15 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                     <Selector
                         isExerciseGenerate={true}
                         type={'checkbox'}
-                        options={[{ options: SelectorTenses }]}
+                        options={[{ options: textsExercise.tensesSelector }]}
                         updatedSelectedOptions={updatedSelectedTenses}
                         columns={3}
-                        selectedOption={'Select tense(s)'}
+                        selectedOption={textsExercise.tensesSelectText}
                         callbackOnChange={onTensesSelect}
+                        selectAllOption={textsExercise.tensesSelectAllOption.label}
                     />
                     <div className={`${styles.selectedTensesContainer}`}>
-                        {selectedTenses.map((tense, i) => {
+                        {state.selectedTenses.length < textsExercise.tensesSelector.length ? state.selectedTenses.map((tense, i) => {
                             return (
                                 <div key={`cont-tenses-${i}`} className={styles.selectedTenseContainer}>
                                     <p className={styles.selectedTense} key={`tense-${i}`}>{tense}</p>
@@ -342,13 +421,35 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                                     />
                                 </div>
                             )
-                        })}
+                        })
+
+                        :
+
+                            <div key={`cont-tenses-all`} className={`${styles.selectedTenseContainer} ${styles.animated}`}>
+                                <p
+                                    className={styles.selectedTense}
+                                    key={`tense-all`}
+                                >
+                                    {textsExercise.tensesSelectAllOption.labelSelected}
+                                </p>
+                                <ButtonRemoveItem
+                                    type='tenses-remove-all'
+                                    value={textsExercise.tensesSelectAllOption.label}
+                                />
+                            </div>
+
+                        }
+
+                        {
+
+                        }
                     </div>
                 </div>
                 <Button
                     text={'Start'}
                     color={'primaryDark'}
-                    callback={onBtnStartClick} />
+                    callback={onBtnStartClick}
+                />
             </div></>
 
     )
