@@ -3,17 +3,24 @@ import VerbsPage from './VerbPage'
 import { getApiVerbData, getPageVerbsTexts } from '@/lib/getApiData'
 import { Metadata, ResolvingMetadata } from 'next'
 import { headers } from 'next/headers'
+import verbsList from '@/data/verbsList.json'
 
 
-export default async function Page({ params }: { params: { slug: string, nextSlug: string } }) {
+export default async function Page({ params }: { params: { slug: string } }) {
     const pageData = await getApiVerbData(params.slug)
     const pageTexts = await getPageVerbsTexts()
+    const verbNum = verbsList.verbs.findIndex((item) => item === params.slug)
+    const prevVerb = verbNum !== 0 ? verbsList.verbs[verbNum - 1] : undefined
+    const nextVerb = verbsList.verbs[verbNum + 1]
+
 
     return (
         <Fragment>
             <VerbsPage
                 slug={params.slug}
-                nextSlug={params.nextSlug}
+                prevVerb={prevVerb}
+                nextVerb={nextVerb}
+                verbNum={verbNum}
                 data={JSON.stringify(pageData)}
                 texts={JSON.stringify(pageTexts)}
             ></VerbsPage>

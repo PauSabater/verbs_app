@@ -3,62 +3,70 @@ import VerbTitle from './Components/VerbTitle/VerbTitle'
 import VerbStemFormation from './Components/VerbStemFormation/VerbStemFormation'
 import VerbDetails from './Components/VerbDetails/VerbDetails'
 import { Button } from '../Button/Button'
-import { sanitize } from 'isomorphic-dompurify'
-import { getOptionsDropdown, isAuxliaryVerb, isModalVerb } from '@/utils/utils'
-import { ISelectorDropdownOptions } from '../Selector/Selector'
 import { VerbDescription } from './Components/VerbDescription/VerbDescription'
+import Link from 'next/link'
+import { SVGNextPrev } from '@/assets/svg/svgExports'
+import { ContextVerbPage, IVerbsPageContext } from '@/app/verbs/[slug]/VerbPage'
+import { useContext } from 'react'
 
+export default function VerbHeader() {
 
-interface IVerbHeader {
-    verb: string,
-    level: string,
-    verbHTML: string,
-    stemFormationHTML: string,
-    isIrregular: boolean,
-    isSeparable: boolean,
-    prefixed: boolean,
-    reflexive: boolean,
-    button: string,
-    description: string,
-    translation: string,
-    callbackOnBtnClick: Function,
-    listBtnTenses: ISelectorDropdownOptions[]
-}
+    const context = useContext(ContextVerbPage) as IVerbsPageContext
 
-export default function VerbHeader(props: IVerbHeader) {
-
-    console.log(props.translation)
-
-    const propsVerbDetails = {
-        number: 1,
-        level: props.level,
-        isIrregular: props.isIrregular,
-        isSeparable: props.isSeparable,
-        isReflexive: props.reflexive,
-        isAuxiliary: isAuxliaryVerb(props.verb),
-        prefixed: props.prefixed,
-        isModal: isModalVerb(props.verb)
+    interface INextPrevLink {
+        text: string,
+        path: string,
+        prevText: string
+        isNext: boolean
     }
 
-    const handleBtnClick = ()=> {
-        props.callbackOnBtnClick(props.listBtnTenses)
+    const NextPrevLink = (props: INextPrevLink)=> {
+        return (
+            <Link className={styles.nextPrevLink} href={`${props.path}`}>
+                {props.isNext ? <SVGNextPrev /> : <></>}
+                <span>{props.prevText}</span>
+                <span className={styles.linkMainText}>{props.text}</span>
+                {!props.isNext ? <SVGNextPrev /> : <></>}
+            </Link>
+        )
     }
 
     return (
         <div className={styles.container}>
             <div className={styles.containerTitle}>
-                <VerbTitle verbHTML={props.verbHTML} />
+                <VerbTitle verbHTML={context.verbHTML} />
             </div>
-            <VerbDetails {...propsVerbDetails}/>
-            <VerbStemFormation stemFormationHTML={props.stemFormationHTML} />
-            <p className={styles.translation}>{props.translation}</p>
-            <VerbDescription text={props.description}></VerbDescription>
-            {/* <p className={styles.description} dangerouslySetInnerHTML={{__html: sanitize(props.description)}}></p> */}
+            <VerbDetails/>
+            <VerbStemFormation />
+            <p className={styles.translation}>{context.translation}</p>
+            <VerbDescription text={context.description}></VerbDescription>
             <Button
-                text={props.button.replace("&", props.verb)}
+                text={context.button.replace("&", context.verb)}
                 icon={"exercise"}
-                callback={handleBtnClick}
+                // callback={handleBtnClick}
             ></Button>
+
+            <div className={styles.navContainer}>
+                {
+                    context.prevVerb ?
+                        <NextPrevLink
+                            text={context.prevVerb}
+                            path={`/verbs/${context.prevVerb}`}
+                            prevText={'previous: '}
+                            isNext={true}
+                        /> : <></>
+                }
+                {
+                    context.nextVerb ?
+                        <NextPrevLink
+                            text={context.nextVerb}
+                            path={`/verbs/${context.nextVerb}`}
+                            prevText={'next: '}
+                            isNext={false}
+                        /> : <></>
+                }
+
+            </div>
         </div>
     )
 }

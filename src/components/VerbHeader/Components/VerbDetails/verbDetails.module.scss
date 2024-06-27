@@ -2,11 +2,12 @@
     --info-circle-color: var(--c-grey-light);
     --info-circle-height: 35px;
 
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
     background: var(--bg-main);
-    width: min-content;
+    width: 100%;
     padding: 10px 25px 10px 15px;
     border-radius: var(--br-base);
 

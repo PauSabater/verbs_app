@@ -1,12 +1,11 @@
 .container {
     --btn-height: 50px;
 
-    // width: 250px;
-    // height: 100px;
+    position: relative;
     width: calc(var(--width-page-content-wider));
     margin: auto;
-    margin-bottom: 90px;
-    margin-top: 60px;
+    margin-bottom: 70px;
+    margin-top: 40px;
 
     h1 {
         font-size: var(--fs-2xl);
@@ -36,5 +35,69 @@
     i {
         font-weight: 300;
         color: var(--c-font-global-lighter);
+    }
+}
+
+.navContainer {
+    position: absolute;
+    display: flex;
+    bottom: 0;
+    right: 0;
+}
+
+.nextPrevLink {
+    text-decoration: none;
+    font-weight: 400;
+    font-size: var(--fs-global);
+    outline: 1px dotted var(--c-font-global-lighter);
+    line-height: 50px;
+    height: 50px;
+    border-radius: var(--br-base);
+    padding: 0;
+    margin: 0;
+    border: none;
+    padding: 0 var(--pd-md);
+    width: 50%;
+    text-wrap: nowrap;
+    min-width: 150px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    color: var(--c-font-global-light);
+    transition: background-color var(--tr-base);
+
+    &:hover {
+        background-color: var(--bg-main);
+    }
+
+    svg {
+        height: 20px;
+        width: 20px;
+    }
+
+    span {
+        margin: 0 5px;
+    }
+
+    .linkMainText {
+        font-weight: 550;
+    }
+
+    &:last-child {
+
+        svg {
+            transform: scaleX(-1);
+            margin-left: auto;
+        }
+    }
+
+    &:first-child {
+        svg {
+            margin-right: auto;
+        }
+    }
+
+    &:nth-child(2) {
+        margin-left: var(--mg-md);
     }
 }
