@@ -180,7 +180,7 @@ export const getTenseNames = (tense: string, lang: string)=> {
     // "Konj I Perfekt",
     // "Partizip II"
 
-export const replaceTensesFromStringForUrl = (tense: string)=> {
+export const replaceTenseFromStringForUrl = (tense: string)=> {
     const tenseToCheck = tense.toLowerCase()
 
     switch (tenseToCheck) {
@@ -191,6 +191,25 @@ export const replaceTensesFromStringForUrl = (tense: string)=> {
         default:
             return tenseToCheck
     }
+}
+
+export const replaceTensesArrayForUrl = (tenses: string[]): string[] => {
+    const newArray: string[] = []
+
+    tenses.forEach((tense, i)=> {
+        newArray.push(replaceTenseFromStringForUrl(tense))
+    })
+
+    return newArray
+}
+
+export const getComaSeparatedStringFromArray = (array: string[])=> {
+    let stringWithComas: string = ''
+    array.forEach((value, i)=> {
+        if (i === 0) stringWithComas = `${value}`
+        else stringWithComas = `${stringWithComas},${value}`
+    })
+    return stringWithComas
 }
 
 
@@ -272,6 +291,14 @@ export const getModeTenses = (mode: string): string[] => {
         default:
             return []
     }
+}
+
+export const isAuxliaryVerb = (verb: string) => {
+    return (verb === 'sein' || verb ===  'haben' || verb === 'werden')
+}
+
+export const isModalVerb = (verb: string) => {
+    return (verb === 'dürfen' || verb ===  'können' || verb === 'mögen' || verb ===  'müssen' || verb ===  'sollen' || verb ===  'wollen')
 }
 
 // export const getModeTenses = (mode: strong)

@@ -1,11 +1,11 @@
-import { SVGArrow, SVGExercise, SVGLink, SVGNext, SVGRandom, SVGRepeat, SVGSearch } from '@/assets/svg/svgExports'
+import { SVGArrow, SVGExercise, SVGLink, SVGNext, SVGRandom, SVGRestart, SVGSearch } from '@/assets/svg/svgExports'
 import styles from './Button.module.scss'
 import Link from 'next/link'
 
 interface IButton {
     text: string,
     width?: "fullWidth" | "fitContent",
-    icon?: "exercise" | "repeat" | "next" | "link" | "random" | "search",
+    icon?: "exercise" | "repeat" | "next" | "link" | "random" | "search" | "restart",
     color?: TColor,
     size?: "lg" | "xs" | "xsSquare" | "square"
     callback?: Function
@@ -22,12 +22,13 @@ export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "prim
 export function Button(props: IButton) {
 
     const getIcon = (icon: string)=> {
-        if (props.icon === "exercise") return (<SVGExercise></SVGExercise>)
-        if (props.icon === "repeat") return (<SVGRepeat></SVGRepeat>)
-        if (props.icon === "next") return (<SVGArrow></SVGArrow>)
-        if (props.icon === 'link') return <SVGLink></SVGLink>
-        if (props.icon === 'random') return <SVGRandom></SVGRandom>
+        if (props.icon === "exercise") return (<SVGExercise />)
+        if (props.icon === "repeat") return (<SVGRestart />)
+        if (props.icon === "next") return (<SVGArrow />)
+        if (props.icon === 'link') return <SVGLink />
+        if (props.icon === 'random') return <SVGRandom />
         if (props.icon === 'search') return <SVGSearch />
+        if (props.icon === 'restart') return <SVGRestart />
     }
 
     const handleBtnClick = ()=> {

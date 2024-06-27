@@ -1,5 +1,4 @@
 .Button {
-    --btn-height: 50px;
     --btn-fs: var(--btn-fs, var(--fs-global));
 
     cursor: pointer;
@@ -8,7 +7,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     align-content: center;
-    height: var(--btn-height);
+    height: var(--btn-height, 50px);
     width: fit-content;
     padding: 0 var(--pd-xl);
     margin: var(--btn-mg);

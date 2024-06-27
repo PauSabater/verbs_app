@@ -43,7 +43,7 @@
     align-items: center;
     width: 0px;
     font-size: var(--fs-lg);
-    color: var(--c-font-global-light);
+    color: var(--c-primary-darker);
     line-height: 45px;
     text-align: left;
     white-space: nowrap;
@@ -58,5 +58,9 @@
         padding-left: var(--pd-sm);
         right: -30px;
         transition: transform var(--tr-base);
+    }
+
+    a {
+        color: currentColor;
     }
 }

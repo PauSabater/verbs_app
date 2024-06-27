@@ -10,8 +10,8 @@ export function SVGExercise({color}: {color?: string}) { return (
     </svg>
 )}
 
-export function SVGRepeat({color}: {color?: string}) { return (
-    <svg viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+export function SVGRestart({color}: {color?: string}) { return (
+    <svg data-svg-restart viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.25 7.24999C15.4256 7.24999 17.5523 7.89513 19.3613 9.10383C21.1702 10.3125 22.5801 12.0305 23.4127 14.0405C24.2452 16.0505 24.4631 18.2622 24.0386 20.396C23.6142 22.5298 22.5666 24.4898 21.0282 26.0282C19.4898 27.5665 17.5298 28.6142 15.396 29.0386C13.2622 29.4631 11.0505 29.2452 9.04048 28.4127C7.03049 27.5801 5.31253 26.1702 4.10383 24.3613C2.89514 22.5523 2.25 20.4256 2.25 18.25"
             stroke={color || "currentColor"} strokeWidth="3.5" strokeLinecap="round"/>
         <path d="M16 12L12 7.5L16 3" stroke={color || "currentColor"} strokeWidth="3" strokeLinecap="square"/>

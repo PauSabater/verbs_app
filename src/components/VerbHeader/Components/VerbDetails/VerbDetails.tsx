@@ -9,6 +9,7 @@ interface IVerbHeader {
     isIrregular: boolean,
     isSeparable: boolean,
     isAuxiliary: boolean,
+    isModal: boolean,
     prefixed?: boolean,
     reflexive?: boolean,
 }
@@ -18,22 +19,34 @@ export default function VerbDetails(props: IVerbHeader) {
     return (
         <div className={styles.container}>
             <InfoInCircle text={props.level} />
-            <p>#{props.number}</p>
-            <p className={styles.separator}>|</p><p>{props.isIrregular ? "irregular" : "regular"}</p>
+            <p className={styles.detail}>#{props.number}</p>
+            <p className={styles.detail}>{props.isIrregular ? "irregular" : "regular"}</p>
             {
-                props.isSeparable === true
-                    ? <><p className={styles.separator}>|</p><p>{"separable"}</p></>
+                props.isModal
+                    ? <p className={styles.detail}>{"modal verb"}</p>
                     : <></>
+            }
+            {
+                props.isAuxiliary
+                    ? <p className={styles.detail}>{"auxiliary verb"}</p>
+                    : <></>
+            }
+            {
+                props.isSeparable
+                    ? <p className={styles.detail}>{"separable"}</p>
+                    : <p className={styles.detail}>{"non-separable"}</p>
             }
             {
                 props.prefixed && props.prefixed === true
-                    ? <><p className={styles.separator}>|</p><p>{"prefixed"}</p></>
+                    ? <p className={styles.detail}>{"prefixed"}</p>
                     : <></>
             }
-            <p>{props.reflexive ? "yeees" : "nooo"}</p>
+            {
+                props.reflexive ? <p>reflexive</p> : <></>
+            }
             {
                 props.reflexive
-                    ? <><p className={styles.separator}>|</p><p>{"reflexive"}</p></>
+                    ? <p className={styles.detail}>{"reflexive"}</p>
                     : <></>
             }
         </div>

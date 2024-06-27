@@ -127,17 +127,17 @@ export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string
     // console.log(tableTense)
     // console.log(mode || '--')
 
-    if (mode === 'subjunctive_II' && tableTense === 'konjunktiv_II') {
-        const mode = tenses.conditionalOrConjunctiveII as any
-        console.log(mode[tableTense][0])
-        return mode[tableTense][0]
-    }
+    // if (mode === 'subjunctive_II' && tableTense === 'konjunktiv_II') {
+    //     const mode = tenses.conditionalOrConjunctiveII as any
+    //     console.log(mode[tableTense][0])
+    //     return mode[tableTense][0]
+    // }
 
-    if (mode === 'subjunctive_I' && tableTense === 'konjunktiv_II') {
-        const mode = tenses.conjunctive as any
-        console.log(mode[tableTense][0])
-        return mode[tableTense][0]
-    }
+    // if (mode === 'subjunctive_I' && tableTense === 'konjunktiv_II') {
+    //     const mode = tenses.conjunctive as any
+    //     console.log(mode[tableTense][0])
+    //     return mode[tableTense][0]
+    // }
 
     for (const mode of Object.values(tenses)) {
 

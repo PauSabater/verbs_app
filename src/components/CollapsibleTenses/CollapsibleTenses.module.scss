@@ -40,13 +40,13 @@
 }
 
 .tablesContainer {
-    border: 3px dotted var(--c-border-dotted);
-    background-color: var(--bg-main-light);
+    border: 1px dotted var(--c-border-dotted);
+    background-color: var(--bg-main);
     border-radius: 10px;
 }
 
 .containerExamples {
-    border: 3px dotted var(--c-border-dotted);
+    border: 1px dotted var(--c-border-dotted);
     border-radius: 10px;
     padding: 0 var(--pd-collapsible) var(--pd-collapsible) var(--pd-collapsible);
 }

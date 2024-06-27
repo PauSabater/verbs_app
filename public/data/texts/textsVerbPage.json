@@ -6,30 +6,36 @@
                 "title": "Indicative",
                 "mode": "indicative",
                 "description": "Learn and practise the verb -verb- in the present, past and future tenses of the Indicative Active mode",
-                "tenses": ["präsens", "präteritum", "perfekt", "plusquam", "futur_I", "futur_II"]
+                "tenses": ["präsens", "präteritum", "perfekt", "plusquam", "futur_I", "futur_II"],
+                "tensesTitles": ["Präsens", "Präteritum", "Perfekt", "Plusquam.", "Futur I", "Futur II"]
             },{
                 "title": "Imperative",
                 "mode": "imperative",
                 "description": "Learn and practise the verb -verb- in the present tense of the imperative Active mode",
-                "tenses": ["imperative"]
+                "tenses": ["imperative"],
+                "tensesTitles": ["Imperative"]
             },{
                 "title": "Subjunctive I",
                 "mode": "subjunctive_I",
                 "description": "Learn and practise the verb -verb- in the present, perfect and future tenses of the Subjunctive I mode",
-                "tenses": ["konj_perfekt", "konjunktiv_I", "konjunktiv_II", "konj_plusquam", "konj_futur_I", "konj_futur_II"]
+                "tenses": ["konj_I_perfekt", "konj_I_präsens", "konj_I_futur_I", "konj_I_futur_II"],
+                "tensesTitles": ["Konj. I Perfekt", "Konj. I präsens", "Konj. I Futur I", "Konj. I Futur II"]
             },{
                 "title": "Subjunctive II",
                 "description": "Learn and practise the verb -verb- in the present, perfect and future tenses of the Subjunctive I mode",
                 "mode": "subjunctive_II",
-                "tenses": ["konjunktiv_II", "konj_plusquam"]
+                "tenses": ["konj_II_plusquam", "konj_II_präteritum", "konj_II_futur_I", "konj_II_futur_II" ],
+                "tensesTitles": ["Konj. II plusquam.", "Konj. II präteritum", "Konj. II Futur I", "Konj. II Futur II" ]
             },{
                 "title": "Infinitive",
                 "mode": "infinitive",
-                "tenses": ["infinitiv_I", "infinitiv_II"]
+                "tenses": ["infinitiv_I", "infinitiv_II"],
+                "tensesTitles": ["Infinitiv I", "Infinitiv II"]
             },{
                 "title": "Participle",
                 "mode": "partizip",
-                "tenses": ["partizip_I", "partizip_II"]
+                "tenses": ["partizip_I", "partizip_II"],
+                "tensesTitles": ["Partizip I", "Partizip II"]
             }
         ],
         "exerciseText": {

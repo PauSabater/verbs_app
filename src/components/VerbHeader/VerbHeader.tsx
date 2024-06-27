@@ -4,7 +4,7 @@ import VerbStemFormation from './Components/VerbStemFormation/VerbStemFormation'
 import VerbDetails from './Components/VerbDetails/VerbDetails'
 import { Button } from '../Button/Button'
 import { sanitize } from 'isomorphic-dompurify'
-import { getOptionsDropdown } from '@/utils/utils'
+import { getOptionsDropdown, isAuxliaryVerb, isModalVerb } from '@/utils/utils'
 import { ISelectorDropdownOptions } from '../Selector/Selector'
 import { VerbDescription } from './Components/VerbDescription/VerbDescription'
 
@@ -27,14 +27,17 @@ interface IVerbHeader {
 
 export default function VerbHeader(props: IVerbHeader) {
 
+    console.log(props.translation)
+
     const propsVerbDetails = {
         number: 1,
         level: props.level,
         isIrregular: props.isIrregular,
         isSeparable: props.isSeparable,
         isReflexive: props.reflexive,
-        isAuxiliary: true,
-        prefixed: props.prefixed
+        isAuxiliary: isAuxliaryVerb(props.verb),
+        prefixed: props.prefixed,
+        isModal: isModalVerb(props.verb)
     }
 
     const handleBtnClick = ()=> {
@@ -53,7 +56,6 @@ export default function VerbHeader(props: IVerbHeader) {
             {/* <p className={styles.description} dangerouslySetInnerHTML={{__html: sanitize(props.description)}}></p> */}
             <Button
                 text={props.button.replace("&", props.verb)}
-                size={"lg"}
                 icon={"exercise"}
                 callback={handleBtnClick}
             ></Button>

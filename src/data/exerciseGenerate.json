@@ -50,6 +50,12 @@
         "typesSelectAllOption": {
             "label": "Select all#types",
             "labelSelected": "All verb types"
+        },
+        "errorMessages": {
+            "verbs": "☝🏼 &#160;Add at least one verb",
+            "tenses": "☝🏼 &#160;Select at least one tense",
+            "types": "☝🏼 &#160;Select at least one type",
+            "levels": "☝🏼 &#160;Select at least one level"
         }
     }
 }

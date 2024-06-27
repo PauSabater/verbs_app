@@ -11,6 +11,7 @@ interface ISearchBar {
     isExerciseGenerate?: boolean
     callbackOnSelect?: Function
     placeholder: string
+    callBackOnInputFocus?: Function
 }
 
 export default function SearchBar(props: ISearchBar) {
@@ -63,6 +64,7 @@ export default function SearchBar(props: ISearchBar) {
         <div className={styles.container} ref={refContainer}>
             <InputSearchBar
                 callbackOnInputClick={openList}
+                callbackOnInputFocus={props.callBackOnInputFocus}
                 onUpdateResults={updateResults}
                 numDisplayedResults={searchResults ? searchResults.length : 0}
                 placeholder={props.placeholder}

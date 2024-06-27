@@ -691,6 +691,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                             <p>Select verb(s) and tenses for your new exercise:</p>
                             <ExerciseGenerate
                                 isSearchBarOption={false}
+                                component='exercise-page'
                             />
                         </div>
                     </div>

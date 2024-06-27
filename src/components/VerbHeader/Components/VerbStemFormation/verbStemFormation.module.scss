@@ -1,10 +1,14 @@
 .formation {
-    --stem-formation-fw: 600;
+    --stem-formation-fw: 550;
 
-    font-weight: 600;
-    font-size: var(--fs-lg);
-    margin: 0 0 var(--mg-md);
+    font-size: var(--fs-global);
+    margin: var(--mg-md) 0;
     margin-bottom: var(--mg-sm);
+
+    b {
+        color: var(--c-font-global-lighter);
+        font-weight: var(--stem-formation-fw);
+    }
 
     u {
         text-decoration: none;

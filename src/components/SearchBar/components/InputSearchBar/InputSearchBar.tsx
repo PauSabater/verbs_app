@@ -5,6 +5,7 @@ import { SVGCross, SVGFilter, SVGSearch } from '@/assets/svg/svgExports'
 interface IInputSearchBar {
     callbackOnFilterClick?: Function
     callbackOnInputClick?: Function
+    callbackOnInputFocus?: Function
     onUpdateResults: Function
     numDisplayedResults: number
     placeholder: string
@@ -44,6 +45,12 @@ export default function InputSearchBar(props: IInputSearchBar) {
         }
     }
 
+    const onInputFocus = ()=> {
+        props.callbackOnInputClick ? props.callbackOnInputClick() : ''
+        props.callbackOnInputFocus ? props.callbackOnInputFocus() : ''
+
+    }
+
     return (
         <div className={styles.container}>
             <SVGSearch />
@@ -52,7 +59,7 @@ export default function InputSearchBar(props: IInputSearchBar) {
                 className={styles.input}
                 placeholder={props.placeholder || 'Search verb'}
                 onChange={(e) => onInputChange(e)}
-                onClick={() => props.callbackOnInputClick ? props.callbackOnInputClick() : ''}
+                onFocus={() => onInputFocus()}
             ></input>
 
             {

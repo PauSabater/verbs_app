@@ -208,14 +208,14 @@ export default function VerbsPage(params: IVerbsPage) {
                             verb={pageVerbData.verb}
                             mode={collapsiblesTense[i].mode}
                         >
-                            {(collapsiblesTense[i].tenses as string[]).map((tableTense, i) => {
+                            {(collapsiblesTense[i].tenses as string[]).map((tableTense, j) => {
                                 return (
                                     <VerbTable
+                                        title={collapsiblesTense[i].tensesTitles[j]}
                                         verb={pageVerbData.verb}
                                         key={tableTense}
                                         tense={tableTense}
-                                        // mode={"indicative"}
-                                        verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense, collapsiblesTense[i]?.mode || false)}
+                                        verbData={getTenseFromTenseName(pageVerbData.data.tenses, tableTense)}
                                         callbackLessonOpen={onLessonOpen}
                                         utterance={utterance}
                                         isSeparable={pageVerbData.data.properties.isSeparable}
@@ -225,44 +225,11 @@ export default function VerbsPage(params: IVerbsPage) {
                         </CollapsibleTenses>
                     )
                 })}
+                <div className={styles.sourceContainer}>
+                    <p>Source</p>
+                </div>
 
-                <ModalExercises
-                    text={''}
-                    open={state.isExerciseConjugationOpen === true || state.isCheckboxListOpen === true}
-                    ref={refModal}
-                    callbackClose={callbackCloseModal}
-                >
-                    {state.isExerciseConjugationOpen === true
-                        ? <ExerciseContent /> : state.isCheckboxListOpen
-                        ? <ExerciseListCheckboxes /> : ''
-                    }
-                </ModalExercises>
-{/*
-                <h1>{`Practise`}</h1>
 
-                <ExerciseContent /> */}
-
-                <ModalExercises
-                    text={''}
-                    open={state.isModalLessonOpen}
-                    callbackClose={closeModalLesson}
-                    widerVersion={true}
-                    padding={'paddingBase'}
-                >
-                    <Lesson lesson={'präsens'} utterance={utterance} />
-                </ModalExercises>
-
-                {/* <EmbeddedExercise text={''} open={true} ref={refModal} callbackClose={callbackCloseModal}>
-                    <ExerciseConjugation
-                        verb={'sein'}
-                        tensesDropdown={props.exercisesTense}
-                        texts={textsExercise}
-                        tenseExercise={'präsens'}
-                        selectedTenses={[props.exercisesTense]}
-                        isSingleTense={true}
-                        isEmbedded={true}
-                    ></ExerciseConjugation>
-                </EmbeddedExercise> */}
             </div>
         </div>
     ) : (

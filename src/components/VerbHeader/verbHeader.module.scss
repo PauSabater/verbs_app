@@ -1,4 +1,6 @@
 .container {
+    --btn-height: 50px;
+
     // width: 250px;
     // height: 100px;
     width: calc(var(--width-page-content-wider));
@@ -20,6 +22,8 @@
     color: var(--c-font-global-lighter);
     font-size: var(--fs-xs);
     margin: 0 0 var(--mg-lg);
+    margin-left: -5px;
+    font-style: italic;
 }
 
 .description {

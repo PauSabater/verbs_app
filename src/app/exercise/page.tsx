@@ -16,6 +16,10 @@ export default function Page() {
     // const verbs = searchParams.get('verbs')?.split(',')
     // const tenses =
 
+    if (searchParams.get('random') === 'true') {
+        console.log("HEY RANDOM IS TRUE!!")
+    }
+
 
     const [verbs, setVerbs] = useState(searchParams.get('verbs')?.split(','))
     const [tenses, setTenses] = useState(searchParams.get('tenses')?.split(',').map((tense)=> {
@@ -23,6 +27,7 @@ export default function Page() {
     }))
     const [mode, setMode] = useState(searchParams.get('mode'))
     const [isExerciseSetOpen, setIsExerciseSetOpen] = useState((!verbs || verbs.length === 0 || !tenses || tenses.length === 0) && !mode)
+
 
     useEffect(() => {
         console.log("helo SEARCH PARAMS")
@@ -36,11 +41,6 @@ export default function Page() {
         setTenses(updatedTenses)
         setMode(updatedMode)
 
-        console.log('new verbs')
-        console.log(updatedVerbs)
-
-        console.log('new tenses')
-        console.log(updatedTenses)
 
         setIsExerciseSetOpen((!updatedVerbs || updatedVerbs.length === 0 || !updatedTenses || updatedTenses.length === 0) && !mode)
 
