@@ -20,7 +20,7 @@
     font-weight: 300;
     color: var(--c-font-global-lighter);
     font-size: var(--fs-xs);
-    margin: 0 0 var(--mg-lg);
+    margin: 0 0 var(--mg-sm);
     margin-left: -5px;
     font-style: italic;
 }
@@ -39,6 +39,7 @@
 }
 
 .navContainer {
+    width: 600px;
     position: absolute;
     display: flex;
     bottom: 0;
@@ -48,8 +49,8 @@
 .nextPrevLink {
     text-decoration: none;
     font-weight: 400;
-    font-size: var(--fs-global);
-    outline: 1px dotted var(--c-font-global-lighter);
+    font-size: var(--fs-sm);
+    outline: 1px dotted var(--c-grey-light);
     line-height: 50px;
     height: 50px;
     border-radius: var(--br-base);
@@ -73,10 +74,12 @@
     svg {
         height: 20px;
         width: 20px;
+        color: var(--c-grey);
     }
 
     span {
         margin: 0 5px;
+        font-weight: 350;
     }
 
     .linkMainText {

@@ -1,6 +1,20 @@
 .container {
     color: var(--c-font-global-light);
     padding-bottom: var(--pd-md);
+    background-color: var(--bg-main);
+    margin: var(--mg-sm);
+    padding: var(--pd-sm);
+    border-radius: var(--br-base);
+
+    &:nth-child(1),
+    &:nth-child(4) {
+        margin-left: calc(var(--mg-sm) * -1);
+    }
+
+    &:nth-child(3),
+    &:nth-child(6) {
+        margin-right: 0;
+    }
 
     td {
         font-size: var(--fs-sm);

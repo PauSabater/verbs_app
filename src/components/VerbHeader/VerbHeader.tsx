@@ -36,9 +36,9 @@ export default function VerbHeader() {
             <div className={styles.containerTitle}>
                 <VerbTitle verbHTML={context.verbHTML} />
             </div>
-            <VerbDetails/>
-            <VerbStemFormation />
             <p className={styles.translation}>{context.translation}</p>
+            <VerbStemFormation />
+            <VerbDetails/>
             <VerbDescription text={context.description}></VerbDescription>
             <Button
                 text={context.button.replace("&", context.verb)}

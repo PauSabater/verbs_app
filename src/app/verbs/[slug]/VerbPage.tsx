@@ -7,6 +7,7 @@ import { createContext, useLayoutEffect, useRef, useState } from 'react'
 import VerbHeader from '@/components/VerbHeader/VerbHeader'
 import { getUtteraceInstance, isAuxliaryVerb, isModalVerb } from '@/utils/utils'
 import { getTenseFromTenseName } from '@/components/ExerciseConjugation/ExerciseConjugation.exports'
+import Link from 'next/link'
 
 interface IVerbsPage {
     slug: string
@@ -113,6 +114,7 @@ export default function VerbsPage(props: IVerbsPage) {
                                 key={`tenses-table-${i}`}
                                 verb={pageVerbData.verb}
                                 mode={collapsiblesTense[i].mode}
+                                columns={collapsiblesTense[i].tenses.length === 4 ? 4 : 3}
                             >
                                 {(collapsiblesTense[i].tenses as string[]).map((tableTense, j) => {
                                     return (
@@ -131,10 +133,23 @@ export default function VerbsPage(props: IVerbsPage) {
                         )
                     })}
                     <div className={styles.sourceContainer}>
-                        <p>Source</p>
+                        <Link
+                            // href={`https://www.verbformen.com/conjugation/${props.slug}.htm`}
+                            href={`https://www.verbformen.com`}
+                            target="_blank"
+                            className={styles.sourceText}
+                        >
+                            Source for conjugations
+                        </Link>
+                        <Link
+                            // href={`https://de.wiktionary.org/wiki/Flexion:${props.slug}`}
+                            href={`https://de.wiktionary.org`}
+                            className={styles.sourceText}
+                            target="_blank"
+                            >
+                            Source for tenses groups
+                        </Link>
                     </div>
-
-
                 </div>
             </div>
         </ContextVerbPage.Provider>

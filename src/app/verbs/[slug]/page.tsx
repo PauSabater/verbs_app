@@ -7,9 +7,11 @@ import verbsList from '@/data/verbsList.json'
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
-    const pageData = await getApiVerbData(params.slug)
+
+    const decodedSlug: string = decodeURIComponent(params.slug)
+    const pageData = await getApiVerbData(decodeURI(params.slug))
     const pageTexts = await getPageVerbsTexts()
-    const verbNum = verbsList.verbs.findIndex((item) => item === params.slug)
+    const verbNum = verbsList.verbs.findIndex((item) => item === decodedSlug)
     const prevVerb = verbNum !== 0 ? verbsList.verbs[verbNum - 1] : undefined
     const nextVerb = verbsList.verbs[verbNum + 1]
 
@@ -18,7 +20,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <Fragment>
             <VerbsPage
                 slug={params.slug}
-                prevVerb={prevVerb}
+                prevVerb={prevVerb || ''}
                 nextVerb={nextVerb}
                 verbNum={verbNum}
                 data={JSON.stringify(pageData)}

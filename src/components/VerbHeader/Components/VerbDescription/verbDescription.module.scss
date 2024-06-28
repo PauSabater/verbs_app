@@ -22,13 +22,21 @@
 }
 
 .description {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    bottom: 54px;
     color: var(--c-font-global-light);
     font-size: var(--fs-sm);
-    width: 80%;
-    max-width: 800px;
-    margin-bottom: var(--mg-xl);
-    // height: 0;
-    // overflow: hidden;
+    font-weight: 350;
+    width: 600px;
+    padding: var(--pd-lg);
+    border-radius: var(--br-base);
+    background-color: var(--bg-main);
+
+    b {
+        font-weight: 500;
+    }
 
     i {
         font-weight: 300;

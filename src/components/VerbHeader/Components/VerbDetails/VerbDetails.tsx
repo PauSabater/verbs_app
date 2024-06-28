@@ -49,9 +49,9 @@ export default function VerbDetails() {
                         <div className={styles.separator}/></>
                     :   <></>
             }
-            {
+            {/* {
                 <><VerbStemFormation/></>
-            }
+            } */}
             <p className={styles.detail}>#{context.verbNum}</p>
         </div>
     )

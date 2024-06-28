@@ -54,9 +54,11 @@ export function TensesExamples(props: ITensesExamples) {
             <div className={styles.titleContainer}>
                 <p className={styles.title}>Examples</p>
             </div>
-            {props.tenses.map((tense, i) => {
-                return <Fragment key={`table-${i}`}>{getExamples(tense, 'en', i)}</Fragment>
-            })}
+            <div className={styles.examplesContainer}>
+                {props.tenses.map((tense, i) => {
+                    return <Fragment key={`table-${i}`}>{getExamples(tense, 'en', i)}</Fragment>
+                })}
+            </div>
         </div>
     )
 }
