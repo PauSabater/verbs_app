@@ -1,11 +1,11 @@
-import { SVGArrow, SVGExercise, SVGLink, SVGNext, SVGRandom, SVGRestart, SVGSearch } from '@/assets/svg/svgExports'
+import { SVGAdd, SVGArrow, SVGExercise, SVGLink, SVGNext, SVGRandom, SVGRestart, SVGSearch } from '@/assets/svg/svgExports'
 import styles from './Button.module.scss'
 import Link from 'next/link'
 
 interface IButton {
     text: string,
     width?: "fullWidth" | "fitContent",
-    icon?: "exercise" | "repeat" | "next" | "link" | "random" | "search" | "restart",
+    icon?: "exercise" | "repeat" | "next" | "link" | "random" | "search" | "restart" | "add" | '',
     color?: TColor,
     size?: "lg" | "xs" | "xsSquare" | "square"
     callback?: Function
@@ -29,6 +29,7 @@ export function Button(props: IButton) {
         if (props.icon === 'random') return <SVGRandom />
         if (props.icon === 'search') return <SVGSearch />
         if (props.icon === 'restart') return <SVGRestart />
+        if (props.icon === 'add') return <SVGAdd />
     }
 
     const handleBtnClick = ()=> {

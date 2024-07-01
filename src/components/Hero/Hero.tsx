@@ -19,7 +19,9 @@ export function Hero() {
                 {/* <p>Set your exercise and start mastering verbs!</p> */}
 
                 <ExerciseGenerate
-                    isSearchBarOption={false}/>
+                    isSearchBarOption={false}
+                    component='hero'
+                />
 
             </div>
 

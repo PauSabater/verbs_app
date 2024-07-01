@@ -12,7 +12,7 @@ export const ShareExercise = ()=> {
         <div
             className={styles.container}
         >
-            <p>Share on</p>
+            <p>Share exercise on</p>
 
             <div className={styles.iconContainer}>
 

@@ -170,7 +170,7 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                 replaceTensesArrayForUrl(state.selectedTenses)
             )
 
-            router.push(`/exercise?random=true&types=${typeParams.toLowerCase()}&level=${levelParams}&tenses=${tensesParams}`)
+            router.push(`/exercise?random=true&types=${typeParams.toLowerCase()}&levels=${levelParams}&tenses=${tensesParams}`)
 
             // const tensesParams: string = getComaSeparatedStringFromArray(
             //     replaceTensesArrayForUrl(state.selectedTenses))

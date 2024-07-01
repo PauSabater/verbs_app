@@ -34,7 +34,9 @@ export interface IExerciseConjugationTexts {
         check: string,
         checkAgain: string,
         next: string,
-        startAgain: string
+        startAgain: string,
+        nextTense: string,
+        newExercise: string
     }
 }
 
@@ -64,7 +66,7 @@ export interface IExerciseConjugation {
     selectedTenses?: string[],
     isSingleTense?: boolean,
     isEmbedded?: boolean,
-    verbs?: string[],
+    verbs: string[],
     tenses: string[],
     isLessonExercise?: boolean,
     actionOnBtnClose?: any,
@@ -88,7 +90,7 @@ export type TExerciseState = "empty" | "filling" | "filled" | "success" | "error
 export type TExerciseModes = "indicative" | "conjunctive" | "conditionalOrConjunctiveII" | "imperative"
 
 
-export const getButtonColor = (state: string, isLastExercise: boolean, isSecondBtn: boolean)=> {
+export const getButtonColor = (state: string, btnFeatures: {isLastExercise: boolean, isSecondBtn: boolean})=> {
     switch(state) {
         case statesExerciseConjugation.empty:
             return "inactive"
@@ -97,7 +99,7 @@ export const getButtonColor = (state: string, isLastExercise: boolean, isSecondB
         case statesExerciseConjugation.filled:
             return "primary"
         case statesExerciseConjugation.success:
-            if (isLastExercise && isSecondBtn === false) return "primaryReverse"
+            if (btnFeatures.isSecondBtn === false) return "primaryReverse"
             else return "success"
         case statesExerciseConjugation.error:
             return "inactive"

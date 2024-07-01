@@ -116,22 +116,9 @@
             "content": "Regular verbs"
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "For regular verbs ending in <b data-verb-prefix>-en</b> (e.g., "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "spielen",
-                    "contentHtml": "spiel<b data-verb-prefix>en</b>"
-                },
-                {
-                    "type": "text",
-                    "content": " - <i>to play</i>), the infinitive ending <b data-verb-prefix>-en</b> is replaced by the following endings:"
-                }
-            ]
+            "type": "paragraph",
+            "content": "For regular verbs ending in <b data-verb-prefix>-en</b> (e.g., $__spielen-spielen[verb-link-hover]__$ - <i>to play</i>), the infinitive ending <b data-verb-prefix>-en</b> is replaced by the following endings: "
+
         },
         {
             "type": "table",
@@ -166,30 +153,12 @@
             }
         },
         {
-            "type": "exercise-embeded___",
-            "content": "präsens",
-            "param": "tanzen"
-        },
-        {
             "type": "h3",
             "content": "Irregular verbs"
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Some irregular verbs require memorization since they will not follow any pattern (e.g., "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "sein"
-                },
-                {
-                    "type": "text",
-                    "content": " - <i>to be</i>):"
-                }
-            ]
+            "type": "paragraph",
+            "content": "Some irregular verbs require memorization since they will not follow any pattern (e.g., $__sein-sein[verb-link-hover]__$ - <i>to be</i>):"
         },
         {
             "type": "table",
@@ -224,45 +193,8 @@
             }
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "The 5 most important verbs of this type are the following: "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "sein"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "werden"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "können"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "mögen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
+            "type": "paragraph",
+            "content": "The 5 most important verbs of this type are the following: $__sein-sein[verb-link-hover]__$, $__werden-werden[verb-link-hover]__$, $__können-können[verb-link-hover]__$ and $__mögen-mögen[verb-link-hover]__$."
         },
         {
             "type": "h3",
@@ -318,38 +250,8 @@
             }
         },
         {
-            "type": "paragraph-components",
-            "marginList": true,
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Other examples are  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "geben"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "sprechen"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "nehmen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
+            "type": "paragraph",
+            "content": "Other examples are $__geben-geben[verb-link-hover]__$, $__sprechen-sprechen[verb-link-hover]__$ and $__nehmen-nehmen[verb-link-hover]__$."
         },
         {
             "type": "list",
@@ -397,30 +299,8 @@
             }
         },
         {
-            "type": "paragraph-components",
-            "marginList": true,
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Other examples are  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "lesen"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "stehen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
+            "type": "paragraph",
+            "content": "Other examples are $__lesen-lesen[verb-link-hover]__$ and $__stehen-stehen[verb-link-hover]__$."
         },
         {
             "type": "list",
@@ -452,7 +332,7 @@
             "marginList": true,
             "example": {
                 "audio": "Die Blätter fallen von den Bäumen.",
-                "text": "Example: Die Blätter $__fallen-fallen[verb-link-hover]__$  von den Bäumen.",
+                "text": "Example: Die Blätter $__fallen-fallen[verb-link-hover]__$ von den Bäumen.",
                 "translation": "(The leaves are falling from the trees.)"
             }
         },
@@ -468,38 +348,8 @@
 
         },
         {
-            "type": "paragraph-components",
-            "marginList": true,
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "Other examples are  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "schlafen"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "fahren"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "raten"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
+            "type": "paragraph",
+            "content": "Other examples are $__schlafen-schlafen[verb-link-hover]__$, $__fahren-fahren[verb-link-hover]__$ and $__raten-raten[verb-link-hover]__$."
         },
         {
             "type": "list",
@@ -540,45 +390,8 @@
             "content": "Exercises"
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "<b>Exercise 1:</b> Practise tense präsens for the following <b>regular</b> verbs:</br> "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "spielen"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "tanzen"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "lachen"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "wohnen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
+            "type": "paragraph",
+            "content": "<b>Exercise 1:</b> Practise tense präsens for the following <b>regular</b> verbs:</br> $__spielen-spielen[verb-link-hover]__$, $__tanzen-tanzen[verb-link-hover]__$, $__lachen-lachen[verb-link-hover]__$ and $__wohnen-wohnen[verb-link-hover]__$:"
         },
         {
             "type": "exercise-btn-link",
@@ -586,45 +399,8 @@
             "path": "/exercises/prasens-tense-regular-verbs"
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "<b>Exercise 2:</b> Practise tense präsens for the following <b>irregular</b> verbs:</br> "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "sein"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "werden"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "können"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "mögen"
-                },
-                {
-                    "type": "text",
-                    "content": "."
-                }
-            ]
+            "type": "paragraph",
+            "content": "<b>Exercise 2:</b> Practise tense präsens for the following <b>irregular</b> verbs:</br> $__sein-sein[verb-link-hover]__$, $__werden-werden[verb-link-hover]__$, $__können-können[verb-link-hover]__$ and $__mögen-mögen[verb-link-hover]__$:"
         },
         {
             "type": "exercise-btn-link",

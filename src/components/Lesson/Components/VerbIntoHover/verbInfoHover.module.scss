@@ -15,7 +15,17 @@
     box-shadow: 3px 3px 5px 2px rgba(0,0,0,0.11);
     transform: translateX(-50%) translateY(3px);
     transition: opacity var(--tr-base), transform var(--tr-base);
-z-index
+    animation: appear var(--tr-fast);
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
     &:after {
         content: '';
         position: absolute;

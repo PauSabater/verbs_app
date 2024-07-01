@@ -11,7 +11,7 @@ export const TensesList = ()=> {
         <div
             className={styles.container}
         >
-            <p>Tenses</p>
+            <p className={styles.title}>Tenses</p>
             {
                 context && context.tensesState ? context.tensesState.map((tense)=> {
                     return (

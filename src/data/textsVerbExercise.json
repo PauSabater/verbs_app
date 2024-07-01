@@ -29,6 +29,8 @@
         "check": "CHECK",
         "checkAgain": "CHECK AGAIN",
         "next": "NEXT EXERCISE",
-        "startAgain": "START AGAIN"
+        "startAgain": "START AGAIN",
+        "nextTense": "next tense:",
+        "newExercise": "CREATE NEW TRAINNING"
     }
 }

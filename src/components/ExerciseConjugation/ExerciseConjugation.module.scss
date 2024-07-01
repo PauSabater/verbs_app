@@ -21,7 +21,8 @@
     background: var(--bg-white);
     border-radius: 20px;
     padding: var(--mg-md) var(--mg-xl);
-    font-size: var(--fs-xs);
+    font-size: var(--fs-sm);
+    font-weight: 500;
     text-align: left;
     border: none;
     color: var(--c-font-global);
@@ -195,7 +196,7 @@
     margin: 0;
     font-size: var(--exercise-person-fs, var(--fs-lg));
     font-weight: 400;
-    color: var(--c-black-lighter);
+    color: var(--c-grey-darker);
     align-self: center;
 }
 

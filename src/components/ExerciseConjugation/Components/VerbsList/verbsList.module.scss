@@ -7,15 +7,25 @@
     height: fit-content;
 }
 
+.verb {
+    color: var(--c-grey);
+    margin: 0;
+}
+
 .verb,
 .underlined {
     margin: 0;
     padding: 0;
 }
 
-.title {
-    margin: 0 0 var(--mg-sm) 0;
+.underlined {
+    color: var(--c-font-global);
+}
 
+.title {
+    font-weight: 400;
+    font-size: var(--fs-sm);
+    margin: 0 0 var(--mg-sm) 0;
 }
 
 .verbContainer {
@@ -32,4 +42,9 @@
     left: -22px;
     height: 35px;
     top: 3px;
+}
+
+.completed {
+    color: var(--c-primary);
+    margin: 0;
 }
