@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { ExerciseConjugation } from '@/components/ExerciseConjugation/ExerciseConjugation'
 import textsVerbExercise from '@/data/textsVerbExercise.json'
@@ -13,14 +13,99 @@ export default function Page() {
 
     const searchParams = useSearchParams()
 
-    const verbs = searchParams.get('verbs')?.split(',')
-    const tenses = searchParams.get('tenses')?.split(',').map((tense)=> {
+    // const verbs = searchParams.get('verbs')?.split(',')
+    // const tenses =
+
+    if (searchParams.get('random') === 'true') {
+        console.log("HEY RANDOM IS TRUE!!")
+    }
+
+    console.log(searchParams)
+    console.log(searchParams.get('types'))
+
+    // random mode states:
+    const [isRandom, setIsRandom] = useState(searchParams.get('random') === 'true')
+    const [types, setTypes] = useState(searchParams.get('types')?.split(','))
+    const [levels, setLevels] = useState(searchParams.get('levels')?.split(','))
+
+
+    const [verbs, setVerbs] = useState(searchParams.get('verbs')?.split(','))
+    const [tenses, setTenses] = useState(searchParams.get('tenses')?.split(',').map((tense)=> {
         return replaceTenseFromURL(tense)
-    })
+    }))
+    const [mode, setMode] = useState(searchParams.get('mode'))
+    const [isExerciseSetOpen, setIsExerciseSetOpen] = useState((!verbs || verbs.length === 0 || !tenses || tenses.length === 0) && !mode)
 
-    const mode = searchParams.get('mode')
 
-    const items = [
+
+
+    useEffect(() => {
+        console.log("helo SEARCH PARAMS")
+        const updatedVerbs = searchParams.get('verbs')?.split(',')
+        const updatedTenses = searchParams.get('tenses')?.split(',').map((tense)=> {
+            return replaceTenseFromURL(tense)
+        })
+        const updatedMode = searchParams.get('mode')
+
+        setVerbs(updatedVerbs)
+        setTenses(updatedTenses)
+        setMode(updatedMode)
+
+
+        setIsExerciseSetOpen((!updatedVerbs || updatedVerbs.length === 0 || !updatedTenses || updatedTenses.length === 0) && !mode)
+
+        console.log('display is')
+        console.log((!updatedVerbs || updatedVerbs.length === 0 || !updatedTenses || updatedTenses.length === 0) && !mode)
+
+    },[searchParams])
+
+
+    const onSetExerciseOpenChange = (isOpen: boolean)=> {
+        setIsExerciseSetOpen(isOpen)
+    }
+
+
+    return (
+        <>
+            {
+                <div className={styles.container}>
+                    <div className={styles.layout}>
+                        <div className={styles.containerExercise}>
+                            {
+                                mode ?
+                                    <ExerciseCheckboxList
+                                        statement={`Select the tenses to practise of the ${mode} mode:`}
+                                        items={getSelectorItems(mode)}
+                                        callbackOnConfirm={()=> {console.log('hey confirm')}}
+                                        isExerciseLayout={true}
+                                        verbs={verbs || []}
+                                    />
+                                :
+                                    <ExerciseConjugation
+                                        verb={verbs ? verbs[0] : ''}
+                                        tensesDropdown={['hey', 'eho']}
+                                        texts={textsVerbExercise}
+                                        tenseExercise={tenses ? tenses[0] : ''}
+                                        selectedTenses={['präsens', 'präteritum']}
+                                        isSingleTense={false}
+                                        // isSingleUse={false}
+                                        isEmbedded={true}
+                                        verbs={verbs || []}
+                                        tenses={tenses || []}
+                                        isSetNewExerciseOpen={isExerciseSetOpen}
+                                        callbackOnSetExerciseChange={onSetExerciseOpenChange}
+                                    ></ExerciseConjugation>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </>
+    )
+}
+
+
+const items = [
             {
                 "title": "Indicative",
                 "options": ["präsens", "präteritum", "perfekt", "plusquam", "futur_I", "futur_II"]
@@ -85,41 +170,3 @@ export default function Page() {
                 return []
         }
     }
-
-
-    return (
-        <>
-            {
-                <div className={styles.container}>
-                    <div className={styles.layout}>
-                        <div className={styles.containerExercise}>
-                            {
-                                mode ?
-                                    <ExerciseCheckboxList
-                                        statement={`Select the tenses to practise of the ${mode} mode:`}
-                                        items={getSelectorItems(mode)}
-                                        callbackOnConfirm={()=> {console.log('hey confirm')}}
-                                        isExerciseLayout={true}
-                                        verbs={verbs || []}
-                                    />
-                                :
-                                    <ExerciseConjugation
-                                        verb={verbs ? verbs[0] : ''}
-                                        tensesDropdown={['hey', 'eho']}
-                                        texts={textsVerbExercise}
-                                        tenseExercise={tenses ? tenses[0] : ''}
-                                        selectedTenses={['präsens', 'präteritum']}
-                                        isSingleTense={false}
-                                        // isSingleUse={false}
-                                        isEmbedded={true}
-                                        verbs={verbs}
-                                        tenses={tenses || []}
-                                    ></ExerciseConjugation>
-                            }
-                        </div>
-                    </div>
-                </div>
-            }
-        </>
-    )
-}

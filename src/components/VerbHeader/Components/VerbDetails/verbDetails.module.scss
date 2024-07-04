@@ -1,17 +1,40 @@
 .container {
+    --info-circle-color: var(--c-grey-light);
+    --info-circle-height: 35px;
+
+    box-sizing: border-box;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    background: var(--bg-main);
+    width: min-content;
+    padding: 10px 25px 10px 15px;
+    border-radius: var(--br-base);
 
     p {
-        font-size: var(--fs-global);
-        font-weight: 600;
-        color: var(--c-font-global-lighter);
+        position: relative;
+        font-size: var(--fs-sm);
+        font-weight: 500 !important;
+        color: var(--c-font-global-lighter) !important;
         margin: 0;
+        line-height: var(--info-circle-height);
     }
+}
 
-    div:first-child {
-        margin-right: var(--mg-sm);
+.detail {
+    padding-left: 40px;
+    text-wrap: nowrap;
+    font-size: var(--fs-sm);
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        height: 25px;
+        width: 1px;
+        background: var(--c-grey-lighter);
+        transform: translateY(-50%);
     }
 }
 

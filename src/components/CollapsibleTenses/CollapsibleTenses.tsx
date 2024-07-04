@@ -22,6 +22,7 @@ interface ICollapsibleTenses {
     utterance: SpeechSynthesisUtterance | null
     verb: string
     mode: string
+    columns: number
 }
 
 export function CollapsibleTenses(props: ICollapsibleTenses) {
@@ -40,7 +41,7 @@ export function CollapsibleTenses(props: ICollapsibleTenses) {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${styles.noExamples}`}>
             <div className={styles.tablesContainer}>
                 <div
                     className={styles.clickableOpener}
@@ -52,29 +53,25 @@ export function CollapsibleTenses(props: ICollapsibleTenses) {
                     <h2 className={`${styles.title}`}>{props.texts.title}</h2>
                     <p className={styles.description}>{props.texts.description?.replace('-verb-', props.verb)}</p>
                 </div>
-                <div className={styles.collapsibleContent} ref={refCollapsibleContent}>
+                <div
+                    data-columns={props.columns}
+                    className={`${styles.collapsibleContent}`}
+                    ref={refCollapsibleContent}
+                >
                     {props.children}
-                    <Link href={`/exercise?mode=${props.mode}&verbs=${props.verb}`}>
+
+                    <Link
+                        className={styles.btnPractise}
+                        href={`/exercise?mode=${props.mode}&verbs=${props.verb}`}
+                    >
                         <Button
                             text={`Practise ${props.texts.title}`}
-                            color={'primary'}
+                            color={'primaryDark'}
                             icon={'exercise'}
                         />
                     </Link>
-
                 </div>
             </div>
-            {props.examples ?
-                <div className={styles.containerExamples}>
-                    <TensesExamples
-                        title={'Examples'}
-                        tenses={props.tenses}
-                        examples={props.examples}
-                        utterance={props.utterance}
-                    />
-                </div>
-                : ''
-            }
         </div>
     )
 }

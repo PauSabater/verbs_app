@@ -20,6 +20,7 @@
 
 .tense {
     margin: 0;
+    font-size: var(--fs-sm);
 }
 
 .active {
@@ -28,7 +29,7 @@
 }
 
 .success {
-    color: blue;
+    color: var(--c-primary);
 }
 
 .error {
@@ -36,5 +37,12 @@
 }
 
 .inactive {
-    color: grey;
+    color: var(--c-grey);
+    font-weight: 400;
+}
+
+.title {
+    font-weight: 400;
+    font-size: var(--fs-sm);
+    margin: 0 0 var(--mg-sm) 0;
 }

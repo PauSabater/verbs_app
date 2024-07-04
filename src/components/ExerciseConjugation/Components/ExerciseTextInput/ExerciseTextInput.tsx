@@ -1,11 +1,13 @@
 'use client'
 
-import { ChangeEvent, Fragment, forwardRef, useImperativeHandle, useRef, useState } from 'react'
+import { ChangeEvent, Fragment, forwardRef, useContext, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styles from './ExerciseTextInput.module.scss'
 import { formatStringForValidation } from '@/utils/utils'
 import { strError, strInactive, strSuccess } from '@/utils/constants'
 import { getFeedbackSvg } from '@/assets/svg/svgExports'
 import { sanitize } from 'isomorphic-dompurify'
+import { ExerciseConjugationContext } from '../../ExerciseConjugation'
+import { IExerciseConjugationState } from '../../ExerciseConjugationReducer'
 
 interface IExerciseInput {
     answers: string[]
@@ -14,6 +16,7 @@ interface IExerciseInput {
     actionOnFilled: Function
     actionOnEmptied: Function
     actionOnCorrected: Function
+    displayAnswer: boolean
 }
 
 type TExerciseInputState = 'empty' | 'filling' | 'success' | 'error'
@@ -26,6 +29,8 @@ export const statesInputExercise = {
 }
 
 const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
+    const context = useContext(ExerciseConjugationContext) as IExerciseConjugationState
+
     const isFillingState = (state: string) => {
         return inputState === statesInputExercise.filling
     }
@@ -46,6 +51,10 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
         focusInput
     }))
 
+    // useEffect(()=> {
+
+    // }, [context.ex])
+
     const handleChangeEvent = (e: ChangeEvent<HTMLInputElement>) => {
         const inputValue = (e.target as HTMLInputElement).value
 
@@ -57,8 +66,11 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
             props.actionOnFilled()
             setInputState(statesInputExercise.filling)
         } else if (inputValue === '') {
-            props.actionOnEmptied()
-            setInputState(statesInputExercise.empty)
+            // if we empty it on error mode we do not change state to prevent error
+            if (inputState !== statesInputExercise.error) {
+                props.actionOnEmptied()
+                setInputState(statesInputExercise.empty)
+            }
         }
     }
 
@@ -92,7 +104,10 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
         <div className={styles.container}>
             <input ref={refInput} type="text" className={styles.input} data-state={inputState} onChange={(e) => handleChangeEvent(e)}></input>
             {getFeedbackSvg(inputState)}
-            {isErrorState(inputState) ? <p className={styles.answerCorrection} dangerouslySetInnerHTML={{ __html: sanitize(props.answerHTML.replace('&#42;', '')) }}></p> : null}
+            {props.displayAnswer && !isSuccessState(context.exerciseState)
+                ? <p className={styles.answerCorrection} dangerouslySetInnerHTML={{ __html: sanitize(props.answerHTML.replace('&#42;', '')) }}></p>
+                : <></>
+            }
         </div>
     )
 })

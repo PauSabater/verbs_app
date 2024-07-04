@@ -1,17 +1,17 @@
 import Image from 'next/image'
 import styles from './verbStemFormation.module.scss'
 import { sanitize } from 'isomorphic-dompurify'
+import { useContext } from 'react'
+import { ContextVerbPage, IVerbsPageContext } from '@/app/verbs/[slug]/VerbPage'
 
 
-interface IVerbTitle {
-    stemFormationHTML: string
-}
+export default function VerbStemFormation() {
 
-export default function VerbStemFormation(props: IVerbTitle) {
+    const context = useContext(ContextVerbPage) as IVerbsPageContext
 
     return (
         <div className={styles.container}>
-            <p className={styles.formation} dangerouslySetInnerHTML={{__html: sanitize(props.stemFormationHTML)}}></p>
+            <p className={styles.formation} dangerouslySetInnerHTML={{__html: sanitize(context.stemFormationHTML)}}></p>
         </div>
     )
 }

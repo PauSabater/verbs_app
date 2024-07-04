@@ -7,10 +7,10 @@
     width: var(--info-circle-height, 40px);
     border-radius: 25px;
     background: transparent;
-    border: 1px solid var(--info-circle-color, --c-font-global);
+    border: 1px solid var(--info-circle-color, var(--c-font-global));
 
     p.text {
-        color: var(--info-circle-color, --c-font-global);
+        color: var(--info-circle-color-font, var(--c-font-global));
         margin: 0;
         font-weight: 600;
     }

@@ -1,6 +1,20 @@
 .container {
     color: var(--c-font-global-light);
     padding-bottom: var(--pd-md);
+    background-color: var(--bg-main);
+    margin: var(--mg-sm);
+    padding: var(--pd-sm);
+    border-radius: var(--br-base);
+
+    &:nth-child(1),
+    &:nth-child(4) {
+        margin-left: calc(var(--mg-sm) * -1);
+    }
+
+    &:nth-child(3),
+    &:nth-child(6) {
+        margin-right: 0;
+    }
 
     td {
         font-size: var(--fs-sm);
@@ -43,7 +57,7 @@
     align-items: center;
     width: 0px;
     font-size: var(--fs-lg);
-    color: var(--c-font-global-light);
+    color: var(--c-primary-darker);
     line-height: 45px;
     text-align: left;
     white-space: nowrap;
@@ -58,5 +72,9 @@
         padding-left: var(--pd-sm);
         right: -30px;
         transition: transform var(--tr-base);
+    }
+
+    a {
+        color: currentColor;
     }
 }

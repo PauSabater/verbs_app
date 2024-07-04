@@ -1,11 +1,11 @@
-import { SVGArrow, SVGExercise, SVGLink, SVGNext, SVGRepeat } from '@/assets/svg/svgExports'
+import { SVGAdd, SVGArrow, SVGExercise, SVGLink, SVGNext, SVGRandom, SVGRestart, SVGSearch } from '@/assets/svg/svgExports'
 import styles from './Button.module.scss'
 import Link from 'next/link'
 
 interface IButton {
     text: string,
     width?: "fullWidth" | "fitContent",
-    icon?: "exercise" | "repeat" | "next" | "link",
+    icon?: "exercise" | "repeat" | "next" | "link" | "random" | "search" | "restart" | "add" | '',
     color?: TColor,
     size?: "lg" | "xs" | "xsSquare" | "square"
     callback?: Function
@@ -14,27 +14,31 @@ interface IButton {
     isLink?: boolean
     path?: string
     paramOnClick?: string
+    isTextOnHover?: boolean
 }
 
-export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "primaryDarker" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success" | "transparent" | "greyDark"
+export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "primaryDarker" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success" | "transparent" | "greyDark" | "greyReverse"
 
 export function Button(props: IButton) {
 
     const getIcon = (icon: string)=> {
-        if (props.icon === "exercise") return (<SVGExercise></SVGExercise>)
-        if (props.icon === "repeat") return (<SVGRepeat></SVGRepeat>)
-        if (props.icon === "next") return (<SVGArrow></SVGArrow>)
-        if (props.icon === 'link') return <SVGLink></SVGLink>
+        if (props.icon === "exercise") return (<SVGExercise />)
+        if (props.icon === "repeat") return (<SVGRestart />)
+        if (props.icon === "next") return (<SVGArrow />)
+        if (props.icon === 'link') return <SVGLink />
+        if (props.icon === 'random') return <SVGRandom />
+        if (props.icon === 'search') return <SVGSearch />
+        if (props.icon === 'restart') return <SVGRestart />
+        if (props.icon === 'add') return <SVGAdd />
     }
 
     const handleBtnClick = ()=> {
-        console.log("CLIIIIIICK")
         if (!props.callback) return
         props.callback(props.paramOnClick || '')
     }
 
     const getClassNames = ()=> {
-        return `${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']}`
+        return `${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']} ${props.isTextOnHover ? styles.textOnHover : ''}`
     }
 
     return (

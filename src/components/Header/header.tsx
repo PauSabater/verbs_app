@@ -57,7 +57,9 @@ export default function Header() {
                     </Link>
                 </div>
                 <div className={styles.searchBarContainer}>
-                    <SearchBar />
+                    <SearchBar
+                        placeholder={'Search verb'}
+                    />
                 </div>
 
                 <div className={styles.authenticationContainer}>
@@ -103,8 +105,8 @@ const SubMenuLessons = ()=> {
     }, [])
 
     const outsideListListener = (e: Event)=> {
-        console.log(e.target)
-        console.log((e.target as HTMLElement).nodeName)
+        // console.log(e.target)
+        // console.log((e.target as HTMLElement).nodeName)
 
         if (!(refContainer.current && (refContainer.current as HTMLElement).contains(e.target as Node))) {
             setIsSubMenuOpen(false)

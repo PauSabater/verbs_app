@@ -3,4 +3,192 @@
 
     display: flex;
     column-gap: 5px;
+    width: 750px;
+    margin-bottom: 8px;
+}
+
+.exerciseGenerate {
+    position: relative;
+}
+
+.containerRandomOption,
+.searchBarContainer {
+    position: relative;
+    display: flex;
+    column-gap: 5px;
+    animation: slideUp var(--tr-base);
+    width: 450px;
+
+    &[data-display="false"] {
+        display:none;
+    }
+}
+
+.btnsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-bottom: 10px;
+}
+
+.selectorContainer {
+    position: relative;
+
+    .selectedTensesContainer {
+        width: 340px;
+    }
+}
+
+.error {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    margin: 0;
+    color: var(--c-secondary);
+    font-size: var(--fs-sm);
+    animation: slideUp var(--tr-base);
+}
+
+.selectedTensesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    z-index: -1;
+}
+
+.wrap {
+    position: relative;
+}
+
+.searchBarContainer {
+    position: relative;
+    width: 450px;
+
+    svg[data-svg-random] {
+        color: var(--c-grey);
+    }
+}
+
+.typesContainer,
+.levelsContainer {
+    position: relative;
+    // width: 450px;
+
+    svg[data-svg-random] {
+        color: var(--c-grey);
+    }
+}
+
+
+.animated {
+    animation: appear var(--tr-base);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+.selectedTenseContainer {
+    position: relative;
+    width: min-content;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--c-primary-lighter-hover);
+    border-radius: 20px;
+    height: 45px;
+    margin-bottom: var(--mg-xs);
+
+    .selectedTenseContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 40px;
+    }
+
+    .crossButton {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 40px;
+        border-radius: 40px;
+        transition: background-color var(--tr-fast);
+        margin-left: 4px;
+        border: none;
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--c-primary-lighter);
+
+            svg[data-svg-cross] {
+                pointer-events: none;
+                transform: scale(1.2);
+            }
+        }
+    }
+
+    svg[data-svg-cross] {
+        height: 9px;
+        opacity: 0.7;
+        transition: transform var(--tr-fast);
+    }
+}
+
+.selectedTense {
+    cursor: pointer;
+    width: min-content;
+    padding: 0 0 0 var(--pd-md);
+    margin: 0;
+    text-wrap: nowrap;
+}
+
+.restartBtn {
+    background: none;
+    border: none;
+    height: var(--btn-height);
+    width: var(--btn-height);
+
+    svg {
+        color: var(--c-grey);
+        height: 18px;
+    }
+}
+
+.btnRestartContainer {
+    position: absolute;
+    top: 60px;
+    left: 0;
+
+    button {
+        border: none;
+        animation: appear var(--tr-base);
+    }
+
+    svg[data-svg-restart] {
+        height: 17px;
+        color: var(--c-grey);
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

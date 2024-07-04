@@ -34,7 +34,9 @@ export interface IExerciseConjugationTexts {
         check: string,
         checkAgain: string,
         next: string,
-        startAgain: string
+        startAgain: string,
+        nextTense: string,
+        newExercise: string
     }
 }
 
@@ -64,11 +66,13 @@ export interface IExerciseConjugation {
     selectedTenses?: string[],
     isSingleTense?: boolean,
     isEmbedded?: boolean,
-    verbs?: string[],
+    verbs: string[],
     tenses: string[],
     isLessonExercise?: boolean,
-    actionOnBtnClose?: any
-    conjugationCurrentVerb?: any
+    actionOnBtnClose?: any,
+    conjugationCurrentVerb?: any,
+    isSetNewExerciseOpen?: boolean
+    callbackOnSetExerciseChange?: Function
     // isIrregular: string
 }
 
@@ -86,7 +90,7 @@ export type TExerciseState = "empty" | "filling" | "filled" | "success" | "error
 export type TExerciseModes = "indicative" | "conjunctive" | "conditionalOrConjunctiveII" | "imperative"
 
 
-export const getButtonColor = (state: string, isLastExercise: boolean, isSecondBtn: boolean)=> {
+export const getButtonColor = (state: string, btnFeatures: {isLastExercise: boolean, isSecondBtn: boolean})=> {
     switch(state) {
         case statesExerciseConjugation.empty:
             return "inactive"
@@ -95,7 +99,7 @@ export const getButtonColor = (state: string, isLastExercise: boolean, isSecondB
         case statesExerciseConjugation.filled:
             return "primary"
         case statesExerciseConjugation.success:
-            if (isLastExercise && isSecondBtn === false) return "primaryReverse"
+            if (btnFeatures.isSecondBtn === false) return "primaryReverse"
             else return "success"
         case statesExerciseConjugation.error:
             return "inactive"
@@ -125,17 +129,17 @@ export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string
     // console.log(tableTense)
     // console.log(mode || '--')
 
-    if (mode === 'subjunctive_II' && tableTense === 'konjunktiv_II') {
-        const mode = tenses.conditionalOrConjunctiveII as any
-        console.log(mode[tableTense][0])
-        return mode[tableTense][0]
-    }
+    // if (mode === 'subjunctive_II' && tableTense === 'konjunktiv_II') {
+    //     const mode = tenses.conditionalOrConjunctiveII as any
+    //     console.log(mode[tableTense][0])
+    //     return mode[tableTense][0]
+    // }
 
-    if (mode === 'subjunctive_I' && tableTense === 'konjunktiv_II') {
-        const mode = tenses.conjunctive as any
-        console.log(mode[tableTense][0])
-        return mode[tableTense][0]
-    }
+    // if (mode === 'subjunctive_I' && tableTense === 'konjunktiv_II') {
+    //     const mode = tenses.conjunctive as any
+    //     console.log(mode[tableTense][0])
+    //     return mode[tableTense][0]
+    // }
 
     for (const mode of Object.values(tenses)) {
 

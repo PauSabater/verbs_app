@@ -18,6 +18,7 @@ interface IVerbData {
 }
 
 interface IVerbTable {
+    title: string,
     verb: string,
     tense: string,
     verbData: IVerbData | undefined,
@@ -66,10 +67,10 @@ export default function VerbTable(props: IVerbTable) {
             <table>
                 <thead>
                     <tr>
-                        <th colSpan={3} className={styles.tenseTitle}>
+                        <th colSpan={3} className={`${styles.tenseTitle}`}>
                             <a href={`https://localhost:3000/exercise?tenses=${replaceTenseForURL(props.tense)}&verbs=${props.verb}`}>
                                 <HoverWithInfo text={`practise ${props.tense} tense`} bg={"primaryLighter"}>
-                                    {props.tense}
+                                    {props.title}
                                     <SVGExercise></SVGExercise>
                                 </HoverWithInfo>
                             </a>

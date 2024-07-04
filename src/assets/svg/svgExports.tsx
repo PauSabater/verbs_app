@@ -10,13 +10,22 @@ export function SVGExercise({color}: {color?: string}) { return (
     </svg>
 )}
 
-export function SVGRepeat({color}: {color?: string}) { return (
-    <svg viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+export function SVGRestart({color}: {color?: string}) { return (
+    <svg data-svg-restart viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.25 7.24999C15.4256 7.24999 17.5523 7.89513 19.3613 9.10383C21.1702 10.3125 22.5801 12.0305 23.4127 14.0405C24.2452 16.0505 24.4631 18.2622 24.0386 20.396C23.6142 22.5298 22.5666 24.4898 21.0282 26.0282C19.4898 27.5665 17.5298 28.6142 15.396 29.0386C13.2622 29.4631 11.0505 29.2452 9.04048 28.4127C7.03049 27.5801 5.31253 26.1702 4.10383 24.3613C2.89514 22.5523 2.25 20.4256 2.25 18.25"
             stroke={color || "currentColor"} strokeWidth="3.5" strokeLinecap="round"/>
         <path d="M16 12L12 7.5L16 3" stroke={color || "currentColor"} strokeWidth="3" strokeLinecap="square"/>
     </svg>
 )}
+
+
+export function SVGNextPrev({color}: {color?: string}) { return (
+    <svg viewBox="0 0 39 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M35 3.5L5.5 33L35 62.5" stroke={color || "currentColor"} strokeWidth="3" strokeLinecap="round"/>
+    </svg>
+    )
+}
+
 
 export function SVGNext({color}: {color?: string}) { return (
     <svg viewBox="0 0 55 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +44,7 @@ export function SVGDoc({color}: {color?: string}) { return (
 )}
 
 export function SVGCross({color}: {color?: string}) { return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg data-svg-cross width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M1 13L12.5 1.5M12.5 13L1 1.5" stroke={color || "currentColor"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
 )}
@@ -147,7 +156,14 @@ export const SVGStarFilled = ({ color, isFilled }: { color?: string, isFilled?: 
 export const SVGAddFilled = ({ color }: { color?: string }) => {
     return (
         <svg viewBox="0 0 58 58" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M58 29C58 45.0162 45.0162 58 29 58C12.9838 58 0 45.0162 0 29C0 12.9838 12.9838 0 29 0C45.0162 0 58 12.9838 58 29ZM29 5C31.4852 5 33.5 7.01477 33.5 9.5V24.5H48.5C50.9852 24.5 53 26.5148 53 29C53 31.4852 50.9852 33.5 48.5 33.5H33.5V48.5C33.5 50.9852 31.4852 53 29 53C26.5148 53 24.5 50.9852 24.5 48.5V33.5H9.5C7.01477 33.5 5 31.4852 5 29C5 26.5148 7.01477 24.5 9.5 24.5H24.5V9.5C24.5 7.01477 26.5148 5 29 5Z" fill={color || 'currentColor'}/>
+            <path fillRule="evenodd" clipRule="evenodd" d="M58 29C58 45.0162 45.0162 58 29 58C12.9838 58 0 45.0162 0 29C0 12.9838 12.9838 0 29 0C45.0162 0 58 12.9838 58 29ZM29 5C31.4852 5 33.5 7.01477 33.5 9.5V24.5H48.5C50.9852 24.5 53 26.5148 53 29C53 31.4852 50.9852 33.5 48.5 33.5H33.5V48.5C33.5 50.9852 31.4852 53 29 53C26.5148 53 24.5 50.9852 24.5 48.5V33.5H9.5C7.01477 33.5 5 31.4852 5 29C5 26.5148 7.01477 24.5 9.5 24.5H24.5V9.5C24.5 7.01477 26.5148 5 29 5Z" fill={color || 'currentColor'}/>
+        </svg>
+    )
+}
+
+export const SVGRandom = ({ color }: { color?: string }) => {
+    return (
+        <svg data-svg-random xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill={color || 'currentColor'}><path d="M560-160v-80h104L537-367l57-57 126 126v-102h80v240H560Zm-344 0-56-56 504-504H560v-80h240v240h-80v-104L216-160Zm151-377L160-744l56-56 207 207-56 56Z"/>
         </svg>
     )
 }

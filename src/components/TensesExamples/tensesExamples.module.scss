@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     height: var(--height-opener);
+    border-bottom: 1px dotted var(--c-grey-light);
 }
 
 .title {
@@ -12,7 +13,10 @@
 }
 
 .examplesContainer {
-    margin: 7px 0 20px;
+    margin: var(--mg-sm) 0 20px;
+    background-color: var(--bg-main);
+    padding: var(--pd-sm);
+    border-radius: var(--br-base);
 
     p {
         margin: 0;

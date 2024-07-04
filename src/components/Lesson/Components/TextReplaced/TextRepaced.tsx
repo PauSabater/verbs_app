@@ -26,10 +26,6 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
         // Find all the splitters in the input string
         const splitters: string[] = inputString.match(regex) || []
 
-        // console.log("HEY SPLIT HERE!")
-        // console.log(result)
-        // console.log(splitters)
-
         // Combine parts and splitters
         const result: string[] = [];
         for (let i = 0; i < parts.length; i++) {
@@ -40,8 +36,8 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
         }
 
         if (splitters.length > 1) {
-            console.log("HEY HEY MORE!")
-            console.log(result)
+            // console.log("HEY HEY MORE!")
+            // console.log(result)
         }
 
         return result
@@ -67,11 +63,6 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
         const valuePath = value.includes('-') ? value.split('-')[1] : value
         const valueText = value.includes('-') ? value.split('-')[0] : value
 
-        const onMouseOver = ()=> {
-            console.log("HEY MOUSE OVER")
-            setDisplayInfoHover(true)
-        }
-
         return (
             <span className={styles.hoveredLinkContainer}>
                 {
@@ -79,7 +70,12 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
                         ? <VerbInfoHover verb={valuePath}></VerbInfoHover>
                         : <></>
                 }
-                <Link className={styles.link} href={`/verbs/${valuePath}`} onMouseOver={onMouseOver}>
+                <Link
+                    className={styles.link}
+                    href={`/verbs/${valuePath}`}
+                    onMouseOver={()=> setDisplayInfoHover(true)}
+                    onMouseLeave={()=> setDisplayInfoHover(false)}
+                >
                     <span dangerouslySetInnerHTML={{ __html: sanitize(valueText.replaceAll('=', '-').replaceAll('?', ' ') || '') }}></span>
                 </Link>
             </span>

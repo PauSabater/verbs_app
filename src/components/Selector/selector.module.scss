@@ -17,7 +17,7 @@
     font-size: inherit;
     white-space: nowrap;
     color: currentColor;
-    background-color: transparent;
+    background-color: var(--bg-white);
     border: 2px solid var(--c-primary-lighter-hover);
     appearance: none;
     margin: var(--selector-mg);
@@ -31,11 +31,12 @@
         background-color: var(--c-primary-lighter);
     }
 
-    option {
-        background-color: red;
+    span {
+        pointer-events: none;
     }
 
     svg {
+        pointer-events: none;
         position: absolute;
         top: 50%;
         right: 20px;
@@ -46,6 +47,7 @@
     }
 
     &[aria-expanded='true'] svg {
+        pointer-events: none;
         pointer-events: all;
         transform: translateY(-50%) scaleY(-1);
     }
@@ -115,10 +117,37 @@
     }
 }
 
+.columns-2 {
+    display: grid !important;
+    grid-template-columns: 50% 50% !important;
+    left: 0;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
 .columns-3 {
-        display: grid !important;
-        grid-template-columns: 33.3% 33.3% 33.3% !important;
+    display: grid !important;
+    grid-template-columns: 33.3% 33.3% 33.3% !important;
+}
+
+.columns-2,
+.columns-3 {
+    .selectAllItem {
+        grid-column-start: 1;
+        grid-column-end: 3;
     }
+}
+
+.selectAllItem {
+    display: flex;
+    margin: 5px 8px;
+
+    label {
+        padding-left: var(--pd-sm);
+    }
+}
+
+
 
 .btnExpanded {
     border-radius: var(--br-base) var(--br-base) 0 0;
@@ -157,6 +186,10 @@
     // transition-delay: var(--tr-base);
 }
 
+.inputSelectAll {
+
+}
+
 .input[type='radio'],
 .input[type='checkbox'] {
     position: absolute;
@@ -180,8 +213,8 @@
 .input[type='checkbox'] ~ .label {
     border: 1px solid var(--c-primary-lighter-hover);
     border-radius: 20px;
-    margin: 5px 10px;
-    line-height: 28px;
+    margin: 5px 8px;
+    line-height: 40px;
 
     &:hover {
         border: 1px solid var(--c-primary-light);

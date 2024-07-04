@@ -255,6 +255,7 @@
         {
             "type": "table",
             "table": {
+                "audio": "ich war, du warst, (er) (sie) (es) war, wir waren, ihr wart, sie waren. ",
                 "headings": ["person", "example"],
                 "rows": [
                     ["ich", "<i>war</i>"],

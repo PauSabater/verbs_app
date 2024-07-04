@@ -19,6 +19,13 @@
     }
 }
 
-.tablesContainer {
+.sourceContainer {
+    display: flex;
+    flex-direction: column;
 
+    a {
+        color: var(--c-primary-dark);
+        font-size: var(--fs-sm);
+        font-style: italic;
+    }
 }

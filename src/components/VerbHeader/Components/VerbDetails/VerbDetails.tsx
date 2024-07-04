@@ -1,41 +1,58 @@
 import InfoInCircle from '@/elements/InfoInCircle/InfoInCircle'
 import styles from './verbDetails.module.scss'
-import { Fragment } from 'react'
+import { Fragment, useContext } from 'react'
+import { ContextVerbPage, IVerbsPageContext } from '@/app/verbs/[slug]/VerbPage'
+import VerbStemFormation from '../VerbStemFormation/VerbStemFormation'
 
 
-interface IVerbHeader {
-    number: number,
-    level: string,
-    isIrregular: boolean,
-    isSeparable: boolean,
-    isAuxiliary: boolean,
-    prefixed?: boolean,
-    reflexive?: boolean,
-}
+export default function VerbDetails() {
 
-export default function VerbDetails(props: IVerbHeader) {
+    const context = useContext(ContextVerbPage) as IVerbsPageContext
 
     return (
         <div className={styles.container}>
-            <InfoInCircle text={props.level} />
-            <p>#{props.number}</p>
-            <p className={styles.separator}>|</p><p>{props.isIrregular ? "irregular" : "regular"}</p>
+            <InfoInCircle text={context.level} />
+            <p className={styles.detail}>{context.isIrregular ? "irregular" : "regular"}</p>
             {
-                props.isSeparable === true
-                    ? <><p className={styles.separator}>|</p><p>{"separable"}</p></>
-                    : <></>
+                context.isModal
+                    ?   <><p className={styles.detail}>{"modal verb"}</p>
+                        <div className={styles.separator}/></>
+                    :   <></>
             }
             {
-                props.prefixed && props.prefixed === true
-                    ? <><p className={styles.separator}>|</p><p>{"prefixed"}</p></>
-                    : <></>
+                context.isAuxiliary
+                    ?   <><p className={styles.detail}>{"auxiliary verb"}</p>
+                        <div className={styles.separator}/></>
+                    :   <></>
             }
-            <p>{props.reflexive ? "yeees" : "nooo"}</p>
             {
-                props.reflexive
-                    ? <><p className={styles.separator}>|</p><p>{"reflexive"}</p></>
-                    : <></>
+                context.isSeparable
+                    ?   <><p className={styles.detail}>{"separable"}</p>
+                        <div className={styles.separator}/></>
+                    :   <></>
             }
+            {
+                context.prefixed
+                    ?   <><p className={styles.detail}>{"prefixed"}</p>
+                        <div className={styles.separator}/></>
+                    :   <></>
+            }
+            {
+                context.reflexive
+                    ?   <><p>reflexive</p>
+                        <div className={styles.separator}/></>
+                    :   <></>
+            }
+            {
+                context.reflexive
+                    ?   <><p className={styles.detail}>{"reflexive"}</p>
+                        <div className={styles.separator}/></>
+                    :   <></>
+            }
+            {/* {
+                <><VerbStemFormation/></>
+            } */}
+            <p className={styles.detail}>#{context.verbNum}</p>
         </div>
     )
 }

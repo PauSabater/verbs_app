@@ -35,7 +35,7 @@
         pointer-events: all;
     }
 
-    a {
+    a, .verbBtn {
         box-sizing: border-box;
         display: block;
         width: 100%;
@@ -51,6 +51,17 @@
             background-color: var(--c-grey-lightest);
         }
     }
+}
+
+.verbBtn {
+    cursor: pointer;
+    margin: 0;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    font-weight: 400;
+    font-size: var(--fs-sm);
+    height: 40px;
 }
 
 @keyframes appear {
@@ -70,6 +81,8 @@
 
 .item {
     position: relative;
+    border-radius: 20px;
+    overflow: hidden;
 
     svg {
         pointer-events: none;

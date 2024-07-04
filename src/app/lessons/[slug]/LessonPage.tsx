@@ -63,9 +63,6 @@ export function LessonPage(props: ILessonPage) {
     }
 
     const callbackOpenModal = (verb: string) => {
-        console.log("HEY CLICK!!")
-        console.log("VERB IS")
-        console.log(verb)
         if (verb) {
             setIsModalOpen(true)
             setVerbExercise(verb)

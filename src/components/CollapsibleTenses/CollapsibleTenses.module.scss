@@ -11,6 +11,11 @@
     overflow: hidden;
 }
 
+.noExamples {
+    display: block;
+    width: 100%;
+}
+
 .collapsibleContent {
     display: grid;
     grid-row-start: 2;
@@ -22,6 +27,19 @@
         grid-column-start: 1;
         grid-column-end: 3;
     }
+
+    &[data-columns="4"] {
+        grid-template-columns: repeat(4, 25%);
+    }
+
+    &[data-columns="3"] {
+        grid-template-columns: repeat(3, 33.33%);
+    }
+}
+
+.btnPractise {
+    grid-column-start: 1;
+    text-decoration: none;
 }
 
 .clickableOpener {
@@ -40,13 +58,12 @@
 }
 
 .tablesContainer {
-    border: 3px dotted var(--c-border-dotted);
-    background-color: var(--bg-main-light);
+    border: 1px dotted var(--c-border-dotted);
     border-radius: 10px;
 }
 
 .containerExamples {
-    border: 3px dotted var(--c-border-dotted);
+    border: 1px dotted var(--c-border-dotted);
     border-radius: 10px;
     padding: 0 var(--pd-collapsible) var(--pd-collapsible) var(--pd-collapsible);
 }

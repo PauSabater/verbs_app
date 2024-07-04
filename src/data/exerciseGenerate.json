@@ -1,0 +1,61 @@
+{
+    "exerciseGenerate": {
+        "tensesSelector": [
+            "Präsens",
+            "Präteritum",
+            "Perfekt",
+            "Plusquamperfekt",
+            "Futur I",
+            "Futur II",
+            "Imperativ",
+            "Konj II Präteritum",
+            "Konj II Plusquam.",
+            "Konj II Futur I",
+            "Konj II Futur II",
+            "Konj I Präsens",
+            "Konj I Futur I",
+            "Konj I Futur II",
+            "Konj I Perfekt",
+            "Partizip II"
+        ],
+        "tensesSelectAllOption": {
+            "label": "Select all#tenses",
+            "labelSelected": "All tenses"
+        },
+        "tensesSelectText": "Tense(s)",
+        "tensesErrorMessage": "Select at least a tense",
+
+        "levelsSelector": [
+            "A1",
+            "A2",
+            "B1",
+            "B2",
+            "C1",
+            "C2"
+        ],
+        "levelsSelectAllOption": {
+            "label": "Select all#levels",
+            "labelSelected": "All verb levels"
+        },
+
+        "typesSelector": [
+            "Regular",
+            "Irregular",
+            "Separable",
+            "Inseparable",
+            "Prefixed",
+            "Modal",
+            "Auxiliary"
+        ],
+        "typesSelectAllOption": {
+            "label": "Select all#types",
+            "labelSelected": "All verb types"
+        },
+        "errorMessages": {
+            "verbs": "☝🏼 &#160;Add at least one verb",
+            "tenses": "☝🏼 &#160;Select at least one tense",
+            "types": "☝🏼 &#160;Select at least one type",
+            "levels": "☝🏼 &#160;Select at least one level"
+        }
+    }
+}

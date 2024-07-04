@@ -1,5 +1,4 @@
 .Button {
-    --btn-height: 50px;
     --btn-fs: var(--btn-fs, var(--fs-global));
 
     cursor: pointer;
@@ -8,7 +7,7 @@
     flex-wrap: wrap;
     flex-direction: row;
     align-content: center;
-    height: var(--btn-height);
+    height: var(--btn-height, 50px);
     width: fit-content;
     padding: 0 var(--pd-xl);
     margin: var(--btn-mg);
@@ -16,7 +15,7 @@
     font-size: var(--btn-fs);
     font-weight: 500;
     color: var(--c-white);
-    line-height: var(--btn-height);
+    line-height: var(--btn-height, 50px);
     border: none;
     transition: background var(--tr-base);
     // background-color: ;
@@ -127,6 +126,18 @@ a.Button {
     }
 }
 
+.greyReverse {
+    color: var(--c-grey);
+    border: 2px solid var(--c-grey);
+    background-color: transparent;
+
+    &:hover {
+        background: var(--c-grey);
+        color: var(--c-white);
+        // border-color: var(--c-primary-dark);
+    }
+}
+
 .transparent {
     background-color: transparent;
     color: var(--c-font-global);
@@ -232,5 +243,26 @@ a.Button {
         left: 10px;
         height: 25px;
         width: 25px;
+    }
+}
+
+.textOnHover {
+    width: var(--btn-height);
+    padding: 0;
+    border: 1px solid var(--c-grey-lighter);
+
+    svg {
+        transform: none;
+        color: var(--c-grey-dark);
+    }
+
+    &:hover {
+        background: var(--c-grey-lighter);
+
+        svg {
+            // color: var(--c-white);
+            transform: none;
+        }
+
     }
 }

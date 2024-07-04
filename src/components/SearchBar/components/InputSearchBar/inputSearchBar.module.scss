@@ -48,7 +48,7 @@
     border-radius: var(--br-base);
     padding-left: 60px;
     // background-color: var(--c-grey-lightest);
-    font-size: var(--fs-xs);
+    font-size: var(--fs-sm);
     color: var(--c-font-global-light);
     transition: background-color var(--tr-base);
 
@@ -63,5 +63,25 @@
         border: none;
         outline: none;
         border-radius: var(--br-base) var(--br-base) 0 0;
+    }
+}
+
+div.crossContainer {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    height: 40px;
+    width: 40px;
+    transform: translateY(-50%);
+
+    svg[data-svg-cross] {
+        opacity: 0.7;
+        height: 12px;
+    }
+
+    &:hover {
+        opacity: 1;
+        transform: translateY(-50%), scale(1.3);
     }
 }

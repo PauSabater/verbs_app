@@ -5,27 +5,30 @@ export interface ITensesState {
     tenseState: 'success' | 'error' | 'active' | 'inactive'
 }
 
+export interface IVerbsState {
+    verb: string,
+    isCompleted: boolean
+}
+
 export interface IExerciseConjugationState {
     currentVerb: string,
     currentTense: string,
     currentVerbTensesConj: any,
+    currentTenseNumber: number,
     exerciseState: TExerciseState,
     exerciseConjugations: IConjugation[] | undefined,
     numFilledInputs: number,
     numErroredInputs: number,
     numCorrectedInputs: number,
     isTenseAlertOpen: boolean,
+    isExerciseSetOpen: boolean,
     selectedTense: string,
     previousTense: string,
     tenseToConfirm: string,
     triggerInputsAnimation: boolean,
-    currentExerciseNumber: number,
     isHelpOpen: boolean,
     successTenses: string[],
-    verbs: {
-        verb: string,
-        isCompleted: boolean
-    }[],
+    verbsState: IVerbsState[],
     tensesState: ITensesState[]
 }
 
@@ -47,10 +50,13 @@ export type TExerciseConjugationActions =
     | 'SET_CURRENT_TENSE'
     | 'SET_CURRENT_VERB_TENSES_CONJ'
     | 'SET_TENSES_STATE'
+    | 'SET_VERBS_STATE'
+    | 'SET_IS_EXERCISE_STATE_OPEN'
+    | 'SET_CURRENT_TENSE_NUMBER'
 
 export type TExerciseConjugationAction = {
     type: TExerciseConjugationActions,
-    payload?: TExerciseState | IConjugation[] | number | boolean | string
+    payload?: TExerciseState | IConjugation[] | number | boolean | string | ITensesState[] | IVerbsState[]
 }
 
 export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugationActions} = {
@@ -70,7 +76,10 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_CURRENT_VERB: 'SET_CURRENT_VERB',
     SET_CURRENT_TENSE: 'SET_CURRENT_TENSE',
     SET_CURRENT_VERB_TENSES_CONJ: 'SET_CURRENT_VERB_TENSES_CONJ',
-    SET_TENSES_STATE: 'SET_TENSES_STATE'
+    SET_TENSES_STATE: 'SET_TENSES_STATE',
+    SET_VERBS_STATE: 'SET_VERBS_STATE',
+    SET_IS_EXERCISE_STATE_OPEN: 'SET_IS_EXERCISE_STATE_OPEN',
+    SET_CURRENT_TENSE_NUMBER: 'SET_CURRENT_TENSE_NUMBER',
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {
@@ -80,6 +89,13 @@ export function reducer(state: IExerciseConjugationState, action: TExerciseConju
             return {
                 ...state,
                 currentTense: action.payload as TExerciseState
+            }
+        case actions.SET_CURRENT_VERB:
+            console.log('IEEE SET CURRENT VERB')
+            console.log(action.payload)
+            return {
+                ...state,
+                currentVerb: action.payload as string
             }
         case actions.SET_EXERCISE_STATE:
             return {
@@ -94,7 +110,12 @@ export function reducer(state: IExerciseConjugationState, action: TExerciseConju
         case actions.SET_TENSES_STATE:
             return {
                 ...state,
-                tensesState: action.payload as any
+                tensesState: action.payload as ITensesState[]
+            }
+        case actions.SET_VERBS_STATE:
+            return {
+                ...state,
+                verbsState: action.payload as IVerbsState[]
             }
         case actions.SET_CONJUGATIONS:
             return {
@@ -150,16 +171,22 @@ export function reducer(state: IExerciseConjugationState, action: TExerciseConju
                 triggerInputsAnimation: action.payload as boolean
             }
 
-        case actions.SET_CURRENT_EXERCISE_NUMBER:
-            return {
-                ...state,
-                currentExerciseNumber: action.payload as number
-            }
-
         case actions.SET_IS_HELP_OPEN:
             return {
                 ...state,
                 isHelpOpen: action.payload as boolean
+            }
+
+        case actions.SET_IS_EXERCISE_STATE_OPEN:
+            return {
+                ...state,
+                isExerciseSetOpen: action.payload as boolean
+            }
+
+        case actions.SET_CURRENT_TENSE_NUMBER:
+            return {
+                ...state,
+                currentTenseNumber: action.payload as number
             }
 
         default: return state
