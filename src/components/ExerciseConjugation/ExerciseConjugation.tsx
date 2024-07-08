@@ -184,6 +184,14 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
 
     /**
+     * Actions on Random mode set
+     */
+    useEffect(() => {
+        console.log("helooo random mode")
+    }, [props.isRandomMode])
+
+
+    /**
      * Gets needed data and
      */
     useEffect(() => {
@@ -205,7 +213,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     useEffect(() => {
         console.log("IEEEE USE EFFECT FOR CURRENT VERB")
         console.log(state.currentVerb)
-        fetchExerciseTense()
+        if (!props.isRandomMode) fetchExerciseTense()
     }, [state.currentVerb])
 
 

@@ -73,6 +73,9 @@ export interface IExerciseConjugation {
     conjugationCurrentVerb?: any,
     isSetNewExerciseOpen?: boolean
     callbackOnSetExerciseChange?: Function
+    isRandomMode: boolean
+    types: string[]
+    levels: string[]
     // isIrregular: string
 }
 

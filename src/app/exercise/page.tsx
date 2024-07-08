@@ -8,6 +8,8 @@ import styles from './exercisePage.module.scss'
 import { replaceTenseFromURL } from '@/utils/utils'
 import TensesSelector from '@/components/TensesSelector/TensesSelector'
 import { ExerciseCheckboxList } from '@/components/ExerciseCheckboxList/ExerciseCheckboxList'
+import { getRandomVerb } from '@/lib/getApiData'
+
 
 export default function Page() {
 
@@ -16,12 +18,6 @@ export default function Page() {
     // const verbs = searchParams.get('verbs')?.split(',')
     // const tenses =
 
-    if (searchParams.get('random') === 'true') {
-        console.log("HEY RANDOM IS TRUE!!")
-    }
-
-    console.log(searchParams)
-    console.log(searchParams.get('types'))
 
     // random mode states:
     const [isRandom, setIsRandom] = useState(searchParams.get('random') === 'true')
@@ -29,14 +25,35 @@ export default function Page() {
     const [levels, setLevels] = useState(searchParams.get('levels')?.split(','))
 
 
+    if (searchParams.get('random') === 'true') {
+        console.log("HEY RANDOM IS TRUE!!")
+        console.log(isRandom)
+        console.log(types)
+        console.log(levels)
+        getRandomVerb(types, levels)
+    }
+
+    console.log(searchParams)
+    console.log(searchParams.get('types'))
+
+
     const [verbs, setVerbs] = useState(searchParams.get('verbs')?.split(','))
     const [tenses, setTenses] = useState(searchParams.get('tenses')?.split(',').map((tense)=> {
         return replaceTenseFromURL(tense)
     }))
     const [mode, setMode] = useState(searchParams.get('mode'))
-    const [isExerciseSetOpen, setIsExerciseSetOpen] = useState((!verbs || verbs.length === 0 || !tenses || tenses.length === 0) && !mode)
 
+    console.log("HEEEE")
+    console.log(isRandom)
+    const [isExerciseSetOpen, setIsExerciseSetOpen] = useState(
+        (!verbs || verbs.length === 0 || !tenses || tenses.length === 0)
+        && !mode
+        && isRandom === false
+    )
 
+    // if (isRandom) {
+    //     setIsExerciseSetOpen(false)
+    // }
 
 
     useEffect(() => {
@@ -94,6 +111,9 @@ export default function Page() {
                                         tenses={tenses || []}
                                         isSetNewExerciseOpen={isExerciseSetOpen}
                                         callbackOnSetExerciseChange={onSetExerciseOpenChange}
+                                        isRandomMode={isRandom}
+                                        types={types || []}
+                                        levels={levels || []}
                                     ></ExerciseConjugation>
                             }
                         </div>
