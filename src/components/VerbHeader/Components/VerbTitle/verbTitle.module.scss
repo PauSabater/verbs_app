@@ -5,11 +5,11 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    height: 60px;
+    height: var(--verb-title-height, 60px);
     width: fit-content;
     min-width: 180px;
     margin-right: var(--mg-xl);
-    margin-bottom: var(--mg-lg);
+    margin-bottom: var(--verb-title-mb, var(--mg-lg));
     // padding: 0 var(--pd-lg);
     border-radius: var(--br-base);
     z-index: 1;

@@ -24,7 +24,7 @@ interface ISelector {
     type?: 'checkbox' | 'radio',
     columns?: number;
     selectAllOption?: string
-    updatedSelectedOptions?: string[]
+    updatedSelectedOptions?: string
 }
 
 export function Selector(props: ISelector) {
@@ -53,13 +53,16 @@ export function Selector(props: ISelector) {
 
     // Update checked inputs depending on updated from outside the Select component:
     useEffect(()=> {
+        if (!props.updatedSelectedOptions) return
         const elContainer: HTMLElement | null = refContainer.current
+
+        const updatedOptions = JSON.parse(props.updatedSelectedOptions)
 
         if (elContainer === null) return
         const elsInput = (elContainer as HTMLElement).querySelectorAll('input')
 
         for (const elInput of Array.from(elsInput)) {
-            if (!props.updatedSelectedOptions?.includes(elInput.value) && elInput.checked) {
+            if (!updatedOptions.includes(elInput.value) && elInput.checked) {
                 elInput.checked = false
             }
         }

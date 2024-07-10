@@ -1,4 +1,5 @@
 import { IVerbAllTenses } from '@/components/ExerciseConjugation/ExerciseConjugation.exports'
+import { getComaSeparatedStringFromArray } from '@/utils/utils'
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 
 export const getApiVerbData = async (verb: string) => {
@@ -7,6 +8,50 @@ export const getApiVerbData = async (verb: string) => {
     const verbData = await res.json()
     // Pass data to the page via props
     return { props: { verbData } }
+}
+
+export function getUrlRandomVerb(types?: string[], levels?: string[]) {
+    const typesStr = types
+        ? `types=${getComaSeparatedStringFromArray(types)}`
+        : ''
+    const levelsStr = levels
+        ? `levels=${getComaSeparatedStringFromArray(levels)}`
+        : ''
+
+    const url = [
+        `http://localhost:9090/api/verbs/get/random-verb`,
+        (typesStr || levelsStr) ? '?' : '',
+        typesStr || '',
+        typesStr && levelsStr ? '&' : '',
+        levelsStr || ''
+    ].join('')
+
+    return url
+}
+
+export async function getRandomVerb(types?: string[], levels?: string[]) {
+    console.log('in get random verb')
+
+    const typesStr = types
+        ? `types=${getComaSeparatedStringFromArray(types)}`
+        : ''
+    const levelsStr = levels
+        ? `levels=${getComaSeparatedStringFromArray(levels)}`
+        : ''
+
+    const url = [
+        `http://localhost:9090/api/verbs/get/random-verb`,
+        (typesStr || levelsStr) ? '?' : '',
+        typesStr || '',
+        typesStr && levelsStr ? '&' : '',
+        levelsStr || ''
+    ].join('')
+
+    console.log('url us')
+    console.log(url)
+
+    const res = await fetch(url)
+
 }
 
 export const getApiVerbConjugationsFromTenses = async (verb: string, tenses: string[]) => {

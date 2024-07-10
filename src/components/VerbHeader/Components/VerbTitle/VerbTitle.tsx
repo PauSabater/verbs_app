@@ -13,7 +13,7 @@ export default function VerbTitle(props: IVerbTitle) {
 
     return (
         <div className={styles.container}>
-            <p className={`${styles.verb} ${fontTitles.className}`} dangerouslySetInnerHTML={{__html: sanitize(props.verbHTML.replace('·', '<u>|</u>'))}}></p>
+            <p data-verb-title className={`${styles.verb} ${fontTitles.className}`} dangerouslySetInnerHTML={{__html: sanitize(props.verbHTML.replace('·', '<u>|</u>'))}}></p>
             <SVGAudio></SVGAudio>
         </div>
     )

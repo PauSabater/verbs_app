@@ -10,11 +10,32 @@ export interface IVerbsState {
     isCompleted: boolean
 }
 
+export interface ICurrentVerbProps {
+        translations: {
+          en: string,
+          es: string,
+          fr: string,
+          de: string,
+        },
+        level: string,
+        verbHTML: string,
+        stemFormationHTML: string,
+        isIrregular: boolean,
+        isSeparable: boolean,
+        prefixed: boolean,
+        reflexive: boolean,
+        auxiliary: string,
+        isModal: boolean,
+        isAuxiliary: boolean
+}
+
 export interface IExerciseConjugationState {
     currentVerb: string,
     currentTense: string,
     currentVerbTensesConj: any,
+    nextVerbTensesConj: any,
     currentTenseNumber: number,
+    currentVerbProps: ICurrentVerbProps | undefined,
     exerciseState: TExerciseState,
     exerciseConjugations: IConjugation[] | undefined,
     numFilledInputs: number,
@@ -29,7 +50,9 @@ export interface IExerciseConjugationState {
     isHelpOpen: boolean,
     successTenses: string[],
     verbsState: IVerbsState[],
-    tensesState: ITensesState[]
+    tensesState: ITensesState[],
+    ignoreSpecialChars: boolean | null,
+    randomVerbsResults: string[]
 }
 
 export type TExerciseConjugationActions =
@@ -53,10 +76,13 @@ export type TExerciseConjugationActions =
     | 'SET_VERBS_STATE'
     | 'SET_IS_EXERCISE_STATE_OPEN'
     | 'SET_CURRENT_TENSE_NUMBER'
+    | 'SET_CURRENT_VERB_PROPS'
+    | 'SET_IGNORE_SPECIAL_CHARS'
+    | 'SET_RANDOM_VERB_RESULTS'
 
 export type TExerciseConjugationAction = {
     type: TExerciseConjugationActions,
-    payload?: TExerciseState | IConjugation[] | number | boolean | string | ITensesState[] | IVerbsState[]
+    payload?: TExerciseState | IConjugation[] | number | boolean | string | ITensesState[] | IVerbsState[] | ICurrentVerbProps | string[]
 }
 
 export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugationActions} = {
@@ -80,6 +106,9 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_VERBS_STATE: 'SET_VERBS_STATE',
     SET_IS_EXERCISE_STATE_OPEN: 'SET_IS_EXERCISE_STATE_OPEN',
     SET_CURRENT_TENSE_NUMBER: 'SET_CURRENT_TENSE_NUMBER',
+    SET_CURRENT_VERB_PROPS: 'SET_CURRENT_VERB_PROPS',
+    SET_IGNORE_SPECIAL_CHARS: 'SET_IGNORE_SPECIAL_CHARS',
+    SET_RANDOM_VERB_RESULTS: 'SET_RANDOM_VERB_RESULTS'
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {
@@ -187,6 +216,24 @@ export function reducer(state: IExerciseConjugationState, action: TExerciseConju
             return {
                 ...state,
                 currentTenseNumber: action.payload as number
+            }
+
+        case actions.SET_CURRENT_VERB_PROPS:
+            return {
+                ...state,
+                currentVerbProps: action.payload as ICurrentVerbProps
+            }
+
+        case actions.SET_IGNORE_SPECIAL_CHARS:
+            return {
+                ...state,
+                ignoreSpecialChars: action.payload as boolean
+            }
+
+        case actions.SET_RANDOM_VERB_RESULTS:
+            return {
+                ...state,
+                randomVerbsResults: action.payload as string[]
             }
 
         default: return state

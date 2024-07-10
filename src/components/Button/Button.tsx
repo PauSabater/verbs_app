@@ -15,6 +15,7 @@ interface IButton {
     path?: string
     paramOnClick?: string
     isTextOnHover?: boolean
+    dotted?: boolean
 }
 
 export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "primaryDarker" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success" | "transparent" | "greyDark" | "greyReverse"
@@ -38,7 +39,7 @@ export function Button(props: IButton) {
     }
 
     const getClassNames = ()=> {
-        return `${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']} ${props.isTextOnHover ? styles.textOnHover : ''}`
+        return `${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']} ${props.isTextOnHover ? styles.textOnHover : ''} ${props.dotted ? styles.dotted : ''}`
     }
 
     return (

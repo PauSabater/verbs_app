@@ -72,7 +72,7 @@
 .layoutExercise {
     position: relative;
     display: grid;
-    grid-template-columns: 70% auto;
+    grid-template-columns: 70% 350px;
     grid-column-gap: 20px;
 }
 
@@ -123,10 +123,6 @@
     width: var(--exercise-width);
     height: 80vh;
     background: var(--bg-white);
-
-    .statement {
-        margin: 0 0 var(--mg-xl) 0;
-    }
 }
 
 
@@ -158,12 +154,16 @@
     font-weight: 600;
     color: var(--c-grey-darker);
     padding-right: var(--pd-md);
-    margin: var(--mg-xs) 0 var(--mg-2xl);
+    margin: 0 0 var(--mg-xl) 0;
 
     p:first-child {
         font-size: var(--fs-global);
         font-weight: 400;
         margin: 0 0 var(--mg-sm);
+    }
+
+    span {
+        font-size: var(--exercise-statement-fs, var(--fs-lg));
     }
 
     span:not([data-text]), select {
@@ -183,6 +183,15 @@
 
     .verb {
         margin-left: var(--mg-sm);
+    }
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
     }
 }
 
@@ -288,13 +297,13 @@
 
 @include mixins.vertical-900 {
 
-    .exerciseConjugation {
-        --height-feedback: 200px;
+    .layoutExercise {
+        margin-top: var(--header-height);
     }
 
-    .statement {
-        font-size: var(--fs-global);
-        margin: 0 0 35px;
+    .exerciseConjugation {
+        --height-feedback: 200px;
+        height: 85vh;
     }
 
     .person {
@@ -304,6 +313,10 @@
     .row {
         margin-bottom: var(--exercise-input-mg, var(--mg-md));
         grid-template-columns: 115px auto;
+    }
+
+    .statement {
+        margin: 0 0 30px;
     }
 }
 

@@ -73,6 +73,9 @@ export interface IExerciseConjugation {
     conjugationCurrentVerb?: any,
     isSetNewExerciseOpen?: boolean
     callbackOnSetExerciseChange?: Function
+    isRandomMode: boolean
+    types: string[]
+    levels: string[]
     // isIrregular: string
 }
 
@@ -149,4 +152,10 @@ export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string
     }
 
     return
+}
+
+export const getIgnoreInitialValue = ()=> {
+    const val = window.localStorage.getItem('ignore-special-chars')
+    if (!val || val === 'false') return false
+    else return true
 }

@@ -13,8 +13,8 @@ export function SVGExercise({color}: {color?: string}) { return (
 export function SVGRestart({color}: {color?: string}) { return (
     <svg data-svg-restart viewBox="0 0 26 31" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M13.25 7.24999C15.4256 7.24999 17.5523 7.89513 19.3613 9.10383C21.1702 10.3125 22.5801 12.0305 23.4127 14.0405C24.2452 16.0505 24.4631 18.2622 24.0386 20.396C23.6142 22.5298 22.5666 24.4898 21.0282 26.0282C19.4898 27.5665 17.5298 28.6142 15.396 29.0386C13.2622 29.4631 11.0505 29.2452 9.04048 28.4127C7.03049 27.5801 5.31253 26.1702 4.10383 24.3613C2.89514 22.5523 2.25 20.4256 2.25 18.25"
-            stroke={color || "currentColor"} strokeWidth="3.5" strokeLinecap="round"/>
-        <path d="M16 12L12 7.5L16 3" stroke={color || "currentColor"} strokeWidth="3" strokeLinecap="square"/>
+            stroke={color || "currentColor"} strokeWidth="2" strokeLinecap="round"/>
+        <path d="M16 12L12 7.5L16 3" stroke={color || "currentColor"} strokeWidth="2" strokeLinecap="square"/>
     </svg>
 )}
 
@@ -71,9 +71,9 @@ export function SVGIncorrect({color}: {color?: string}) { return(
 )}
 
 export function SVGInformation({color}: {color?: string}) { return(
-    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.6605 15V8.45455H12.7443V15H10.6605ZM11.7045 7.69176C11.4119 7.69176 11.1605 7.59517 10.9503 7.40199C10.7401 7.20597 10.6349 6.97017 10.6349 6.6946C10.6349 6.42187 10.7401 6.18892 10.9503 5.99574C11.1605 5.79972 11.4119 5.7017 11.7045 5.7017C12 5.7017 12.2514 5.79972 12.4588 5.99574C12.669 6.18892 12.7741 6.42187 12.7741 6.6946C12.7741 6.97017 12.669 7.20597 12.4588 7.40199C12.2514 7.59517 12 7.69176 11.7045 7.69176Z" fill={color || "currentColor"}/>
-        <circle cx="11.5" cy="11" r="10" stroke={color || "currentColor"} strokeWidth="2"/>
+        <circle cx="11.5" cy="11" r="8" stroke={color || "currentColor"} strokeWidth="1"/>
     </svg>
 )}
 

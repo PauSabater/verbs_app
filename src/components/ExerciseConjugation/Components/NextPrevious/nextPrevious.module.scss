@@ -1,0 +1,36 @@
+.container {
+    --info-circle-color: var(--c-grey-light);
+    --info-circle-height: 35px;
+
+    box-sizing: border-box;
+    width: 100%;
+    background: var(--bg-white);
+    border-radius: 20px;
+    padding: var(--mg-md) var(--mg-xl);
+    height: -moz-fit-content;
+    height: fit-content;
+}
+
+.nextPrevBtn {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    height: 45px;
+
+    svg {
+        height: 20px;
+        padding-right: var(--pd-sm);
+    }
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    p {
+        line-height: 15px;
+        margin: 0;
+    }
+}

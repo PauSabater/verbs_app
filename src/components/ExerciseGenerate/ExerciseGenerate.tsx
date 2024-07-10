@@ -125,14 +125,17 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
         sessionStorage.setItem(sessionStorageKey, JSON.stringify(state))
     }, [state])
 
-    const onTypesSelect = (value: string, group: string, isChecked: boolean)=> {
+    const onTypesInputChange = (value: string, group: string, isChecked: boolean)=> {
+
+        const newTypesState: string[] = state.selectedTypes || []
 
         if (isChecked) {
-            const newTypesState: string[] = state.selectedTypes || []
             newTypesState.push(value)
-            console.log(newTypesState)
-            setReducerSelectedTypes(newTypesState)
+        } else {
+            newTypesState.splice(newTypesState.indexOf(value))
         }
+
+        setReducerSelectedTypes(newTypesState)
     }
 
     const onVerbSelect = (value: string)=> {
@@ -344,10 +347,10 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                             isExerciseGenerate={true}
                             type={'checkbox'}
                             options={[{ options: textsExercise.typesSelector }]}
-                            updatedSelectedOptions={state.updatedSelectedTypes}
+                            updatedSelectedOptions={JSON.stringify(state.updatedSelectedTypes)}
                             columns={2}
                             selectedOption={'Verb type(s)'}
-                            callbackOnChange={onTypesSelect}
+                            callbackOnChange={onTypesInputChange}
                             selectAllOption={textsExercise.typesSelectAllOption.label}
                         />
                         <div data-types className={`${styles.selectedTensesContainer}`}>
@@ -391,7 +394,7 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                             isExerciseGenerate={true}
                             type={'checkbox'}
                             options={[{ options: textsExercise.levelsSelector }]}
-                            updatedSelectedOptions={state.updatedSelectedLevels}
+                            updatedSelectedOptions={JSON.stringify(state.updatedSelectedLevels)}
                             columns={2}
                             selectedOption={'Level(s)'}
                             callbackOnChange={onLevelSelect}
@@ -489,7 +492,7 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                         isExerciseGenerate={true}
                         type={'checkbox'}
                         options={[{ options: textsExercise.tensesSelector }]}
-                        updatedSelectedOptions={state.updatedSelectedTenses}
+                        updatedSelectedOptions={JSON.stringify(state.updatedSelectedTenses)}
                         columns={3}
                         selectedOption={textsExercise.tensesSelectText}
                         callbackOnChange={onTensesSelect}

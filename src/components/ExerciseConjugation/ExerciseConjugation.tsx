@@ -10,17 +10,21 @@ import { Selector } from '../Selector/Selector'
 import Alert from '../Alert/Alert'
 import { isSuccess, isError } from '@/utils/constants'
 import { SVGAdd, SVGCross, SVGExercise } from '@/assets/svg/svgExports'
-import { IConjugation, IExerciseConjugation, IExerciseConjugationTexts, TExerciseState, getConjugationFromTense, statesExerciseConjugation } from './ExerciseConjugation.exports'
+import { IConjugation, IExerciseConjugation, IExerciseConjugationTexts, TExerciseState, getConjugationFromTense, getIgnoreInitialValue, statesExerciseConjugation } from './ExerciseConjugation.exports'
 import { getCorrectAnswers, getOptionsDropdown, setLocalstorageItem } from '@/utils/utils'
 import { IExerciseConjugationState, ITensesState, IVerbsState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
 import { ExerciseHelpTrigger } from './Components/ExerciseHelpTrigger/ExerciseHelpTrigger'
-import { getApiVerbConjugationsFromTenses } from '@/lib/getApiData'
+import { getApiVerbConjugationsFromTenses, getRandomVerb, getUrlRandomVerb } from '@/lib/getApiData'
 import LoaderSpin from '@/elements/LoaderSpin/LoaderSpin'
 import { VerbsList } from './Components/VerbsList/VerbsList'
 import { TensesList } from './Components/TensesList/TensesList'
 import { ShareExercise } from './Components/ShareExercise/ShareExercise'
 import { ExerciseGenerate } from '../ExerciseGenerate/ExerciseGenerate'
 import { ExerciseFeedbackAndBtns } from './Components/Feedback/ExerciseFeedbackAndBtns'
+import { VerbInfo } from './Components/VerbInfo/VerbInfo'
+import IgnoreSpecialCharacters from './Components/IgnoreSpecialCharacters/IgnoreSpecialCharacters'
+import NextPrevious from './Components/NextPrevious/NextPrevious'
+import Link from 'next/link'
 
 export const ExerciseConjugationContext = createContext<IExerciseConjugationState | null>(null)
 export const ExerciseConjugationContextTexts = createContext<IExerciseConjugationTexts | null>(null)
@@ -39,6 +43,8 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         currentVerb: props.verb,
         currentTense: props.tenseExercise,
         currentVerbTensesConj: undefined,
+        nextVerbTensesConj: undefined,
+        currentVerbProps: undefined,
         currentTenseNumber: 0,
         exerciseState: statesExerciseConjugation.filling,
         exerciseConjugations: undefined,
@@ -53,6 +59,8 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         triggerInputsAnimation: false,
         isHelpOpen: false,
         successTenses: [],
+        ignoreSpecialChars: null,
+        randomVerbsResults: [],
         verbsState: props.verbs ? props.verbs.map((verb)=> {
             return {
                 verb: verb,
@@ -184,6 +192,48 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
 
     /**
+     * Actions on Random mode set
+     */
+    useEffect(() => {
+        if (!props.isRandomMode) return
+
+        const getRandomVerb = async ()=> {
+            const url = getUrlRandomVerb(props.types, props.levels)
+            console.log('hey url is')
+            console.log(url)
+
+            const res = await fetch(url)
+            const verbData = await res.json()
+
+            console.log("RESPONSE IS")
+            console.log(verbData)
+            console.log(verbData.results._id)
+
+            const results = verbData.results.map((result: any)=> {
+                return result._id
+            })
+
+            console.log("VERB RESULTS WILL BE")
+            console.log(results)
+
+            dispatch({
+                type: actions.SET_CURRENT_VERB,
+                payload: verbData.results[0]._id
+            })
+
+            dispatch({
+                type: actions.SET_RANDOM_VERB_RESULTS,
+                payload: results
+            })
+
+        }
+
+        getRandomVerb()
+    }, [props.isRandomMode])
+
+
+
+    /**
      * Gets needed data and
      */
     useEffect(() => {
@@ -203,9 +253,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      * Actions with change in the exercise verb
      */
     useEffect(() => {
-        console.log("IEEEE USE EFFECT FOR CURRENT VERB")
-        console.log(state.currentVerb)
-        fetchExerciseTense()
+        if (state.currentVerb) {
+            fetchExerciseTense()
+        }
     }, [state.currentVerb])
 
 
@@ -215,30 +265,30 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             (async () => {
 
                 let tensesObj: any
+                let verbPropsObj: any
                 // Check if the verb is saved on localstorage:
                 const verbLocalStorage: any = window.localStorage.getItem('verb-current')
                 const isCurrentVerbInLocalstorage = verbLocalStorage?.verb === state.currentVerb
 
                 if (!props.conjugationCurrentVerb) {
+
                     // case verb is in localstorage:
                     if (verbLocalStorage && isCurrentVerbInLocalstorage) {
                         const objVerbLocalStorage = JSON.parse(verbLocalStorage)
 
                         if (objVerbLocalStorage.verb === state.currentVerb) {
                             tensesObj = objVerbLocalStorage.tenses
-                            console.log(tensesObj)
                         }
                         else {
                             const tensesResp: any = (await getApiVerbConjugationsFromTenses(props.verb, props.tenses)) as unknown as any
                             tensesObj = tensesResp.props.verbData.verb.data.tenses
                         }
+
                     // case verb is not in localstorage:
                     } else {
-                        console.log('not un localstorage')
-                        console.log('we will fetch')
-                        console.log(state.currentVerb)
                         const tensesResp: any = (await getApiVerbConjugationsFromTenses(state.currentVerb, props.tenses)) as unknown as any
                         tensesObj = tensesResp.props.verbData.verb.data.tenses
+                        verbPropsObj = tensesResp.props.verbData.verb.data.properties
                     }
 
                     if (tensesObj) setCurrentVerbTensesConj(tensesObj)
@@ -247,6 +297,10 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 setExerciseConjugations(
                     props.conjugationCurrentVerb || getConjugationFromTense(tensesObj, props.tenseExercise)
                 )
+                dispatch({
+                    type: actions.SET_CURRENT_VERB_PROPS,
+                    payload: verbPropsObj
+                })
                 restartAllInputs()
                 animateReveal()
 
@@ -487,18 +541,23 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     //     )
     // }
 
+    const loadNextRandomVerb = ()=> {
+        dispatch({
+            type: actions.SET_CURRENT_VERB,
+            payload: state.randomVerbsResults[getCurrentVerbIndex() + 1]
+        })
+
+        restartTenses()
+    }
+
+
 
     const loadNextExercise = () => {
 
-        console.log('click next')
-
-        const currentTenseIndex = props.tenses.indexOf(state.currentTense)
-        console.log('HEY INDEX IS ' +currentTenseIndex)
-        console.log('from length ' +props.tenses.length)
+        if (props.isRandomMode && isFinalTense()) loadNextRandomVerb()
 
         // If there is more than one tense and the current tense index is not the last one
         if (props.tenses.length > 1 && !isFinalTense()) {
-            console.log('in first condition')
             const nextTense: string = props.tenses[getCurrentTenseIndex() + 1]
             dispatch({
                 type: actions.SET_CURRENT_TENSE,
@@ -506,22 +565,12 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             })
             setSelectedTense(nextTense)
             setExerciseConjugations(getConjugationFromTense(state.currentVerbTensesConj, nextTense))
-            // setCurrentExerciseNumber(state.currentExerciseNumber + 1) // ???needed?
             restartAllInputs()
 
         // Actions on last tense
         } else {
             console.log('in second condition')
             const isThereNextVerb: boolean = getCurrentVerbIndex() < (props.verbs.length - 1)
-
-            console.log('heyy in load next')
-            console.log(isThereNextVerb)
-
-            console.log('index is: '+getCurrentVerbIndex())
-            console.log('then:')
-            console.log(getCurrentVerbIndex() + 1)
-            console.log(props.verbs[getCurrentVerbIndex() + 1])
-            console.log('-----------–')
 
             // Load new verb
             if (isThereNextVerb && props.verbs) {
@@ -532,10 +581,12 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 restartTenses()
             }
         }
-        // setSelectedTense(props.selectedTenses[state.currentExerciseNumber + 1])
     }
 
     const getCurrentVerbIndex = ()=> {
+        if (props.isRandomMode) {
+            return state.randomVerbsResults.indexOf(state.currentVerb)
+        }
         return props.verbs.indexOf(state.currentVerb)
     }
 
@@ -595,6 +646,20 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         }
     }
 
+    const onIgnoreSpecialCharsChange = (e: Event)=> {
+        console.log("HELOO")
+        const elInput = e.target as HTMLInputElement
+        if (!elInput) return
+        console.log(elInput)
+        const isIgnored = elInput.id.includes('yes') ? true : false
+        window.localStorage.setItem('ignore-special-chars', isIgnored ? 'true': 'false')
+
+        dispatch({
+            type: actions.SET_IGNORE_SPECIAL_CHARS,
+            payload: isIgnored
+        })
+    }
+
     const HelpContent = (): React.JSX.Element => {
         return <div className={stylesFdb.container} data-state={state.exerciseState}></div>
     }
@@ -614,22 +679,21 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                         : <></>
                 }
                 <p data-statement-text dangerouslySetInnerHTML={{ __html: sanitize(props.texts.statement) }}></p>
-                {(props.selectedTenses && props.selectedTenses.length > 1) || props.isSingleTense === true ? (
-                    <Fragment>
-                        <span data-text>{props.texts.textTense}</span>
+                    <span data-text>{props.texts.textTense}</span>
+                    <Link href={`/lessons/${state.currentTense}`}>
                         <span>{state.currentTense}</span>
-                    </Fragment>
-                ) : (
-                    <Selector color={'primary'} selectedOption={state.selectedTense} options={getOptionsDropdown(props.tensesDropdown)} callbackOnChange={handleSelectorChange} />
-                )}
+                    </Link>
+
                 <span
                     data-text
                     dangerouslySetInnerHTML={{ __html: sanitize(props.texts.textVerb) }}
                 ></span>
-                <span
-                    className={styles.verb}
-                    dangerouslySetInnerHTML={{ __html: sanitize(state.currentVerb) }}
-                ></span>
+                <Link href={`/verbs/${state.currentVerb}`}>
+                    <span
+                        className={styles.verb}
+                        dangerouslySetInnerHTML={{ __html: sanitize(state.currentVerb) }}
+                    ></span>
+                </Link>
             </div>
         )
     }
@@ -704,6 +768,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                             callbackBtnNext={loadNextExercise}
                             tenses={props.tenses}
                             verbs={props.verbs}
+                            isRandomMode={props.isRandomMode}
                         />
                         <Alert
                             isOpen={state.isTenseAlertOpen}
@@ -722,9 +787,22 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                             New exercise
                             <SVGAdd />
                         </button>
-                        {props.verbs && props.verbs?.length > 1 ? <VerbsList/> : <></>}
-                        {props.tenses && props.tenses?.length > 1 ? <TensesList/> : <></>}
-
+                        <VerbInfo />
+                        {
+                            props.verbs && props.verbs?.length > 1
+                                ? <VerbsList/>
+                                : <></>
+                        }
+                        {
+                            props.tenses && props.tenses?.length > 1
+                                ? <TensesList/>
+                                : <></>
+                        }
+                        <NextPrevious />
+                        <IgnoreSpecialCharacters
+                            callbackOnChange={onIgnoreSpecialCharsChange}
+                            initialValue={getIgnoreInitialValue()}
+                        />
                         <ShareExercise/>
                     </div>
 
