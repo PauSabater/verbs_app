@@ -24,8 +24,8 @@
     --pd-md: 15px;
     --pd-lg: 20px;
     --pd-xl: 30px;
-    --pd-xl: 40px;
-    --pd-2xl: 50px;
+    --pd-2xl: 40px;
+    --pd-3xl: 50px;
 
     --pd-screen: var(--pd-md);
     --pd-fullwidth: 0 5vw;
@@ -43,8 +43,8 @@
     --mg-md: 15px;
     --mg-lg: 22.5px;
     --mg-xl: 30px;
-    --mg-xl: 40px;
-    --mg-2xl: 50px;
+    --mg-2xl: 40px;
+    --mg-3xl: 50px;
 
     --mg-between-components: var(--mg-lg);
     --mg-page-top: 150px;
@@ -53,6 +53,7 @@
     // Sizes
     --sz-content: 100%;
     --height-footer: 100px;
+    --header-height: 60px;
 
     // @include mixins.desktop {
     //     --sz-content: 500px;
@@ -147,6 +148,9 @@
     --c-icon: var(--c-grey-dark);
     --c-icon-light: var(--c-grey);
     --c-border-dotted: hsl(0, 0%, 80%);
+
+    // Shadows
+    --bs-global: -1px 1px 8px -3px var(--c-primary-light);
 
     // Transitions
     --tr-faster: 0.1s;

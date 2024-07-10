@@ -38,6 +38,23 @@
     }
 }
 
+.smallFormat {
+    background: none;
+    padding: 0;
+
+    p {
+        font-size: var(--fs-xs);
+    }
+
+    .detail {
+        padding-left: 20px;
+
+        &:after {
+            left: 10px;
+        }
+    }
+}
+
 .level {
     position: relative;
     margin-right: 20px;

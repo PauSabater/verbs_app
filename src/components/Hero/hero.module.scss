@@ -15,6 +15,12 @@
     }
 }
 
+.subtitle {
+    text-align: center;
+    font-size: var(--fs-lg);
+    color: var(--c-font-global-light);
+}
+
 .svgCentral {
     position: absolute;
     top: 44%;

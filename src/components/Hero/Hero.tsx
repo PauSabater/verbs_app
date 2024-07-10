@@ -16,6 +16,8 @@ export function Hero() {
             <div className={styles.formAndTitle}>
                 <h1 className={`${fontTitles.className} ${styles.title}`}>Learn and practise german<br></br> verb conjugations</h1>
 
+                <p className={styles.subtitle}>From A1 to C2, set your exercise and start mastering all the verbs tenses</p>
+
                 {/* <p>Set your exercise and start mastering verbs!</p> */}
 
                 <ExerciseGenerate

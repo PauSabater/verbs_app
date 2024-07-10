@@ -35,6 +35,7 @@ export interface IVerbsPageContext {
     reflexive: boolean,
     translation: string,
     button: string,
+    ignoreSpecialChars: boolean | null
 }
 
 export const ContextVerbPage = createContext<IVerbsPageContext | null>(null)

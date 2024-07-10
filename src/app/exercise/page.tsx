@@ -24,17 +24,12 @@ export default function Page() {
     const [types, setTypes] = useState(searchParams.get('types')?.split(','))
     const [levels, setLevels] = useState(searchParams.get('levels')?.split(','))
 
+    // if (searchParams.get('random') === 'true') {
+    //     getRandomVerb(types, levels)
+    // }
 
-    if (searchParams.get('random') === 'true') {
-        console.log("HEY RANDOM IS TRUE!!")
-        console.log(isRandom)
-        console.log(types)
-        console.log(levels)
-        getRandomVerb(types, levels)
-    }
-
-    console.log(searchParams)
-    console.log(searchParams.get('types'))
+    // console.log(searchParams)
+    // console.log(searchParams.get('types'))
 
 
     const [verbs, setVerbs] = useState(searchParams.get('verbs')?.split(','))
@@ -43,36 +38,38 @@ export default function Page() {
     }))
     const [mode, setMode] = useState(searchParams.get('mode'))
 
-    console.log("HEEEE")
-    console.log(isRandom)
     const [isExerciseSetOpen, setIsExerciseSetOpen] = useState(
+        // case verbs and tenses are not specified
         (!verbs || verbs.length === 0 || !tenses || tenses.length === 0)
+        // if mode is specified show window to choose it
         && !mode
-        && isRandom === false
+
+        && (isRandom === false || (!tenses || tenses?.length === 0) && (!types || types?.length === 0))
     )
 
-    // if (isRandom) {
-    //     setIsExerciseSetOpen(false)
-    // }
-
-
     useEffect(() => {
-        console.log("helo SEARCH PARAMS")
         const updatedVerbs = searchParams.get('verbs')?.split(',')
         const updatedTenses = searchParams.get('tenses')?.split(',').map((tense)=> {
             return replaceTenseFromURL(tense)
         })
+        const updatedIsRandom = searchParams.get('random') === 'true'
+        const updatedTypes = searchParams.get('types')?.split(',')
+        const updatedLevels = searchParams.get('levels')?.split(',')
         const updatedMode = searchParams.get('mode')
 
         setVerbs(updatedVerbs)
         setTenses(updatedTenses)
         setMode(updatedMode)
+        setIsRandom(updatedIsRandom)
+        setTypes(updatedTypes)
+        setLevels(updatedLevels)
 
 
-        setIsExerciseSetOpen((!updatedVerbs || updatedVerbs.length === 0 || !updatedTenses || updatedTenses.length === 0) && !mode)
-
-        console.log('display is')
-        console.log((!updatedVerbs || updatedVerbs.length === 0 || !updatedTenses || updatedTenses.length === 0) && !mode)
+        setIsExerciseSetOpen(
+            (!updatedVerbs || updatedVerbs.length === 0 || !updatedTenses || updatedTenses.length === 0)
+            && !mode
+            && (updatedIsRandom === false || (!updatedTenses || updatedTenses?.length === 0) && (!updatedTypes || updatedTypes?.length === 0))
+        )
 
     },[searchParams])
 

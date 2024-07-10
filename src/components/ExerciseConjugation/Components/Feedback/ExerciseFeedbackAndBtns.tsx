@@ -1,9 +1,8 @@
 'use client'
 
-import { Fragment, MouseEventHandler, ReactNode, useContext, useState } from 'react'
+import { useContext } from 'react'
 import styles from './feedback.module.scss'
-import { useRef } from 'react'
-import { IExerciseConjugationTexts, TExerciseState, getButtonColor } from '../../ExerciseConjugation.exports'
+import { IExerciseConjugationTexts, getButtonColor } from '../../ExerciseConjugation.exports'
 import { getFeedbackSvg } from '@/assets/svg/svgExports'
 import { Button } from '@/components/Button/Button'
 import { ExerciseConjugationContext, ExerciseConjugationContextTexts } from '../../ExerciseConjugation'
@@ -12,6 +11,7 @@ import { isError, isSuccess } from '@/utils/constants'
 import { getRandomInt } from '@/utils/utils'
 
 interface IExerciseFeedback {
+    isRandomMode: boolean
     callbackBtnNext: Function
     callBackBtnMain: Function
     tenses: string[]
@@ -37,7 +37,12 @@ export function ExerciseFeedbackAndBtns(props: IExerciseFeedback): JSX.Element {
         } else {
 
             // inform we pass to next verb and tense
-            if (isSuccess(state) && isLastTense() && !isLastVerb()) {
+            if (isSuccess(state) && isLastTense() && !isLastVerb() && !props.isRandomMode) {
+                console.log('first condition')
+                return `NEXT: ${getNextVerb()} - ${props.tenses[0]}`
+            }
+            // case next verb for random
+            if (isSuccess(state) && isLastTense() && props.isRandomMode) {
                 console.log('first condition')
                 return `NEXT: ${getNextVerb()} - ${props.tenses[0]}`
             }
@@ -86,7 +91,10 @@ export function ExerciseFeedbackAndBtns(props: IExerciseFeedback): JSX.Element {
     }
 
     const getNextVerb = ()=> {
-        return props.verbs[props.verbs.indexOf(context.currentVerb) + 1]
+        if (props.isRandomMode) {
+            return context.randomVerbsResults[context.randomVerbsResults.indexOf(context.currentVerb) + 1]
+        }
+        else return props.verbs[props.verbs.indexOf(context.currentVerb) + 1]
     }
 
     const isLastVerb = ()=> {
@@ -115,7 +123,7 @@ export function ExerciseFeedbackAndBtns(props: IExerciseFeedback): JSX.Element {
             </div>
 
             <div className={isSuccess(context.exerciseState) ? styles.containerBtns : ''}>
-                { /* Main button */ }
+                { /* Second button appearing only after a success after checking */ }
                 <Button
                     callback={props.callBackBtnMain}
                     text={getBtnText(context.exerciseState, true, isLastTense())}
@@ -127,9 +135,10 @@ export function ExerciseFeedbackAndBtns(props: IExerciseFeedback): JSX.Element {
                             isSecondBtn: false
                         })}
                     icon={getBtnIcon(context.exerciseState, true)}
+                    dotted={isSuccess(context.exerciseState)}
                 ></Button>
 
-                { // Second button appearing only after a success after checking
+                { // Main button
                 isSuccess(context.exerciseState) ? (
                     <Button
                         callback={props.callbackBtnNext}

@@ -1,0 +1,55 @@
+.container {
+    --info-circle-color: var(--c-grey-light);
+    --info-circle-height: 35px;
+
+    box-sizing: border-box;
+    width: 100%;
+    background: var(--bg-white);
+    border-radius: 20px;
+    padding: var(--mg-md) var(--mg-xl);
+    height: -moz-fit-content;
+    height: fit-content;
+}
+
+.textContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputsContainer {
+    display: flex;
+    align-items: center;
+
+    label {
+        cursor: pointer;
+        margin-right: var(--mg-sm);
+        padding-left: var(--pd-xs);
+    }
+
+    input {
+        cursor: pointer;
+        transition: background-color var(--tr-base);
+    }
+
+    input[type=radio] {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        border-radius: 50%;
+        background-clip: content-box;
+        border: 1px solid var(--c-grey);
+        background-color: transparent;
+    }
+
+    input[type="radio"]:checked {
+        background-color: var(--c-grey);
+        padding: 2.5px;
+        border: 1px solid var(--c-grey-light);
+    }
+}
+
+.title {
+    margin: 0 var(--mg-xs) var(--mg-xs) 0;
+}

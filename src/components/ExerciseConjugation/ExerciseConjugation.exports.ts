@@ -153,3 +153,9 @@ export const getTenseFromTenseName = (tenses: IVerbAllTenses, tableTense: string
 
     return
 }
+
+export const getIgnoreInitialValue = ()=> {
+    const val = window.localStorage.getItem('ignore-special-chars')
+    if (!val || val === 'false') return false
+    else return true
+}

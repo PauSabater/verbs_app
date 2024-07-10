@@ -13,9 +13,15 @@ export const TensesList = ()=> {
         >
             <p className={styles.title}>Tenses</p>
             {
-                context && context.tensesState ? context.tensesState.map((tense)=> {
+                context && context.tensesState ? context.tensesState.map((tense, i)=> {
                     return (
-                        <p className={`${styles.tense} ${styles[tense.tenseState]}`}>{tense.tense}</p>
+                        <p
+                            key={`tense-${i}`}
+                            className={`${styles.tense}
+                            ${styles[tense.tenseState]}`}
+                        >
+                            {tense.tense}
+                        </p>
                     )
                 })
 
