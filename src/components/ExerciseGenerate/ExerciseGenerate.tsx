@@ -538,11 +538,6 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                                 : <></>
                         }
                 </div>
-                <Button
-                    text={'Start'}
-                    color={'primaryDark'}
-                    callback={onBtnStartClick}
-                />
             </div>
             {
                 (state.exerciseMode === 'search' && (state.selectedVerbs.length > 0 || state.selectedTenses.length > 0))
@@ -560,6 +555,11 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                     </div>
                     : <></>
             }
+                <Button
+                    text={'Start'}
+                    color={'primaryDark'}
+                    callback={onBtnStartClick}
+                />
         </div>
 
     )

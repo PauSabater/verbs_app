@@ -63,7 +63,10 @@ export default function Header() {
                 </div>
 
                 <div className={styles.authenticationContainer}>
-                    <Button text={'log in'} color={'transparent'} callback={() => setIsSignUpOpen(true)}></Button>
+                    <Button
+                        text={'log in'}
+                        color={'transparent'}
+                        callback={() => setIsSignUpOpen(true)}></Button>
                     {
                         isUserLogged ? <Button text={'Sign in'} color={'primaryDark'} callback={() => setIsSignUpOpen(true)}></Button>
                         : <p>HELLO</p>

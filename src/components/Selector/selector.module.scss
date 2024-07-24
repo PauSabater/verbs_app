@@ -51,6 +51,11 @@
         pointer-events: all;
         transform: translateY(-50%) scaleY(-1);
     }
+
+    &.exerciseGenerate {
+        height: 60px;
+        // border-radius: 0;
+    }
 }
 
 .selectedValue {

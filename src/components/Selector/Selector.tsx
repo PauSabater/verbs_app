@@ -147,7 +147,7 @@ export function Selector(props: ISelector) {
     return (
         <div className={`${styles.container} ${props.isFullwidth ? styles.fullwidth : ''}`}>
             <button
-                className={`${styles.selector} ${props.isFullwidth ? styles.fullwidth : ''} ${isExpanded ? styles.btnExpanded : ''} ${props.color ? styles[props.color] : ''} ${
+                className={`${styles.selector} ${props.isFullwidth ? styles.fullwidth : ''} ${isExpanded ? styles.btnExpanded : ''} ${props.isExerciseGenerate ? styles.exerciseGenerate : ''} ${props.color ? styles[props.color] : ''} ${
                     props.weight ? styles[props.weight] : ''
                 }`}
                 role="combobox"
@@ -157,6 +157,7 @@ export function Selector(props: ISelector) {
                 aria-controls="select-dropdown"
                 onClick={() => handleButtonClick()}
                 ref={refBtn}
+                data-is-exercise-form={props.isExerciseGenerate}
             >
                 <span className={styles.selectedValue}>{selectedOption || props.selectedOption}</span>
                 <SVGArrow></SVGArrow>
