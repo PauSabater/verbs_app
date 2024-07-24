@@ -300,27 +300,31 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
     }
 
 
+    function setOrRemoveSearchBar(arg0: boolean) {
+        throw new Error('Function not implemented.')
+    }
+
     return  (
 
         <div className={styles.exerciseGenerate}>
 
-        {/* <div className={`${styles.btnsContainer}`}>
-            <p>Exercise type → </p>
-            <Button
-                text={''}
-                color={'greyReverse'}
-                callback={() => setOrRemoveSearchBar(true)}
-                icon={'search'}
-                isTextOnHover={true}
-            ></Button>
-            <Button
-                text={''}
-                color={'greyReverse'}
-                callback={() => setOrRemoveSearchBar(false)}
-                icon={'random'}
-                isTextOnHover={true}
-            ></Button>
-        </div> */}
+            <div className={`${styles.btnsContainer}`}>
+                <p>Exercise type → </p>
+                <Button
+                    text={'choose verbs'}
+                    color={'greyReverse'}
+                    callback={() => setExerciseMode('search')}
+                    icon={'search'}
+                    isTextOnHover={true}
+                ></Button>
+                <Button
+                    text={'aleatory verbs'}
+                    color={'greyReverse'}
+                    callback={() => setExerciseMode('random')}
+                    icon={'random'}
+                    isTextOnHover={true}
+                ></Button>
+            </div>
 
 
 
