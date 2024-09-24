@@ -9,6 +9,8 @@ export const isError = (state: string)=> {return state === strError}
 export const isInactive = (state: string)=> {return state === strInactive}
 export const isFilled = (state: string)=> {return state === strFilled}
 
+export const iconImgSize = 24
+
 // export const Tenses =  [
 //     {
 //         str: "Präsens"

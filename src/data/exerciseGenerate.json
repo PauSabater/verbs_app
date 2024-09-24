@@ -19,8 +19,8 @@
             "Partizip II"
         ],
         "tensesSelectAllOption": {
-            "label": "Select all#tenses",
-            "labelSelected": "All tenses"
+            "label": "Any verb type#tenses",
+            "labelSelected": "Any type"
         },
         "tensesSelectText": "Tense(s)",
         "tensesErrorMessage": "Select at least a tense",
@@ -34,8 +34,8 @@
             "C2"
         ],
         "levelsSelectAllOption": {
-            "label": "Select all#levels",
-            "labelSelected": "All verb levels"
+            "label": "Any level#levels",
+            "labelSelected": "Any level"
         },
 
         "typesSelector": [

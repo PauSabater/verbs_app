@@ -11,16 +11,30 @@
     height: fit-content;
 }
 
-.nextPrevBtn {
+.buttonTrigger {
+    cursor: pointer;
     display: flex;
-    background-color: transparent;
-    border: none;
     align-items: center;
-    height: 45px;
+    justify-content: space-between;
+    height: 70px;
+    box-sizing: border-box;
+    width: 100%;
+    background: var(--bg-white);
+    border-radius: 20px;
+    padding: var(--settings-container-pd);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    text-align: left;
+    border: none;
+    color: var(--c-font-global);
+
+    &:hover {
+        outline: 1px solid var(--c-grey-light);
+    }
 
     svg {
         height: 20px;
-        padding-right: var(--pd-sm);
+        opacity: 0.7;
     }
 }
 

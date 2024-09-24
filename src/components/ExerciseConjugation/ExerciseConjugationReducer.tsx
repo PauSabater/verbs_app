@@ -51,7 +51,8 @@ export interface IExerciseConjugationState {
     successTenses: string[],
     verbsState: IVerbsState[],
     tensesState: ITensesState[],
-    ignoreSpecialChars: boolean | null,
+    ignoreSpecialChars: boolean,
+    lastFocusedInput: number,
     randomVerbsResults: string[]
 }
 
@@ -79,6 +80,7 @@ export type TExerciseConjugationActions =
     | 'SET_CURRENT_VERB_PROPS'
     | 'SET_IGNORE_SPECIAL_CHARS'
     | 'SET_RANDOM_VERB_RESULTS'
+    | 'SET_LAST_INPUT_FOCUSED'
 
 export type TExerciseConjugationAction = {
     type: TExerciseConjugationActions,
@@ -108,7 +110,8 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_CURRENT_TENSE_NUMBER: 'SET_CURRENT_TENSE_NUMBER',
     SET_CURRENT_VERB_PROPS: 'SET_CURRENT_VERB_PROPS',
     SET_IGNORE_SPECIAL_CHARS: 'SET_IGNORE_SPECIAL_CHARS',
-    SET_RANDOM_VERB_RESULTS: 'SET_RANDOM_VERB_RESULTS'
+    SET_RANDOM_VERB_RESULTS: 'SET_RANDOM_VERB_RESULTS',
+    SET_LAST_INPUT_FOCUSED: 'SET_LAST_INPUT_FOCUSED'
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {
@@ -234,6 +237,12 @@ export function reducer(state: IExerciseConjugationState, action: TExerciseConju
             return {
                 ...state,
                 randomVerbsResults: action.payload as string[]
+            }
+
+        case actions.SET_LAST_INPUT_FOCUSED:
+            return {
+                ...state,
+                lastFocusedInput: action.payload as number
             }
 
         default: return state

@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--mg-sm);
+    transition: opacity var(--tr-base);
+
+    &[data-is-active="false"] {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+
+    img {
+        margin-left: var(--mg-xs);
+    }
+}
+
+.button {
+    cursor: pointer;
+    background-color: var(--bg-main);
+    border: 1px dotted transparent;
+    border-radius: var(--br-base);
+    font-size: var(--fs-sm);
+    height: 40px;
+    margin: 0 5px;
+    width: 40px;
+    transition: background-color var(--tr-base), border-color var(--tr-base);
+
+    &:hover {
+        border-color: var(--c-grey-light);
+    }
+}

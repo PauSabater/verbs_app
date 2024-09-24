@@ -4,6 +4,8 @@ export interface IConjugation {
     conjugationHTML: string
 }
 
+export type TValidatedState = "valid" | "partial" | "error"
+
 export interface ITensesDropdown {
     level: string,
     title: string,

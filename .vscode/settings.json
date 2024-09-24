@@ -4,5 +4,8 @@
     "editor.formatOnSave": false,
     "editor.formatOnPaste": true,
     "editor.wordWrap": "on",
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "[scss]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    }
 }

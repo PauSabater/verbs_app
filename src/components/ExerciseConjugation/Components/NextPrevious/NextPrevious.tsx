@@ -18,7 +18,7 @@ export default function NextPrevious(props: INextPrevious) {
 
     const NextPrevLink = (isNext:{isNext: boolean})=> {
         return (
-            <button className={styles.nextPrevBtn}>
+            <button className={styles.buttonTrigger}>
                 {isNext ? <SVGNextPrev /> : <></>}
                 <div className={styles.textContainer}>
                     {/* <p>{'previous:'}</p> */}

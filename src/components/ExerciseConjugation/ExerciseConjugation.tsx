@@ -25,6 +25,7 @@ import { VerbInfo } from './Components/VerbInfo/VerbInfo'
 import IgnoreSpecialCharacters from './Components/IgnoreSpecialCharacters/IgnoreSpecialCharacters'
 import NextPrevious from './Components/NextPrevious/NextPrevious'
 import Link from 'next/link'
+import InputsSpecialCharacters from './Components/SpecialCharacters/SpecialCharacters'
 
 export const ExerciseConjugationContext = createContext<IExerciseConjugationState | null>(null)
 export const ExerciseConjugationContextTexts = createContext<IExerciseConjugationTexts | null>(null)
@@ -59,7 +60,8 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         triggerInputsAnimation: false,
         isHelpOpen: false,
         successTenses: [],
-        ignoreSpecialChars: null,
+        ignoreSpecialChars: getIgnoreInitialValue(),
+        lastFocusedInput: 0,
         randomVerbsResults: [],
         verbsState: props.verbs ? props.verbs.map((verb)=> {
             return {
@@ -181,6 +183,13 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         })
     }
 
+    const setLastInputFocused = (e: MouseEvent, num: number) => {
+        dispatch({
+            type: actions.SET_LAST_INPUT_FOCUSED,
+            payload: num
+        })
+    }
+
     // Array with the exercise inputs
     const refsInputs = [useRef<any>(null), useRef(null), useRef(null), useRef(null), useRef(null), useRef(null)]
 
@@ -199,15 +208,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
         const getRandomVerb = async ()=> {
             const url = getUrlRandomVerb(props.types, props.levels)
-            console.log('hey url is')
-            console.log(url)
 
             const res = await fetch(url)
             const verbData = await res.json()
-
-            console.log("RESPONSE IS")
-            console.log(verbData)
-            console.log(verbData.results._id)
 
             const results = verbData.results.map((result: any)=> {
                 return result._id
@@ -647,7 +650,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     }
 
     const onIgnoreSpecialCharsChange = (e: Event)=> {
-        console.log("HELOO")
         const elInput = e.target as HTMLInputElement
         if (!elInput) return
         console.log(elInput)
@@ -658,6 +660,17 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             type: actions.SET_IGNORE_SPECIAL_CHARS,
             payload: isIgnored
         })
+    }
+
+    const onSpecialCharacterClick = (char: string)=> {
+        console.log('HEY SPECIAL CHAR CLICK')
+        if (!char) return
+        const inputFocused = refsInputs[state.lastFocusedInput].current
+
+        if (inputFocused) {
+            inputFocused.addSpecialChar(char)
+            inputFocused.focusInput()
+        }
     }
 
     const HelpContent = (): React.JSX.Element => {
@@ -708,6 +721,19 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         )
     }
 
+    const onIgnoreSpecialCharsClick = (e: Event)=> {
+        const elInput = e.target as HTMLInputElement
+        if (!elInput) return
+        console.log(elInput)
+        const isIgnored = elInput.id.includes('yes') ? true : false
+        window.localStorage.setItem('ignore-special-chars', isIgnored ? 'true': 'false')
+
+        dispatch({
+            type: actions.SET_IGNORE_SPECIAL_CHARS,
+            payload: isIgnored
+        })
+    }
+
     return (
         <Fragment>
             <ExerciseConjugationContext.Provider value={state as any}>
@@ -738,6 +764,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                                                                 actionOnEmptied={actionOnEmptiedInput}
                                                                 actionOnCorrected={actionOnCorrectedInput}
                                                                 displayAnswer={state.isHelpOpen}
+                                                                inputNumber={i}
+                                                                ignoreSpecialChars={state.ignoreSpecialChars}
+                                                                onInputFocus={setLastInputFocused}
                                                             />
                                                         </div>
                                                     )
@@ -755,13 +784,19 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
                         </div>
 
-                        <ExerciseHelpTrigger
-                            exerciseState={state.exerciseState}
-                            isOpen={state.isHelpOpen}
-                            openTxt={props.texts.help.openTxt}
-                            closeTxt={props.texts.help.closeTxt}
-                            action={() => setIsHelpOpen(!state.isHelpOpen)}
-                        />
+                        <div>
+                            <InputsSpecialCharacters
+                                callbackOnClick={onSpecialCharacterClick}
+                                isActive={state.exerciseState !== 'success'}
+                            />
+                            <ExerciseHelpTrigger
+                                exerciseState={state.exerciseState}
+                                isOpen={state.isHelpOpen}
+                                openTxt={props.texts.help.openTxt}
+                                closeTxt={props.texts.help.closeTxt}
+                                action={() => setIsHelpOpen(!state.isHelpOpen)}
+                            />
+                        </div>
 
                         <ExerciseFeedbackAndBtns
                             callBackBtnMain={handleMainBtnClick}
@@ -799,10 +834,10 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                                 : <></>
                         }
                         <NextPrevious />
-                        <IgnoreSpecialCharacters
+                        {/* <IgnoreSpecialCharacters
                             callbackOnChange={onIgnoreSpecialCharsChange}
                             initialValue={getIgnoreInitialValue()}
-                        />
+                        /> */}
                         <ShareExercise/>
                     </div>
 
