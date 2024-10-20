@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     margin-bottom: var(--mg-sm);
-    transition: opacity var(--tr-base);
+    transition: opacity var(--tr-fast);
 
     &[data-is-active="false"] {
         opacity: 0.3;

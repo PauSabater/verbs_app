@@ -51,7 +51,6 @@ export async function getRandomVerb(types?: string[], levels?: string[]) {
     console.log(url)
 
     const res = await fetch(url)
-
 }
 
 export const getApiVerbConjugationsFromTenses = async (verb: string, tenses: string[]) => {

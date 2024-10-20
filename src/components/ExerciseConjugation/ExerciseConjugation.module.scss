@@ -140,6 +140,7 @@
     opacity: 1;
     transform: translateY(0px);
     transition: opacity var(--tr-slow), transform var(--tr-base);
+    margin-bottom: var(--mg-xl);
 
     &[data-animate="true"] {
         position: flex;
@@ -202,11 +203,11 @@
 }
 
 .person {
-    margin: 0;
+    margin: auto 0;
     font-size: var(--exercise-person-fs, var(--fs-lg));
     font-weight: 400;
     color: var(--c-grey-darker);
-    align-self: center;
+    align-self: flex-start;
 }
 
 
@@ -316,15 +317,19 @@
     }
 
     .statement {
-        margin: 0 0 30px;
+        margin: var(--mg-xs) 0 var(--mg-lg);
+
+        p:first-child {
+            margin: 0 0 var(--mg-xs);
+        }
     }
 }
 
-@include mixins.vertical-750 {
+@include mixins.vertical-sm {
 
     .statement {
         font-size: var(--fs-sm);
-        margin: var(--mg-xs) 0 var(--mg-md);
+        margin: var(--mg-xs) 0 var(--mg-lg);
     }
 
     .person {
@@ -332,7 +337,7 @@
     }
 
     .row {
-        margin-bottom: var(--mg-xs);
+        margin-bottom: var(--mg-sm);
         grid-template-columns: 115px auto;
     }
 
@@ -342,7 +347,10 @@
 
     .container input {
         height: 45px;
-        margin-bottom: 10px;
+    }
+
+    .rowsContainer {
+        margin-bottom: var(--mg-sm);
     }
 }
 
@@ -368,14 +376,6 @@
 
     .container button {
         bottom: 60px;
-    }
-}
-
-@include mixins.vertical-750 {
-
-    .statement {
-        font-size: var(--fs-sm);
-        margin: calc(var(--mg-lg) + 5px) 0 var(--mg-lg);
     }
 }
 

@@ -2,6 +2,8 @@
     --info-circle-color: var(--c-grey-light);
     --info-circle-height: 35px;
 
+    display: grid;
+    grid-template-columns: calc(50% - 5px) calc(50% - 5px);
     box-sizing: border-box;
     width: 100%;
     background: var(--bg-white);
@@ -9,6 +11,7 @@
     padding: var(--mg-md) var(--mg-xl);
     height: -moz-fit-content;
     height: fit-content;
+    grid-gap: 10px;
 }
 
 .buttonTrigger {
@@ -18,22 +21,25 @@
     justify-content: space-between;
     height: 70px;
     box-sizing: border-box;
+    height: 44px;
     width: 100%;
-    background: var(--bg-white);
-    border-radius: 20px;
-    padding: var(--settings-container-pd);
+    background: var(--bg-main);
+    border-radius: var(--br-base);
+    padding: 0 var(--mg-md);
     font-size: var(--fs-sm);
     font-weight: 500;
     text-align: left;
     border: none;
     color: var(--c-font-global);
+    overflow: hidden;
+    transition: background-color var(--tr-base) ease;
 
     &:hover {
-        outline: 1px solid var(--c-grey-light);
+        background-color: var(--c-grey-lighter);
     }
 
     svg {
-        height: 20px;
+        height: 18px;
         opacity: 0.7;
     }
 }
@@ -42,9 +48,16 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    font-size: var(--fs-sm);
 
     p {
         line-height: 15px;
         margin: 0;
+    }
+}
+
+.btnContainer {
+    &:last-child svg {
+        transform: rotate(180deg);
     }
 }

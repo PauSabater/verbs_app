@@ -254,7 +254,7 @@
         transition: background-color var(--tr-fast);
         margin-left: 4px;
         border: none;
-        color: white;
+        color: var(--c-grey);
         background-color: transparent;
         opacity: 0;
         transition: opacity var(--tr-base);
@@ -269,6 +269,7 @@
 }
 
 .selectedTense {
+    pointer-events: none;
     cursor: pointer;
     width: min-content;
     padding: 0 0 0 var(--pd-md);
@@ -289,9 +290,8 @@
 }
 
 .btnRestartContainer {
-    position: absolute;
-    top: 60px;
-    left: 0;
+    position: relative;
+    grid-column-start: 1;
 
     button {
         border: none;

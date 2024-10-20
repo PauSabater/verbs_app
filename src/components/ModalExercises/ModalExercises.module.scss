@@ -122,7 +122,7 @@ div.btnClose {
     }
 }
 
-@include mixins.vertical-750 {
+@include mixins.vertical-sm {
     .container {
         height: 95vh;
     }

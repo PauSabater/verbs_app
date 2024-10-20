@@ -26,7 +26,7 @@ export function SVGRestart({color}: {color?: string}) { return (
 
 export function SVGNextPrev({color}: {color?: string}) { return (
     <svg viewBox="0 0 39 66" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M35 3.5L5.5 33L35 62.5" stroke={color || "currentColor"} strokeWidth="3" strokeLinecap="round"/>
+        <path d="M35 3.5L5.5 33L35 62.5" stroke={color || "currentColor"} strokeWidth="4" strokeLinecap="round"/>
     </svg>
     )
 }

@@ -30,12 +30,12 @@
     @media (max-height: 900px) { @content; }
 }
 
-@mixin vertical-750 {
-    @media (max-height: 750px) { @content; }
+@mixin vertical-sm {
+    @media (max-height: 900px) { @content; }
 }
 
 @mixin desktop-sm {
-    @media (min-width: 1024px) { @content; }
+    @media (min-width: 830px) { @content; }
 }
 
 @mixin desktop {

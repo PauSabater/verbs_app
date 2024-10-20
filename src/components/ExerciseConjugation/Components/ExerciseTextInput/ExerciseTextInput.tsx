@@ -62,6 +62,8 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
         const inputVal = refInput.current.value || ''
         const newInputVal = inputVal.slice(0, focusTextPosition) + char + inputVal.slice(focusTextPosition)
         refInput.current.value = newInputVal
+        setInputState(statesInputExercise.filling)
+        updateStatesOnInputChange()
     }
 
     // useEffect(()=> {
@@ -73,6 +75,11 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
 
         console.log("posizion is " + e.target.selectionStart)
         setFocusTextPosition(e.target.selectionStart || 0)
+        updateStatesOnInputChange()
+    }
+
+    const updateStatesOnInputChange = () => {
+        const inputValue = (refInput.current as HTMLInputElement).value
 
         if (inputValue !== '' && isFillingState(inputState) === false) {
             // Case an errored input starts being corrected
@@ -99,11 +106,11 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
 
         setInputState(isInputValid ? statesInputExercise.success : statesInputExercise.error)
 
-        const newVal = validateConjugationString(
-            formatedStringForValidation,
-            props.answers[0],
-            props.ignoreSpecialChars
-        )
+        // const newVal = validateConjugationString(
+        //     formatedStringForValidation,
+        //     props.answers[0],
+        //     props.ignoreSpecialChars
+        // )
 
         return isInputValid
     }
