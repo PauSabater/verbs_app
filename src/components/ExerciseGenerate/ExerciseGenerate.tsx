@@ -38,9 +38,6 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
         ? JSON.parse(stateStored) as IExerciseGenerateState
         : undefined
 
-    console.log("HEZ LOCALSTORAGE")
-    console.log(objStateStored)
-
     const textsExercise = texts.exerciseGenerate
     const router = useRouter()
 
@@ -56,9 +53,6 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
         selectedTenses: objStateStored ? objStateStored.selectedTenses : [],
         selectedLevels: objStateStored ? objStateStored.selectedLevels : [],
         selectedVerbs: objStateStored ? objStateStored.selectedVerbs : [],
-        updatedSelectedTypes: objStateStored ? objStateStored.updatedSelectedTypes : [],
-        updatedSelectedTenses: objStateStored ? objStateStored.updatedSelectedTenses : [],
-        updatedSelectedLevels: objStateStored ? objStateStored.updatedSelectedLevels : []
     })
 
 
@@ -110,31 +104,8 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
         })
     }
 
-    const setReducerUpdatedSelectedTypes = (types: string[])=> {
-        dispatch({
-            type: actions.SET_UPDATED_SELECTED_TYPES,
-            payload: [...new Set(types)]
-        })
-    }
-
-    const setReducerUpdatedSelectedLevels = (levels: string[])=> {
-        dispatch({
-            type: actions.SET_UPDATED_SELECTED_LEVELS,
-            payload: [...new Set(levels)]
-        })
-    }
-
-    const setReducerUpdatedSelectedTenses = (tenses: string[])=> {
-        dispatch({
-            type: actions.SET_UPDATED_SELECTED_TENSES,
-            payload: [...new Set(tenses)]
-        })
-    }
-
     // Update sessionstorage state:
     useEffect(()=> {
-        console.log("HEY USE EFFECT STATE CHANGE")
-        console.log(state)
         sessionStorage.setItem(sessionStorageKey, JSON.stringify(state))
     }, [state])
 
@@ -146,7 +117,6 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
             newTypesState.splice(newTypesState.indexOf(value))
         }
         setReducerSelectedTypes(newTypesState)
-        setReducerUpdatedSelectedTypes(newTypesState)
     }
 
     const onLevelInputChange = (value: string, group: string, isChecked: boolean)=> {
@@ -242,12 +212,6 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
         const item: HTMLButtonElement = e.target as HTMLButtonElement
         const listName = item.getAttribute('data-list')
         const value = item.getAttribute('data-value')
-        console.log(listName)
-
-        console.log("HEY REMOVE ITEM")
-        console.log(item)
-        console.log(value)
-        console.log(listName)
 
         if (!value) return
 
@@ -256,41 +220,31 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                 const newTypesState: string[] = state.selectedTypes || []
                 newTypesState.splice(newTypesState.indexOf(value), 1)
                 setReducerSelectedTypes(newTypesState)
-                setReducerUpdatedSelectedTypes(newTypesState)
                 return
 
             case 'types-remove-all':
                 setReducerSelectedTypes([])
-                setReducerUpdatedSelectedTypes([])
                 return
 
             case 'levels':
                 const newLevelsState: string[] = state.selectedLevels || []
-                console.log("before is")
-                console.log(newLevelsState)
                 newLevelsState.splice(newLevelsState.indexOf(value), 1)
-                console.log("after is")
-                console.log(newLevelsState)
 
                 setReducerSelectedLevels(newLevelsState)
-                setReducerUpdatedSelectedLevels(newLevelsState)
                 return
 
             case 'levels-remove-all':
                 setReducerSelectedLevels([])
-                setReducerUpdatedSelectedLevels([])
                 return
 
             case 'tenses':
                 const newTensesState: string[] = state.selectedTenses || []
                 newTensesState.splice(newTensesState.indexOf(value), 1)
                 setReducerSelectedTenses(newTensesState)
-                setReducerUpdatedSelectedTenses(newTensesState)
                 return
 
             case 'tenses-remove-all':
                 setReducerSelectedTenses([])
-                setReducerUpdatedSelectedTenses([])
                 return
 
             case 'verbs':
@@ -324,16 +278,12 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
         if (state.exerciseMode === 'search') {
             setReducerSelectedVerbs([])
             setReducerSelectedTenses([])
-            setReducerUpdatedSelectedTenses([])
         }
 
         if (state.exerciseMode === 'random') {
             setReducerSelectedTypes([])
-            setReducerUpdatedSelectedTypes([])
             setReducerSelectedLevels([])
-            setReducerUpdatedSelectedLevels([])
             setReducerSelectedTenses([])
-            setReducerUpdatedSelectedTenses([])
         }
     }
 
@@ -443,7 +393,7 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                             isExerciseGenerate={true}
                             type={'checkbox'}
                             options={[{ options: textsExercise.levelsSelector }]}
-                            updatedSelectedOptions={JSON.stringify(state.updatedSelectedLevels)}
+                            updatedSelectedOptions={JSON.stringify(state.selectedLevels)}
                             columns={3}
                             selectedOption={'Verb level(s)'}
                             callbackOnChange={onLevelInputChange}
@@ -513,7 +463,7 @@ export function ExerciseGenerate(props: IExerciseGenerate) {
                         isExerciseGenerate={true}
                         type={'checkbox'}
                         options={[{ options: textsExercise.tensesSelector }]}
-                        updatedSelectedOptions={JSON.stringify(state.updatedSelectedTenses)}
+                        updatedSelectedOptions={JSON.stringify(state.selectedTenses)}
                         columns={4}
                         selectedOption={textsExercise.tensesSelectText}
                         callbackOnChange={onTensesInputChange}

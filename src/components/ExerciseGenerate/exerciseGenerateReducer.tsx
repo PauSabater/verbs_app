@@ -7,9 +7,6 @@ export interface IExerciseGenerateState {
     selectedTenses: string[],
     selectedLevels: string[],
     selectedVerbs: string[],
-    updatedSelectedTypes: string[],
-    updatedSelectedTenses: string[],
-    updatedSelectedLevels: string[]
 }
 
 export type TExerciseGenerateActions =
@@ -19,9 +16,6 @@ export type TExerciseGenerateActions =
     | 'SET_SELECTED_LEVELS'
     | 'SET_SELECTED_VERBS'
     | 'SET_SELECTED_VERBS'
-    | 'SET_UPDATED_SELECTED_TYPES'
-    | 'SET_UPDATED_SELECTED_TENSES'
-    | 'SET_UPDATED_SELECTED_LEVELS'
 
 export type TExerciseGenerateAction = {
     type: TExerciseGenerateActions,
@@ -34,9 +28,6 @@ export const actions: {[key in TExerciseGenerateActions]: TExerciseGenerateActio
     SET_SELECTED_TYPES: 'SET_SELECTED_TYPES',
     SET_SELECTED_LEVELS: 'SET_SELECTED_LEVELS',
     SET_SELECTED_VERBS: 'SET_SELECTED_VERBS',
-    SET_UPDATED_SELECTED_TYPES: 'SET_UPDATED_SELECTED_TYPES',
-    SET_UPDATED_SELECTED_TENSES: 'SET_UPDATED_SELECTED_TENSES',
-    SET_UPDATED_SELECTED_LEVELS: 'SET_UPDATED_SELECTED_LEVELS'
 }
 
 export function reducer(state: IExerciseGenerateState, action: TExerciseGenerateAction): IExerciseGenerateState {
@@ -76,24 +67,6 @@ export function reducer(state: IExerciseGenerateState, action: TExerciseGenerate
             return {
                 ...state,
                 selectedVerbs: action.payload as string[]
-            }
-
-        case actions.SET_UPDATED_SELECTED_LEVELS:
-            return {
-                ...state,
-                updatedSelectedLevels: action.payload as string[]
-            }
-
-        case actions.SET_UPDATED_SELECTED_TENSES:
-            return {
-                ...state,
-                updatedSelectedTenses: action.payload as string[]
-            }
-
-        case actions.SET_UPDATED_SELECTED_TYPES:
-            return {
-                ...state,
-                updatedSelectedTypes: action.payload as string[]
             }
 
 

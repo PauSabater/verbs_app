@@ -8,9 +8,9 @@ import stylesFdb from './Components/Feedback/feedback.module.scss'
 import ExerciseTextInput from './Components/ExerciseTextInput/ExerciseTextInput'
 import { Selector } from '../Selector/Selector'
 import Alert from '../Alert/Alert'
-import { isSuccess, isError } from '@/utils/constants'
+import { isSuccess, isError, allTenses } from '@/utils/constants'
 import { SVGAdd, SVGCross, SVGExercise } from '@/assets/svg/svgExports'
-import { IConjugation, IExerciseConjugation, IExerciseConjugationTexts, TExerciseState, getConjugationFromTense, getIgnoreInitialValue, statesExerciseConjugation } from './ExerciseConjugation.exports'
+import { IConjugation, IExerciseConjugation, IExerciseConjugationTexts, TExerciseState, formatTenseForHeading, getConjugationFromTense, getIgnoreInitialValue, statesExerciseConjugation } from './ExerciseConjugation.exports'
 import { getCorrectAnswers, getOptionsDropdown, setLocalstorageItem } from '@/utils/utils'
 import { IExerciseConjugationState, ITensesState, IVerbsState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
 import { ExerciseHelpTrigger } from './Components/ExerciseHelpTrigger/ExerciseHelpTrigger'
@@ -281,7 +281,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
 
 
-    const fetchExerciseTense = ()=> {
+    const fetchExerciseTense = (tense?: string[])=> {
            if (!props.allTenses) {
             (async () => {
 
@@ -301,13 +301,21 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                             tensesObj = objVerbLocalStorage.tenses
                         }
                         else {
-                            const tensesResp: any = (await getApiVerbConjugationsFromTenses(props.verb, props.tenses)) as unknown as any
+                            const tensesResp: any = (await getApiVerbConjugationsFromTenses(
+                                props.verb,
+                                tense || props.tenses
+                            )) as unknown as any
                             tensesObj = tensesResp.props.verbData.verb.data.tenses
                         }
 
                     // case verb is not in localstorage:
                     } else {
-                        const tensesResp: any = (await getApiVerbConjugationsFromTenses(state.currentVerb, props.tenses)) as unknown as any
+                        const tensesResp: any = (await getApiVerbConjugationsFromTenses(
+                            state.currentVerb,
+                            tense || props.tenses
+                        )) as unknown as any
+                        console.log("response is ")
+                        console.log(tensesResp)
                         tensesObj = tensesResp.props.verbData.verb.data.tenses
                         verbPropsObj = tensesResp.props.verbData.verb.data.properties
                     }
@@ -316,7 +324,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 }
 
                 setExerciseConjugations(
-                    props.conjugationCurrentVerb || getConjugationFromTense(tensesObj, props.tenseExercise)
+                    tense
+                        ? getConjugationFromTense(tensesObj, tense[0])
+                        : props.conjugationCurrentVerb || getConjugationFromTense(tensesObj, props.tenseExercise)
                 )
                 dispatch({
                     type: actions.SET_CURRENT_VERB_PROPS,
@@ -700,6 +710,15 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         return <div className={stylesFdb.container} data-state={state.exerciseState}></div>
     }
 
+    const handleTenseChange = (tense: string) => {
+        dispatch({
+            type: actions.SET_CURRENT_TENSE,
+            payload: tense
+        })
+        setSelectedTense(tense)
+        fetchExerciseTense([tense])
+    }
+
     const ExerciseStatement = () => {
         return (
             <div className={styles.statement}>
@@ -716,9 +735,23 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 }
                 <p data-statement-text dangerouslySetInnerHTML={{ __html: sanitize(props.texts.statement) }}></p>
                     <span data-text>{props.texts.textTense}</span>
-                    <Link href={`/lessons/${state.currentTense}`}>
-                        <span>{state.currentTense}</span>
-                    </Link>
+
+                    {
+                        props.tenses.length === 1
+                            ? <Selector
+                                options={[{
+                                    title: "Change exerise tense",
+                                    options: allTenses
+                                }]}
+                                selectedOption={state.currentTense}
+                                callbackOnChange={handleTenseChange}
+                            />
+
+                        :   <Link href={`/lessons/${state.currentTense}`}>
+                                <span>{formatTenseForHeading(state.currentTense)}</span>
+                            </Link>
+
+                    }
 
                 <span
                     data-text

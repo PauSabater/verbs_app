@@ -82,6 +82,37 @@
             "content": "Conjugation"
         },
         {
+            "type": "paragraph",
+            "content": "The <i>the Konjunktiv II Präteritum</i> is mostly used with modal verbs and the irregular verbs sein and haben. For the rest of the verbs, the <a href='???'>Konjunktiv II Futur I</a>. form with \"werden\" will be used."
+        },
+        {
+            "type": "h3",
+            "content": "The only verbs that need to be memorised"
+        },
+{
+            "type": "paragraph",
+            "content": "Certain verbs are more likely to be used in the Konjunktiv II Präteritum because they often express desires or theoretical possibilities. They are all irregular and the conjugations should be learnt. These include $__sein-sein[verb-link-hover]__$, $__haben-haben[verb-link-hover]__$, $__können-können[verb-link-hover]__$, $__mögen-mögen[verb-link-hover]__$, $__wollen-wollen[verb-link-hover]__$, $__sollen-sollen[verb-link-hover]__$ and $__dürfen-dürfen[verb-link-hover]__$."
+        },
+        {
+            "type": "h4",
+            "content": "Sein"
+        },
+        {
+            "type": "table",
+            "table": {
+                "audio": "ich wäre, du wärest, (er) (sie) (es) wäre, wir wären, ihr wäret, sie wären. ",
+                "headings": ["person", "example"],
+                "rows": [
+                    ["ich", "<span><u>wär</u><i>e</i></span>"],
+                    ["du", "<span><u>wär</u></b><b><i>e</i></b><b><i>st</i></span>"],
+                    ["es", "<span><u>wär</u><i>e</i></span>"],
+                    ["wir", "<span><u>wär</u><i>en</i></span>"],
+                    ["ihr", "<span><u>wär</u></b><b><i>e</i></b><b><i>t</i></span>"],
+                    ["Sie", "<span><b><u>wär</u><i>en</i></b></span>"]
+                ]
+            }
+        },
+        {
             "type": "h3",
             "content": "Regular verbs"
         },
@@ -125,29 +156,7 @@
             "type": "h3",
             "content": "Irregular verbs"
         },
-        {
-            "type": "paragraph",
-            "content": "Certain verbs are more likely to be used in the Konjunktiv II Präteritum because they often express desires or theoretical possibilities. They are all irregular and the conjugations should be learnt. These include $__sein-sein[verb-link-hover]__$, $__haben-haben[verb-link-hover]__$, $__können-können[verb-link-hover]__$, $__mögen-mögen[verb-link-hover]__$, $__wollen-wollen[verb-link-hover]__$, $__sollen-sollen[verb-link-hover]__$ and $__dürfen-dürfen[verb-link-hover]__$."
-        },
-        {
-            "type": "h4",
-            "content": "Sein"
-        },
-        {
-            "type": "table",
-            "table": {
-                "audio": "ich wäre, du wärest, (er) (sie) (es) wäre, wir wären, ihr wäret, sie wären. ",
-                "headings": ["person", "example"],
-                "rows": [
-                    ["ich", "<span><u>wär</u><i>e</i></span>"],
-                    ["du", "<span><u>wär</u></b><b><i>e</i></b><b><i>st</i></span>"],
-                    ["es", "<span><u>wär</u><i>e</i></span>"],
-                    ["wir", "<span><u>wär</u><i>en</i></span>"],
-                    ["ihr", "<span><u>wär</u></b><b><i>e</i></b><b><i>t</i></span>"],
-                    ["Sie", "<span><b><u>wär</u><i>en</i></b></span>"]
-                ]
-            }
-        },
+
 
 
 

@@ -11,6 +11,18 @@ export const isFilled = (state: string)=> {return state === strFilled}
 
 export const iconImgSize = 24
 
+export const allTenses = [
+    "Präsens",
+    "Präteritum",
+    "Perfekt",
+    "Plusquamperfekt",
+    "Futur I",
+    "Futur II",
+    "Imperativ",
+    "Konjunktiv I",
+    "Konjunktiv II"
+]
+
 // export const Tenses =  [
 //     {
 //         str: "Präsens"

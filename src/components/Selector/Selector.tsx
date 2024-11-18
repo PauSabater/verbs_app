@@ -31,6 +31,8 @@ export function Selector(props: ISelector) {
 
     const lessonPageContext = useContext(LessonPageContext)
     const [isEventAdded, setIsEventAdded] = useState(false)
+    const [isFirstRender, setIsFirstRender] = useState(true)
+
 
     // if (!props.selectedOption) props.selectedOption = 'hey'
 
@@ -56,16 +58,24 @@ export function Selector(props: ISelector) {
         if (!props.updatedSelectedOptions) return
         const elContainer: HTMLElement | null = refContainer.current
 
+        console.log("IN UPDATED SELECTOR!!")
+
         const updatedOptions = JSON.parse(props.updatedSelectedOptions)
+
+        console.log(updatedOptions)
 
         if (elContainer === null) return
         const elsInput = (elContainer as HTMLElement).querySelectorAll('input')
 
         for (const elInput of Array.from(elsInput)) {
-            if (!updatedOptions.includes(elInput.value) && elInput.checked) {
+            if (!updatedOptions.includes(elInput.value) && elInput.checked && !isFirstRender) {
                 elInput.checked = false
+            } else if (updatedOptions.includes(elInput.value) && !elInput.checked && isFirstRender) {
+                elInput.checked = true
             }
         }
+
+        if (isFirstRender) setIsFirstRender(false)
 
     }, [props.updatedSelectedOptions])
 

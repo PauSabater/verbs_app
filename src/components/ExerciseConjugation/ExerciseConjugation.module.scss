@@ -251,7 +251,6 @@
 
     div[data-feedback] {
         height: 10px;
-        margin-bottom: 60px;
     }
 
     p, span {
@@ -341,9 +340,9 @@
         grid-template-columns: 115px auto;
     }
 
-    .container button {
-        bottom: 60px;
-    }
+    // .container button {
+    //     bottom: 60px;
+    // }
 
     .container input {
         height: 45px;
