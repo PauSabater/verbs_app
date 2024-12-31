@@ -73,9 +73,9 @@ export default function Header() {
                     }
                 </div>
                 <div className={`${styles.linksContainer}`}>
-                    <Link href={'/exercises'}>exercises</Link>
+                    <Link href={'/exercises'}>trainning</Link>
                     <SubMenuLessons />
-
+                    <Link href={'/exercises'}>exercises</Link>
                 </div>
             </nav>
             {/* <Sidebar isOpen={isSidebarOpen} /> */}

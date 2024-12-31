@@ -40,7 +40,8 @@ export interface ILessonSection {
         tense: string
     },
     path?: string,
-    image?: ILessonImage
+    image?: ILessonImage,
+    classes?: string
 }
 
 interface ILessonImage {
@@ -51,7 +52,7 @@ interface ILessonImage {
 }
 
 interface ITable {
-    audio?: string
+    audio?: string | string[]
     headings: string[]
     rows: string[][]
 }
@@ -276,7 +277,7 @@ export default function Lesson(props: ILesson): React.JSX.Element {
             )
         }
         if (section.type.includes('table')) {
-            return <>{getTableTemplate(section.table, section.marginList ? true : false, section.type)}</>
+            return <>{getTableTemplate(section.table, section.marginList ? true : false, section.type, section.classes || '')}</>
         }
 
         return <></>
@@ -299,10 +300,10 @@ export default function Lesson(props: ILesson): React.JSX.Element {
         return string
     }
 
-    const getTableTemplate = (table: ITable, hasMargin: boolean, type?: string) => {
+    const getTableTemplate = (table: ITable, hasMargin: boolean, type: string, classes = '') => {
         return (
-            <div className={`${styles.tableContainer} ${hasMargin ? styles.listMargin : ''}`}>
-                {table.audio ? <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={table.audio} /> : <></>}
+            <div className={`${styles.tableContainer} ${hasMargin ? styles.listMargin : ''} ${classes ? styles[classes] : ''}`}>
+                {table.audio && !Array.isArray(table.audio) ? <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={table.audio} /> : <></>}
                 <table className={styles.table}>
                     {table.headings ? (
                         <thead>
@@ -310,7 +311,13 @@ export default function Lesson(props: ILesson): React.JSX.Element {
                                 {table.headings.map((heading, i) => {
                                     return (
                                         <th key={`head=${i}`} className={styles.heading}>
-                                            {heading}
+                                            <span>
+                                                {heading}
+                                                {table.audio && Array.isArray(table.audio) && table.audio[i]
+                                                    ? <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={table.audio[i]} />
+                                                    : <></>
+                                                }
+                                            </span>
                                         </th>
                                     )
                                 })}

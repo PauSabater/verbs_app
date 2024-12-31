@@ -58,11 +58,7 @@ export function Selector(props: ISelector) {
         if (!props.updatedSelectedOptions) return
         const elContainer: HTMLElement | null = refContainer.current
 
-        console.log("IN UPDATED SELECTOR!!")
-
         const updatedOptions = JSON.parse(props.updatedSelectedOptions)
-
-        console.log(updatedOptions)
 
         if (elContainer === null) return
         const elsInput = (elContainer as HTMLElement).querySelectorAll('input')
@@ -155,7 +151,7 @@ export function Selector(props: ISelector) {
 
 
     return (
-        <div className={`${styles.container} ${props.isFullwidth ? styles.fullwidth : ''}`}>
+        <div className={`${styles.container} ${props.isFullwidth ? styles.fullwidth : ''}`} data-selector-dropdown>
             <button
                 className={`${styles.selector} ${props.isFullwidth ? styles.fullwidth : ''} ${isExpanded ? styles.btnExpanded : ''} ${props.isExerciseGenerate ? styles.exerciseGenerate : ''} ${props.color ? styles[props.color] : ''} ${
                     props.weight ? styles[props.weight] : ''

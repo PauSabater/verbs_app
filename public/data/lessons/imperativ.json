@@ -1,49 +1,26 @@
 {
     "props": {
-        "tense": "präsens",
-        "title": "Das Präsens (German Present Tense): usage, conjugation and exercises",
+        "tense": "imperativ",
+        "title": "Das Imperativ (German Imperative tense): usage, conjugation and exercises",
         "datePublished": "Dec 21, 2023",
         "dateUpdated": "",
-        "level": "A1",
-        "tags": ["präsens"]
+        "level": "A2",
+        "tags": ["Imperativ"]
     },
-    "tenseExercises": "präsens",
-    "verbsExercises": [
-        "spielen",
-        "sein",
-        "helfen",
-        "sehen",
-        "fallen"
-    ],
     "verbsUsed": [
         "sein",
-        "lesen",
-        "trinken",
-        "arbeiten",
-        "spielen",
-        "werden",
-        "können",
-        "mögen",
         "helfen",
-        "geben",
-        "gehen",
-        "fallen",
-        "sprechen",
-        "nehmen",
-        "sehen",
-        "stehen",
-        "schlafen",
-        "fahren",
-        "raten",
-        "laufen",
-        "tanzen",
-        "lachen",
-        "wohnen"
+        "kommen",
+        "essen"
+    ],
+    "tenseExercises": "imperativ",
+    "verbsExercises": [
+        "werden"
     ],
     "sections": [
         {
             "type": "h1-lesson",
-            "content": "&#128218; &nbsp;The Präsens tense"
+            "content": "&#128218; &nbsp;The Imperativ tense"
         },
         {
             "type": "h2-post",
@@ -51,7 +28,7 @@
         },
         {
             "type": "paragraph",
-            "content": "The <b><i>Präsens</i></b> tense in German direclty corresponds to the present tense in English. It is mostly used to describe actions that are happening right now or habitual actions, but it also used to describe future events. This is because German rarely uses the future tense and does not have a present continuous tense. The <i>Präsens</i> should be the first tense to learn when starting to learn German."
+            "content": "The <b><i>Imperativ</i></b>&nbsp;&nbsp;is the equivalent of the Imperative tense in English (\"eat that please!\"). It is used to give commands, make requests, offer invitations, or give advice."
         },
         {
             "type": "callout",
@@ -63,50 +40,42 @@
         },
         {
             "type": "paragraph",
-            "content": "We use the <i>Präsens</i> tense to express:"
+            "content": "We use the <i>Imperativ</i>&nbsp; tense for:"
         },
         {
             "type": "list",
             "itemsList": {
                 "items": [
                     {
-                        "text": "<b>Present Actions:</b> Describing actions happening in the present.",
+                        "text": "<b>Commands.</b> Used to tell someone to do something:",
                         "example": {
-                            "audio": "Ich lese ein Buch.",
-                            "text": "Example: Ich $__lese-lesen[verb-link-hover]__$ ein Buch.",
-                            "translation": "(I am reading a book.)"
+                            "audio": "Komm hier!",
+                            "text": "Example: $__Komm-kommen[verb-link-hover]__$ hier!",
+                            "translation": "(Come here!)"
                         }
                     },
                     {
-                        "text": "<b>Future Actions:</b> Describing actions happening in the future. In German, the <i>Präsens</i> tense is more common in everyday speech, as it's simpler and more natural. The future tense (using 'werden') is typically reserved for emphasis and formal contexts.",
+                        "text": "<b>Requests.</b> Used to politely ask someone to do something when accompanied by \"bitte\":",
                         "example": {
-                            "audio": "Morgen gehe ich ins Kino.",
-                            "text": "Example: Morgen $__gehe-gehen[verb-link-hover]__$ ins Kino.",
-                            "translation": "(Tomorrow I'm going to the cinema.)"
+                            "audio": "Bitte hilf mir.",
+                            "text": "Example: Bitte $__hilf-helfen[verb-link-hover]__$ mir.",
+                            "translation": "(Please help me)"
                         }
                     },
                     {
-                        "text": "<b>Habitual Actions:</b> Expressing routine or habitual actions.",
+                        "text": "<b>Invitations.</b> Used to invite someone to do something:",
                         "example": {
-                            "audio": "Ich trinke jeden Morgen Kaffee.",
-                            "text": "Example: Ich $__trinke-trinken[verb-link-hover]__$ jeden Morgen Kaffee.",
-                            "translation": "(I drink coffee every morning.)"
+                            "audio": "Komm mit!",
+                            "text": "Example: $__Komm-kommen[verb-link-hover]__$ mit!",
+                            "translation": "(Come with me!)"
                         }
                     },
                     {
-                        "text": "<b>General Truths:</b> Stating facts or general truths.",
+                        "text": "<b>Suggestions or Advice:</b> Used to suggest an action.",
                         "example": {
-                            "audio": "Die Erde is rund.",
-                            "text": "Example: Die Erde $__ist-sein[verb-link-hover]__$ rund.",
-                            "translation": "(The Earth ist round.)"
-                        }
-                    },
-                    {
-                        "text": "<b>Actions already started and still happening:</b> In english we would use the present perfect tense: 'He has been playing...'.",
-                        "example": {
-                            "audio": "Er arbeitet seit 3 monate ins Kino.",
-                            "text": "Example: Er $__arbeitet-arbeiten[verb-link-hover]__$ seit 3 monate ins Kino.",
-                            "translation": "(He has been working in the cinema for 3 months.)"
+                            "audio": "Iss mehr Gemüse!",
+                            "text": "Example: $__Iss-essen[verb-link-hover]__$ mehr Gemüse!",
+                            "translation": "(Eat more vegetables!)"
                         }
                     }
                 ]
@@ -132,24 +101,22 @@
         {
             "type": "table",
             "table": {
-                "audio": "ich spiele, du spielst, (er) (sie) (es) spielt, wir spielen, ihr spielt, sie spielen. ",
-                "headings": ["person", "ending", "example"],
+                "audio": "Gehe!, gehen wir!, Geht!, gehen Sie! ",
+                "headings": ["person", "ending", "conjugation"],
                 "rows": [
-                    ["ich", "-e", "spiel<i>-e</i>"],
-                    ["du", "-st", "spiel<i>-st</i>"],
-                    ["er/sie/es", "-t", "spiel<i>-t</i>"],
-                    ["wir", "-en", "spiel<i>-en</i>"],
-                    ["ihr", "-t", "spiel<i>-t</i>"],
-                    ["Sie", "-en", "spiel<i>-en</i>"]
+                    ["(du)", "-e", "geh<i>-e</i>"],
+                    ["wir", "-st", "geh<i>-en</i>"],
+                    ["(ihr)", "-t", "geh<i>-t</i>"],
+                    ["Sie", "-en", "geh<i>-en</i>"]
                 ]
             }
         },
         {
             "type": "example",
             "example": {
-                "audio": "Ich spiele Guitarre.",
-                "text": "Example: Ich $__spiele-spielen[verb-link-hover]__$ Guitarre.",
-                "translation": "(I am playing the guitar.)"
+                "audio": "Fahren wir zum Kino!",
+                "text": "Example: $__Fahren-fahren[verb-link-hover]__$ wir zum Kino!",
+                "translation": "(Let's go to the cinema!)"
             }
         },
         {
@@ -418,6 +385,3 @@
         }
     ]
 }
-
-
-

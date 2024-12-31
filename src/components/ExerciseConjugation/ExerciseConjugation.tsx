@@ -795,9 +795,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
             <ExerciseConjugationContext.Provider value={state as any}>
                 <ExerciseConjugationContextTexts.Provider value={props.texts}>
 
-                <div className={styles.layoutExercise}>
+                <div className={`${styles.layoutExercise} ${props.isLessonExercise ? styles.layoutLessonExercise : ''}`}>
 
-                    <div className={`${styles.exerciseConjugation} ${props.isEmbedded ? styles.isEmbedded : ''} ${props.isLessonExercise ? styles.isLessonExercise : ''}`} data-exercise data-state={state.exerciseState}>
+                    <div className={`${styles.exerciseConjugation} ${props.isEmbedded ? styles.isEmbedded : ''} ${props.isLessonExercise ? styles.lessonExercise : ''}`} data-exercise data-state={state.exerciseState}>
 
                         <div className={styles.container}>
 

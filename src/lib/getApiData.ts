@@ -54,34 +54,58 @@ export async function getRandomVerb(types?: string[], levels?: string[]) {
 }
 
 export const adaptTenseForApiUrl = (tense: string) => {
-    const tenseToCheck = tense.toLowerCase()
+    const tenseToCheck = tense.toLowerCase().replace(/[._]/g, ' ')
+    console.log('tense to check')
+    console.log(tenseToCheck)
     switch (tenseToCheck) {
         case 'plusquamperfekt':
             return 'plusquam'
+
         case 'futur i':
             return 'futur_I'
+
         case 'futur ii':
             return 'futur_II'
+
         case 'imperativ':
             return 'imperative'
+
         case 'konj ii präteritum':
             return 'konj_II_präteritum'
-        case 'konj ii plusquam.':
+
+        case 'konj ii plusquam':
             return 'konj_II_plusquam'
+
         case 'konj ii futur i':
             return 'konj_II_futur_I'
+
         case 'konj ii futur ii':
             return 'konj_II_futur_I'
+
         case 'konj i präsens':
             return 'konj_I_präsens'
+
         case 'konj i futur i':
             return 'konj_I_futur_I'
+
         case 'konj i futur ii':
             return 'konj_I_futur_II'
+
         case 'konj i perfekt':
             return 'konj_I_perfekt'
+
+        case 'infinitiv i':
+            return 'infinitiv_I'
+
+        case 'infinitiv ii':
+            return 'infinitiv_I'
+
+        case 'partizip i':
+            return 'partizip_I'
+
         case 'partizip ii':
             return 'partizip_II'
+
         default:
             return tenseToCheck
         }

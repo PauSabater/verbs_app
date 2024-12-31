@@ -1,7 +1,7 @@
 .header {
 
     --header-z-index: 50;
-    --searchBar-max-width: 350px;
+    --searchBar-max-width: 300px;
 
     display: grid;
     grid-template-columns: var(--header-height) 300px var(--searchBar-max-width) auto 350px;

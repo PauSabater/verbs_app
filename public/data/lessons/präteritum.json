@@ -10,6 +10,8 @@
     "verbsUsed": [
         "spielen",
         "sein",
+        "gehen",
+        "finden",
         "haben",
         "werden",
         "können",
@@ -42,7 +44,7 @@
         },
         {
             "type": "paragraph",
-            "content": "The <b><i>Präteritum</i></b>, also known as the simple past tense, is used in German to describe actions that happened in the past and are considered completed. It is particularly <b>common in written narratives</b>, such as stories, reports, and historical accounts. In spoken German, the Präteritum is less frequently used in everyday conversation, where the Perfekt tense is often preferred, especially with regular verbs. However, it is essential to learn and understand the Präteritum as it remains prominent in written German and with certain commonly used verbs."
+            "content": "The <b><i>Präteritum</i></b>, also known as the simple past tense, is used in German to describe actions that happened in the past and are considered completed. It is more <b>common in written narratives</b>, such as stories and reports. In spoken German, the Präteritum is less frequently used and the Perfekt tense is often preferred, especially with regular verbs. However, it is important to learn and understand it because it is still used in written German and with a few specific verbs."
         },
         {
             "type": "callout",
@@ -92,6 +94,10 @@
             "content": "Conjugation"
         },
         {
+            "type": "paragraph",
+            "content": "You will mostly need to learn how to conjugate the regular verbs and the most important irregular ones."
+        },
+        {
             "type": "h3",
             "content": "Regular verbs"
         },
@@ -100,7 +106,7 @@
             "parts": [
                 {
                     "type": "text",
-                    "content": "For regular verbs ending in <b data-verb-prefix>-en</b> (e.g., "
+                    "content": "Conjugating the regular verbs will be very easy. For regular verbs ending in <b data-verb-prefix>-en</b> (e.g., "
                 },
                 {
                     "type": "link-verb-hover-html",
@@ -141,94 +147,8 @@
             "content": "Irregular verbs, the must-know ones for beginners"
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "In German, while the Perfekt tense is generally preferred in spoken language for most verbs, there are several verbs that are more commonly used in their <i>Präteritum</i> (simple past) form, even in everyday speech.</br>The main verbs that are typically used in their Präteritum form rather than their Perfekt form are "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "Sein",
-                    "contentHtml": "sein"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "haben",
-                    "contentHtml": "haben"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "werden, ",
-                    "contentHtml": "werden"
-                },
-                {
-                    "type": "text",
-                    "content": " and the modal verbs "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "können",
-                    "contentHtml": "können"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "Müssen",
-                    "contentHtml": "müssen"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "Wollen",
-                    "contentHtml": "wollen"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "Sollen",
-                    "contentHtml": "sollen"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "dürfen",
-                    "contentHtml": "dürfen"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover-html",
-                    "content": "mögen",
-                    "contentHtml": "mögen"
-                },
-                {
-                    "type": "text",
-                    "content": ":"
-                }
-            ]
+            "type": "paragraph",
+            "content": "In German, while the Perfekt tense is generally preferred in spoken language for most verbs, there are several verbs that are more commonly used in their <i>Präteritum</i> (simple past) form, even in everyday speech.</br> These are the main verbs that you should learn in their Präteritum form: $__sein-sein[verb-link-hover]__$, $__haben-haben[verb-link-hover]__$, $__werden-werden[verb-link-hover]__$, and the modal verbs $__können-können[verb-link-hover]__$, $__müssen-müssen[verb-link-hover]__$, $__wollen-wollen[verb-link-hover]__$, $__sollen-sollen[verb-link-hover]__$, $__dürfen-dürfen[verb-link-hover]__$ and $__mögen-mögen[verb-link-hover]__$:"
         },
         {
             "type": "h4",
@@ -641,85 +561,8 @@
             "content": "Exercises"
         },
         {
-            "type": "paragraph-components",
-            "parts": [
-                {
-                    "type": "text",
-                    "content": "<b>Exercise 1:</b> Practise the tense präteritum for the following must-know verbs:</br> "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "sein"
-                },
-                {
-                    "type": "text",
-                    "content": ", "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "haben"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "werden"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "können"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "müssen"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "wollen"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "sollen"
-                },
-                {
-                    "type": "text",
-                    "content": ",  "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "dürfen"
-                },
-                {
-                    "type": "text",
-                    "content": " and "
-                },
-                {
-                    "type": "link-verb-hover",
-                    "content": "mögen"
-                },
-                {
-                    "type": "text",
-                    "content": ":"
-                }
-            ]
+            "type": "paragraph",
+            "content": "<b>Exercise 1:</b> Practise the tense präteritum for the following must-know verbs:</br>$__sein-sein[verb-link-hover]__$, $__haben-haben[verb-link-hover]__$, $__werden-werden[verb-link-hover]__$,  $__können-können[verb-link-hover]__$,  $__müssen-müssen[verb-link-hover]__$,  $__wollen-wollen[verb-link-hover]__$,  $__sollen-sollen[verb-link-hover]__$,  $__dürfen-dürfen[verb-link-hover]__$ and  $__mögen-mögen[verb-link-hover]__$:"
         },
         {
             "type": "exercise-btn-link",

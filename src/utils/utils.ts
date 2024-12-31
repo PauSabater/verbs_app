@@ -152,8 +152,6 @@ export function getRandomInt(max: number) {
 }
 
 export function cleanConjugation(conj: string) {
-    console.log("lets clean")
-    console.log(conj)
     if (!conj) return
 
     const regex = /[()⁷&#42;]/g
