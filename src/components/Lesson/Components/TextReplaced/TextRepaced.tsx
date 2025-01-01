@@ -4,6 +4,7 @@ import Link from "next/link"
 import styles from './textReplaced.module.scss'
 import { VerbInfoHover } from "../VerbIntoHover/VerbInfoHover"
 import { useState } from "react"
+import InputExerciseText from "@/components/ExerciseText/InputExerciseText/InputExerciseText"
 
 interface ITextReplaced {
     text: string
@@ -17,16 +18,10 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
     )
 
     const splitByPattern = (inputString: string) => {
-        // Define the regular expression pattern to match $__ANY-STRING-HERE__$
         const regex = /\$__[^$]+__\$/g;
-
-        // Split the input string using the defined pattern
         const parts = inputString.split(regex)
-
-        // Find all the splitters in the input string
         const splitters: string[] = inputString.match(regex) || []
 
-        // Combine parts and splitters
         const result: string[] = [];
         for (let i = 0; i < parts.length; i++) {
             result.push(parts[i]);
@@ -87,10 +82,14 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
         return (
             <>
             {
-                splitText.map((part: string) => {
+                splitText.map((part: string, i) => {
                     return part.includes('verb-link-hover')
-                        ? <VerbWithInfoOnHover text={part}/>
-                        : <span className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(part) }}></span>
+                        ? <VerbWithInfoOnHover text={part} key={'verb-with-info' + i}/>
+                        :  part.includes('input-exercise')
+                            ?   <InputExerciseText
+                                    answer={part.split('[input-exercise]')[0].split('$__')[1]}
+                                />
+                            : <span key={'span-text-replaced' + i} className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(part) }}></span>
                 })
             }
             </>

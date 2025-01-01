@@ -19,6 +19,7 @@ import textsVerbExercise from '@/data/textsVerbExercise.json'
 import { getApiVerbConjugationsFromTenses } from '@/lib/getApiData'
 import ButtonWithExercise from './Components/ButtonWithExercise/ButtonWithExercise'
 import Image from 'next/image'
+import ExerciseText from '../ExerciseText/ExerciseText'
 
 interface ILessonExample {
     audio: string,
@@ -302,6 +303,7 @@ export default function Lesson(props: ILesson): React.JSX.Element {
 
     const getTableTemplate = (table: ITable, hasMargin: boolean, type: string, classes = '') => {
         return (
+            <>
             <div className={`${styles.tableContainer} ${hasMargin ? styles.listMargin : ''} ${classes ? styles[classes] : ''}`}>
                 {table.audio && !Array.isArray(table.audio) ? <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={table.audio} /> : <></>}
                 <table className={styles.table}>
@@ -315,8 +317,7 @@ export default function Lesson(props: ILesson): React.JSX.Element {
                                                 {heading}
                                                 {table.audio && Array.isArray(table.audio) && table.audio[i]
                                                     ? <AudioIcon utterance={props.utterance as SpeechSynthesisUtterance} text={table.audio[i]} />
-                                                    : <></>
-                                                }
+                                                    : <></>}
                                             </span>
                                         </th>
                                     )
@@ -345,7 +346,7 @@ export default function Lesson(props: ILesson): React.JSX.Element {
                         })}
                     </tbody>
                 </table>
-            </div>
+            </div></>
         )
     }
 

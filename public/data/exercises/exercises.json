@@ -1,20 +1,226 @@
 {
     "exercises": [
         {
-            "title": "Practise the präsens tense of regular verbs.",
-            "path": "prasens-tense-regular-verbs",
-            "description": "All regular verbs will follow the same pattern.",
-            "level": "A1",
-            "verbs": ["spielen", "tanzen", "lachen", "wohnen"],
-            "tenses": ["präsens"]
-        },
-        {
-            "title": "Practise the präsens tense of irregular verbs.",
-            "path": "prasens-tense-irregular-verbs",
-            "description": "These verbs require memorization in their present tense as they do not follow any pattern.",
-            "level": "A1",
-            "verbs": ["sein", "dürfen", "können", "mögen"],
-            "tenses": ["präsens"]
+            "path": "konjunctive-II-futur-I-die-knoblauchsuppe",
+            "tense": "Konjunctive II Futur I",
+            "title": "Die Knoblauchsuppe",
+            "level": "B1",
+            "verbsUsed": [
+                "gehen",
+                "probieren",
+                "bestellen",
+                "denken",
+                "glauben",
+                "sein",
+                "sollen",
+                "glauben",
+                "gefallen",
+                "bereuen",
+                "dürfen",
+                "bringen",
+                "nehmen",
+                "wetten",
+                "sagen",
+                "haben",
+                "erwarten",
+                "verraten",
+                "kochen",
+                "aufschreiben",
+                "können",
+                "werden",
+                "schaffen",
+                "machen",
+                "essen",
+                "klingen",
+                "kommen",
+                "freuen",
+                "schmecken"
+
+
+            ],
+            "img": "knoblauchsuppe.png",
+            "sentences": [
+                {
+                    "character": "narrator-male",
+                    "audio": "Michael geht mit Lina in ein spanisches Restaurant, um zum ersten Mal spanisches Essen zu probieren.",
+                    "text": "Michael&nbsp; $__geht-gehen[verb-link-hover]__$ &nbsp;mit Lina in ein spanisches Restaurant, um zum ersten Mal spanisches Essen zu&nbsp; $__probieren-probieren[verb-link-hover]__$&nbsp;.",
+                    "translations": {
+                        "en": "Michael goes with Lina to a Spanish restaurant to try Spanish food for the first time.",
+                        "es": "Michael va con Lina a un restaurante español para probar comida española por primera vez.",
+                        "fr": "Michael accompagne Lina dans un restaurant espagnol pour goûter pour la première fois à la cuisine espagnole"
+                    }
+                },
+                {
+                    "character": "Michael",
+                    "audio": "Was denkst du, Lina? Ich glaube, ich würde die Paella bestellen.",
+                    "text": "Was $__denkst-denken[verb-link-hover]__$ du, Lina? Ich $__glaube-glauben[verb-link-hover]__$, Ich $__würde[input-exercise]__$ die Paella $__bestellen[input-exercise]__$.</br><span>[ $__bestellen-bestellen[verb-link-hover]__$ ]</span>",
+                    "translations": {
+                        "en": "What do you think, Lina? I think I'd order the paella.",
+                        "es": "¿Qué te parece, Lina? Creo que pediría la paella.",
+                        "fr": "Qu'en penses-tu, Lina ? Je crois que je commanderais la paella."
+                    }
+                },
+                {
+                    "character": "Lena",
+                    "audio": "Paella ist sicher lecker, aber du würdest die kastilische Knoblauchsuppe probieren wollen. Sie wird köstlich sein.",
+                    "text": "Paella $__ist-sein[verb-link-hover]__$ sicher lecker, aber du $__würdest[input-exercise]__$ die kastilische Knoblauchsuppe $__probieren[input-exercise]__$. Sie $__ist-sein[verb-link-hover]__$ köstlich.",
+                    "translations": {
+                        "en": "The paella is certainly yummy, but you should definitely try the Castilian garlic soup. It will be delicious.",
+                        "es": "La paella es sin duda deliciosa, pero sin duda debe probar la sopa de ajo castellana. Será deliciosa.",
+                        "fr": "La paella est certainement bonne, mais vous devriez absolument goûter à la soupe à l'ail castillane. Elle sera délicieuse."
+                    }
+                },
+                {
+                    "character": "Michael",
+                    "audio": "Knoblauchsuppe? Wirklich? Das klingt ein bisschen... intensiv.",
+                    "text": "Knoblauchsuppe? Wirklich? Das $__klingt-klingen[verb-link-hover]__$ ein bisschen... intensiv.",
+                    "translations": {
+                        "en": "Garlic soup? Really? That sounds a bit... intense.",
+                        "es": "¿Sopa de ajo? ¿En serio? Eso suena un poco... intenso.",
+                        "fr": "De la soupe à l'ail ? Vraiment ? Cela semble un peu... intense."
+                    }
+                },
+                {
+                    "character": "Lina",
+                    "audio": "Glaub mir, sie würde dir gefallen. Ich wette, du würdest es nicht bereuen. Der Kellner kommt!",
+                    "text": "$__Glaub-glauben[verb-link-hover]__$ mir, sie $__würde[input-exercise]__$ dir $__gefallen[input-exercise]__$ [ $__gefallen-gefallen[verb-link-hover]__$ ]. </br>Ich $__wette-wetten[verb-link-hover]__$, du $__würdest[input-exercise]__$ es nicht $__bereuen[input-exercise]__$. [ $__bereuen-bereuen[verb-link-hover]__$ ]. </br>Warte kurz, der Kellner kommt!",
+                    "translations": {
+                        "en": "Believe me, you'd love it. I bet you wouldn't regret it. The waiter is coming!",
+                        "es": "Créeme, te encantaría. Apuesto a que no te arrepentirías. ¡Viene el camarero!",
+                        "fr": "Crois-moi, elle te plairait. Je parie que tu ne le regretterais pas. Le serveur arrive !"
+                    }
+                },
+                {
+                    "character": "Waiter",
+                    "audio": "Guten Abend, was darf ich Ihnen bringen?",
+                    "text": "Guten Abend, was $__darf-dürfen[verb-link-hover]__$ ich Ihnen $__bringen-bringen[verb-link-hover]__$?",
+                    "translations": {
+                        "en": "Good evening, what can I get you?",
+                        "es": "Buenas noches, ¿qué puedo ofrecerle?",
+                        "fr": "Bonsoir, qu'est-ce que je vous sers ?"
+                    }
+                },
+                {
+                    "character": "Michael",
+                    "audio": "Ähm... Ich glaube, ich würde die kastilische Knoblauchsuppe probieren. Ist sie wirklich so gut, wie Lina sagt?",
+                    "text": "Ähm... Ich $__glaube-glauben[verb-link-hover]__$, ich würde die kastilische Knoblauchsuppe $__probieren-probieren[verb-link-hover]__$. $__Ist-sein[verb-link-hover]__$ sie wirklich so gut, wie Lina $__sagt-sagen[verb-link-hover]__$?",
+                    "translations": {
+                        "en": "Erm... I think I'd try the Castilian garlic soup. Is it really as good as Lina says?",
+                        "es": "Erm... Creo que probaría la sopa de ajo castellana. ¿Es realmente tan buena como dice Lina?",
+                        "fr": "Euh... Je crois que j'essaierais bien la soupe à l'ail castillane. Est-elle vraiment aussi bonne que le dit Lina ?"
+                    }
+                },
+                {
+                    "character": "Waiter",
+                    "audio": "Absolut! Wenn Sie sie bestellen, werden Sie begeistert sein.",
+                    "text": "Absolut! Wenn Sie sie $__bestellen-bestellen[verb-link-hover]__$, $__werden-werden[verb-link-hover]__$ Sie begeistert $__sein-sein[verb-link-hover]__$.",
+                    "translations": {
+                        "en": "Absolutely! If you order them, you'll be delighted.",
+                        "es": "¡Claro que sí! Si los pide, quedará encantado.",
+                        "fr": "Absolument ! Si vous les commandez, vous serez ravis."
+                    }
+                },
+                {
+                    "character": "narrator-male",
+                    "audio": "Nach ein paar Minuten kommt die Suppe.",
+                    "text": "Nach ein paar Minuten $__kommt-kommen[verb-link-hover]__$ die Suppe.",
+                    "translations": {
+                        "en": "After a few minutes, the soup arrives.",
+                        "es": "Después de unos minutos llega la sopa.",
+                        "fr": "Après quelques minutes, la soupe arrive."
+                    }
+                },
+                {
+                    "character": "Michael",
+                    "audio": "Wow, das hätte ich nicht erwartet. Diese Suppe ist unglaublich!",
+                    "text": "Wow, das $__hätte-haben[verb-link-hover]__$ ich nicht $__erwartet-erwarten[verb-link-hover]__$. Diese Suppe $__ist-sein[verb-link-hover]__$ unglaublich!.",
+                    "translations": {
+                        "en": "Wow, I didn't expect this. This soup is incredible!",
+                        "es": "Wow, no me esperaba esto. ¡Esta sopa es increíble!",
+                        "fr": "Wow, je ne m'attendais pas à ça. Cette soupe est incroyable !"
+                    }
+                },
+                {
+                    "character": "Lina",
+                    "audio": "Hab ich dir doch gesagt! Würdest du jetzt immer noch Paella nehmen?",
+                    "text": "$__Hab-haben[verb-link-hover]__$ ich dir doch $__gesagt-sagen[verb-link-hover]__$! $__Würdest[input-exercise]__$ du jetzt immer noch Paella $__nehmen[input-exercise]__$? </br><span>[ $__nehmen-nehmen[verb-link-hover]__$ ]</span>",
+                    "translations": {
+                        "en": "I told you so! Would you still have paella now?",
+                        "es": "¡Te lo dije! ¿Aún te gustaría pedir paella?",
+                        "fr": "Je te l'avais dit ! Tu prendrais toujours de la paella maintenant ?"
+                    }
+                },
+                {
+                    "character": "Michael",
+                    "audio": "Nein! Ich glaube, ich würde diese Suppe jedes Mal bestellen.",
+                    "text": "Nein! Ich $__glaube-glauben[verb-link-hover]__$, ich $__würde[input-exercise]__$ diese Suppe jedes Mal $__bestellen[input-exercise]__$.</br><span>[ $__bestellen-bestellen[verb-link-hover]__$ ]</span>",
+                    "translations": {
+                        "en": "No! I think I would order this soup every time.",
+                        "es": "¡No! Creo que pediría esta sopa siempre.",
+                        "fr": "Non ! Je crois que je commanderais cette soupe à chaque fois."
+                    }
+                },
+                {
+                    "character": "Michael",
+                    "audio": "Entschuldigung, könnten Sie mir vielleicht das Rezept verraten? Ich würde diese Suppe gern selbst kochen.",
+                    "text": "Entschuldigung, $__könnten-können[verb-link-hover]__$ Sie mir vielleicht das Rezept $__verraten-verraten[verb-link-hover]__$? Ich $__würde[input-exercise]__$ diese Suppe gern selbst $__kochen[input-exercise]__$.</br><span>[ $__kochen-kochen[verb-link-hover]__$ ]</span>",
+                    "translations": {
+                        "en": "Excuse me, could you perhaps give me the recipe? I would like to make this soup myself.",
+                        "es": "Disculpe, ¿podría darme la receta? Me gustaría hacer esta sopa yo mismo.",
+                        "fr": "Excusez-moi, pourriez-vous me donner la recette ? J'aimerais préparer cette soupe moi-même."
+                    }
+                },
+                {
+                    "character": "Waiter",
+                    "audio": "Natürlich, ich kann es Ihnen aufschreiben. Es freut mich, dass sie Ihnen schmeckt.",
+                    "text": "Natürlich, ich $__kann-können[verb-link-hover]__$ es Ihnen $__aufschreiben-aufschreiben[verb-link-hover]__$. Es $__freut-freuen[verb-link-hover]__$ mich, dass sie Ihnen $__schmeckt-schmecken[verb-link-hover]__$.",
+                    "translations": {
+                        "en": "Of course, I can write it down for you. I'm glad you like it.",
+                        "es": "Por supuesto, puedo escribírtelo. Me alegro de que te guste.",
+                        "fr": "Bien sûr, je peux vous l'écrire. Je suis heureux que vous l'aimiez."
+                    }
+                },
+                {
+                    "character": "Michael",
+                    "audio": "Lina, wenn ich die Suppe für unser nächstes Date koche, würdest du sie dann essen?",
+                    "text": "Lina, wenn ich die Suppe für unser nächstes Date $__kochen-kochen[verb-link-hover]__$, $__würdest[input-exercise]__$ du sie dann $__essen[input-exercise]__$? </br><span>[ $__essen-essen[verb-link-hover]__$ ]</span>",
+                    "translations": {
+                        "en": "Lina, if I made the soup for our next date, would you eat it?",
+                        "es": "Lina, si hiciera la sopa para nuestra próxima cita, ¿te la comerías?",
+                        "fr": "Lina, si je faisais de la soupe pour notre prochain rendez-vous, tu la mangerais ?"
+                    }
+                },
+                {
+                    "character": "Lina",
+                    "audio": "Das würde ich gern! Aber glaubst du, du würdest es wirklich schaffen, sie so gut wie hier zu machen?",
+                    "text": "Das $__würde-werden[verb-link-hover]__$ ich gern! Aber $__glaubst-glauben[verb-link-hover]__$ du, du $__würdest[input-exercise]__$ es wirklich $__schaffen[input-exercise]__$, sie so gut wie hier zu $__machen-machen[verb-link-hover]__$?? </br><span>[ $__schaffen-schaffen[verb-link-hover]__$ ]</span>",
+                    "translations": {
+                        "en": "I would love to! But do you think you'd really manage to make it as good as here?",
+                        "es": "Me encantaría. Pero, ¿crees que realmente conseguirías hacerla tan buena como aquí?.",
+                        "fr": "J'aimerais bien ! Mais crois-tu vraiment que tu arriverais à la rendre aussi bonne qu'ici ?"
+                    }
+                },
+                {
+                    "character": "Michael",
+                    "audio": "Äh, aber... Lina... Ich habe ein Problem. Nach dieser Suppe bin ich mir nicht sicher, ob ich dich würde küssen sollen...",
+                    "text": "Äh, aber... Lina... Ich $__habe-haben[verb-link-hover]__$ ein Problem. Nach dieser Suppe $__bin-sein[verb-link-hover]__$ ich mir nicht sicher, ob ich dich $__würde[input-exercise]__$ küssen $__sollen[input-exercise]__$ ... </br><span>[ $__sollen-sollen[verb-link-hover]__$ ]</span>",
+                    "translations": {
+                        "en": "Er, but... Lina... I have a problem. After this soup, I'm not sure if I should kiss you...",
+                        "es": "Er, pero... Lina... Tengo un problema. Después de esta sopa, no estoy seguro si debería besarte...",
+                        "fr": "Euh, mais... Lina... J'ai un problème. Après cette soupe, je ne suis pas sûr que je devrais t'embrasser..."
+                    }
+                },
+                {
+                    "character": "Lina",
+                    "audio": "hahaha vielleicht würden wir dann beide einen Minzbonbon nehmen!",
+                    "text": "hahaha Vielleicht $__würden[input-exercise]__$ wir dann beide einen Minzbonbon $__nehmen[input-exercise]__$! </br><span>[ $__nehmen-nehmen[verb-link-hover]__$ ]</span>",
+                    "translations": {
+                        "en": "hahaha maybe we'd both take a mint then!",
+                        "es": "¡jajaja tal vez los dos tomaríamos un caramelo de menta entonces!",
+                        "fr": "hahaha peut-être que nous prendrions tous les deux un bonbon à la menthe !"
+                    }
+                }
+            ]
         }
     ]
 }

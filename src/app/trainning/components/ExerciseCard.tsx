@@ -14,7 +14,7 @@ interface IExerciseCard {
 export const ExerciseCard = (props: IExerciseCard)=> {
 
     return (
-        <Link className={styles.cardLink} href={`/exercises/${props.path}`}>
+        <Link className={styles.cardLink} href={`/trainning/${props.path}`}>
             <div className={styles.card}>
                 <h2 className={styles.title}>{props.title}</h2>
                 <p>{props.description}</p>
