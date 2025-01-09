@@ -1,0 +1,200 @@
+.container {
+    --img-character-size: 80px;
+    --img-character-offset: 0;
+    --button-height: 42px;
+    --fs-exercise-text: 18px;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 120px auto 170px;
+    column-gap: 20px;
+    max-width: 1050px;
+    margin: 0 auto;
+    background-color: var(--bg-white);
+    padding: 15px 25px;
+    border-radius: var(--br-base);
+    margin-bottom: 25px;
+    border: 1px dotted var(--c-grey-light);
+    // box-shadow: var(--bs-global);
+
+    a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: var(--fw-medium);
+    }
+
+    button[data-button="button-correct"] {
+        font-size: var(--fs-xs);
+        font-weight: 500;
+        color: var(--c-text-global-light);
+        background-color: transparent;
+        border: 2px dotted var(--c-grey-light);
+        width: 150px;
+        margin-right: 20px;
+        transition: background-color var(--tr-base), color var(--tr-base), border-color var(--tr-base);
+
+        img {
+            filter: brightness(0.3);
+            transition: filter var(--tr-base);
+        }
+
+        &:hover {
+            color: var(--c-white);
+            background-color: var(--c-grey-dark);
+            border-color: transparent;
+            img {
+                filter: brightness(1);
+            }
+        }
+    }
+}
+
+.sentence {
+    font-size: var(--fs-base);
+}
+
+.sentenceContainer {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 0;
+    grid-column: 2 / -1;
+    grid-row-start: 1;
+
+    p {
+        padding: 0;
+        font-size: var(--fs-exercise-text);
+    }
+}
+
+.translationsContainer {
+    pointer-events: none;
+    position: absolute;
+    height: auto;
+    top: 0;
+    width: 100%;
+    background: var(--bg-white);
+    transform: translateY(-100%);
+    padding: 0 25px;
+    left: -25px;
+    border-radius: var(--br-base);
+    box-shadow: var(--bs-global);
+    opacity: 0;
+    transition: opacity var(--tr-base);
+
+    p {
+        font-size: var(--fs-sm);
+        font-style: italic;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        bottom: 2px;
+        left: 50px;
+        width: 25px;
+        height: 15px;
+        background-color: var(--bg-white);
+        box-shadow: var(--bs-global);
+        transform: translateY(100%);
+        clip-path: polygon(100% 0, 0 0, 50% 100%);
+    }
+
+    &[data-display="true"] {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    button {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: transparent;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+}
+
+.mainImage {
+    border-radius: var(--br-base);
+}
+
+.characterImage {
+    border-radius: 15px;
+    width: var(--img-character-size);
+    height: var(--img-character-size);
+}
+
+.characterContainer {
+    position: relative;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    width: min-content;
+    margin-left: var(--img-character-offset);
+}
+
+.keyboardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div:last-child {
+        transition: opacity var(--tr-base);
+    }
+
+    &[data-visible="false"] div:last-child {
+        pointer-events: none;
+        opacity: 0;
+    }
+
+    button {
+        height: var(--button-height);
+    }
+}
+
+.buttonsHelpContainer,
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+
+    button {
+        border: none;
+        margin-right: 5px;
+        height: var(--button-height);
+        background-color: transparent;
+    }
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: calc(var(--img-character-offset) + (var(--img-character-size) * 0.25));
+    width: min-content;
+
+    button {
+        margin: 0;
+    }
+}
+
+.audioIcon {
+    pointer-events: none;
+    position: absolute;
+    top: 15px;
+    left: -20px;
+    height: 30px;
+    width: auto;
+    opacity: 0;
+    transition: opacity var(--tr-fast);
+
+    &[data-display="true"] {
+        opacity: 1;
+    }
+}

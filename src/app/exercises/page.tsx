@@ -8,7 +8,6 @@ export default async function Page() {
 
     return (
         <Fragment>
-            <h1>HELLO</h1>
         </Fragment>
     )
 }

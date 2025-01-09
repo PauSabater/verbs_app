@@ -2,6 +2,7 @@ import ExerciseText from '@/components/ExerciseText/ExerciseText'
 import exercisesData from '../../../../public/data/exercises/exercises.json'
 import { getVerbsProperties } from '@/lib/getApiData'
 import { ExercisePage } from './ExercisePage'
+import { headers } from 'next/headers'
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -16,9 +17,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     return (
         <>
-            <br></br><br></br><br></br><br></br>
             <ExercisePage
-                host={''}
+                host={headers().get('host') || ''}
                 dataVerbsInText={dataVerbsInText}
                 dataExercise={exerciseData}
             ></ExercisePage>

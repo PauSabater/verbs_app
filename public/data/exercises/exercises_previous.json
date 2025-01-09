@@ -3,9 +3,7 @@
         {
             "path": "konjunctive-II-futur-I-die-knoblauchsuppe",
             "tense": "Konjunctive II Futur I",
-            "title": "Im restaurant: die Knoblauchsuppe",
-            "subtitle": "Expressing wishes and desires with the Konjunctive II futur I tense (with werden)",
-            "instructions": "Complete the sentences with the correct form of the verb in the Konjunctive II Futur I.",
+            "title": "Die Knoblauchsuppe",
             "level": "B1",
             "verbsUsed": [
                 "gehen",
@@ -67,13 +65,13 @@
                 },
                 {
                     "character": "Lena",
-                    "audio": "Paella ist sicher lecker, aber du würdest die kastilische Knoblauchsuppe probieren!",
-                    "text": "Paella $__ist-sein[verb-link-hover]__$ sicher lecker, aber du $__würdest[input-exercise]__$ die kastilische Knoblauchsuppe $__probieren[input-exercise]__$! [ $__probieren-probieren[verb-link-hover]__$ ]",
+                    "audio": "Paella ist sicher lecker, aber du würdest die kastilische Knoblauchsuppe probieren. Sie ist köstlich.",
+                    "text": "Paella $__ist-sein[verb-link-hover]__$ sicher lecker, aber du $__würdest[input-exercise]__$ die kastilische Knoblauchsuppe $__probieren[input-exercise]__$ [ $__probieren-probieren[verb-link-hover]__$ ].</br> Sie $__ist-sein[verb-link-hover]__$ köstlich.",
                     "audioPath": "knoblauchsuppe/3.mp3",
                     "translations": {
-                        "en": "The paella is certainly yummy, but you should definitely try the Castilian garlic soup.",
-                        "es": "La paella es sin duda deliciosa, pero sin duda debe probar la sopa de ajo castellana.",
-                        "fr": "La paella est certainement bonne, mais vous devriez absolument goûter à la soupe à l'ail castillane."
+                        "en": "The paella is certainly yummy, but you should definitely try the Castilian garlic soup. It will be delicious.",
+                        "es": "La paella es sin duda deliciosa, pero sin duda debe probar la sopa de ajo castellana. Será deliciosa.",
+                        "fr": "La paella est certainement bonne, mais vous devriez absolument goûter à la soupe à l'ail castillane. Elle sera délicieuse."
                     }
                 },
                 {
@@ -113,13 +111,24 @@
                 {
                     "character": "Michael",
                     "imgPath": "michael-3.svg",
-                    "audio": "Ähm... Ich glaube, ich würde die kastilische Knoblauchsuppe probieren.",
-                    "text": "Ähm... Ich $__glaube-glauben[verb-link-hover]__$, ich $__würde[input-exercise]__$ die kastilische Knoblauchsuppe $__probieren[input-exercise]__$. <span>[ $__probieren-probieren[verb-link-hover]__$ ]</span>",
+                    "audio": "Ähm... Ich glaube, ich würde die kastilische Knoblauchsuppe probieren. Ist sie wirklich so gut, wie Lena sagt?",
+                    "text": "Ähm... Ich $__glaube-glauben[verb-link-hover]__$, ich $__würde[input-exercise]__$ die kastilische Knoblauchsuppe $__probieren[input-exercise]__$. <span>[ $__probieren-probieren[verb-link-hover]__$ ]</span> </br>$__Ist-sein[verb-link-hover]__$ sie wirklich so gut, wie Lena $__sagt-sagen[verb-link-hover]__$?",
                     "audioPath": "knoblauchsuppe/7.mp3",
                     "translations": {
-                        "en": "Erm... I think I'd try the Castilian garlic soup.",
-                        "es": "Erm... Creo que probaría la sopa de ajo castellana.",
-                        "fr": "Euh... Je crois que j'essaierais bien la soupe à l'ail castillane."
+                        "en": "Erm... I think I'd try the Castilian garlic soup. Is it really as good as Lena says?",
+                        "es": "Erm... Creo que probaría la sopa de ajo castellana. ¿Es realmente tan buena como dice Lena?",
+                        "fr": "Euh... Je crois que j'essaierais bien la soupe à l'ail castillane. Est-elle vraiment aussi bonne que le dit Lena ?"
+                    }
+                },
+                {
+                    "character": "Waiter",
+                    "audio": "Absolut! Wenn Sie sie bestellen, werden Sie begeistert sein.",
+                    "text": "Absolut! Wenn Sie sie $__bestellen-bestellen[verb-link-hover]__$, $__werden[input-exercise]__$ Sie begeistert $__sein[input-exercise]__$. <span>[ $__sein-sein[verb-link-hover]__$ ]</span>",
+                    "audioPath": "knoblauchsuppe/8.mp3",
+                    "translations": {
+                        "en": "Absolutely! If you order them, you'll be delighted.",
+                        "es": "¡Claro que sí! Si los pide, quedará encantado.",
+                        "fr": "Absolument ! Si vous les commandez, vous serez ravis."
                     }
                 },
                 {

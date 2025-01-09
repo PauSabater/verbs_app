@@ -88,6 +88,7 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
                         :  part.includes('input-exercise')
                             ?   <InputExerciseText
                                     answer={part.split('[input-exercise]')[0].split('$__')[1]}
+                                    key={`input-exercise-${i}`}
                                 />
                             : <span key={'span-text-replaced' + i} className={styles.inline} dangerouslySetInnerHTML={{ __html: sanitize(part) }}></span>
                 })

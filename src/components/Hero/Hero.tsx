@@ -1,6 +1,10 @@
+"use client"
+
 import { fontTitles } from '@/app/fonts'
 import styles from './hero.module.scss'
 import { ExerciseGenerate } from '../ExerciseGenerate/ExerciseGenerate'
+import { useEffect } from 'react'
+import { Source_Sans_3 } from 'next/font/google'
 
 
 interface IHero {
@@ -10,6 +14,10 @@ interface IHero {
 }
 
 export function Hero() {
+
+    useEffect(() => {
+    console.log("HELLO HERO", fontTitles)
+    }, [])
 
     return  (
         <div className={`${styles.container}`}>

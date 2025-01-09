@@ -4,6 +4,9 @@ import styles from './exerciseText.module.scss'
 import { sanitize } from 'isomorphic-dompurify'
 import { TextReplaced } from '../Lesson/Components/TextReplaced/TextRepaced'
 import "../../../public/img/exercises/knoblauchsuppe.png"
+import { ExerciseTextUnit } from './ExerciseTextUnit/ExerciseTextUnit'
+import { Fragment } from 'react'
+import { fontTitles } from '@/app/fonts'
 
 
 const test = {
@@ -31,10 +34,14 @@ interface IExerciseText {
     tense: string,
     title: string,
     level: string,
-    url: string
+    url: string,
+    subtitle: string,
     sentences: {
+        imgPath: string
         audio: string
+        audioPath: string
         text: string
+        translations: { en: string, es: string, fr: string }
     }[]
 }
 
@@ -45,36 +52,38 @@ export default function ExerciseText({
     title,
     level,
     url,
-    sentences
+    sentences,
+    subtitle
 }: IExerciseText) {
 
 
     return (
-        <div>
+        <div className={styles.exerciseText}>
+            <div className={styles.wrapper}>
+                <div className={styles.introContainer}>
+                    <div className={styles.infoContainert}>
+                        <h2 className={`${styles.title} ${fontTitles.className}`}>{title}</h2>
+                        <p>{subtitle}</p>
+                    </div>
+                    <div>
+                        <img
+                            src={"/img/exercises/" + img}
+                            className={styles.mainImage}
+                            alt="audio"
+                            width="200"
+                            height="200"
+                        />
+                    </div>
+                </div>
+            </div>
             {
-                sentences.map((sentence, i)=> {
+                sentences.map((sentence, i) => {
                     return (
-                        <div className={styles.sentenceContainer} key={'sentence' + i}>
-                            <div>
-                                {
-                                    i === 0 ? <h2>{title}</h2> : ''
-                                }
-                                <p className={styles.sentence}>
-                                    <TextReplaced key={'text-replaced' + i} text={sentence.text}></TextReplaced>
-                                </p>
-                            </div>
-                                {
-                                    i === 0
-                                        ? <img
-                                            src={"/img/exercises/" + img}
-                                            className={styles.mainImage}
-                                            alt="audio"
-                                            width="200"
-                                            height="200"
-                                        />
-                                        : ''
-                                }
-                        </div>
+                        <ExerciseTextUnit
+                            sentence={sentence}
+                            order={i}
+                            key={`sentence${i}`}
+                        ></ExerciseTextUnit>
                     )
                 })
             }

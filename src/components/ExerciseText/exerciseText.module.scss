@@ -1,18 +1,33 @@
-.sentenceContainer {
+.introContainer {
     display: grid;
     grid-template-columns: 80% 20%;
-    max-width: 1000px;
+    max-width: 1050px;
     margin: 0 auto;
-    background-color: var(--bg-main);
     padding: 20px 30px;
     border-radius: var(--br-base);
     margin-bottom: 25px;
+    padding-top: var(--mg-page-top);
 
     a {
         color: var(--text-light);
         text-decoration: none;
         font-weight: var(--fw-medium);
     }
+}
+
+.wrapper {
+    background-color: var(--bg-white);
+    width: 100%;
+}
+
+.title {
+    font-size: var(--fs-2xl);
+    font-weight: var(--fw-medium);
+    margin-bottom: 10px;
+}
+
+.exerciseText {
+    background: var(--bg-main);
 }
 
 .sentence {
