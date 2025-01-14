@@ -1,29 +1,56 @@
+.exerciseText {
+    --exercise-unit-width: 1050px;
+}
+
+.wrapper {
+    padding-top: var(--mg-page-top-sm);
+    background-color: var(--bg-white);
+    width: 100%;
+}
+
 .introContainer {
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 650px 350px;
     max-width: 1050px;
     margin: 0 auto;
     padding: 20px 30px;
     border-radius: var(--br-base);
     margin-bottom: 25px;
-    padding-top: var(--mg-page-top);
+    min-height: 35vh;
+    height: auto;
 
-    a {
-        color: var(--text-light);
+    a, p {
+        color: var(--c-text-light);
         text-decoration: none;
-        font-weight: var(--fw-medium);
+        font-weight: var(--fw-regular);
     }
 }
 
-.wrapper {
-    background-color: var(--bg-white);
-    width: 100%;
-}
-
 .title {
-    font-size: var(--fs-2xl);
+    margin-top: 0;
+    font-size: var(--fs-4xl);
     font-weight: var(--fw-medium);
     margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-regular);
+}
+
+.mainImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1;
+    height: calc(100% + var(--mg-page-top-sm) - var(--header-height));
+    margin-top: calc((var(--mg-page-top-sm) - var(--header-height)) * -1);
+
+    .mainImage {
+        border-radius: var(--br-base);
+        height: 100%;
+        width: auto;
+    }
 }
 
 .exerciseText {
@@ -34,6 +61,36 @@
     font-size: var(--fs-base);
 }
 
-.mainImage {
-    border-radius: var(--br-base);
+.levelContainer,
+.charactersContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    align-items: center;
+    gap: 10px;
+}
+
+.imgCharacter {
+    border-radius: 200px;
+    border: 1px dotted var(--c-grey-lighter);
+}
+
+.instructionsContainer {
+    width: var(--exercise-unit-width);
+    margin: 50px auto 35px auto;
+
+    p {
+        font-size: var(--fs-base);
+        color: var(--c-text-light);
+        font-weight: var(--fw-medium);
+        margin-bottom: 20px;
+    }
+}
+
+.tenseLink {
+    font-weight: var(--fw-regular);
+
+    &:hover {
+        text-decoration: underline;
+    }
 }

@@ -16,12 +16,23 @@ interface IExerciseUnitContext {
     callBackOnInputFocus: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
+const reducerInitialState = {
+    numCorrectInputs: 0,
+    isUnitCompleted: false
+}
+
 const reducer = (state: any, action: any) => {
     switch (action.type) {
         case 'increment':
-            return state + 1;
+            return {...state, numCorrectInputs: state.numCorrectInputs + 1 }
         case 'reset':
-            return 0;
+            return {...state, numCorrectInputs: 0 }
+        case 'setIsUnitCompleted':
+            return { ...state, isUnitCompleted: action.payload }
+        case 'setNumInputs':
+            return { ...state, numInputs: action.payload }
+        case 'setTriggerValidation':
+            return { ...state, triggerValidation: action.payload }
         default:
             return state;
     }
@@ -36,19 +47,20 @@ export const ExerciseTextUnit = ({sentence, order}: {
         audio: string
         text: string
         translations: {en: string, es: string, fr: string}
+        onlyText?: boolean
     }, order: number
 }) => { 
 
-    const [numCorrectInputs, dispatch] = useReducer(reducer, 0);
+    const [state, dispatch] = useReducer(reducer, reducerInitialState);
 
-    const callBackOnCorrectInput = () => {
-        dispatch({ type: 'increment' });
-    }
+    const incrementCorrectInputs = () => dispatch({ type: 'increment' })
+    const resetCorrectInputs = () => dispatch({ type: 'reset' })
+    const setIsUnitCompleted = (isComplete: boolean) => dispatch({ type: 'setIsUnitCompleted', payload: isComplete })
+    const setNumInputs = (num: number) => dispatch({ type: 'setNumInputs', payload: num })
+    const setTriggerValidation = (num: number) => dispatch({ type: 'setTriggerValidation', payload: num })
+    const callBackOnCorrectInput = () => incrementCorrectInputs()
 
-    const [triggerValidation, setTriggerValidation] = useState<number>(0)
-    const [numInputs, setNumInputs] = useState<number>(0)
     const [hasBeenFocused, setHasBeenFocused] = useState<boolean>(false)
-    const [isUnitCompleted, setInUnitCompleted] = useState<boolean>(false)
     const [audioState, setAudioState] = useState<"stopped" | "loading" | "playing">("stopped")
     const [displayTranslation, setDisplayTranslation] = useState<boolean>(false)
     const [lastInputFocused, setLastInputFocused] = useState<string>('')
@@ -67,8 +79,6 @@ export const ExerciseTextUnit = ({sentence, order}: {
     }, [])
 
 
-
-
     useEffect(()=> {
         if (displayTranslation) window.addEventListener('click', (e)=> handleClickOutsideTranslation)
         else window.removeEventListener('click', (e)=> handleClickOutsideTranslation)
@@ -76,12 +86,12 @@ export const ExerciseTextUnit = ({sentence, order}: {
 
     // Detect when corrected inputs are equal to the total number of inputs
     useEffect(()=> {
-        if (numCorrectInputs === numInputs) {
-            if (numCorrectInputs > 0) setInUnitCompleted(true)
+        if (state.numCorrectInputs === state.numInputs) {
+            if (state.numCorrectInputs > 0) setIsUnitCompleted(true)
         } else {
-            setInUnitCompleted(false)
+            setIsUnitCompleted(false)
         }
-    }, [numCorrectInputs])
+    }, [state.numCorrectInputs])
 
 
     const handleClickOutsideTranslation = (e: MouseEvent)=> {
@@ -143,18 +153,12 @@ export const ExerciseTextUnit = ({sentence, order}: {
 
 
     const onCorrectButtonClick = () => {
-        console.log("UTTON IS CLICKEDB")
-
-
-
-        // setTriggerValidation(triggerValidation + 1)
-
-        if (!isUnitCompleted) {
-            setTriggerValidation(triggerValidation + 1)
+        if (!state.isUnitCompleted) {
+            setTriggerValidation(state.triggerValidation + 1)
             // setNumCorrectInputs(numCorrectInputs + 1)
         } else {
-            setInUnitCompleted(false)
-            dispatch({ type: 'reset' })
+            setIsUnitCompleted(false)
+            resetCorrectInputs()
             setTriggerValidation(0)
         }
     }
@@ -186,7 +190,7 @@ export const ExerciseTextUnit = ({sentence, order}: {
     return (
         <ExerciseTextUnitContext.Provider
             value={{
-                validationTrigger: triggerValidation,
+                validationTrigger: state.triggerValidation,
                 // callbackOnAddedInput: onAddedInput,
                 callBackOnInputFocus: (e) => onInputFocus(e),
                 callBackOnCorrectInput
@@ -194,9 +198,9 @@ export const ExerciseTextUnit = ({sentence, order}: {
         >
 
         <template data-debug>
-            data-corrected-inputs="{numCorrectInputs}"
-            data-isUnitCompleted="{isUnitCompleted}"
-            data-num-inputs="{numInputs}"
+            data-corrected-inputs="{state.numCorrectInputs}"
+            data-isUnitCompleted="{state.isUnitCompleted}"
+            data-num-inputs="{state.numInputs}"
         </template>
 
         <div className={styles.container} key={'sentence'} ref={refContainer}>
@@ -223,7 +227,7 @@ export const ExerciseTextUnit = ({sentence, order}: {
                     <TextReplaced text={sentence.text}></TextReplaced>
                 </p>
             </div>
-            <div className={styles.buttonsContainer}>
+            <div className={styles.playButtonContainer}>
                 <Button
                     title={"play"}
                     img={audioState === "stopped" ? "play" : audioState === "loading" ? "loading" : "pause"}
@@ -234,7 +238,7 @@ export const ExerciseTextUnit = ({sentence, order}: {
                     callback={playAudio}
                 />
             </div>
-            <div className={styles.keyboardContainer} data-visible={hasBeenFocused && !isUnitCompleted}>
+            <div className={styles.keyboardContainer} data-visible={hasBeenFocused && !state.isUnitCompleted}>
                 <div className={styles.buttonsHelpContainer}>
                     <Button
                         title={"show translation"}
@@ -245,23 +249,35 @@ export const ExerciseTextUnit = ({sentence, order}: {
                         color="greyReverse"
                         callback={()=> setDisplayTranslation(!displayTranslation)}
                     ></Button>
-                    <Button title={"show help"} img={"help"} width="fitContent" size={"square"} text="" color="greyReverse" callback={displayHelp}></Button>
-                    <Button title={"show answers"} img={"show"} width="fitContent" size={"square"} text="" color="greyReverse" callback={displayHelp}></Button>
+                    {
+                        !sentence.onlyText ?
+                            <>
+                                <Button title={"show help"} img={"help"} width="fitContent" size={"square"} text="" color="greyReverse" callback={displayHelp}></Button>
+                                <Button title={"show answers"} img={"show"} width="fitContent" size={"square"} text="" color="greyReverse" callback={displayHelp}></Button>
+                            </>
+                        : <></>
+                    }
                 </div>
                 {
-                    <SpecialCharacters
-                        callbackOnClick={onSpecialCharacterClick}
-                        isActive={true}
-                    />
+                    !sentence.onlyText ?
+                        <SpecialCharacters
+                            callbackOnClick={onSpecialCharacterClick}
+                            isActive={true}
+                        />
+                    : <></>
                 }
             </div>
-            <Button
-                img={isUnitCompleted ? "repeat-white" : "pen-white"}
-                text={isUnitCompleted ? "REPEAT" : "CHECK"}
-                color="inactive"
-                callback={()=> onCorrectButtonClick()}
-                attribute={'button-correct'}
-            ></Button>
+            {
+                !sentence.onlyText ?
+                    <Button
+                        img={state.isUnitCompleted ? "repeat-white" : "pen-white"}
+                        text={state.isUnitCompleted ? "REPEAT" : "CHECK"}
+                        color="inactive"
+                        callback={()=> onCorrectButtonClick()}
+                        attribute={'button-correct'}
+                    ></Button>
+                    : <></>
+            }
         </div>
         </ExerciseTextUnitContext.Provider>
     )

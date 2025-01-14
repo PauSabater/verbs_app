@@ -3,10 +3,12 @@
 import styles from './exerciseText.module.scss'
 import { sanitize } from 'isomorphic-dompurify'
 import { TextReplaced } from '../Lesson/Components/TextReplaced/TextRepaced'
-import "../../../public/img/exercises/knoblauchsuppe.png"
 import { ExerciseTextUnit } from './ExerciseTextUnit/ExerciseTextUnit'
 import { Fragment } from 'react'
 import { fontTitles } from '@/app/fonts'
+import InfoInCircle from '@/elements/InfoInCircle/InfoInCircle'
+import { fontHandwritten } from '@/app/fonts'
+
 
 
 const test = {
@@ -32,16 +34,24 @@ interface IExerciseText {
     img: string,
     path: string,
     tense: string,
+    tenseUrl: string,
     title: string,
     level: string,
     url: string,
     subtitle: string,
+    instructions: string,
     sentences: {
         imgPath: string
         audio: string
         audioPath: string
         text: string
         translations: { en: string, es: string, fr: string }
+        onlyText?: boolean
+    }[],
+    characters: {
+        name: string
+        img: string
+        url: string
     }[]
 }
 
@@ -49,11 +59,14 @@ export default function ExerciseText({
     img,
     path,
     tense,
+    tenseUrl,
     title,
     level,
     url,
     sentences,
-    subtitle
+    subtitle,
+    characters,
+    instructions
 }: IExerciseText) {
 
 
@@ -62,10 +75,33 @@ export default function ExerciseText({
             <div className={styles.wrapper}>
                 <div className={styles.introContainer}>
                     <div className={styles.infoContainert}>
-                        <h2 className={`${styles.title} ${fontTitles.className}`}>{title}</h2>
-                        <p>{subtitle}</p>
+                        <h2 className={`${styles.title} ${fontTitles.className}`} dangerouslySetInnerHTML={{ __html: sanitize(title) }}></h2>
+                        <p className={`${fontHandwritten.className} ${styles.subtitle}`}>{subtitle}</p>
+                        <div className={styles.levelContainer}>
+                            <InfoInCircle text={level}/>
+                            <p>Level</p>
+                            <p> | </p>
+                            <a href={tenseUrl} target="_blank" className={styles.tenseLink}>{tense}</a>
+                        </div>
+                        <div className={styles.charactersContainer}>
+                            {
+                                characters.map((character, i) => {
+                                    return (
+                                            <img
+                                                key={`character${i}`}
+                                                src={"/img/exercises/characters/" + character.img}
+                                                alt={`character ${character.name}`}
+                                                width="40"
+                                                height="40"
+                                                className={styles.imgCharacter}
+                                            />
+                                    )
+                                })
+                            }
+
+                        </div>
                     </div>
-                    <div>
+                    <div className={styles.mainImageContainer}>
                         <img
                             src={"/img/exercises/" + img}
                             className={styles.mainImage}
@@ -75,6 +111,10 @@ export default function ExerciseText({
                         />
                     </div>
                 </div>
+            </div>
+            <div className={styles.instructionsContainer}>
+                <p>{instructions}</p>
+
             </div>
             {
                 sentences.map((sentence, i) => {

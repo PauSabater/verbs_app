@@ -35,7 +35,7 @@ export default function InputExerciseText({
     // }, [])
 
     useEffect(() => {
-        if (transcript && refInput.current) {
+        if (transcript && refInput.current && inputState !== 'correct') {
             refInput.current.value = transcript
             validateInput()
         }
