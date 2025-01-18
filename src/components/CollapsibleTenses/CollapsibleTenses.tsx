@@ -3,7 +3,7 @@
 import { MouseEventHandler, ReactNode, useState } from 'react'
 import styles from './CollapsibleTenses.module.scss'
 import { useRef } from 'react'
-import { Button } from '../Button/Button'
+import { Button } from '../atoms/Button/Button'
 import { IExamples, TensesExamples } from '../TensesExamples/TensesExamples'
 import { fontTitles } from '@/app/fonts'
 import Link from 'next/link'

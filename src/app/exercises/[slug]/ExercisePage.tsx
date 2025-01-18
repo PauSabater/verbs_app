@@ -46,6 +46,7 @@ export function ExercisePage({
     }
 
 
+    const dataExerciseText = typeof dataExercise === 'object' ? dataExercise : JSON.parse(dataExercise)
 
 
     return (
@@ -60,7 +61,7 @@ export function ExercisePage({
 
         >
             <ExerciseText
-                {...dataExercise}
+                {...dataExerciseText}
             ></ExerciseText>
 
         </ExercisePageContext.Provider></>

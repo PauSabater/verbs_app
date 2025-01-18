@@ -55,11 +55,12 @@ export const TextReplaced = (props: ITextReplaced): JSX.Element => {
         // Get value
         let value = variablesTextGetValue(variableExtracted, strProp)
 
+        const attributeName = value.includes('-') ? value.split('-')[2] : ''
         const valuePath = value.includes('-') ? value.split('-')[1] : value
         const valueText = value.includes('-') ? value.split('-')[0] : value
 
         return (
-            <span className={styles.hoveredLinkContainer}>
+            <span className={styles.hoveredLinkContainer} data-hovered-link={attributeName}>
                 {
                     dispayInfoHover
                         ? <VerbInfoHover verb={valuePath}></VerbInfoHover>

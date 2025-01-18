@@ -67,9 +67,16 @@
         font-size: var(--fs-exercise-text);
     }
 
-    span[data-exercise-verb] {
+    span[data-hovered-link="useverb"] {
         color: var(--c-primary-dark);
         text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-line: underline;
+        text-decoration-thickness: 1px;
+        text-decoration-style: dotted;
+        background-color: var(--c-forth-lighter);
+        padding: 1px 2px;
+        border-radius: 3px;
     }
 }
 

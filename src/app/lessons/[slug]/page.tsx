@@ -8,6 +8,8 @@ import { getApiVerbConjugationsFromTenses, getPageVerbsTexts, getTextsVerbExerci
 import { headers } from 'next/headers'
 import { getConjugationFromTense } from '@/components/ExerciseConjugation/ExerciseConjugation.exports'
 import { Metadata, ResolvingMetadata } from 'next'
+import { getExercise } from '@/lib/exercise'
+import { ExercisePage } from '@/app/exercises/[slug]/ExercisePage'
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -22,6 +24,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     let exercisesConjugations = []
 
+    // const exerciseData = dataResponse.props.lessonData,
+
     for (const verb of verbsExercises) {
 
         const tensesResp: any = (await getApiVerbConjugationsFromTenses(verb, [tenseExercise]))
@@ -33,6 +37,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
         })
     }
 
+    const exercise = pageData.exercise
+    const exerciseSrc = exercise.src
+    const exerciseData: any = await getExercise(exerciseSrc) ?? {}
+    const exerciseVerbsData = await getVerbsProperties(exerciseData.verbsUsed) ?? {}
 
     return (
         <Fragment>
@@ -45,6 +53,19 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 textsExercise={JSON.stringify(textsVerbExercise)}
                 verbsConjugations={exercisesConjugations}
             ></LessonPage>
+            <ExercisePage
+                host={headers().get('host') || ''}
+                dataVerbsInText={exerciseVerbsData}
+                dataExercise={JSON.stringify(exerciseData)}
+            ></ExercisePage>
+            {/* {
+                exerciseData &&
+                <ExercisePage
+                    host={headers().get('host') || ''}
+                    dataVerbsInText={exerciseVerbsData}
+                    dataExercise={exerciseData}
+                ></ExercisePage>
+            } */}
         </Fragment>
     )
 }

@@ -75,7 +75,7 @@
                     "audio": "Was denkst du, Lena? Ich glaube, ich würde die Paella bestellen.",
                     "audioPath": "knoblauchsuppe/2.mp3",
                     "help": "\"ich _____ die Paella _____\" is a subordinate clause,  where \"werden\" takes the second position, and the main verb is placed at the end.",
-                    "text": "Was $__denkst-denken[verb-link-hover]__$ du, Lena? Ich $__glaube-glauben[verb-link-hover]__$, Ich $__würde[input-exercise]__$ die Paella $__bestellen[input-exercise]__$ [ $__bestellen-bestellen[verb-link-hover]__$ ].",
+                    "text": "Was $__denkst-denken[verb-link-hover]__$ du, Lena? Ich $__glaube-glauben[verb-link-hover]__$, Ich $__würde[input-exercise]__$ die Paella $__bestellen[input-exercise]__$ [ $__bestellen-bestellen-useverb[verb-link-hover]__$ ].",
                     "translations": {
                         "en": "\"ich _____ die Paella _____\" is a subordinate clause,  where \"werden\" takes the second position, and the main verb is placed at the end.",
                         "es": "¿Qué te parece, Lena? Creo que pediría la paella.",
@@ -86,7 +86,7 @@
                     "character": "Lena",
                     "imgPath": "lena-friendly.png",
                     "audio": "Paella ist sicher lecker, aber du würdest die kastilische Knoblauchsuppe probieren!",
-                    "text": "Paella $__ist-sein[verb-link-hover]__$ sicher lecker, aber du $__würdest[input-exercise]__$ die kastilische Knoblauchsuppe $__probieren[input-exercise]__$! [ $__probieren-probieren[verb-link-hover]__$ ]",
+                    "text": "Paella $__ist-sein[verb-link-hover]__$ sicher lecker, aber du $__würdest[input-exercise]__$ die kastilische Knoblauchsuppe $__probieren[input-exercise]__$! [ $__probieren-probieren-useverb[verb-link-hover]__$ ]",
                     "audioPath": "knoblauchsuppe/3.mp3",
                     "translations": {
                         "en": "The paella is certainly yummy, but you should definitely try the Castilian garlic soup.",
@@ -134,7 +134,7 @@
                     "character": "Michael",
                     "imgPath": "michael-speaking-up.png",
                     "audio": "Ähm... Ich glaube, ich würde die kastilische Knoblauchsuppe probieren.",
-                    "text": "Ähm... Ich $__glaube-glauben[verb-link-hover]__$, ich $__würde[input-exercise]__$ die kastilische Knoblauchsuppe $__probieren[input-exercise]__$. <span>[ $__probieren-probieren[verb-link-hover]__$ ]</span>",
+                    "text": "Ähm... Ich $__glaube-glauben[verb-link-hover]__$, ich $__würde[input-exercise]__$ die kastilische Knoblauchsuppe $__probieren[input-exercise]__$. <span>[ $__probieren-probieren-useverb[verb-link-hover]__$ ]</span>",
                     "audioPath": "knoblauchsuppe/7.mp3",
                     "translations": {
                         "en": "Erm... I think I'd try the Castilian garlic soup.",
@@ -169,7 +169,7 @@
                 {
                     "character": "Lena",
                     "audio": "Hab ich dir doch gesagt! Würdest du jetzt immer noch Paella nehmen?",
-                    "text": "$__Hab-haben[verb-link-hover]__$ ich dir doch $__gesagt-sagen[verb-link-hover]__$! $__Würdest[input-exercise]__$ du jetzt immer noch Paella $__nehmen[input-exercise]__$? <span>[ $__nehmen-nehmen[verb-link-hover]__$ ]</span>",
+                    "text": "$__Hab-haben[verb-link-hover]__$ ich dir doch $__gesagt-sagen[verb-link-hover]__$! $__Würdest[input-exercise]__$ du jetzt immer noch Paella $__nehmen[input-exercise]__$? <span>[ $__nehmen-nehmen-useverb[verb-link-hover]__$ ]</span>",
                     "imgPath": "lena-laughing.png",
                     "audioPath": "knoblauchsuppe/11.mp3",
                     "translations": {
@@ -181,7 +181,7 @@
                 {
                     "character": "Michael",
                     "audio": "Nein! Ich glaube, ich würde diese Suppe jedes Mal bestellen.",
-                    "text": "Nein! Ich $__glaube-glauben[verb-link-hover]__$, ich $__würde[input-exercise]__$ diese Suppe jedes Mal $__bestellen[input-exercise]__$ <span>[ $__bestellen-bestellen[verb-link-hover]__$ ]</span>.",
+                    "text": "Nein! Ich $__glaube-glauben[verb-link-hover]__$, ich $__würde[input-exercise]__$ diese Suppe jedes Mal $__bestellen[input-exercise]__$ <span>[ $__bestellen-bestellen-useverb[verb-link-hover]__$ ]</span>.",
                     "imgPath": "michael-surprised.png",
                     "audioPath": "knoblauchsuppe/12.mp3",
                     "translations": {
@@ -194,7 +194,7 @@
                     "character": "Michael",
                     "audio": "Entschuldigung, könnten Sie mir vielleicht das Rezept verraten? Ich würde diese Suppe gern selbst kochen.",
                     "imgPath": "michael-speaking-up.png",
-                    "text": "Entschuldigung, $__könnten-können[verb-link-hover]__$ Sie mir vielleicht das Rezept $__verraten-verraten[verb-link-hover]__$? Ich $__würde[input-exercise]__$ diese Suppe gern selbst $__kochen[input-exercise]__$ <span>[ $__kochen-kochen[verb-link-hover]__$ ]</span>.",
+                    "text": "Entschuldigung, $__könnten-können[verb-link-hover]__$ Sie mir vielleicht das Rezept $__verraten-verraten[verb-link-hover]__$? Ich $__würde[input-exercise]__$ diese Suppe gern selbst $__kochen[input-exercise]__$ <span>[ $__kochen-kochen-useverb[verb-link-hover]__$ ]</span>.",
                     "audioPath": "knoblauchsuppe/13.mp3",
                     "translations": {
                         "en": "Excuse me, could you perhaps give me the recipe? I would like to make this soup myself.",
@@ -217,7 +217,7 @@
                 {
                     "character": "Michael",
                     "audio": "Lena, wenn ich die Suppe für unser nächstes Date koche, würdest du sie dann essen?",
-                    "text": "Lena, wenn ich die Suppe für unser nächstes Date $__kochen-kochen[verb-link-hover]__$, $__würdest[input-exercise]__$ du sie dann $__essen[input-exercise]__$? <span>[ $__essen-essen[verb-link-hover]__$ ]</span>.",
+                    "text": "Lena, wenn ich die Suppe für unser nächstes Date $__kochen-kochen[verb-link-hover]__$, $__würdest[input-exercise]__$ du sie dann $__essen[input-exercise]__$? <span>[ $__essen-essen-useverb[verb-link-hover]__$ ]</span>.",
                     "imgPath": "michael-friendly.png",
                     "audioPath": "knoblauchsuppe/15.mp3",
                     "translations": {
@@ -230,7 +230,7 @@
                     "character": "Lena",
                     "audio": "Das würde ich gern! Aber glaubst du, du würdest es wirklich schaffen, sie so gut wie hier zu machen?",
                     "imgPath": "lena-friendly.png",
-                    "text": "Das $__würde-werden[verb-link-hover]__$ ich gern! Aber $__glaubst-glauben[verb-link-hover]__$ du, du $__würdest[input-exercise]__$ es wirklich $__schaffen[input-exercise]__$, sie so gut wie hier zu $__machen-machen[verb-link-hover]__$?? <span>[ $__schaffen-schaffen[verb-link-hover]__$ ]</span>",
+                    "text": "Das $__würde-werden[verb-link-hover]__$ ich gern! Aber $__glaubst-glauben[verb-link-hover]__$ du, du $__würdest[input-exercise]__$ es wirklich $__schaffen[input-exercise]__$, sie so gut wie hier zu $__machen-machen[verb-link-hover]__$?? <span>[ $__schaffen-schaffen-useverb[verb-link-hover]__$ ]</span>",
                     "audioPath": "knoblauchsuppe/16.mp3",
                     "translations": {
                         "en": "I would love to! But do you think you'd really manage to make it as good as here?",
@@ -241,7 +241,7 @@
                 {
                     "character": "Michael",
                     "audio": "Ich bin mir nicht sicher, aber ich würde mein Bestes geben!",
-                    "text": "Ich $__bin-sein[verb-link-hover]__$ nicht sicher, aber ich $__würde[input-exercise]__$ mein Bestes $__geben[input-exercise]__$! <span>[ $__geben-geben[verb-link-hover]__$ ]</span>",
+                    "text": "Ich $__bin-sein[verb-link-hover]__$ nicht sicher, aber ich $__würde[input-exercise]__$ mein Bestes $__geben[input-exercise]__$! <span>[ $__geben-geben-useverb[verb-link-hover]__$ ]</span>",
                     "imgPath": "michael-friendly.png",
                     "audioPath": "knoblauchsuppe/17.mp3",
                     "translations": {
@@ -254,7 +254,7 @@
                     "character": "Michael",
                     "audio": "Äh, aber... Lena... Ich habe ein Problem. Nach dieser Suppe bin ich mir nicht sicher, ob ich dich würde küssen sollen...",
                     "imgPath": "michael-worried-2.png",
-                    "text": "Äh, aber... Lena... Ich $__habe-haben[verb-link-hover]__$ ein Problem. Nach dieser Suppe $__bin-sein[verb-link-hover]__$ ich mir nicht sicher, ob ich dich $__würde[input-exercise]__$ küssen $__sollen[input-exercise]__$ ... <span>[ $__sollen-sollen[verb-link-hover]__$ ]</span>",
+                    "text": "Äh, aber... Lena... Ich $__habe-haben[verb-link-hover]__$ ein Problem. Nach dieser Suppe $__bin-sein[verb-link-hover]__$ ich mir nicht sicher, ob ich dich $__würde[input-exercise]__$ küssen $__sollen[input-exercise]__$ ... <span>[ $__sollen-sollen-useverb[verb-link-hover]__$ ]</span>",
                     "audioPath": "knoblauchsuppe/18.mp3",
                     "translations": {
                         "en": "Er, but... Lena... I have a problem. After this soup, I'm not sure if I should kiss you...",
@@ -265,7 +265,7 @@
                 {
                     "character": "Lena",
                     "audio": "Ha... vielleicht würden wir dann beide einen Minzbonbon nehmen!",
-                    "text": "Ha... Vielleicht $__würden[input-exercise]__$ wir dann beide einen Minzbonbon $__nehmen[input-exercise]__$! <span>[ $__nehmen-nehmen[verb-link-hover]__$ ]</span>",
+                    "text": "Ha... Vielleicht $__würden[input-exercise]__$ wir dann beide einen Minzbonbon $__nehmen[input-exercise]__$! <span>[ $__nehmen-nehmen-useverb[verb-link-hover]__$ ]</span>",
                     "imgPath": "lena-laughing.png",
                     "audioPath": "knoblauchsuppe/19.mp3",
                     "translations": {

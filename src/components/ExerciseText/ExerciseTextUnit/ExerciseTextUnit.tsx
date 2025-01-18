@@ -1,10 +1,10 @@
 import { TextReplaced } from "@/components/Lesson/Components/TextReplaced/TextRepaced"
 import styles from './exerciseTextUnit.module.scss'
 import React, { createContext, useContext, useEffect, useReducer, useRef, useState } from "react"
-import { AudioIcon } from "@/components/AudioIcon/AudioIcon";
+import { AudioIcon } from "@/components/atoms/AudioIcon/AudioIcon";
 import { SVGAudio } from "@/assets/svg/svgExports";
 import SpecialCharacters from "@/components/ExerciseConjugation/Components/SpecialCharacters/SpecialCharacters";
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/components/atoms/Button/Button";
 import { ExercisePageContext } from "@/app/exercises/[slug]/ExercisePage";
 import { ButtonClose } from "@/components/ButtonClose/ButtonClose";
 import { useSpeechRecognition } from "@/hooks/useSpeechRecognition";

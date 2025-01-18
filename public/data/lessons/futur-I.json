@@ -185,6 +185,10 @@
             "type": "exercise-btn-link",
             "content": "Train Futur I with aleatory A1 level verbs",
             "path": "/exercise?random=true&types=regular,irregular&levels=A1&tenses=futur_I"
+        },
+        {
+            "type": "exercise",
+            "path": "kojunktiv-II-futur-I-die-knoblauchsuppe"
         }
     ]
 }

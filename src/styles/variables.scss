@@ -107,6 +107,17 @@
     --c-tertiary-dark: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 30%);
     --c-tertiary-darker: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 10%);
 
+    // #f9f871
+    --c-forth-h: hsl(60, 92%, 71%);
+
+    --c-forth-h: 60;
+    --c-forth-s: 92%;
+    --c-forth-lighter: hsl(var(--c-forth-h), var(--c-forth-s), 95%);
+    --c-forth-light: hsl(var(--c-forth-h), var(--c-forth-s), 70%);
+    --c-forth: hsl(var(--c-forth-h), var(--c-forth-s), 35%);
+    --c-forth-dark: hsl(var(--c-forth-h), var(--c-forth-s), 30%);
+    --c-forth-darker: hsl(var(--c-forth-h), var(--c-forth-s), 10%);
+
 
     --c-grey-lightest: hsl(0, 0%, 94%);
     --c-grey-lighter: hsl(0, 0%, 90%);

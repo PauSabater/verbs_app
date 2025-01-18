@@ -75,7 +75,7 @@ export default function ExerciseText({
             <div className={styles.wrapper}>
                 <div className={styles.introContainer}>
                     <div className={styles.infoContainert}>
-                        <h2 className={`${styles.title} ${fontTitles.className}`} dangerouslySetInnerHTML={{ __html: sanitize(title) }}></h2>
+                        <h1 className={`${styles.title} ${fontTitles.className}`} dangerouslySetInnerHTML={{ __html: sanitize(title) }}></h1>
                         <p className={`${fontHandwritten.className} ${styles.subtitle}`}>{subtitle}</p>
                         <div className={styles.levelContainer}>
                             <InfoInCircle text={level}/>

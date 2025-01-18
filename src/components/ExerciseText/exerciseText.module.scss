@@ -4,11 +4,13 @@
 
 .wrapper {
     padding-top: var(--mg-page-top-sm);
-    background-color: var(--bg-white);
+    background-color: var(--c-primary-darker);
     width: 100%;
 }
 
 .introContainer {
+    --info-circle-color-font: var(--c-font-white);
+
     display: grid;
     grid-template-columns: 650px 350px;
     max-width: 1050px;
@@ -20,9 +22,13 @@
     height: auto;
 
     a, p {
-        color: var(--c-text-light);
+        color: var(--c-font-white);
         text-decoration: none;
         font-weight: var(--fw-regular);
+    }
+
+    h1 {
+        color: var(--c-font-white);
     }
 }
 

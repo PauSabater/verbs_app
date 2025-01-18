@@ -149,5 +149,8 @@
             "type": "paragraph",
             "content": "Word order in sentences using Konjunktiv II Futur I follows the rules for compound tenses."
         }
-    ]
+    ],
+    "exercise": {
+        "src": "kojunktiv-II-futur-I-die-knoblauchsuppe.json"
+    }
 }

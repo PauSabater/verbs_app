@@ -1,7 +1,7 @@
 'use client'
 
 import { Fragment, useEffect, useRef, useState } from 'react'
-import { Button } from '../Button/Button'
+import { Button } from '../atoms/Button/Button'
 import SearchBar from '../SearchBar/SearchBar'
 import styles from './header.module.scss'
 import ModalExercises from '../ModalExercises/ModalExercises'

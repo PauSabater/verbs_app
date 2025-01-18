@@ -1,4 +1,4 @@
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/components/atoms/Button/Button";
 import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation";
 import { IExerciseConjugationTexts } from "@/components/ExerciseConjugation/ExerciseConjugation.exports";
 import { useContext, useLayoutEffect, useState } from "react";

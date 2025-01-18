@@ -4,9 +4,9 @@ import styles from './verbInfoHover.module.scss'
 import { useContext } from 'react'
 import { LessonPageContext } from '@/app/lessons/[slug]/LessonPage'
 import { ExercisePageContext } from '@/app/exercises/[slug]/ExercisePage'
-import { AudioIcon } from '@/components/AudioIcon/AudioIcon'
+import { AudioIcon } from '@/components/atoms/AudioIcon/AudioIcon'
 import InfoInCircle from '@/elements/InfoInCircle/InfoInCircle'
-import { Button } from '@/components/Button/Button'
+import { Button } from '@/components/atoms/Button/Button'
 
 interface IVerbInfoHover {
     verb: string
