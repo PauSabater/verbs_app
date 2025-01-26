@@ -1,8 +1,12 @@
+import { adaptTenseForApiUrl } from "@/lib/getApiData"
+
 export interface IConjugation {
     person: string,
     conjugation: string,
     conjugationHTML: string
 }
+
+export type TValidatedState = "valid" | "partial" | "error"
 
 export interface ITensesDropdown {
     level: string,
@@ -115,10 +119,12 @@ export const getConjugationFromTense = (tenses: IVerbAllTenses, tableTense: stri
 
     if (!tenses) return
 
+    const tenseNameFromApi = adaptTenseForApiUrl(tableTense)
+
     for (const mode of Object.values(tenses)) {
 
-        if (mode.hasOwnProperty(tableTense)) {
-            return mode[tableTense][0].conjugations
+        if (mode.hasOwnProperty(tenseNameFromApi)) {
+            return mode[tenseNameFromApi][0].conjugations
         }
     }
 
@@ -158,4 +164,15 @@ export const getIgnoreInitialValue = ()=> {
     const val = window.localStorage.getItem('ignore-special-chars')
     if (!val || val === 'false') return false
     else return true
+}
+
+export function formatTenseForHeading(input: string): string {
+    return input
+        .replace(/\bi\b/g, "I")           // Replace standalone "i" with "I"
+        .replace(/\bii\b/g, "II")         // Replace standalone "ii" with "II"
+        .replace(/ i\b/g, " I")           // Replace " i" with leading space with " I"
+        .replace(/ ii\b/g, " II")         // Replace " ii" with leading space with " II"
+        .replace(/\b\w\S*/g, (word) =>
+            word.charAt(0).toUpperCase() + word.slice(1) // Capitalize first letter, keep rest as-is
+        );
 }

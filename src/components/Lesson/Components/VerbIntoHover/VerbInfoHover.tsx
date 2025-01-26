@@ -3,9 +3,10 @@ import Link from 'next/link'
 import styles from './verbInfoHover.module.scss'
 import { useContext } from 'react'
 import { LessonPageContext } from '@/app/lessons/[slug]/LessonPage'
-import { AudioIcon } from '@/components/AudioIcon/AudioIcon'
+import { ExercisePageContext } from '@/app/exercises/[slug]/ExercisePage'
+import { AudioIcon } from '@/components/atoms/AudioIcon/AudioIcon'
 import InfoInCircle from '@/elements/InfoInCircle/InfoInCircle'
-import { Button } from '@/components/Button/Button'
+import { Button } from '@/components/atoms/Button/Button'
 
 interface IVerbInfoHover {
     verb: string
@@ -15,10 +16,24 @@ interface IVerbInfoHover {
 export const VerbInfoHover = (props: IVerbInfoHover): JSX.Element => {
 
     const lessonPageContext = useContext(LessonPageContext)
+    const exercisePageContext = useContext(ExercisePageContext)
 
-    if (!lessonPageContext.dataVerbsInText) return <></>
+    console.log("exercise page context is", exercisePageContext)
 
-    const dataVerb = lessonPageContext.dataVerbsInText.find((verb)=> verb.verb === props.verb)
+    const dataContext = lessonPageContext.dataVerbsInText
+        ? lessonPageContext
+        : exercisePageContext.dataVerbsInText ? exercisePageContext : null
+
+    console.log("verb is", props.verb)
+    console.log("ieee context is")
+    console.log(dataContext)
+
+    if (!dataContext?.dataVerbsInText) return <></>
+
+    const dataVerb = dataContext.dataVerbsInText.find((verb)=> verb.verb === props.verb)
+
+    console.log("data verb is")
+    console.log(dataVerb)
 
     if (!dataVerb) return <></>
 
@@ -31,8 +46,8 @@ export const VerbInfoHover = (props: IVerbInfoHover): JSX.Element => {
             <div className={styles.verbInfoContainer}>
                 <div className={styles.infoOnLeft}>
                     <p className={styles.verb}>{dataVerb.verb}</p>
-                    {lessonPageContext.utterance
-                        ? <AudioIcon text={props.verb} utterance={lessonPageContext.utterance}></AudioIcon>
+                    {dataContext.utterance
+                        ? <AudioIcon text={props.verb} utterance={dataContext.utterance}></AudioIcon>
                         : <></>
                     }
                 </div>

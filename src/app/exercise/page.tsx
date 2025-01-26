@@ -23,15 +23,6 @@ export default function Page() {
     const [isRandom, setIsRandom] = useState(searchParams.get('random') === 'true')
     const [types, setTypes] = useState(searchParams.get('types')?.split(','))
     const [levels, setLevels] = useState(searchParams.get('levels')?.split(','))
-
-    // if (searchParams.get('random') === 'true') {
-    //     getRandomVerb(types, levels)
-    // }
-
-    // console.log(searchParams)
-    // console.log(searchParams.get('types'))
-
-
     const [verbs, setVerbs] = useState(searchParams.get('verbs')?.split(','))
     const [tenses, setTenses] = useState(searchParams.get('tenses')?.split(',').map((tense)=> {
         return replaceTenseFromURL(tense)

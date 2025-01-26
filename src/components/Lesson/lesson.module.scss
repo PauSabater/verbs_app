@@ -206,6 +206,47 @@
         height: 20px;
         z-index: 10;
     }
+
+    &.fullwidth-only-desktop {
+        width: 100%;
+
+        table {
+            --table-pd-side: 15px;
+
+            width: 100%;
+
+            th {
+                min-width: unset;
+            }
+
+            thead th:first-child {
+                width: 60px;
+            }
+
+            span {
+                letter-spacing: -0.25px;
+            }
+        }
+    }
+
+    th {
+        position: relative;
+
+        span {
+            display: block;
+            position: relative;
+            width: min-content;
+
+            svg[data-svg-audio] {
+                position: absolute;
+                top: 50%;
+                right: -15px;
+                height: 15px;
+                z-index: 10;
+                transform: translateY(-50%);
+            }
+        }
+    }
 }
 
 .example {
@@ -225,7 +266,7 @@
 
     .heading,
     .value {
-        font-size: var(--fs-sm);
+        font-size: 18px;
     }
 
     i[data-width-sm] {

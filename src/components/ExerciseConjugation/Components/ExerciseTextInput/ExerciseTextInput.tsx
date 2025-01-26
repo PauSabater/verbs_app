@@ -2,7 +2,7 @@
 
 import { ChangeEvent, Fragment, forwardRef, useContext, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import styles from './ExerciseTextInput.module.scss'
-import { formatStringForValidation } from '@/utils/utils'
+import { formatStringForValidation, validateConjugationString } from '@/utils/utils'
 import { strError, strInactive, strSuccess } from '@/utils/constants'
 import { getFeedbackSvg } from '@/assets/svg/svgExports'
 import { sanitize } from 'isomorphic-dompurify'
@@ -17,6 +17,9 @@ interface IExerciseInput {
     actionOnEmptied: Function
     actionOnCorrected: Function
     displayAnswer: boolean
+    inputNumber: number
+    ignoreSpecialChars: boolean
+    onInputFocus: Function
 }
 
 type TExerciseInputState = 'empty' | 'filling' | 'success' | 'error'
@@ -43,13 +46,25 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
 
     const refInput = useRef<HTMLInputElement>(null)
     const [inputState, setInputState] = useState<TExerciseInputState>(statesInputExercise.empty as TExerciseInputState)
+    const [focusTextPosition, setFocusTextPosition] = useState<number>(0)
 
     // Forward function to ref:
     useImperativeHandle(ref, () => ({
         validateInput,
         restartInput,
-        focusInput
+        focusInput,
+        addSpecialChar
     }))
+
+    const addSpecialChar = (char: string): void => {
+        if (refInput.current === null) return
+
+        const inputVal = refInput.current.value || ''
+        const newInputVal = inputVal.slice(0, focusTextPosition) + char + inputVal.slice(focusTextPosition)
+        refInput.current.value = newInputVal
+        setInputState(statesInputExercise.filling)
+        updateStatesOnInputChange()
+    }
 
     // useEffect(()=> {
 
@@ -57,6 +72,14 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
 
     const handleChangeEvent = (e: ChangeEvent<HTMLInputElement>) => {
         const inputValue = (e.target as HTMLInputElement).value
+
+        console.log("posizion is " + e.target.selectionStart)
+        setFocusTextPosition(e.target.selectionStart || 0)
+        updateStatesOnInputChange()
+    }
+
+    const updateStatesOnInputChange = () => {
+        const inputValue = (refInput.current as HTMLInputElement).value
 
         if (inputValue !== '' && isFillingState(inputState) === false) {
             // Case an errored input starts being corrected
@@ -78,9 +101,16 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
         if (refInput.current === null) return false
 
         const inputValue = refInput.current.value
-        const isInputValid = props.answers.includes(formatStringForValidation(inputValue))
+        const formatedStringForValidation = formatStringForValidation(inputValue)
+        const isInputValid = props.answers.includes(formatedStringForValidation)
 
         setInputState(isInputValid ? statesInputExercise.success : statesInputExercise.error)
+
+        // const newVal = validateConjugationString(
+        //     formatedStringForValidation,
+        //     props.answers[0],
+        //     props.ignoreSpecialChars
+        // )
 
         return isInputValid
     }
@@ -97,12 +127,31 @@ const ExerciseTextInput = forwardRef((props: IExerciseInput, ref) => {
 
     const focusInput = () => {
         if (refInput.current === null) return
+        const updatedFocusPosition = focusTextPosition + 1
+        refInput.current.setSelectionRange(updatedFocusPosition, updatedFocusPosition)
+        setFocusTextPosition(updatedFocusPosition)
         refInput.current.focus()
+    }
+
+    const handleInputFocus = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+        setFocusTextPosition(e.target.selectionStart || 0)
+        props.onInputFocus(e, props.inputNumber)
+    }
+
+    const updateTextPosition = () => {
+        setFocusTextPosition(refInput.current?.selectionStart || 0)
     }
 
     return (
         <div className={styles.container}>
-            <input ref={refInput} type="text" className={styles.input} data-state={inputState} onChange={(e) => handleChangeEvent(e)}></input>
+            <input ref={refInput}
+                type="text"
+                className={styles.input}
+                data-state={inputState}
+                onChange={(e) => handleChangeEvent(e)}
+                onFocus={(e) => handleInputFocus(e)}
+                onClick={() => updateTextPosition()}
+            ></input>
             {getFeedbackSvg(inputState)}
             {props.displayAnswer && !isSuccessState(context.exerciseState)
                 ? <p className={styles.answerCorrection} dangerouslySetInnerHTML={{ __html: sanitize(props.answerHTML.replace('&#42;', '')) }}></p>

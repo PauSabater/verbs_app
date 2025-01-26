@@ -1,4 +1,4 @@
-import { Button } from "@/components/Button/Button";
+import { Button } from "@/components/atoms/Button/Button";
 import { ExerciseConjugation } from "@/components/ExerciseConjugation/ExerciseConjugation";
 import { IExerciseConjugationTexts } from "@/components/ExerciseConjugation/ExerciseConjugation.exports";
 import { useContext, useLayoutEffect, useState } from "react";
@@ -38,9 +38,6 @@ export default function ButtonWithExercise(props: IButtonWithExercise): React.JS
     }
 
     return <>
-        {
-            !showExercise ?
-                <>
                 <a href={`#exercise-${props.verb}`}>
                     <Button
                         icon={'exercise'}
@@ -48,9 +45,6 @@ export default function ButtonWithExercise(props: IButtonWithExercise): React.JS
                         callback={onBtnExerciseClick}
                     ></Button>
                 </a>
-                </>
-                : <></>
-        }
             <div id={`exercise-${props.verb}`} className={styles.scrollTrigger} >
             {
                 showExercise ?
@@ -68,7 +62,10 @@ export default function ButtonWithExercise(props: IButtonWithExercise): React.JS
                         isLessonExercise={true}
                         actionOnBtnClose={onCloseExercise}
                         conjugationCurrentVerb={verbConjugation.conjugations || undefined}
-                    ></ExerciseConjugation>
+                        isRandomMode={false}
+                        types={[]}
+                        levels={[]}
+                        ></ExerciseConjugation>
                 :<></>
             }
             </div>

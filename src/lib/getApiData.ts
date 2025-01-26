@@ -51,13 +51,71 @@ export async function getRandomVerb(types?: string[], levels?: string[]) {
     console.log(url)
 
     const res = await fetch(url)
+}
 
+export const adaptTenseForApiUrl = (tense: string) => {
+    const tenseToCheck = tense.toLowerCase().replace(/[._]/g, ' ')
+    console.log('tense to check')
+    console.log(tenseToCheck)
+    switch (tenseToCheck) {
+        case 'plusquamperfekt':
+            return 'plusquam'
+
+        case 'futur i':
+            return 'futur_I'
+
+        case 'futur ii':
+            return 'futur_II'
+
+        case 'imperativ':
+            return 'imperative'
+
+        case 'konj ii präteritum':
+            return 'konj_II_präteritum'
+
+        case 'konj ii plusquam':
+            return 'konj_II_plusquam'
+
+        case 'konj ii futur i':
+            return 'konj_II_futur_I'
+
+        case 'konj ii futur ii':
+            return 'konj_II_futur_I'
+
+        case 'konj i präsens':
+            return 'konj_I_präsens'
+
+        case 'konj i futur i':
+            return 'konj_I_futur_I'
+
+        case 'konj i futur ii':
+            return 'konj_I_futur_II'
+
+        case 'konj i perfekt':
+            return 'konj_I_perfekt'
+
+        case 'infinitiv i':
+            return 'infinitiv_I'
+
+        case 'infinitiv ii':
+            return 'infinitiv_I'
+
+        case 'partizip i':
+            return 'partizip_I'
+
+        case 'partizip ii':
+            return 'partizip_II'
+
+        default:
+            return tenseToCheck
+        }
 }
 
 export const getApiVerbConjugationsFromTenses = async (verb: string, tenses: string[]) => {
     let tensesStr = ''
     tenses.forEach((tense)=> {
-        tensesStr = tensesStr === '' ? tense : `${tensesStr},${tense}`
+        const tenseForStr = adaptTenseForApiUrl(tense)
+        tensesStr = tensesStr === '' ? tenseForStr : `${tensesStr},${tenseForStr}`
     })
     // Fetch data from external API
     const res = await fetch(`http://localhost:9090/api/verbs/get/tenses/${verb}?tenses=${tensesStr}`)

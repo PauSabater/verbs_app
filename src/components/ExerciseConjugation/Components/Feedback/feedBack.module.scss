@@ -74,10 +74,10 @@
 }
 
 
-@include mixins.vertical-750 {
+@include mixins.vertical-sm {
 
     .container {
-        --height-feedback: 120px;
+        --height-feedback: 150px;
         --size-icon: 20px;
 
         grid-template-rows: 40% 60%;

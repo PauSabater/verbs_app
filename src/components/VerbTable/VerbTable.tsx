@@ -5,6 +5,7 @@ import { sanitize } from 'isomorphic-dompurify'
 import { SVGAudio, SVGDoc, SVGExercise } from '@/assets/svg/svgExports'
 import { HoverWithInfo } from '../HoverWithInfo/HoverWithInfo'
 import { cleanConjugation, replaceTenseForURL, speak } from '@/utils/utils'
+import { adaptTenseForApiUrl } from '@/lib/getApiData'
 
 interface IVerbData {
         tense: string,
@@ -68,7 +69,12 @@ export default function VerbTable(props: IVerbTable) {
                 <thead>
                     <tr>
                         <th colSpan={3} className={`${styles.tenseTitle}`}>
-                            <a href={`https://localhost:3000/exercise?tenses=${replaceTenseForURL(props.tense)}&verbs=${props.verb}`}>
+                            <a href={`https://localhost:3000/exercise?tenses=${
+                                adaptTenseForApiUrl(props.tense)
+                                }&verbs=${props.verb}`}
+                                data-tense={props.tense}
+                                data-adapted={adaptTenseForApiUrl(props.tense)}
+                            >
                                 <HoverWithInfo text={`practise ${props.tense} tense`} bg={"primaryLighter"}>
                                     {props.title}
                                     <SVGExercise></SVGExercise>

@@ -140,6 +140,8 @@
     opacity: 1;
     transform: translateY(0px);
     transition: opacity var(--tr-slow), transform var(--tr-base);
+    margin-bottom: var(--mg-xl);
+    height: 100%;
 
     &[data-animate="true"] {
         position: flex;
@@ -202,23 +204,136 @@
 }
 
 .person {
-    margin: 0;
+    margin: auto 0;
     font-size: var(--exercise-person-fs, var(--fs-lg));
     font-weight: 400;
     color: var(--c-grey-darker);
-    align-self: center;
+    align-self: flex-start;
+}
+
+.layoutLessonExercise {
+    grid-template-columns: 100%;
+    grid-column-gap: 0;
 }
 
 
-.isLessonExercise {
+@include mixins.vertical-900 {
+
+    .layoutExercise {
+        margin-top: var(--header-height);
+    }
+
+    .exerciseConjugation {
+        --height-feedback: 200px;
+        height: 85vh;
+    }
+
+    .person {
+        font-size: var(--fs-global);
+    }
+
+    .row {
+        margin-bottom: var(--exercise-input-mg, var(--mg-md));
+        grid-template-columns: 115px auto;
+    }
+
+    .statement {
+        margin: var(--mg-xs) 0 var(--mg-lg);
+
+        p:first-child {
+            margin: 0 0 var(--mg-xs);
+        }
+    }
+}
+
+@include mixins.vertical-sm {
+
+    .statement {
+        font-size: var(--fs-sm);
+        margin: var(--mg-xs) 0 var(--mg-lg);
+    }
+
+    .person {
+        font-size: var(--exercise-person-fs, var(--fs-global));
+    }
+
+    .row {
+        margin-bottom: var(--mg-sm);
+        grid-template-columns: 115px auto;
+    }
+
+    // .container button {
+    //     bottom: 60px;
+    // }
+
+    .container input {
+        height: 45px;
+    }
+
+    .rowsContainer {
+        margin-bottom: var(--mg-sm);
+    }
+}
+
+@include mixins.mobile {
+
+    .container {
+        --pd-modal-horitz: 15px;
+        --pd-modal-vertical: var(--pd-modal-horitz);
+    }
+
+    .statement {
+        font-size: var(--fs-global);
+        margin: var(--mg-xl) 0 var(--mg-lg);
+    }
+
+    .row {
+        grid-template-columns: 60px auto;
+    }
+
+    .person, .statement, .row input {
+        font-size: var(--fs-global);
+    }
+
+    .container button {
+        bottom: 60px;
+    }
+}
+
+.sideInfo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+}
+
+
+.exerciseConjugation.lessonExercise {
     padding-left: 40px;
     padding-right: 40px;
-    padding-top: 30px;
+    padding-top: 0;
     background-color: var(--bg-white);
     border: 2px dotted var(--c-grey-light);
     height: auto;
     margin-top: 40px;
     margin-bottom: 40px;
+
+    &+.sideInfo {
+        display: none;
+    }
+
+    .rowsContainer {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    .titleContainer,
+    div[data-selector-dropdown],
+    a,
+    span[data-text],
+    div[data-help-trigger] {
+        display: none !important;
+    }
 
     .cross {
         cursor: pointer;
@@ -250,10 +365,10 @@
 
     div[data-feedback] {
         height: 10px;
-        margin-bottom: 60px;
     }
 
-    p, span {
+    p,
+    span {
         font-size: var(--fs-global) !important;
     }
 
@@ -292,96 +407,4 @@
         font-weight: 600;
         font-size: var(--fs-lg) !important;
     }
-}
-
-
-@include mixins.vertical-900 {
-
-    .layoutExercise {
-        margin-top: var(--header-height);
-    }
-
-    .exerciseConjugation {
-        --height-feedback: 200px;
-        height: 85vh;
-    }
-
-    .person {
-        font-size: var(--fs-global);
-    }
-
-    .row {
-        margin-bottom: var(--exercise-input-mg, var(--mg-md));
-        grid-template-columns: 115px auto;
-    }
-
-    .statement {
-        margin: 0 0 30px;
-    }
-}
-
-@include mixins.vertical-750 {
-
-    .statement {
-        font-size: var(--fs-sm);
-        margin: var(--mg-xs) 0 var(--mg-md);
-    }
-
-    .person {
-        font-size: var(--exercise-person-fs, var(--fs-global));
-    }
-
-    .row {
-        margin-bottom: var(--mg-xs);
-        grid-template-columns: 115px auto;
-    }
-
-    .container button {
-        bottom: 60px;
-    }
-
-    .container input {
-        height: 45px;
-        margin-bottom: 10px;
-    }
-}
-
-@include mixins.mobile {
-
-    .container {
-        --pd-modal-horitz: 15px;
-        --pd-modal-vertical: var(--pd-modal-horitz);
-    }
-
-    .statement {
-        font-size: var(--fs-global);
-        margin: var(--mg-xl) 0 var(--mg-lg);
-    }
-
-    .row {
-        grid-template-columns: 60px auto;
-    }
-
-    .person, .statement, .row input {
-        font-size: var(--fs-global);
-    }
-
-    .container button {
-        bottom: 60px;
-    }
-}
-
-@include mixins.vertical-750 {
-
-    .statement {
-        font-size: var(--fs-sm);
-        margin: calc(var(--mg-lg) + 5px) 0 var(--mg-lg);
-    }
-}
-
-.sideInfo {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-
 }

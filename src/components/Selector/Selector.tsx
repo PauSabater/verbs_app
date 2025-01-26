@@ -31,6 +31,8 @@ export function Selector(props: ISelector) {
 
     const lessonPageContext = useContext(LessonPageContext)
     const [isEventAdded, setIsEventAdded] = useState(false)
+    const [isFirstRender, setIsFirstRender] = useState(true)
+
 
     // if (!props.selectedOption) props.selectedOption = 'hey'
 
@@ -62,10 +64,14 @@ export function Selector(props: ISelector) {
         const elsInput = (elContainer as HTMLElement).querySelectorAll('input')
 
         for (const elInput of Array.from(elsInput)) {
-            if (!updatedOptions.includes(elInput.value) && elInput.checked) {
+            if (!updatedOptions.includes(elInput.value) && elInput.checked && !isFirstRender) {
                 elInput.checked = false
+            } else if (updatedOptions.includes(elInput.value) && !elInput.checked && isFirstRender) {
+                elInput.checked = true
             }
         }
+
+        if (isFirstRender) setIsFirstRender(false)
 
     }, [props.updatedSelectedOptions])
 
@@ -145,9 +151,9 @@ export function Selector(props: ISelector) {
 
 
     return (
-        <div className={`${styles.container} ${props.isFullwidth ? styles.fullwidth : ''}`}>
+        <div className={`${styles.container} ${props.isFullwidth ? styles.fullwidth : ''}`} data-selector-dropdown>
             <button
-                className={`${styles.selector} ${props.isFullwidth ? styles.fullwidth : ''} ${isExpanded ? styles.btnExpanded : ''} ${props.color ? styles[props.color] : ''} ${
+                className={`${styles.selector} ${props.isFullwidth ? styles.fullwidth : ''} ${isExpanded ? styles.btnExpanded : ''} ${props.isExerciseGenerate ? styles.exerciseGenerate : ''} ${props.color ? styles[props.color] : ''} ${
                     props.weight ? styles[props.weight] : ''
                 }`}
                 role="combobox"
@@ -157,6 +163,7 @@ export function Selector(props: ISelector) {
                 aria-controls="select-dropdown"
                 onClick={() => handleButtonClick()}
                 ref={refBtn}
+                data-is-exercise-form={props.isExerciseGenerate}
             >
                 <span className={styles.selectedValue}>{selectedOption || props.selectedOption}</span>
                 <SVGArrow></SVGArrow>

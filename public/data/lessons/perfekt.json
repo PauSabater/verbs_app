@@ -44,7 +44,7 @@
         },
         {
             "type": "callout",
-            "content": "The <i>Perfekt</i> tense in German is used more frequently than in languages like English, where the Simple Past tense is primarily used in written contexts."
+            "content": "The <i>Perfekt</i> tense in German is used more frequently than in languages like English."
         },
         {
             "type": "h2",
@@ -99,7 +99,7 @@
         },
         {
             "type": "html",
-            "content": "<p>The Perfekt tense is formed using two components:</p><ol><li>The <b data-verb-stem>auxiliary verb</b> (either '$__haben-haben[verb-link-hover]__$' or '$__sein-sein[verb-link-hover]__$') conjugated in the <b>present tense</b>.</li><li>The <b data-verb-prefix><i>Partizip II</i></b> of the <b>main verb.</b></li>"
+            "content": "<p>The Perfekt tense is formed using two components:</p><ol><li>The <b data-verb-stem>auxiliary verb</b> (either <b>haben</b> or <b>sein</b> conjugated in the <b>present tense</b>.</li><li>The <b data-verb-prefix><i>Partizip II</i></b> of the <b>main verb.</b></li>"
         },
         {
             "type": "image",
@@ -129,7 +129,7 @@
         },
         {
             "type": "h3",
-            "content": "Auxiliary Verbs: 'haben' and 'sein'"
+            "content": "Auxiliary Verbs: 'haben' and 'sein'.</br>When to use each"
         },
         {
             "type": "paragraph",
@@ -237,6 +237,10 @@
         {
             "type": "paragraph",
             "content": "The formation of Partizip II depends on whether the verb is regular (weak), irregular (strong), or a mixed verb (with characteristics of both)."
+        },
+        {
+            "type": "paragraph",
+            "content": "Let's see each case:"
         },
         {
             "type": "h3",

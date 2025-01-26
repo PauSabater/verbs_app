@@ -35,11 +35,11 @@
         },
         {
             "type": "paragraph",
-            "content": "The <b><i>Futur I</i></b> tense is used in German to talk about actions or events that will happen in the future. While the present tense is often used for near-future events, Futur I is used to emphasize that an action will definitely take place at a future time."
+            "content": "The <b><i>Futur I</i> </b> tense is used in German to talk about actions or events that will happen in the future. While the <i>Präsens</i> tense is often used for future events, <i>Futur I</i> can be used to emphasize that an action will for sure take place at a future time."
         },
         {
             "type": "callout",
-            "content": "The <b><i>Futur I</i></b> tense is not very important in the German language and is not critical to learn, but you must still learn it. Good news is that it is very easy!"
+            "content": "The <b><i>Futur I</i></b> tense is not very important in the German language and you can communicate without it, but you must still learn it. Good news is that it is very easy!"
         },
         {
             "type": "h2",
@@ -47,14 +47,14 @@
         },
         {
             "type": "paragraph",
-            "content": "We use the <i>Perfekt</i> tense to express:"
+            "content": "We use the <i>Perfekt</i> tense to:"
         },
         {
             "type": "list",
             "itemsList": {
                 "items": [
                     {
-                        "text": "Expressing Future Intentions or Plans:",
+                        "text": "Express Future Intentions or Plans:",
                         "example": {
                             "audio": "Ich werde morgen einkaufen gehen",
                             "text": "Example: Ich $__werde-werden[verb-link-hover]__$ morgen einkaufen $__gehen-gehen[verb-link-hover]__$ ",
@@ -62,7 +62,7 @@
                         }
                     },
                     {
-                        "text": "Making Predictions or Assumptions about the Future:",
+                        "text": "Make predictions or assumptions about the Future:",
                         "example": {
                             "audio": "Es wird morgen regnen.",
                             "text": "Es $__wird-werden[verb-link-hover]__$ morgen $__regnen-regnen[verb-link-hover]__$.",
@@ -70,7 +70,7 @@
                         }
                     },
                     {
-                        "text": "Expressing Promises or Assurances:",
+                        "text": "Express promises or assurances:",
                         "example": {
                             "audio": "Ich werde dir helfen",
                             "text": "Ich $__werde-werden[verb-link-hover]__$ dir $__helfen-helfen[verb-link-hover]__$.",
@@ -94,7 +94,15 @@
         },
         {
             "type": "paragraph",
-            "content": "The <i>Futur I</i> tense is formed with the <b>present</b> tense of the auxiliary verb $__werden-werden[verb-link-hover]__$ and the <b>infinitive</b> of the main verb. Here's how to conjugate $__werden-werden[verb-link-hover]__$ in the present tense:"
+            "content": "The <i>Futur I</i> tense is formed with the <b>present tense of the auxiliary verb $__werden-werden[verb-link-hover]__$ </b> and the <b>infinitive</b> of the main verb."
+        },
+        {
+            "type": "h4",
+            "content": "Präsens tense for the verb <i>werden</i>"
+        },
+        {
+            "type": "paragraph",
+            "content": "You must learn the verb $__werden-werden[verb-link-hover]__$ in the present tense to conjugate the <i>Futur I</i>. Here's how to conjugate it:"
         },
         {
             "type": "table",
@@ -166,12 +174,21 @@
             }
         },
         {
-            "type": "h3",
-            "content": "Examples"
+            "type": "h2",
+            "content": "Exercises"
         },
         {
             "type": "paragraph",
-            "content": "The auxiliary verbs used on the <i>Perfekt</i> tense are <b>haben</b> and <b>sein</b>:"
+            "content": "To master the conjugation of the <i>Futur I</i> tense, you can practice with the following exercises:"
+        },
+        {
+            "type": "exercise-btn-link",
+            "content": "Train Futur I with aleatory A1 level verbs",
+            "path": "/exercise?random=true&types=regular,irregular&levels=A1&tenses=futur_I"
+        },
+        {
+            "type": "exercise",
+            "path": "kojunktiv-II-futur-I-die-knoblauchsuppe"
         }
     ]
 }

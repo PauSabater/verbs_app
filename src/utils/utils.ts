@@ -1,4 +1,124 @@
+import { TValidatedState } from "@/components/ExerciseConjugation/ExerciseConjugation.exports";
 import { ISelectorDropdownOptions } from "@/components/Selector/Selector";
+import { Slabo_13px } from "next/font/google";
+
+const normalizeString = (str: any) => [...str].map(normalizeCharacter).join('')
+
+const normalizeCharacter = (char: string) => {
+    switch (char) {
+        case 'ä': return 'a'
+        case 'ö': return 'o'
+        case 'ü': return 'u'
+        case 'ß': return 'ss'
+        default: return char.toLowerCase()
+    }
+}
+
+const isUmlautCharacter = (char: string) => {
+    return char === 'ä' || char === 'ö' || char === 'ü'
+}
+
+const isEszettCharacter = (char: string) => {
+    return char === 'ß'
+}
+
+const validateChar = (charToValidate: string, charValid: string): TValidatedState => {
+
+    if (charToValidate === charValid) return 'valid'
+
+    // case it is an umlaut
+    if (isUmlautCharacter(charValid)) {
+        console.log("we have umlaut")
+        console.log(charToValidate + ' vs ' + charValid)
+        console.log(normalizeCharacter(charToValidate) === normalizeCharacter(charValid)
+            ? 'partial'
+            : 'error')
+        return normalizeCharacter(charToValidate) === normalizeCharacter(charValid)
+            ? 'partial'
+            : 'error'
+    }
+
+    // case it is an eszett, we check if it is just an 's', as we will repeat the loop for the next character
+
+    return 'error'
+}
+
+const cleanString = (str: string) => {
+    return str.toLowerCase().trim().replace(/\s+/g, ' ')
+}
+
+const updateValidatedState = (currentState: TValidatedState | null, charState: TValidatedState) => {
+    return (currentState === 'partial' && charState === 'valid')
+        ? currentState
+        : charState
+}
+
+/**
+    Function to validate a conjugation string against a valid conjugation string
+    @param strToValidate: string from the user to validate
+    @param strValid: string with correct answer
+    @param ignoreSpecialChars: boolean to ignore or not special characters
+    @return TValidatedState
+*/
+export const validateConjugationString = (
+        strToValidate: string,
+        strValid: string,
+        ignoreSpecialChars: boolean
+    ): TValidatedState => {
+
+    const cleanedStrToValidate = cleanString(strToValidate)
+    const cleanedStrValid = cleanConjugation(strValid)
+
+    if (!cleanedStrValid || !cleanedStrToValidate) return 'error'
+
+    console.log("ignore chars is " + ignoreSpecialChars)
+    console.log(cleanedStrToValidate + ' vs ' + cleanedStrValid)
+
+    if (!ignoreSpecialChars) {
+        return cleanedStrToValidate === cleanedStrValid ? 'valid' : 'error'
+    }
+
+    if (cleanedStrValid.includes('ß') && (cleanedStrToValidate.length !== cleanedStrValid.length)) {
+        return 'error'
+    }
+
+    let validatedState: TValidatedState | null = null
+    // in case of ss instead of ß, we need to check 2 characters
+    let skippedChars = 0
+
+    console.log('------------- LETS VALIDATE ----------------')
+    console.log(cleanedStrToValidate + ' vs ' + cleanedStrValid)
+    console.log('--- LOOP ---')
+
+    for (const [i, charValid] of Array.from(strValid).entries()) {
+        const charToValidate = cleanedStrToValidate[i + skippedChars]
+
+        // console.log(charToValidate + ' vs ' + charValid)
+
+        if (!isEszettCharacter(charValid)) {
+            const charValidationState = validateChar(charToValidate, charValid)
+            validatedState = updateValidatedState(validatedState, charValidationState)
+
+            if (validatedState === 'error') return 'error'
+
+        } else {
+            const eszettValidationState = validateChar(charToValidate, charValid)
+            if (eszettValidationState === 'error') return 'error'
+            if (eszettValidationState === 'valid') continue
+
+            // case we have a eszett corrected with an s by the user:
+            skippedChars++
+
+            const eszettValidationNextState = validateChar(charToValidate, charValid)
+            if (eszettValidationNextState === 'error') return 'error'
+            if (eszettValidationNextState === 'valid') continue
+        }
+
+    }
+
+    return validatedState || 'error'
+}
+
 
 export const formatStringForValidation = (str: string)=> {
     return str.toLowerCase().trim().replace(/\s+/g, ' ')
@@ -32,8 +152,10 @@ export function getRandomInt(max: number) {
 }
 
 export function cleanConjugation(conj: string) {
+    if (!conj) return
+
     const regex = /[()⁷&#42;]/g
-    return conj.replace(regex, '')
+    return cleanString(conj.replace(regex, ''))
 }
 
 export const getOptionsDropdown = (tenses: any)=> {

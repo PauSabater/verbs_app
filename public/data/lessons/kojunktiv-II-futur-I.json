@@ -1,0 +1,156 @@
+{
+    "props": {
+        "tense": "konjunktiv_II_futur_I",
+        "title": "Das Konjunktiv II Futur I (German Subjunctive II past tense): usage, conjugation and exercises",
+        "datePublished": "Dec 21, 2023",
+        "dateUpdated": "",
+        "level": "B1",
+        "tags": ["konjunktiv_II_präteritum"]
+    },
+    "verbsUsed": [
+        "werden",
+        "kommen",
+        "sprechen",
+        "regnen"
+    ],
+    "tenseExercises": "präteritum",
+    "verbsExercises": [
+        "werden",
+        "haben"
+    ],
+    "sections": [
+        {
+            "type": "h1-lesson",
+            "content": "&#128218; &nbsp;The Präsens tense"
+        },
+        {
+            "type": "h2-post",
+            "content": "Introduction"
+        },
+        {
+            "type": "paragraph",
+            "content": "The <b><i>Konjunktiv II Futur I</i></b>, also refered as just <b><i>Konjunktiv II with werden</i></b>, is a verb form in German that expresses hypothetical, unreal, or imagined actions or events that may occur in the future. Its use is prefered to the <i>Konjunktiv II Präteritum</i> with most verbs."
+        },
+        {
+            "type": "callout",
+            "content": "The <i>Konjunktiv II Futur I</i>&nbsp; is frequently used and you must learn it!"
+        },
+        {
+            "type": "h2",
+            "content": "Usage"
+        },
+        {
+            "type": "paragraph",
+            "content": "We use the <i>Konjunktiv II Präteritum</i> tense for:"
+        },
+        {
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>Expressing Hypothetical Future Actions:</b> Used to describe what could, might, or would happen in the future under certain conditions:",
+                        "example": {
+                            "audio": "Er würde morgen kommen, wenn er Zeit hätte.",
+                            "text": "Example: Er $__würde-werden[verb-link-hover]__$ morgen $__kommen-kommen[verb-link-hover]__$, wenn er Zeit hätte.",
+                            "translation": "(He would come tomorrow if he had time)"
+                        }
+                    },
+                    {
+                        "text": "<b>Polite or Formal Requests About the Future.</b> Used to sound more polite or less direct when discussing future actions",
+                        "example": {
+                            "audio": "Ich würde morgen mit Ihnen sprechen",
+                            "text": "Example: Ich $__würde-werden[verb-link-hover]__$ morgen mit Ihnen $__sprechen-sprechen[verb-link-hover]__$.",
+                            "translation": "(I would talk with you tomorrow)"
+                        }
+                    },
+                    {
+                        "text": "<b>Speculating About the Future:</b>",
+                        "example": {
+                            "audio": "Es würde regnen, wenn die Wolken dichter werden.",
+                            "text": "Example: Es $__würde-werden[verb-link-hover]__$ $__regnen-regnen[verb-link-hover]__$, wenn die Wolken dichter werden.",
+                            "translation": "(It would rain if the clouds became denser)"
+                        }
+                    }
+                ]
+            }
+        },
+                {
+            "type": "h2",
+            "content": "How to conjugate"
+        },
+        {
+            "type": "paragraph",
+            "content": "The <i>Konjunktiv II Futur I</i> is formed with the <b><i>Konjunktiv II</i>&nbsp; form of werden</b> + the <b>infinitive of the main verb</b>."
+        },
+        {
+            "type": "image",
+            "image": {
+                "src": "/img/lessons/konjunktiv-II-futur-I.svg",
+                "alt": "How to form the Konjunktiv II Futur I in German",
+                "height": 110,
+                "width": 419
+            }
+        },
+        {
+            "type": "paragraph",
+            "content": "Therefore, it is important to know the <b><i>Konjunktiv II</i>&nbsp; form of werden</b>:"
+        },
+        {
+            "type": "table",
+            "table": {
+                "audio": "ich spielte, du spieltest, (er) (sie) (es) spielte, wir spielten, ihr spieltet, sie spielten. ",
+                "headings": ["Pronoun", "conjugtion"],
+                "rows": [
+                    [
+                        "ich",
+                        "<span><u>wär</u><i>e</i></span>"
+                    ],
+                    [
+                        "du",
+                        "<span><u>wär</u></b><b><i>e</i></b><b><i>st</i></span>"
+                    ],
+                    [
+                        "er/sie/es",
+                        "<span><u>wär</u><i>e</i></span>"
+                    ],
+                    [
+                        "wir",
+                        "<span><u>wär</u><i>en</i></span>"
+                    ],
+                    [
+                        "ihr",
+                        "<span><u>wär</u></b><b><i>e</i></b><b><i>t</i></span>"
+                    ],
+                    [
+                        "Sie",
+                        "<span><b><u>wär</u><i>en</i></b></span>"
+                    ]
+                ]
+            }
+        },
+        {
+            "type": "paragraph",
+            "content": "Make sure you practise it until you master it! After that you will just need to study the word order."
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise konjunktive II for werden",
+            "param": "werden",
+            "exercise": {
+                "verb": "werden",
+                "tense": "präsens"
+            }
+        },
+        {
+            "type": "h2",
+            "content": "Word order"
+        },
+        {
+            "type": "paragraph",
+            "content": "Word order in sentences using Konjunktiv II Futur I follows the rules for compound tenses."
+        }
+    ],
+    "exercise": {
+        "src": "kojunktiv-II-futur-I-die-knoblauchsuppe.json"
+    }
+}

@@ -33,6 +33,8 @@ export interface IExerciseConjugationState {
     currentVerb: string,
     currentTense: string,
     currentVerbTensesConj: any,
+    currentVerbIndex: number,
+    verbsNotRandom: string[],
     nextVerbTensesConj: any,
     currentTenseNumber: number,
     currentVerbProps: ICurrentVerbProps | undefined,
@@ -51,7 +53,8 @@ export interface IExerciseConjugationState {
     successTenses: string[],
     verbsState: IVerbsState[],
     tensesState: ITensesState[],
-    ignoreSpecialChars: boolean | null,
+    ignoreSpecialChars: boolean,
+    lastFocusedInput: number,
     randomVerbsResults: string[]
 }
 
@@ -79,6 +82,8 @@ export type TExerciseConjugationActions =
     | 'SET_CURRENT_VERB_PROPS'
     | 'SET_IGNORE_SPECIAL_CHARS'
     | 'SET_RANDOM_VERB_RESULTS'
+    | 'SET_LAST_INPUT_FOCUSED'
+    | 'SET_CURRENT_VERB_INDEX'
 
 export type TExerciseConjugationAction = {
     type: TExerciseConjugationActions,
@@ -97,6 +102,7 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_TENSE_TO_CONFIRM: 'SET_TENSE_TO_CONFIRM',
     SET_TRIGGER_INPUTS_ANIMATION: 'SET_TRIGGER_INPUTS_ANIMATION',
     SET_CURRENT_EXERCISE_NUMBER: 'SET_CURRENT_EXERCISE_NUMBER',
+    SET_CURRENT_VERB_INDEX: 'SET_CURRENT_VERB_INDEX',
     SET_IS_HELP_OPEN: 'SET_IS_HELP_OPEN',
     SET_COMPLETED_VERB: 'SET_COMPLETED_VERB',
     SET_CURRENT_VERB: 'SET_CURRENT_VERB',
@@ -108,7 +114,8 @@ export const actions: {[key in TExerciseConjugationActions]: TExerciseConjugatio
     SET_CURRENT_TENSE_NUMBER: 'SET_CURRENT_TENSE_NUMBER',
     SET_CURRENT_VERB_PROPS: 'SET_CURRENT_VERB_PROPS',
     SET_IGNORE_SPECIAL_CHARS: 'SET_IGNORE_SPECIAL_CHARS',
-    SET_RANDOM_VERB_RESULTS: 'SET_RANDOM_VERB_RESULTS'
+    SET_RANDOM_VERB_RESULTS: 'SET_RANDOM_VERB_RESULTS',
+    SET_LAST_INPUT_FOCUSED: 'SET_LAST_INPUT_FOCUSED'
 }
 
 export function reducer(state: IExerciseConjugationState, action: TExerciseConjugationAction): IExerciseConjugationState {
@@ -234,6 +241,18 @@ export function reducer(state: IExerciseConjugationState, action: TExerciseConju
             return {
                 ...state,
                 randomVerbsResults: action.payload as string[]
+            }
+
+        case actions.SET_LAST_INPUT_FOCUSED:
+            return {
+                ...state,
+                lastFocusedInput: action.payload as number
+            }
+
+        case actions.SET_CURRENT_VERB_INDEX:
+            return {
+                ...state,
+                currentVerbIndex: action.payload as number
             }
 
         default: return state

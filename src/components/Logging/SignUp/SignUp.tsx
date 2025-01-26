@@ -1,5 +1,5 @@
 import { FormEvent, useState } from 'react'
-import { Button } from '../../Button/Button'
+import { Button } from '../../atoms/Button/Button'
 import { InputText } from '../../../elements/InputText/InputText'
 import styles from './signUp.module.scss'
 import { sanitize } from 'isomorphic-dompurify'

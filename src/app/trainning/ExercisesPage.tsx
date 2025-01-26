@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import styles from './exercisesPage.module.scss'
 import stylesPage from '../page.module.scss'
-import dataExercises from "../../../public/data/exercises/exercises.json"
+import dataExercises from "../../../public/data/trainning/exercises.json"
 import { ExerciseCard } from './components/ExerciseCard'
 
 

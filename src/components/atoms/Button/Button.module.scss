@@ -20,14 +20,21 @@
     transition: background var(--tr-base);
     // background-color: ;
 
-    svg {
+    svg,
+    img {
         width: 22px;
         margin: auto;
-        transform: translateX(-15px);
-        transition: transform var(--tr-base);
+    }
 
-        &:hover {
-            transform: translateX(-15px) scale(1.2);
+    &:not(.square) {
+        svg,
+        img {
+            transform: translateX(-15px);
+            transition: transform var(--tr-base);
+
+            &:hover {
+                transform: translateX(-15px) scale(1.2);
+            }
         }
     }
 
@@ -126,15 +133,31 @@ a.Button {
     }
 }
 
+.buttonsHelpContainer {
+
+    button {
+        border-radius: 200px;
+
+        &:before {
+            background-color: var(--bg-main);
+            border-radius: 200px;
+        }
+    }
+}
+
 .greyReverse {
     color: var(--c-grey);
     border: 2px solid var(--c-grey);
     background-color: transparent;
 
     &:hover {
-        background: var(--c-grey);
+        background: var(--bg-main);
         color: var(--c-white);
         // border-color: var(--c-primary-dark);
+    }
+
+    &:before {
+        background-color: transparent;
     }
 }
 
@@ -223,8 +246,13 @@ a.Button {
     --btn-square-height: 45px;
 
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--c-grey-lighter);
     color: var(--c-font-global);
+    padding: 0;
+    aspect-ratio: 1;
     // border: 2px dotted var(--c-grey-darker);
 
     &:before {
@@ -236,6 +264,7 @@ a.Button {
         width: var(--btn-square-height);
         background-color: var(--c-grey-darker);
         border-radius: 10px;
+        opacity: 0;
     }
 
     svg {
@@ -243,6 +272,7 @@ a.Button {
         left: 10px;
         height: 25px;
         width: 25px;
+        transform: none;
     }
 }
 

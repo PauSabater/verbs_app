@@ -3,6 +3,7 @@
 :root {
     --width-page-content: 1050px;
     --width-page-content-wide-resp: clamp(800px, 80vw, 1300px);
+    --width-page-content-wider-resp: clamp(800px, 90vw, 1500px);
     --width-page-wide-max: 1600px;
     --width-page-additional-content: 400px;
     // --width-page-content: 900px;
@@ -106,6 +107,17 @@
     --c-tertiary-dark: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 30%);
     --c-tertiary-darker: hsl(var(--c-tertiary-h), var(--c-tertiary-s), 10%);
 
+    // #f9f871
+    --c-forth-h: hsl(60, 92%, 71%);
+
+    --c-forth-h: 60;
+    --c-forth-s: 92%;
+    --c-forth-lighter: hsl(var(--c-forth-h), var(--c-forth-s), 95%);
+    --c-forth-light: hsl(var(--c-forth-h), var(--c-forth-s), 70%);
+    --c-forth: hsl(var(--c-forth-h), var(--c-forth-s), 35%);
+    --c-forth-dark: hsl(var(--c-forth-h), var(--c-forth-s), 30%);
+    --c-forth-darker: hsl(var(--c-forth-h), var(--c-forth-s), 10%);
+
 
     --c-grey-lightest: hsl(0, 0%, 94%);
     --c-grey-lighter: hsl(0, 0%, 90%);
@@ -151,6 +163,7 @@
 
     // Shadows
     --bs-global: -1px 1px 8px -3px var(--c-primary-light);
+    --bs-global-light: -1px 1px 8px -5px var(--c-grey-lighter);
 
     // Transitions
     --tr-faster: 0.1s;
@@ -232,6 +245,7 @@
     }
 
     // Border-radius
+    --br-lg: 20px;
     --br-base: 10px;
     --br-sm: 5px;
 

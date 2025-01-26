@@ -8,9 +8,9 @@ import stylesFdb from './Components/Feedback/feedback.module.scss'
 import ExerciseTextInput from './Components/ExerciseTextInput/ExerciseTextInput'
 import { Selector } from '../Selector/Selector'
 import Alert from '../Alert/Alert'
-import { isSuccess, isError } from '@/utils/constants'
+import { isSuccess, isError, allTenses } from '@/utils/constants'
 import { SVGAdd, SVGCross, SVGExercise } from '@/assets/svg/svgExports'
-import { IConjugation, IExerciseConjugation, IExerciseConjugationTexts, TExerciseState, getConjugationFromTense, getIgnoreInitialValue, statesExerciseConjugation } from './ExerciseConjugation.exports'
+import { IConjugation, IExerciseConjugation, IExerciseConjugationTexts, TExerciseState, formatTenseForHeading, getConjugationFromTense, getIgnoreInitialValue, statesExerciseConjugation } from './ExerciseConjugation.exports'
 import { getCorrectAnswers, getOptionsDropdown, setLocalstorageItem } from '@/utils/utils'
 import { IExerciseConjugationState, ITensesState, IVerbsState, TExerciseConjugationAction, actions, reducer } from './ExerciseConjugationReducer'
 import { ExerciseHelpTrigger } from './Components/ExerciseHelpTrigger/ExerciseHelpTrigger'
@@ -25,6 +25,7 @@ import { VerbInfo } from './Components/VerbInfo/VerbInfo'
 import IgnoreSpecialCharacters from './Components/IgnoreSpecialCharacters/IgnoreSpecialCharacters'
 import NextPrevious from './Components/NextPrevious/NextPrevious'
 import Link from 'next/link'
+import InputsSpecialCharacters from './Components/SpecialCharacters/SpecialCharacters'
 
 export const ExerciseConjugationContext = createContext<IExerciseConjugationState | null>(null)
 export const ExerciseConjugationContextTexts = createContext<IExerciseConjugationTexts | null>(null)
@@ -42,9 +43,11 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     const [state, dispatch] = useReducer<Reducer<IExerciseConjugationState, TExerciseConjugationAction>>(reducer, {
         currentVerb: props.verb,
         currentTense: props.tenseExercise,
+        verbsNotRandom: props.verbs,
         currentVerbTensesConj: undefined,
         nextVerbTensesConj: undefined,
         currentVerbProps: undefined,
+        currentVerbIndex: 0,
         currentTenseNumber: 0,
         exerciseState: statesExerciseConjugation.filling,
         exerciseConjugations: undefined,
@@ -59,7 +62,8 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         triggerInputsAnimation: false,
         isHelpOpen: false,
         successTenses: [],
-        ignoreSpecialChars: null,
+        ignoreSpecialChars: getIgnoreInitialValue(),
+        lastFocusedInput: 0,
         randomVerbsResults: [],
         verbsState: props.verbs ? props.verbs.map((verb)=> {
             return {
@@ -169,6 +173,13 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         })
     }
 
+    const setCurrentVerbIndex = (index: number) => {
+        dispatch({
+            type: actions.SET_CURRENT_VERB_INDEX,
+            payload: index
+        })
+    }
+
     // Open or close Exercise set
     const setIsExerciseSetOpen = (isOpen: boolean) => {
         console.log("HEY CLICK!")
@@ -178,6 +189,13 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         dispatch({
             type: actions.SET_IS_EXERCISE_STATE_OPEN,
             payload: isOpen
+        })
+    }
+
+    const setLastInputFocused = (e: MouseEvent, num: number) => {
+        dispatch({
+            type: actions.SET_LAST_INPUT_FOCUSED,
+            payload: num
         })
     }
 
@@ -197,39 +215,36 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     useEffect(() => {
         if (!props.isRandomMode) return
 
-        const getRandomVerb = async ()=> {
-            const url = getUrlRandomVerb(props.types, props.levels)
-            console.log('hey url is')
-            console.log(url)
+        setAdditionalRandomVerbs()
+    }, [props.isRandomMode])
 
-            const res = await fetch(url)
-            const verbData = await res.json()
 
-            console.log("RESPONSE IS")
-            console.log(verbData)
-            console.log(verbData.results._id)
+    const setAdditionalRandomVerbs = async ()=> {
+        const url = getUrlRandomVerb(props.types, props.levels)
 
-            const results = verbData.results.map((result: any)=> {
-                return result._id
-            })
+        const res = await fetch(url)
+        const verbData = await res.json()
 
-            console.log("VERB RESULTS WILL BE")
-            console.log(results)
+        const results = verbData.results.map((result: any)=> {
+            return result._id
+        })
 
+        console.log("VERB RESULTS WILL BE")
+        console.log(results)
+
+        if (state.randomVerbsResults.length === 0) {
             dispatch({
                 type: actions.SET_CURRENT_VERB,
                 payload: verbData.results[0]._id
             })
-
-            dispatch({
-                type: actions.SET_RANDOM_VERB_RESULTS,
-                payload: results
-            })
-
         }
 
-        getRandomVerb()
-    }, [props.isRandomMode])
+        dispatch({
+            type: actions.SET_RANDOM_VERB_RESULTS,
+            payload: [...state.randomVerbsResults, ...results]
+        })
+    }
+
 
 
 
@@ -256,11 +271,17 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         if (state.currentVerb) {
             fetchExerciseTense()
         }
+        setCurrentVerbIndex(getCurrentVerbIndex())
+
+        // retrieve more verbs if we reach the third last one:
+        if (props.isRandomMode && getCurrentVerbIndex() === (state.randomVerbsResults.length - 3)) {
+            setAdditionalRandomVerbs()
+        }
     }, [state.currentVerb])
 
 
 
-    const fetchExerciseTense = ()=> {
+    const fetchExerciseTense = (tense?: string[])=> {
            if (!props.allTenses) {
             (async () => {
 
@@ -280,13 +301,21 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                             tensesObj = objVerbLocalStorage.tenses
                         }
                         else {
-                            const tensesResp: any = (await getApiVerbConjugationsFromTenses(props.verb, props.tenses)) as unknown as any
+                            const tensesResp: any = (await getApiVerbConjugationsFromTenses(
+                                props.verb,
+                                tense || props.tenses
+                            )) as unknown as any
                             tensesObj = tensesResp.props.verbData.verb.data.tenses
                         }
 
                     // case verb is not in localstorage:
                     } else {
-                        const tensesResp: any = (await getApiVerbConjugationsFromTenses(state.currentVerb, props.tenses)) as unknown as any
+                        const tensesResp: any = (await getApiVerbConjugationsFromTenses(
+                            state.currentVerb,
+                            tense || props.tenses
+                        )) as unknown as any
+                        console.log("response is ")
+                        console.log(tensesResp)
                         tensesObj = tensesResp.props.verbData.verb.data.tenses
                         verbPropsObj = tensesResp.props.verbData.verb.data.properties
                     }
@@ -295,7 +324,9 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 }
 
                 setExerciseConjugations(
-                    props.conjugationCurrentVerb || getConjugationFromTense(tensesObj, props.tenseExercise)
+                    tense
+                        ? getConjugationFromTense(tensesObj, tense[0])
+                        : props.conjugationCurrentVerb || getConjugationFromTense(tensesObj, props.tenseExercise)
                 )
                 dispatch({
                     type: actions.SET_CURRENT_VERB_PROPS,
@@ -461,6 +492,7 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
      */
     const actionOnFilledInput = () => {
         const areAllFilled = state.exerciseConjugations?.length === state.numFilledInputs
+        console.log('HEY FILLED INPUT')
         if (areAllFilled) return
         dispatch({
             type: actions.SET_NUM_FILLED_INPUTS,
@@ -574,13 +606,17 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
 
             // Load new verb
             if (isThereNextVerb && props.verbs) {
-                dispatch({
-                    type: actions.SET_CURRENT_VERB,
-                    payload: props.verbs[getCurrentVerbIndex() + 1]
-                })
-                restartTenses()
+                updateCurrentVerb(props.verbs[getCurrentVerbIndex() + 1])
             }
         }
+    }
+
+    const updateCurrentVerb = (verb: string)=> {
+        dispatch({
+            type: actions.SET_CURRENT_VERB,
+            payload: verb
+        })
+        restartTenses()
     }
 
     const getCurrentVerbIndex = ()=> {
@@ -647,7 +683,6 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
     }
 
     const onIgnoreSpecialCharsChange = (e: Event)=> {
-        console.log("HELOO")
         const elInput = e.target as HTMLInputElement
         if (!elInput) return
         console.log(elInput)
@@ -660,8 +695,28 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         })
     }
 
+    const onSpecialCharacterClick = (char: string)=> {
+        console.log('HEY SPECIAL CHAR CLICK')
+        if (!char) return
+        const inputFocused = refsInputs[state.lastFocusedInput].current
+
+        if (inputFocused) {
+            inputFocused.addSpecialChar(char)
+            inputFocused.focusInput()
+        }
+    }
+
     const HelpContent = (): React.JSX.Element => {
         return <div className={stylesFdb.container} data-state={state.exerciseState}></div>
+    }
+
+    const handleTenseChange = (tense: string) => {
+        dispatch({
+            type: actions.SET_CURRENT_TENSE,
+            payload: tense
+        })
+        setSelectedTense(tense)
+        fetchExerciseTense([tense])
     }
 
     const ExerciseStatement = () => {
@@ -680,9 +735,23 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                 }
                 <p data-statement-text dangerouslySetInnerHTML={{ __html: sanitize(props.texts.statement) }}></p>
                     <span data-text>{props.texts.textTense}</span>
-                    <Link href={`/lessons/${state.currentTense}`}>
-                        <span>{state.currentTense}</span>
-                    </Link>
+
+                    {
+                        props.tenses.length === 1
+                            ? <Selector
+                                options={[{
+                                    title: "Change exerise tense",
+                                    options: allTenses
+                                }]}
+                                selectedOption={state.currentTense}
+                                callbackOnChange={handleTenseChange}
+                            />
+
+                        :   <Link href={`/lessons/${state.currentTense}`}>
+                                <span>{formatTenseForHeading(state.currentTense)}</span>
+                            </Link>
+
+                    }
 
                 <span
                     data-text
@@ -708,23 +777,37 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
         )
     }
 
+    const onIgnoreSpecialCharsClick = (e: Event)=> {
+        const elInput = e.target as HTMLInputElement
+        if (!elInput) return
+        console.log(elInput)
+        const isIgnored = elInput.id.includes('yes') ? true : false
+        window.localStorage.setItem('ignore-special-chars', isIgnored ? 'true': 'false')
+
+        dispatch({
+            type: actions.SET_IGNORE_SPECIAL_CHARS,
+            payload: isIgnored
+        })
+    }
+
     return (
         <Fragment>
             <ExerciseConjugationContext.Provider value={state as any}>
                 <ExerciseConjugationContextTexts.Provider value={props.texts}>
 
-                <div className={styles.layoutExercise}>
+                <div className={`${styles.layoutExercise} ${props.isLessonExercise ? styles.layoutLessonExercise : ''}`}>
 
-                    <div className={`${styles.exerciseConjugation} ${props.isEmbedded ? styles.isEmbedded : ''} ${props.isLessonExercise ? styles.isLessonExercise : ''}`} data-exercise data-state={state.exerciseState}>
+                    <div className={`${styles.exerciseConjugation} ${props.isEmbedded ? styles.isEmbedded : ''} ${props.isLessonExercise ? styles.lessonExercise : ''}`} data-exercise data-state={state.exerciseState}>
 
                         <div className={styles.container}>
 
-                            {
-                                state.exerciseConjugations ?
-                                    <>
-                                        <ExerciseStatement />
-                                        <div className={styles.rowsContainer} data-animate={state.triggerInputsAnimation}>
-                                            {state.exerciseConjugations !== undefined ? (
+                                <ExerciseStatement />
+                                <div className={styles.rowsContainer} data-animate={state.triggerInputsAnimation}>
+
+
+                                {
+                                    state.exerciseConjugations ?
+                                            state.exerciseConjugations !== undefined ? (
                                                 state.exerciseConjugations.map((conj, i) => {
                                                     return (
                                                         <div key={i} className={styles.row}>
@@ -738,30 +821,38 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                                                                 actionOnEmptied={actionOnEmptiedInput}
                                                                 actionOnCorrected={actionOnCorrectedInput}
                                                                 displayAnswer={state.isHelpOpen}
+                                                                inputNumber={i}
+                                                                ignoreSpecialChars={state.ignoreSpecialChars}
+                                                                onInputFocus={setLastInputFocused}
                                                             />
                                                         </div>
                                                     )
                                                 })
                                             ) : (
                                                 <></>
-                                            )}
-                                        </div>
-                                    </>
+                                            )
 
-                                : (
+                                    : (
                                     <LoaderSpin isLoading={true}></LoaderSpin>
-                                )
-                            }
+                                    )
+                                }
+                                </div>
+                            <div>
+                                <InputsSpecialCharacters
+                                    callbackOnClick={onSpecialCharacterClick}
+                                    isActive={state.exerciseState !== 'success'}
+                                />
+                                <ExerciseHelpTrigger
+                                    exerciseState={state.exerciseState}
+                                    isOpen={state.isHelpOpen}
+                                    openTxt={props.texts.help.openTxt}
+                                    closeTxt={props.texts.help.closeTxt}
+                                    action={() => setIsHelpOpen(!state.isHelpOpen)}
+                                />
+                            </div>
 
                         </div>
 
-                        <ExerciseHelpTrigger
-                            exerciseState={state.exerciseState}
-                            isOpen={state.isHelpOpen}
-                            openTxt={props.texts.help.openTxt}
-                            closeTxt={props.texts.help.closeTxt}
-                            action={() => setIsHelpOpen(!state.isHelpOpen)}
-                        />
 
                         <ExerciseFeedbackAndBtns
                             callBackBtnMain={handleMainBtnClick}
@@ -798,11 +889,11 @@ export function ExerciseConjugation(props: IExerciseConjugation): ReactNode {
                                 ? <TensesList/>
                                 : <></>
                         }
-                        <NextPrevious />
-                        <IgnoreSpecialCharacters
+                        <NextPrevious updateVerb={updateCurrentVerb} />
+                        {/* <IgnoreSpecialCharacters
                             callbackOnChange={onIgnoreSpecialCharsChange}
                             initialValue={getIgnoreInitialValue()}
-                        />
+                        /> */}
                         <ShareExercise/>
                     </div>
 

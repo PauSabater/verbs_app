@@ -1,0 +1,387 @@
+{
+    "props": {
+        "tense": "imperativ",
+        "title": "Das Imperativ (German Imperative tense): usage, conjugation and exercises",
+        "datePublished": "Dec 21, 2023",
+        "dateUpdated": "",
+        "level": "A2",
+        "tags": ["Imperativ"]
+    },
+    "verbsUsed": [
+        "sein",
+        "helfen",
+        "kommen",
+        "essen"
+    ],
+    "tenseExercises": "imperativ",
+    "verbsExercises": [
+        "werden"
+    ],
+    "sections": [
+        {
+            "type": "h1-lesson",
+            "content": "&#128218; &nbsp;The Imperativ tense"
+        },
+        {
+            "type": "h2-post",
+            "content": "Introduction"
+        },
+        {
+            "type": "paragraph",
+            "content": "The <b><i>Imperativ</i></b>&nbsp;&nbsp;is the equivalent of the Imperative tense in English (\"eat that please!\"). It is used to give commands, make requests, offer invitations, or give advice."
+        },
+        {
+            "type": "callout",
+            "content": "With the <i>Präsens</i>, you are getting 3 tenses in one: <strong>present</strong>, <strong>present continuous</strong> and <strong>future</strong>! &nbsp;&nbsp; &#127881"
+        },
+        {
+            "type": "h2",
+            "content": "Usage"
+        },
+        {
+            "type": "paragraph",
+            "content": "We use the <i>Imperativ</i>&nbsp; tense for:"
+        },
+        {
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>Commands.</b> Used to tell someone to do something:",
+                        "example": {
+                            "audio": "Komm hier!",
+                            "text": "Example: $__Komm-kommen[verb-link-hover]__$ hier!",
+                            "translation": "(Come here!)"
+                        }
+                    },
+                    {
+                        "text": "<b>Requests.</b> Used to politely ask someone to do something when accompanied by \"bitte\":",
+                        "example": {
+                            "audio": "Bitte hilf mir.",
+                            "text": "Example: Bitte $__hilf-helfen[verb-link-hover]__$ mir.",
+                            "translation": "(Please help me)"
+                        }
+                    },
+                    {
+                        "text": "<b>Invitations.</b> Used to invite someone to do something:",
+                        "example": {
+                            "audio": "Komm mit!",
+                            "text": "Example: $__Komm-kommen[verb-link-hover]__$ mit!",
+                            "translation": "(Come with me!)"
+                        }
+                    },
+                    {
+                        "text": "<b>Suggestions or Advice:</b> Used to suggest an action.",
+                        "example": {
+                            "audio": "Iss mehr Gemüse!",
+                            "text": "Example: $__Iss-essen[verb-link-hover]__$ mehr Gemüse!",
+                            "translation": "(Eat more vegetables!)"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "type": "h2",
+            "content": "Conjugation"
+        },
+        {
+            "type": "paragraph",
+            "content": "Conjugation rules are different depending on the type of verb: <b>regular</b> verbs consistently follow the same patterns (easy!), while a handful of <b>irregular verbs</b> verbs need to be memorized individually. Additionally, there are <b>stem-vowel-changing</b> irregular verbs that have minor variations from the regular conjugations."
+        },
+        {
+            "type": "h3",
+            "content": "Regular verbs"
+        },
+        {
+            "type": "paragraph",
+            "content": "Regular verbs will always with <b data-verb-prefix>-en</b> (e.g., $__spielen-spielen[verb-link-hover]__$ - <i>to play</i>), which will be replaced by the following endings: "
+
+        },
+        {
+            "type": "table",
+            "table": {
+                "audio": "Gehe!, gehen wir!, Geht!, gehen Sie! ",
+                "headings": ["person", "ending", "conjugation"],
+                "rows": [
+                    ["(du)", "-e", "geh<i>-e</i>"],
+                    ["wir", "-st", "geh<i>-en</i>"],
+                    ["(ihr)", "-t", "geh<i>-t</i>"],
+                    ["Sie", "-en", "geh<i>-en</i>"]
+                ]
+            }
+        },
+        {
+            "type": "example",
+            "example": {
+                "audio": "Fahren wir zum Kino!",
+                "text": "Example: $__Fahren-fahren[verb-link-hover]__$ wir zum Kino!",
+                "translation": "(Let's go to the cinema!)"
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präsens for spielen",
+            "param": "spielen",
+            "exercise": {
+                "verb": "spielen",
+                "tense": "präsens"
+            }
+        },
+        {
+            "type": "h3",
+            "content": "Irregular verbs"
+        },
+        {
+            "type": "paragraph",
+            "content": "Some irregular verbs will not follow any pattern. You will have to memorise and practise them, but that will be easy because they are some of the most used verbs. The most common irregular verb is (e.g., $__sein-sein[verb-link-hover]__$ - <i>to be</i>):"
+        },
+        {
+            "type": "table",
+            "table": {
+                "audio": "ich bin, du bist, (er) (sie) (es) ist, wir sein, ihr sind, sie sind.",
+                "headings": ["person", "sein"],
+                "rows": [
+                    ["ich", "<i>bin</i>"],
+                    ["du", "<i>bist</i>"],
+                    ["er/sie/es", "<i>ist</i>"],
+                    ["wir", "<i>sind</i>"],
+                    ["ihr", "<i>seid</i>"],
+                    ["Sie", "<i>sind</i>"]
+                ]
+            }
+        },
+        {
+            "type": "example",
+            "example": {
+                "audio": "Ich bin Student.",
+                "text": "Example: Ich $__bin-sein[verb-link-hover]__$ Student.",
+                "translation": "(I am a student.)"
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "content": "practise präsens for sein",
+            "param": "sein",
+            "exercise": {
+                "verb": "sein",
+                "tense": "präsens"
+            }
+        },
+        {
+            "type": "paragraph",
+            "content": "The 5 most important verbs of this type are the following: $__sein-sein[verb-link-hover]__$, $__werden-werden[verb-link-hover]__$, $__können-können[verb-link-hover]__$ and $__mögen-mögen[verb-link-hover]__$."
+        },
+        {
+            "type": "h3",
+            "content": "Stem-vowel changing irregular verbs"
+        },
+        {
+            "type": "paragraph",
+            "content": "<p>Unlike the previous verbs, most of irregular verbs will only be stem-vowel changing, where the vowel in the stem changes in the <b>second and third person singular</b> (du and er/sie/es forms). There are three basic types of vowel change:</p>"
+        },
+        {
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>e  →  i:</b> for  example $__helfen-helfen[verb-link-hover]__$ (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"i\"</b>:"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "table-2-3",
+            "marginList": true,
+            "table": {
+                "audio": "ich helfe, du hilfst, (er) (sie) (es) hilft, wir helfen, ihr helft, Sie helfen.",
+                "headings": ["person", "stem-change", "example"],
+                "rows": [
+                    ["ich", "", "helf<i>e</i>"],
+                    ["du", "<b data-verb-stem>e  →  i</b>", "h<u>i</u>lf<i>st</i>"],
+                    ["er/sie/es", "<b data-verb-stem>e  →  i</b>", "h<u>i</u>lf<i>t</i>"],
+                    ["wir", "", "helf<i>en</i>"],
+                    ["ihr", "", "helf<i>t</i>"],
+                    ["Sie", "", "helf<i>en</i>"]
+                ]
+            }
+        },
+        {
+            "type": "example",
+            "marginList": true,
+            "example": {
+                "audio": "Du hilfst mir wirklich.",
+                "text": "Example: Du $__hilfst-helfen[verb-link-hover]__$ mir wirklich.",
+                "translation": "(You really help me.)"
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "marginList": true,
+            "content": "practise präsens for helfen",
+            "param": "helfen",
+            "exercise": {
+                "verb": "helfen",
+                "tense": "präsens"
+            }
+        },
+        {
+            "type": "paragraph",
+            "content": "Other examples are $__geben-geben[verb-link-hover]__$, $__sprechen-sprechen[verb-link-hover]__$ and $__nehmen-nehmen[verb-link-hover]__$."
+        },
+        {
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>e  →  ie:</b> for example $__sehen-sehen[verb-link-hover]__$ (to read) changes the stem from <b data-verb-stem>\"e\"</b> to <b data-verb-stem>\"ie\"</b>:"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "table-2-3",
+            "marginList": true,
+            "table": {
+                "audio": "ich sehe, du siehst, (er) (sie) (es) sieht, wir sehen, ihr seht, sie sehen.",
+                "headings": ["person", "stem-change", "example"],
+                "rows": [
+                    ["ich", "", "seh<i>e</i>"],
+                    ["du", "<b data-verb-stem>e  →  ie</b>", "s<u>ie</u>h<i>st</i>"],
+                    ["er/sie/es", "<b data-verb-stem>e  →  ie</b>", "s<u>ie</u>h<i>t</i>"],
+                    ["wir", "", "seh<i>en</i>"],
+                    ["ihr", "", "seh<i>t</i>"],
+                    ["Sie", "", "seh<i>en</i>"]
+                ]
+            }
+        },
+        {
+            "type": "example",
+            "marginList": true,
+            "example": {
+                "audio": "Du siehst einen Film.",
+                "text": "Example: Du $__siehst-sehen[verb-link-hover]__$  einen Film.",
+                "translation": "(You really help me.)"
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "marginList": true,
+            "content": "practise präsens for sehen",
+            "param": "sehen",
+            "exercise": {
+                "verb": "sehen",
+                "tense": "präsens"
+            }
+        },
+        {
+            "type": "paragraph",
+            "content": "Other examples are $__lesen-lesen[verb-link-hover]__$ and $__stehen-stehen[verb-link-hover]__$."
+        },
+        {
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>a  →  ä:</b> for example $__fallen-fallen[verb-link-hover]__$ (to fall) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"ä\"</b>:"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "table-2-3",
+            "marginList": true,
+            "table": {
+                "headings": ["person", "stem-change", "example"],
+                "rows": [
+                    ["ich", "", "fall<i>e</i>"],
+                    ["du", "<b data-verb-stem>a  →  ä</b>", "f<u>ä</u>ll<i>st</i>"],
+                    ["es", "<b data-verb-stem>a  →  ä</b>", "f<u>ä</u>ll<i>t</i>"],
+                    ["wir", "", "fall<i>en</i>"],
+                    ["ihr", "", "fall<i>t</i>"],
+                    ["Sie", "", "fall<i>en</i>"]
+                ]
+            }
+        },
+        {
+            "type": "example",
+            "marginList": true,
+            "example": {
+                "audio": "Die Blätter fallen von den Bäumen.",
+                "text": "Example: Die Blätter $__fallen-fallen[verb-link-hover]__$ von den Bäumen.",
+                "translation": "(The leaves are falling from the trees.)"
+            }
+        },
+        {
+            "type": "exercise-btn",
+            "marginList": true,
+            "content": "practise präsens for fallen",
+            "param": "fallen",
+            "exercise": {
+                "verb": "fallen",
+                "tense": "präsens"
+            }
+
+        },
+        {
+            "type": "paragraph",
+            "content": "Other examples are $__schlafen-schlafen[verb-link-hover]__$, $__fahren-fahren[verb-link-hover]__$ and $__raten-raten[verb-link-hover]__$."
+        },
+        {
+            "type": "list",
+            "itemsList": {
+                "items": [
+                    {
+                        "text": "<b>a  →  äu:</b> for example $__laufen[verb-link-hover]__$ (to run) changes the stem from <b data-verb-stem>\"a\"</b> to <b data-verb-stem>\"äu\"</b>:"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "table-2-3",
+            "marginList": true,
+            "table": {
+                "headings": ["person", "stem-change", "example"],
+                "rows": [
+                    ["ich", "", "lauf<i>e</i>"],
+                    ["du", "<b data-verb-stem>a  →  ä</b>", "l<u>äu</u>ff<i>st</i>"],
+                    ["es", "<b data-verb-stem>a  →  ä</b>", "l<u>äu</u>ff<i>t</i>"],
+                    ["wir", "", "lauf<i>en</i>"],
+                    ["ihr", "", "lauf<i>t</i>"],
+                    ["Sie", "", "lauf<i>en</i>"]
+                ]
+            }
+        },
+        {
+            "type": "example",
+            "marginList": true,
+            "example": {
+                "audio": "Ich laufe jeden Morgen im Park.",
+                "text": "Example: Ich $__laufe-laufen[verb-link-hover]__$ jeden Morgen im Park.",
+                "translation": "(The leaves are falling from the trees.)"
+            }
+        },
+        {
+            "type": "h2",
+            "content": "Exercises"
+        },
+        {
+            "type": "paragraph",
+            "content": "<b>Exercise 1:</b> Practise tense präsens for the following <b>regular</b> verbs:</br> $__spielen-spielen[verb-link-hover]__$, $__tanzen-tanzen[verb-link-hover]__$, $__lachen-lachen[verb-link-hover]__$ and $__wohnen-wohnen[verb-link-hover]__$:"
+        },
+        {
+            "type": "exercise-btn-link",
+            "content": "start exercise 1",
+            "path": "/exercises/prasens-tense-regular-verbs"
+        },
+        {
+            "type": "paragraph",
+            "content": "<b>Exercise 2:</b> Practise tense präsens for the following <b>irregular</b> verbs:</br> $__sein-sein[verb-link-hover]__$, $__werden-werden[verb-link-hover]__$, $__können-können[verb-link-hover]__$ and $__mögen-mögen[verb-link-hover]__$:"
+        },
+        {
+            "type": "exercise-btn-link",
+            "content": "start exercise 2",
+            "path": "/exercises/prasens-tense-irregular-verbs"
+        }
+    ]
+}

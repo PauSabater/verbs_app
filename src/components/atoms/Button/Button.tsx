@@ -1,11 +1,11 @@
-import { SVGAdd, SVGArrow, SVGExercise, SVGLink, SVGNext, SVGRandom, SVGRestart, SVGSearch } from '@/assets/svg/svgExports'
+import { SVGAdd, SVGArrow, SVGExercise, SVGLink, SVGList, SVGNext, SVGRandom, SVGRestart, SVGSearch } from '@/assets/svg/svgExports'
 import styles from './Button.module.scss'
 import Link from 'next/link'
 
 interface IButton {
     text: string,
     width?: "fullWidth" | "fitContent",
-    icon?: "exercise" | "repeat" | "next" | "link" | "random" | "search" | "restart" | "add" | '',
+    icon?: "exercise" | "repeat" | "next" | "link" | "random" | "search" | "restart" | "add" | 'list' | '',
     color?: TColor,
     size?: "lg" | "xs" | "xsSquare" | "square"
     callback?: Function
@@ -16,6 +16,8 @@ interface IButton {
     paramOnClick?: string
     isTextOnHover?: boolean
     dotted?: boolean
+    img?: string
+    attribute?: string
 }
 
 export type TColor = "primary" | "primaryReverse" | "primaryDarkReverse" | "primaryReverseNoInverse" | "primaryDark" | "primaryDarker" | "secondary" | "secondaryReverse" | "tertiary" | "tertiaryReverse"| "inactive" | "error" | "success" | "transparent" | "greyDark" | "greyReverse"
@@ -31,9 +33,11 @@ export function Button(props: IButton) {
         if (props.icon === 'search') return <SVGSearch />
         if (props.icon === 'restart') return <SVGRestart />
         if (props.icon === 'add') return <SVGAdd />
+        if (props.icon === 'list') return <SVGList />
     }
 
-    const handleBtnClick = ()=> {
+    const handleBtnClick = (e: React.MouseEvent<HTMLElement>)=> {
+        e.stopPropagation()
         if (!props.callback) return
         props.callback(props.paramOnClick || '')
     }
@@ -42,16 +46,22 @@ export function Button(props: IButton) {
         return `${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']} ${props.isTextOnHover ? styles.textOnHover : ''} ${props.dotted ? styles.dotted : ''}`
     }
 
+    const getImg = ()=> {
+        return <img src={`/img/icons/${props.img}.svg`} alt={props.img} height="24" width="24"/>
+    }
+
     return (
         <>
             {!props.isLink ? (
                 <button
                     title={props.title || ''}
-                    className={getClassNames()}
+                    className={`${getClassNames()}`}
                     type={props.type}
-                    onClick={() => handleBtnClick()}
+                    onClick={(e) => handleBtnClick(e)}
+                    data-button={props.attribute || ''}
                 >
                     {props.icon ? getIcon(props.icon) : null}
+                    {props.img ? getImg() : null}
                     {props.text}
                 </button>
             ) : (
@@ -60,7 +70,7 @@ export function Button(props: IButton) {
                     title={props.title || ''}
                     className={`${styles.Button} ${styles[props.color || 'primaryDark']} ${styles[props.width || 'fitContent']} ${styles[props.size || '']}`}
                     type={props.type}
-                    onClick={() => handleBtnClick()}
+                    onClick={(e) => handleBtnClick(e)}
                 >
                     {props.icon ? getIcon(props.icon) : null}
                     {props.text}

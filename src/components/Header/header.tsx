@@ -1,7 +1,7 @@
 'use client'
 
 import { Fragment, useEffect, useRef, useState } from 'react'
-import { Button } from '../Button/Button'
+import { Button } from '../atoms/Button/Button'
 import SearchBar from '../SearchBar/SearchBar'
 import styles from './header.module.scss'
 import ModalExercises from '../ModalExercises/ModalExercises'
@@ -63,16 +63,19 @@ export default function Header() {
                 </div>
 
                 <div className={styles.authenticationContainer}>
-                    <Button text={'log in'} color={'transparent'} callback={() => setIsSignUpOpen(true)}></Button>
+                    <Button
+                        text={'log in'}
+                        color={'transparent'}
+                        callback={() => setIsSignUpOpen(true)}></Button>
                     {
                         isUserLogged ? <Button text={'Sign in'} color={'primaryDark'} callback={() => setIsSignUpOpen(true)}></Button>
                         : <p>HELLO</p>
                     }
                 </div>
                 <div className={`${styles.linksContainer}`}>
-                    <Link href={'/exercises'}>exercises</Link>
+                    <Link href={'/exercises'}>trainning</Link>
                     <SubMenuLessons />
-
+                    <Link href={'/exercises'}>exercises</Link>
                 </div>
             </nav>
             {/* <Sidebar isOpen={isSidebarOpen} /> */}

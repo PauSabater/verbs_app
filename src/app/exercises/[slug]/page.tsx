@@ -1,54 +1,51 @@
-// 'use server'
-
-import { Fragment, createContext, useContext } from 'react'
-import { InferGetStaticPropsType } from 'next/types'
+import ExerciseText from '@/components/ExerciseText/ExerciseText'
+import { getVerbsProperties } from '@/lib/getApiData'
+import { ExercisePage } from './ExercisePage'
 import { headers } from 'next/headers'
-import exercisesData from '../../../../public/data/exercises/exercises.json'
-import { ExerciseConjugation } from '@/components/ExerciseConjugation/ExerciseConjugation'
-import styles from '../../exercise/exercisePage.module.scss'
-import textsVerbExercise from '@/data/textsVerbExercise.json'
+import fs from 'fs'
+import path from 'path'
+
+export function getFileNames() {
+  const dir = path.join(process.cwd(), 'public/data/exercises/');
+  return fs.readdirSync(dir).map(file => file.replace('.json', ''));
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
 
-    const exerciseData = exercisesData.exercises.filter((exercise)=>
-        exercise.path === params.slug
-    )[0]
+    console.log("HELLO SLUG IS", params.slug)
+
+    const filePath = path.join(process.cwd(), `public/data/exercises/${params.slug}.json`)
+    console.log("file path is", filePath)
+    const fileContent = fs.readFileSync(filePath, 'utf-8')
+    const dataExercise = JSON.parse(fileContent)
+
+    console.log("exercise DATA IS", dataExercise)
+
+    const dataVerbsInText = await getVerbsProperties(
+        dataExercise.verbsUsed as string[]
+    )
+    const exerciseData = dataExercise
+
+
+
+    // /Users/pausabatervilar/projects/verbs_app/verbs_app/public/data/exercises/konjunctive-II-futur-I-die-knoblauchsuppe.json
+    // /Users/pausabatervilar/projects/verbs_app/verbs_app/public/data/exercises/kojunktiv-II-futur-I-die-knoblauchsuppe.json
 
     return (
-        <Fragment>
         <>
-            {
-                <div className={styles.container}>
-                    <div className={styles.layout}>
-                        <div className={styles.containerExercise}>
-                            <ExerciseConjugation
-                                verb={exerciseData?.verbs[0] || ''}
-                                tensesDropdown={['hey', 'eho']}
-                                texts={textsVerbExercise}
-                                tenseExercise={exerciseData?.tenses[0] || ''}
-                                selectedTenses={['präsens', 'präteritum']}
-                                isSingleTense={false}
-                                // isSingleUse={false}
-                                isEmbedded={true}
-                                verbs={exerciseData?.verbs || []}
-                                tenses={exerciseData?.tenses || []}
-                            ></ExerciseConjugation>
-                        </div>
-                    </div>
-                </div>
-            }
+            <ExercisePage
+                host={headers().get('host') || ''}
+                dataVerbsInText={dataVerbsInText}
+                dataExercise={exerciseData}
+            ></ExercisePage>
         </>
-        </Fragment>
     )
 }
 
 export async function generateStaticParams() {
 
-    const exercisePaths = exercisesData.exercises.map((exercise)=> {
-        exercise.path
-    })
-
-    return exercisePaths.map((path) => ({
-        slug: path
-    }))
+    const fileNames = getFileNames()
+    console.log("heloooo names are")
+    console.log(fileNames)
+    return fileNames.map(slug => ({ slug }))
 }

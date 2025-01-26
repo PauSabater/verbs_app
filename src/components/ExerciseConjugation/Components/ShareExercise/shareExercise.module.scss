@@ -1,19 +1,61 @@
 .container {
+    --settings-container-pd: var(--mg-md) var(--mg-xl);
+
     box-sizing: border-box;
     width: 100%;
     background: var(--bg-white);
     border-radius: 20px;
-    padding: var(--mg-md) var(--mg-xl);
     height: fit-content;
+}
+
+.buttonTrigger {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    box-sizing: border-box;
+    width: 100%;
+    background: var(--bg-white);
+    border-radius: 20px;
+    padding: var(--settings-container-pd);
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    text-align: left;
+    border: none;
+    color: var(--c-font-global);
+
+    &:hover {
+        outline: 1px solid var(--c-grey-light);
+    }
+
+    svg {
+        height: 20px;
+        opacity: 0.7;
+    }
 }
 
 
 .iconContainer {
     display: flex;
+    padding: var(--settings-container-pd);
+    justify-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    height: 0;
+    transition: height var(--tr-fast), opacity var(--tr-base);
+
+    &[data-is-open="true"] {
+        opacity: 1;
+        height: 70px;
+        overflow: visible;
+    }
 
     svg {
         height: 25px;
         opacity: 0.4;
         margin-right: 4px;
+        margin-top: var(--mg-md);
     }
 }
